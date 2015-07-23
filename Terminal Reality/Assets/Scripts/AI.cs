@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-	public Vector3 speed = new Vector3(0,0,-0.09f);
+	public Vector3 speed = new Vector3(7,5,7);
 
 	public Transform player;
 
@@ -23,8 +23,12 @@ public class AI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//we need to check the state of the enemy
-		if (!debug){controller.Move(speed);}
-		transform.LookAt(player.position);
+		if (!debug){
+			transform.LookAt(player.position);
+			controller.Move(transform.forward * speed.x * Time.deltaTime); 
+
+
+		}
 
 	}
 }
