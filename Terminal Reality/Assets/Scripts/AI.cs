@@ -6,7 +6,7 @@ public class AI : MonoBehaviour {
 	public Vector3 speed = new Vector3(0,0,-0.09f);
 
 
-
+	public bool debug;
 	public FSM.State state;
 	private CharacterController controller;
 
@@ -21,7 +21,7 @@ public class AI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//we need to check the state of the enemy
-		controller.Move(speed);
+		if (!debug){controller.Move(speed);}
 
 
 	}
