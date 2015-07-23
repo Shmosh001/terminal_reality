@@ -15,4 +15,17 @@ public class FSMImpl : MonoBehaviour {
 
 
 
+	public void enterStationary(){
+
+	}
+	public void enterWandering(){}
+
+	public void enterChase(){}
+	public void enterSearch(){}
+	public void enterAttaack(){}
+	public void enterDead(){}
+	
+	//public void changeState(State newState){}
+	public void previousState(){}
+
 }

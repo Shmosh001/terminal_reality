@@ -5,6 +5,8 @@ public class AI : MonoBehaviour {
 
 	public Vector3 speed = new Vector3(0,0,-0.09f);
 
+	public Transform player;
+
 
 	public bool debug;
 	public FSM.State state;
@@ -22,7 +24,7 @@ public class AI : MonoBehaviour {
 	void Update () {
 		//we need to check the state of the enemy
 		if (!debug){controller.Move(speed);}
-
+		transform.LookAt(player.position);
 
 	}
 }

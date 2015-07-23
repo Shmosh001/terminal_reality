@@ -8,7 +8,7 @@ public abstract class FSM : MonoBehaviour {
 	public State prevState;
 
 
-	abstract public void enterStationary();
+	/*abstract public void enterStationary();
 	abstract public void enterWandering();
 	abstract public void enterChase();
 	abstract public void enterSearch();
@@ -16,6 +16,6 @@ public abstract class FSM : MonoBehaviour {
 	abstract public void enterDead();
 
 	abstract public void changeState(State newState);
-	abstract public void previousState();
+	abstract public void previousState();*/
 	
 }
