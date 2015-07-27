@@ -2,52 +2,56 @@
 using System.Collections;
 
 
-public class StateMachineClass<T> : MonoBehaviour,  StateMachineInterface<T> {
+public class StateMachineClass<T> : MonoBehaviour{
 
 
-	public T currenState;
-	public T previousState;
+	private T currenState;
+	private T previousState;
 
-
-
-
-
-
-	// Use this for initialization
-	void Start () {
-		
+	void Start(){
+		currenState = null;
+		previousState = null;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	//eneters the specified state
-	void enterState(T newState){
+	public void enterState(T newState){
+		previousState = currenState;
+		currenState = newState;
 
 	}
-	
+
+	//reverts back to previous state
+	public void enterPreviousState(){
+		T temp = currenState;
+		currenState = previousState;
+		previousState = temp;
+	}
+
 	//checks if a previous state exists
-	bool hasPreviousState(){
-		return true;
+	public bool hasPreviousState(){
+		if (previousState != null){
+			return true;
+		}
+		return false;
 	}
 	
 	//returns the previous state
-	T getPreviousState(){
+	public T getPreviousState(){
 		return previousState;
 	}
 	
 	//returns the current state
-	T getCurrentState(){
+	public T getCurrentState(){
 		return currenState;
 	}
 	
 	
 	//checks if the current state is the state sent in
-	bool checkCurrentState(T state){
-		return true;
+	public bool checkCurrentState(T state){
+		if (currenState == state){
+			return true;
+		}
+		return false;
 	}
 
 
