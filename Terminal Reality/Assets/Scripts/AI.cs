@@ -9,12 +9,12 @@ public class AI : MonoBehaviour {
 
 
 	public bool debug;
-	public FSM.State state;
+	//public FSM.State state;
 	private CharacterController controller;
 
 	// Use this for initialization
 	void Start () {
-		state = FSM.State.stationary;
+		//state = FSM.State.stationary;
 		//controller.attachedRigidbody.
 		controller = (CharacterController)this.gameObject.GetComponent<CharacterController>();
 		//controller.Move(speed);
