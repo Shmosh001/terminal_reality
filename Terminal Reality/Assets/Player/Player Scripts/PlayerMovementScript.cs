@@ -14,6 +14,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
 	private float verticalVelocity = -1;
+	private float movementMultiplier = 1;
 
 
 	// Use this for initialization
@@ -45,9 +46,32 @@ public class PlayerMovementScript : MonoBehaviour {
 
 		/***********
 		//MOVEMENT//
-		**********/		
-		float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
-		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
+		**********/	
+
+		//SPRINTING//
+		if (Input.GetKeyDown(KeyCode.LeftShift)) //If sprint button is being held down//
+		{
+			movementMultiplier = 1.5f;
+		}
+		if (Input.GetKeyUp(KeyCode.LeftShift)) //Release sprint button//
+		{
+			movementMultiplier = 1.0f;
+		}
+
+		//SNEAKING//
+		if (Input.GetKeyDown(KeyCode.LeftControl)) //If sneak button is being held down//
+		{
+			movementMultiplier = 0.70f;
+		}
+		if (Input.GetKeyUp(KeyCode.LeftControl)) //Release sneak button//
+		{
+			movementMultiplier = 1.0f;
+		}
+
+
+		float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed * movementMultiplier;
+		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed * movementMultiplier;
+
 		//JUMPING//
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
 		{
@@ -58,6 +82,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		Vector3 speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed); //set speed vector in which player is moving in xyz		
 		speed = transform.rotation * speed;		
 		characterController.Move(speed * Time.deltaTime);
+
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) 
