@@ -90,6 +90,7 @@ GameObject:
   - 143: {fileID: 159071500}
   - 114: {fileID: 159071505}
   - 114: {fileID: 159071506}
+  - 114: {fileID: 159071507}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -213,6 +214,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotRange: 100
+--- !u!114 &159071507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11405794, guid: 738266dd4b0b4b14fa4396585fe2cfee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1352451949}
+  m_GameObject: {fileID: 159071498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c3213ce99318a4da0ee5e236d6621f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &283007387
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +351,7 @@ GameObject:
   - 65: {fileID: 443822071}
   m_Layer: 0
   m_Name: doors4
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,6 +641,10 @@ Prefab:
     - target: {fileID: 400000, guid: 066738378d77cef4085c5f47051453f1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 066738378d77cef4085c5f47051453f1, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 066738378d77cef4085c5f47051453f1, type: 3}
