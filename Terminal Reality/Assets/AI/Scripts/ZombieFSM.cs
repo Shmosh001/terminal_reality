@@ -10,7 +10,7 @@ public class ZombieFSM : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fsm.enterState(states.);
+		//fsm.enterState(states.);
 	}
 	
 	// Update is called once per frame
