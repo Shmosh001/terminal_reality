@@ -17,7 +17,6 @@ public class interactionScript : MonoBehaviour {
 		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			Debug.Log("Attempting interaction...");
 			ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
 			RaycastHit hitInfo; //to store what the ray hit
@@ -31,7 +30,8 @@ public class interactionScript : MonoBehaviour {
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
-					Debug.Log("Open Door!");
+					DoorScript ds = hitObject.GetComponent<DoorScript>();
+					ds.interaction();
 				}
 			}
 		}
