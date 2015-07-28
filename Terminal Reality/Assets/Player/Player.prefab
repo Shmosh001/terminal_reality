@@ -33,6 +33,7 @@ GameObject:
   - 54: {fileID: 5424726}
   - 143: {fileID: 14324726}
   - 114: {fileID: 11460628}
+  - 114: {fileID: 11412926}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -153,6 +154,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124724}
   m_Enabled: 1
+--- !u!114 &11412926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotRange: 100
 --- !u!114 &11460628
 MonoBehaviour:
   m_ObjectHideFlags: 1
