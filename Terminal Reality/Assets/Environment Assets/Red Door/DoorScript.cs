@@ -13,6 +13,7 @@ public class DoorScript : MonoBehaviour {
 
 	}
 
+	//WHEN THE PLAYER INTERACTS WITH THE DOOR//
 	public void interaction()
 	{
 		//IF THE DOOR IS OPEN//
@@ -26,6 +27,16 @@ public class DoorScript : MonoBehaviour {
 		{
 			anim.SetBool("open", true);
 			open = true;
+		}
+	}
+
+	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
+	void OnTriggerEnter (Collider other)
+	{
+		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+		if (other.tag == "Player")
+		{
+			Debug.Log("PUSH E TO OPEN THE DOOR!");
 		}
 	}
 }
