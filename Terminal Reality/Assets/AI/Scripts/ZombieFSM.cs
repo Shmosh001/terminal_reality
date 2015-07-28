@@ -14,8 +14,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//speed values
 	public float walkingSpeed, RunningSpeed;
 	//distance values
-	public float runningDistance, attackingDistance;
-
+	public float runningDistance, attackingDistance, losingDistance;
 	//actual values
 	private float viewingSens, listeningSens, speed;
 
@@ -86,11 +85,26 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Running:
-
+			//maybe add in timer so we dont update path every frame?
+			if (lostPlayer()){
+				loosePlayer();
+			}
+			else{
+				chasePlayer();
+			}
 			break;
 
 
 		case StateEnums.ZombieStates.Searching:
+			searchingC += Time.deltaTime;
+
+			if (searchingC > searchingD){
+				fsm.enterState(StateEnums.ZombieStates.Alerted);
+			}
+			else{
+				searchForPlayer();
+			}
+
 
 			break;
 
@@ -189,6 +203,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//we send the AI unit on a path to search for the player
 	public void searchForPlayer(){
 		//based on players position lay a path that leads to a point close to the player or in his general direction
+		//needs to be reassesed often
+		//maybe have a counter of how often the path gets recalculated
 	}
 
 	//attacks the player
@@ -224,17 +240,25 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		else if (distance < attackingDistance){
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 		}
+		else if (distance > losingDistance){
+			loosePlayer();
+		}
 
 	}
 
 	//check if we have lost the player
-	public void lostPlayer(){
+	public bool lostPlayer(){
 		//check if the player is still in sight
 		//check how far away the player is
+		return true;
 	}
 
 	//instruct the AI unit that it has lost the player
-	public void loosePlayer(){}
+	public void loosePlayer(){
+		fsm.enterState(StateEnums.ZombieStates.Searching);
+		walking = false;
+		running = false;
+	}
 
 	//pukes at position
 	public void puke(){
