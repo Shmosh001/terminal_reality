@@ -8,19 +8,27 @@ public class StateEnums : MonoBehaviour {
 
 
 	public enum ZombieStates{
-		test
+		Idle,
+		Wandering,
+		Running,
+		Searching,
+		Puking,
+		Attacking,
+		Alerted,
+		Dying,
+		Dead
 	};
 
 	//list all states and have a switch statement with behaviour
 
 
 	public enum HumanStates{
-		running, 
-		screaming, 
-		dying, 
-		dead, 
-		walking, 
-		idle
+		Running, 
+		Screaming, 
+		Dying, 
+		Dead, 
+		Walking, 
+		Idle
 	};
 
 
