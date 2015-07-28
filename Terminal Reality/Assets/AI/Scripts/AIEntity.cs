@@ -8,6 +8,17 @@ public class AIEntity <T>: MonoBehaviour{
 		this.gameObject.SetActive(true);
 	}
 
+	//choses weither or not to change states  to a new event
+	public bool eventChoice(){
+		int choice = Random.Range(0,1);
+		if (choice == 1){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	//could also be in base class
 	//choses between 2 states randomly
 	public T chooseAction(T state1, T state2){
@@ -21,6 +32,9 @@ public class AIEntity <T>: MonoBehaviour{
 	}
 	//general class
 	public float checkDistance(Transform entity1, Transform entity2){
-		return Vector3.Distance(entity1,entity2);
+		return Vector3.Distance(entity1.position,entity2.position);
 	}
+
+
+
 }
