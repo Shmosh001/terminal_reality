@@ -9,8 +9,8 @@ public class StateMachineClass<T> : MonoBehaviour{
 	private T previousState;
 
 	void Start(){
-		currenState = null;
-		previousState = null;
+		/*currenState = null;
+		previousState = null;*/
 	}
 
 	//eneters the specified state
@@ -48,9 +48,9 @@ public class StateMachineClass<T> : MonoBehaviour{
 	
 	//checks if the current state is the state sent in
 	public bool checkCurrentState(T state){
-		if (currenState == state){
+		/*if (currenState == state){
 			return true;
-		}
+		}*/
 		return false;
 	}
 
