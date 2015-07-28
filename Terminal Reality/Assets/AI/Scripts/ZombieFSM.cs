@@ -215,7 +215,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//check which entity is closer
 		//based on distance
 
-		float distance ;//= checkDistance(Player, gameObject.transform);
+		float distance = 0.1f;//= checkDistance(Player, gameObject.transform);
 		if (distance > runningDistance){
 			//if we are far away we walk if not already set
 			
