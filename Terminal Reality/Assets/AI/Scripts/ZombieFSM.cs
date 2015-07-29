@@ -162,22 +162,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			break;
 		}
 	}
-	//moved into AI Entity
-	/*//could have this in an AIEntity class ad base method
-	public void activateEntity(){
-		this.gameObject.SetActive(true);
-	}
 
-	//could also be in base class
-	//choses between 2 states randomly
-	public void chooseAction(StateEnums state1, StateEnums state2){
-
-	}
-	//general class
-	public float checkDistance(Transform entity1, Transform entity2){
-		return Vector3.Distance(entity1,entity2);
-	}
-	*/
 
 	//we check if the AI unit can see the player
 	public void checkForPlayer(){
@@ -208,7 +193,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	}
 
 	//attacks the player
-	public void attackPlayer(GameObject target){}
+	public void attackPlayer(GameObject target){
+		//change animation
+		//inflict damage on player
+		HealthScript targetH = target.GetComponent<HealthScript>();
+		if (targetH != null){
+			targetH.takeDamage(damage);
+		}
+	}
 
 	//chases the nearest player
 	public void chasePlayer(){
