@@ -23,14 +23,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 	// Use this for initialization
 	void Start () {
-<<<<<<< HEAD
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		lessenSenses();
 		speed = walkingSpeed;
-=======
->>>>>>> cd8b7bf3b38de4a314836c2037c5365f2bfc0a56
 	}
 
 
@@ -218,7 +215,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//check which entity is closer
 		//based on distance
 
-		float distance ;//= checkDistance(Player, gameObject.transform);
+		float distance = 0.1f;//= checkDistance(Player, gameObject.transform);
 		if (distance > runningDistance){
 			//if we are far away we walk if not already set
 			
