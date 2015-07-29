@@ -193,7 +193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &141082763
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +771,14 @@ Prefab:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 1273001167}
+    - target: {fileID: 11400000, guid: f56b89f293bede144a90a4c536a4afe7, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: f56b89f293bede144a90a4c536a4afe7, type: 2}
+      propertyPath: useDestinationPointVisibility
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f56b89f293bede144a90a4c536a4afe7, type: 2}
   m_RootGameObject: {fileID: 1035443405}
@@ -1012,7 +1020,7 @@ Transform:
   m_Children:
   - {fileID: 247972006}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &452539065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,11 +1071,7 @@ MonoBehaviour:
   moveOnlyIfGrounded: 0
   checkObstaclesInForward: 1
   debugUpdate: .100000001
-  debugColor:
-    r: 1
-    g: 0
-    b: .986013889
-    a: 1
+  debugColor: {r: 1, g: 0, b: .986013889, a: 1}
   moveSpeed: 0
   minJumpDelay: .100000001
   grounded: 0
@@ -1437,7 +1441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!114 &582181500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,7 +2206,7 @@ MonoBehaviour:
   autoRamble: 1
   moveToDestinationIfNotZero: 1
   useVisibility: 1
-  useDestinationPointVisibility: 0
+  useDestinationPointVisibility: 1
   useNodeDistance: 0
   pointReachRadius: .699999988
   pathOptimization: 5
@@ -2211,6 +2215,10 @@ MonoBehaviour:
   - 7479706531
   - 7479706532
   - 7479706533
+  targetPointConstraints:
+    a: 1
+    b: 1
+    c: 1
   distToCurPoint: 0
   destinationPointIsVisible: 0
   distanceToDestinationPoint: Infinity
@@ -2247,7 +2255,7 @@ Transform:
   m_Children:
   - {fileID: 214269936}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!114 &1035443410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2278,11 +2286,7 @@ MonoBehaviour:
   moveOnlyIfGrounded: 0
   checkObstaclesInForward: 1
   debugUpdate: .100000001
-  debugColor:
-    r: 0
-    g: 0
-    b: 1
-    a: 1
+  debugColor: {r: 0, g: 0, b: 1, a: 1}
   moveSpeed: 0
   minJumpDelay: .100000001
   grounded: 0
