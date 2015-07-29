@@ -45,7 +45,7 @@ public class StateMachineClass <T>{
 		return currenState;
 	}
 	
-	
+
 	//checks if the current state is the state sent in
 	public bool checkCurrentState(T state){
 		//if (currenState == state){
