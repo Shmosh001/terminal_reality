@@ -9,8 +9,13 @@ public class StateMachineClass <T>{
 	private T previousState;
 
 	void Start(){
+<<<<<<< HEAD
 		currenState = default(T);
 		previousState = default(T);
+=======
+		/*currenState = null;
+		previousState = null;*/
+>>>>>>> cd8b7bf3b38de4a314836c2037c5365f2bfc0a56
 	}
 
 	//eneters the specified state
@@ -48,9 +53,15 @@ public class StateMachineClass <T>{
 	
 	//checks if the current state is the state sent in
 	public bool checkCurrentState(T state){
+<<<<<<< HEAD
 		//if (currenState == state){
 			//return true;
 		//}
+=======
+		/*if (currenState == state){
+			return true;
+		}*/
+>>>>>>> cd8b7bf3b38de4a314836c2037c5365f2bfc0a56
 		return false;
 	}
 

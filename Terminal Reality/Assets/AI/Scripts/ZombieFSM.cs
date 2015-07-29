@@ -23,11 +23,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 	// Use this for initialization
 	void Start () {
+<<<<<<< HEAD
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		lessenSenses();
 		speed = walkingSpeed;
+=======
+>>>>>>> cd8b7bf3b38de4a314836c2037c5365f2bfc0a56
 	}
 
 
