@@ -2,15 +2,15 @@
 using System.Collections;
 
 
-public class StateMachineClass<T> : MonoBehaviour{
+public class StateMachineClass <T>{
 
 
 	private T currenState;
 	private T previousState;
 
 	void Start(){
-		/*currenState = null;
-		previousState = null;*/
+		currenState = default(T);
+		previousState = default(T);
 	}
 
 	//eneters the specified state
@@ -45,15 +45,14 @@ public class StateMachineClass<T> : MonoBehaviour{
 		return currenState;
 	}
 	
-	
-	//checks if the current state is the state sent inHEAD
-	//public bool checkCurrentState(T state){
-//		if (currenState == state){
-//			return true;
-//		}
-//		return false;
-	//}
 
+	//checks if the current state is the state sent in
+	public bool checkCurrentState(T state){
+		//if (currenState == state){
+			//return true;
+		//}
+		return false;
+	}
 
 
 
