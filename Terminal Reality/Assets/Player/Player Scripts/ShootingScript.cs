@@ -42,6 +42,9 @@ public class ShootingScript : MonoBehaviour {
 
 					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 					checkHit();
+
+					print ("AMMO : " + weapon.GetComponent<weaponDataScript>().ammo);
+					print ("CLIP : " + weapon.GetComponent<weaponDataScript>().getRemainingClip());
 				}
 				else //if clip is empty
 				{
