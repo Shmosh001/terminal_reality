@@ -794,6 +794,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1288242413}
+  - 114: {fileID: 1288242414}
   m_Layer: 25
   m_Name: Pistol05
   m_TagString: Untagged
@@ -814,6 +815,22 @@ Transform:
   - {fileID: 1102304327}
   m_Father: {fileID: 1352650412}
   m_RootOrder: 0
+--- !u!114 &1288242414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288242412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  rateOfFire: 10
+  singleFire: 1
+  ammo: 100
+  clipSize: 10
 --- !u!1 &1352650407
 GameObject:
   m_ObjectHideFlags: 0

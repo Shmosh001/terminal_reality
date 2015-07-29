@@ -12,18 +12,19 @@ public class ShootingScript : MonoBehaviour {
 	private float rateOfFire;
 	private bool singleFire;
 	private float coolDownTimer;
+	private GameObject weapon;
 
 
 	// Use this for initialization
 	void Start () {
 	
-		//TODO: CHANGE: we will get this information from the gun object which the player is using***
-		damage = 50.0f;
-		rateOfFire = 10.0f;
-		singleFire = true;
+		weapon = GameObject.Find ("Pistol05");
+
+		damage = weapon.GetComponent<weaponDataScript>().damage;
+		rateOfFire = weapon.GetComponent<weaponDataScript>().rateOfFire;
+		singleFire = weapon.GetComponent<weaponDataScript>().singleFire;
 
 		coolDownTimer = rateOfFire;
-
 
 	}
 	
@@ -35,8 +36,16 @@ public class ShootingScript : MonoBehaviour {
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
-				ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-				checkHit();
+				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				{
+					weapon.GetComponent<weaponDataScript>().reduceAmmo();
+
+					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+					checkHit();
+				}
+				else //if clip is empty
+				{
+				}
 			}
 		}
 		//AUTOMATIC FIRE//
@@ -53,6 +62,12 @@ public class ShootingScript : MonoBehaviour {
 					coolDownTimer = rateOfFire;
 				}
 			}
+		}
+
+		//RELOAD//
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			weapon.GetComponent<weaponDataScript>().reload();
 		}
 
 	
