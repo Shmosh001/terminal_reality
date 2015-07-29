@@ -13,9 +13,15 @@ public class weaponDataScript : MonoBehaviour
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
 
+	//AUDIO VARIABLES//
+	public AudioClip shotSound;
+	public AudioClip reloadSound;
+	private AudioSource soundSource;
+
 	void Awake()
 	{
 		ammoInClip = clipSize;
+		soundSource = this.GetComponent<AudioSource>();
 	}
 
 	//GET REMAINING AMMO//
@@ -79,5 +85,27 @@ public class weaponDataScript : MonoBehaviour
 			return false;
 		}
 	}
+
+	/*
+	 * METHODS FOR PLAYING GUN RELATED SOUNDS
+	 */
+	 //PLAY EMPTY CLIP SOUND//
+	public void playEmptyClip()
+	{
+	}
+
+	//PLAY SHOOTING SOUND//
+	public void playShot()
+	{
+		soundSource.PlayOneShot(shotSound);
+	}
+
+	//PLAY RELOAD SOUND//
+	public void playReload()
+	{
+		soundSource.PlayOneShot(reloadSound);
+	}
+
+
 
 }
