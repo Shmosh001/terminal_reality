@@ -415,7 +415,7 @@ Prefab:
     - target: {fileID: 9579242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 23999aa73eaf818418229e4c16cabb1d, type: 2}
+      objectReference: {fileID: 9100000, guid: 939af240da5ff5b42af3e1eb1d4ff7e4, type: 2}
     - target: {fileID: 11479242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
       propertyPath: player
       value: 
@@ -423,6 +423,18 @@ Prefab:
     - target: {fileID: 11479242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
       propertyPath: debug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: speed.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: speed.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: speed.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5d2085346e851749ba6b4627569629a, type: 2}
@@ -2592,6 +2604,7 @@ GameObject:
   - 95: {fileID: 1569324086}
   - 143: {fileID: 1569324085}
   - 114: {fileID: 1569324084}
+  - 114: {fileID: 1569324087}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Untagged
@@ -2625,7 +2638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cddbd2479be70468e098f09a618196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0, z: -.0900000036}
+  speed: {x: 3, y: 10, z: 10}
   player: {fileID: 619734235}
   debug: 0
 --- !u!143 &1569324085
@@ -2653,12 +2666,23 @@ Animator:
   m_GameObject: {fileID: 1569324082}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0ef5527db6c8b7f4abf838dd3cd4a54a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 23999aa73eaf818418229e4c16cabb1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 939af240da5ff5b42af3e1eb1d4ff7e4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1569324087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569324082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cbd3eb4e2194047a88e5653eea4380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1587110399
 GameObject:
   m_ObjectHideFlags: 0
