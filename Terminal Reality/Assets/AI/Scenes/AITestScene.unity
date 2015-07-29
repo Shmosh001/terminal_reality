@@ -2605,6 +2605,7 @@ GameObject:
   - 143: {fileID: 1569324085}
   - 114: {fileID: 1569324084}
   - 114: {fileID: 1569324087}
+  - 114: {fileID: 1569324088}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Untagged
@@ -2683,6 +2684,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cbd3eb4e2194047a88e5653eea4380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1569324088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569324082}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d7581efb5a9714ebcb3556944e9e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  player: {fileID: 0}
+  eventChoiceD: 0
+  wanderD: 0
+  checkPlayerD: 0
+  pukeD: 0
+  alertedD: 0
+  searchingD: 0
+  dyingD: 0
+  viewingSenseNorm: 0
+  viewingSensAlert: 0
+  listeningSensNorm: 0
+  listeningSensAlert: 0
+  walkingSpeed: 0
+  RunningSpeed: 0
+  runningDistance: 0
+  attackingDistance: 0
+  losingDistance: 0
+  target: {fileID: 0}
 --- !u!1 &1587110399
 GameObject:
   m_ObjectHideFlags: 0
