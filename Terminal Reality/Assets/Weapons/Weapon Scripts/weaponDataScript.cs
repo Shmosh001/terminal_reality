@@ -8,7 +8,8 @@ public class weaponDataScript : MonoBehaviour
 	public float rateOfFire;
 	public bool singleFire;
 	public int ammo;
-	public int clipSize;
+	public int clipSize;	
+	public Light flareLight;
 
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
@@ -104,6 +105,12 @@ public class weaponDataScript : MonoBehaviour
 	public void playReload()
 	{
 		soundSource.PlayOneShot(reloadSound);
+	}
+
+	//METHOD TO ENABLE AND DISABLE GUN FLARE//
+	public void gunFlare(bool state)
+	{
+		flareLight.enabled = state;
 	}
 
 
