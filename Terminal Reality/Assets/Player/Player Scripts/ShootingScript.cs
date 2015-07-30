@@ -53,6 +53,9 @@ public class ShootingScript : ammoHUDScript {
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+					//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
+					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
+					                   weapon.GetComponent<weaponDataScript>().clipSize);
 
 					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 					checkHit();
@@ -91,6 +94,10 @@ public class ShootingScript : ammoHUDScript {
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 
+						//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
+						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
+						                   weapon.GetComponent<weaponDataScript>().clipSize);
+
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 						coolDownTimer = rateOfFire;
@@ -115,6 +122,10 @@ public class ShootingScript : ammoHUDScript {
 				//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 				updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 				               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+
+				//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
+				checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
+				                   weapon.GetComponent<weaponDataScript>().clipSize);
 			}
 		}
 
