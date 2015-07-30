@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
+
+	public bool debug;
+
 	//booleans to accertain certain state specifics
 	private bool puking, wandering, alerted, walking, running;
 	//counters
@@ -191,9 +194,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		default:
 			break;
 		}
-
-		text.text = fsm.getCurrentState().ToString();
-		text2.text = getDistance(player.transform, transform).ToString();
+		//debugging
+		if (debug){
+			text.text = fsm.getCurrentState().ToString();
+			text2.text = getDistance(player.transform, transform).ToString();
+		}
+		else{
+			text.text = "";
+			text2.text = "";
+		}
 	}
 
 
