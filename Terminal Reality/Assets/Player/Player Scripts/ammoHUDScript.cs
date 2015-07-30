@@ -15,15 +15,27 @@ public class ammoHUDScript : MonoBehaviour {
 
 	//Check whether the clip is less than a third full
 	//if less than a third full, so reload warning
-	protected void checkReloadWarning(int clipAmmo, int clipSize)
+	protected void checkReloadWarning(int clipAmmo, int clipSize, int totAmmo)
 	{
-		if (clipAmmo/(clipSize * 1.0f) <= 0.33)
+		if (totAmmo != 0 && clipAmmo != 0)
 		{
+			reloadText.text = "Reload";
+
+			if (clipAmmo/(clipSize * 1.0f) <= 0.33)
+			{
+				reloadText.enabled = true;
+			}
+			else
+			{
+				reloadText.enabled = false;
+			}
+		}
+		else if (totAmmo == 0 && clipAmmo == 0)
+		{
+			reloadText.text = "Out of Ammo";
 			reloadText.enabled = true;
 		}
-		else
-		{
-			reloadText.enabled = false;
-		}
+
+
 	}
 }
