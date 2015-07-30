@@ -6,9 +6,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//booleans to accertain certain state specifics
 	private bool puking, wandering, alerted, walking, running;
 	//counters
-	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC;
+	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC;
 	//duration holders
-	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD;
+	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD;
 	//sense values
 	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm, listeningSensAlert;
 	//speed values
@@ -19,6 +19,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private float viewingSens, listeningSens, speed;
 
 
+	private HealthScript health;
+	private Animator animator;
+
+	public GameObject target;
+
+
 	private StateMachineClass<StateEnums.ZombieStates> fsm;
 
 	// Use this for initialization
@@ -26,6 +32,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
+		health = gameObject.GetComponent<HealthScript>();
+		animator = gameObject.GetComponent<Animator>();
 		lessenSenses();
 		speed = walkingSpeed;
 	}
@@ -39,7 +47,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		//update all counters
 
-
+		if (health.health <= 0){
+			fsm.enterState(StateEnums.ZombieStates.Dying);
+		}
 
 
 
@@ -110,6 +120,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Attacking:
+			attackPlayer(target);
 
 			break;
 
@@ -150,11 +161,24 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		case StateEnums.ZombieStates.Dying:
 
+			if (dyingC == 0){
+				killUnit();
+			}
+
+			dyingC += Time.deltaTime;
+
+
+
+			if (dyingC > dyingD){
+				fsm.enterState(StateEnums.ZombieStates.Dead);
+			}
+
+
 			break;
 
 
 		case StateEnums.ZombieStates.Dead:
-
+			dead ();
 			break;
 
 
@@ -162,22 +186,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			break;
 		}
 	}
-	//moved into AI Entity
-	/*//could have this in an AIEntity class ad base method
-	public void activateEntity(){
-		this.gameObject.SetActive(true);
-	}
 
-	//could also be in base class
-	//choses between 2 states randomly
-	public void chooseAction(StateEnums state1, StateEnums state2){
-
-	}
-	//general class
-	public float checkDistance(Transform entity1, Transform entity2){
-		return Vector3.Distance(entity1,entity2);
-	}
-	*/
 
 	//we check if the AI unit can see the player
 	public void checkForPlayer(){
@@ -208,7 +217,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	}
 
 	//attacks the player
-	public void attackPlayer(GameObject target){}
+	public void attackPlayer(GameObject target){
+		//change animation
+		//inflict damage on player
+		HealthScript targetH = target.GetComponent<HealthScript>();
+		if (targetH != null){
+			targetH.takeDamage(damage);
+		}
+	}
 
 	//chases the nearest player
 	public void chasePlayer(){
@@ -280,10 +296,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 	//kills the unit and plays specific animation
-	public void killUnit(){}
+	public void killUnit(){
+		//play animation
+	}
 
 	//disables all parts to the unit to only leave dead body
-	public void dead(){}
+	public void dead(){
+		//remove unnessesary parts
+	}
 
 
 	void heightenSenses(){
@@ -295,5 +315,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		viewingSens = viewingSenseNorm;
 		listeningSens = listeningSensNorm;
 	}
+
+
+
+	/*animator.SetBool("Arm Stretch",false);
+	animator.SetBool("Dead",false);
+	animator.SetBool("Searching",false);
+	animator.SetBool("Alerted",false);
+	animator.SetBool("Puking",false);
+	animator.SetBool("Wandering",false);
+	animator.SetBool("Searching",false);
+	animator.SetBool("Attacking",false);*/
 
 }
