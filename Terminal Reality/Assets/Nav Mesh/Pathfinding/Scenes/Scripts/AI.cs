@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AI : Pathfinding {
+public class AI1 : Pathfinding {
 
     public Transform player;
     private CharacterController controller;
