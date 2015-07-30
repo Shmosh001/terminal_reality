@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShootingScript : MonoBehaviour {
+public class ShootingScript : ammoHUDScript {
 
 	//PUBLIC VARIABLES SHOOTING//
 	public float shotRange = 100.0f;
@@ -29,6 +29,10 @@ public class ShootingScript : MonoBehaviour {
 
 		coolDownTimer = rateOfFire;
 
+		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+		updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+		               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+
 	}
 	
 	// Update is called once per frame
@@ -46,11 +50,12 @@ public class ShootingScript : MonoBehaviour {
 					weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 					flareLoopCount = 0;
 
+					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+
 					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 					checkHit();
-
-					print ("AMMO : " + weapon.GetComponent<weaponDataScript>().ammo);
-					print ("CLIP : " + weapon.GetComponent<weaponDataScript>().getRemainingClip());
 				}
 				else //if clip is empty
 				{
@@ -82,6 +87,10 @@ public class ShootingScript : MonoBehaviour {
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
 
+						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 						coolDownTimer = rateOfFire;
@@ -102,6 +111,10 @@ public class ShootingScript : MonoBehaviour {
 			if (weapon.GetComponent<weaponDataScript>().reload()) 
 			{
 				weapon.GetComponent<weaponDataScript>().playReload(); //play reload sound
+
+				//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+				updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+				               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 			}
 		}
 

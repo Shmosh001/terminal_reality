@@ -13,6 +13,7 @@ public class weaponDataScript : MonoBehaviour
 
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
+	private bool equipped;
 
 	//AUDIO VARIABLES//
 	public AudioClip shotSound;
