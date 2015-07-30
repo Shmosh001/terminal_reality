@@ -55,7 +55,8 @@ public class ShootingScript : ammoHUDScript {
 					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 					//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
-					                   weapon.GetComponent<weaponDataScript>().clipSize);
+					                   weapon.GetComponent<weaponDataScript>().clipSize,
+					                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 
 					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 					checkHit();
@@ -96,7 +97,8 @@ public class ShootingScript : ammoHUDScript {
 
 						//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
-						                   weapon.GetComponent<weaponDataScript>().clipSize);
+						                   weapon.GetComponent<weaponDataScript>().clipSize,
+						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
@@ -125,7 +127,8 @@ public class ShootingScript : ammoHUDScript {
 
 				//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 				checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
-				                   weapon.GetComponent<weaponDataScript>().clipSize);
+				                   weapon.GetComponent<weaponDataScript>().clipSize,
+				                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 			}
 		}
 
