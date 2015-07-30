@@ -53,7 +53,7 @@ public class AIEntity <T>: MonoBehaviour{
 		}
 	}
 	//general class
-	public float checkDistance(Transform entity1, Transform entity2){
+	public float getDistance(Transform entity1, Transform entity2){
 		return Vector3.Distance(entity1.position,entity2.position);
 	}
 
