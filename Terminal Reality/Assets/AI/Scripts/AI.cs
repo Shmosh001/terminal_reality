@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-	public Vector3 speed = new Vector3(7,5,7);
+	public Vector3 speed = new Vector3(70,5,7);
 
 	public Transform player;
 

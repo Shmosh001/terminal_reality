@@ -3,6 +3,28 @@ using System.Collections;
 
 public class AIEntity <T>: MonoBehaviour{
 
+
+	public int damage;
+
+	public GameObject player;
+
+
+	//list of targets that the AI element can attack
+	public ArrayList targets;
+	//ideally we should keep the players at 0 & 1
+
+
+
+
+	public void addTarget(GameObject entity){
+		targets.Add(entity);
+	}
+
+	public void removeTarget(GameObject entity){
+		targets.Remove(entity);
+	}
+
+
 	//could have this in an AIEntity class ad base method
 	public void activateEntity(){
 		this.gameObject.SetActive(true);
