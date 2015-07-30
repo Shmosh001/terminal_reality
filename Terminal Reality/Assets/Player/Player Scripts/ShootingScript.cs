@@ -14,11 +14,14 @@ public class ShootingScript : MonoBehaviour {
 	private float coolDownTimer;
 	private GameObject weapon;
 
+	//COUNTERS//
+	private int flareLoopCount = 0;
+
 
 	// Use this for initialization
 	void Start () {
 	
-		weapon = GameObject.Find ("Pistol05");
+		weapon = GameObject.FindGameObjectWithTag("Pistol");
 
 		damage = weapon.GetComponent<weaponDataScript>().damage;
 		rateOfFire = weapon.GetComponent<weaponDataScript>().rateOfFire;
@@ -38,7 +41,10 @@ public class ShootingScript : MonoBehaviour {
 			{
 				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
 				{
-					weapon.GetComponent<weaponDataScript>().reduceAmmo();
+					weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
+					weapon.GetComponent<weaponDataScript>().playShot(); //play sound of a pistol shot
+					weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
+					flareLoopCount = 0;
 
 					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 					checkHit();
@@ -48,6 +54,18 @@ public class ShootingScript : MonoBehaviour {
 				}
 				else //if clip is empty
 				{
+					weapon.GetComponent<weaponDataScript>().playEmptyClip(); //play empty clip sound
+				}
+			}
+			else
+			{
+				if (flareLoopCount >= 2)
+				{
+					weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
+				}
+				else
+				{
+					flareLoopCount++;
 				}
 			}
 		}
@@ -56,13 +74,23 @@ public class ShootingScript : MonoBehaviour {
 		{
 			if (Input.GetMouseButton(0))
 			{
-				coolDownTimer -= Time.deltaTime;
-
-				if (coolDownTimer <= 0) //can shoot
+				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
 				{
-					ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-					checkHit();
-					coolDownTimer = rateOfFire;
+					coolDownTimer -= Time.deltaTime;
+
+					if (coolDownTimer <= 0) //can shoot
+					{
+						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
+
+						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+						checkHit();
+						coolDownTimer = rateOfFire;
+					}
+				}
+
+				else //if clip is empty
+				{
+					weapon.GetComponent<weaponDataScript>().playEmptyClip(); //play empty clip sound
 				}
 			}
 		}
@@ -70,7 +98,11 @@ public class ShootingScript : MonoBehaviour {
 		//RELOAD//
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			weapon.GetComponent<weaponDataScript>().reload();
+			//if the gun reloads successfully...
+			if (weapon.GetComponent<weaponDataScript>().reload()) 
+			{
+				weapon.GetComponent<weaponDataScript>().playReload(); //play reload sound
+			}
 		}
 
 	
