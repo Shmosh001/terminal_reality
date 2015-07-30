@@ -1,50 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &160184
+--- !u!1 &144926
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 460184}
-  - 23: {fileID: 2360184}
-  - 114: {fileID: 11460182}
-  - 33: {fileID: 3360184}
-  - 114: {fileID: 11460184}
-  - 64: {fileID: 6460184}
+  - 4: {fileID: 444926}
+  - 23: {fileID: 2344926}
+  - 114: {fileID: 11444924}
+  - 33: {fileID: 3344926}
+  - 114: {fileID: 11444926}
+  - 64: {fileID: 6444926}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 61
   m_IsActive: 1
---- !u!4 &460184
+--- !u!4 &444926
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 90, y: 0, z: 11}
+  m_GameObject: {fileID: 144926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2360184
+--- !u!23 &2344926
 Renderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
+  m_GameObject: {fileID: 144926}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
+  - {fileID: 2100000, guid: c053788140655bc4cb1aa858642bc419, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -52,19 +52,19 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3360184
+--- !u!33 &3344926
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
+  m_GameObject: {fileID: 144926}
   m_Mesh: {fileID: 0}
---- !u!64 &6460184
+--- !u!64 &6444926
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
+  m_GameObject: {fileID: 144926}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -72,24 +72,24 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 0}
---- !u!114 &11460182
+--- !u!114 &11444924
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
+  m_GameObject: {fileID: 144926}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 16342205, guid: 2825d0bc9ff5d5b468e62cc10ee76aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 0
---- !u!114 &11460184
+--- !u!114 &11444926
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160184}
+  m_GameObject: {fileID: 144926}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 185759285, guid: 2825d0bc9ff5d5b468e62cc10ee76aaa, type: 3}
@@ -118,8 +118,8 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 5
-      localPivot: {x: 5, y: 2.5}
-      localSize: {x: 10, y: 5}
+      localPivot: {x: 50, y: 2.5}
+      localSize: {x: 100, y: 5}
     _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
     manualUV: 0
     elementGroup: -1
@@ -174,8 +174,8 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 5
-      localPivot: {x: 5, y: 2.5}
-      localSize: {x: 10, y: 5}
+      localPivot: {x: 50, y: 2.5}
+      localSize: {x: 100, y: 5}
     _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
     manualUV: 0
     elementGroup: -1
@@ -230,8 +230,8 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 5
-      localPivot: {x: 5, y: .5}
-      localSize: {x: 10, y: 1}
+      localPivot: {x: 50, y: .5}
+      localSize: {x: 100, y: 1}
     _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
     manualUV: 0
     elementGroup: -1
@@ -258,8 +258,8 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 5
-      localPivot: {x: 5, y: .5}
-      localSize: {x: 10, y: 1}
+      localPivot: {x: 50, y: .5}
+      localSize: {x: 100, y: 1}
     _mat: {fileID: 2100000, guid: 55296d1b6ee54e14e8eb4648d4b448ee, type: 2}
     manualUV: 0
     elementGroup: -1
@@ -275,53 +275,53 @@ MonoBehaviour:
   - array: 0b0000000e00000012000000
   _vertices:
   - {x: 0, y: 0, z: 0}
-  - {x: 10, y: 0, z: 0}
+  - {x: 100, y: 0, z: 0}
   - {x: 0, y: 5, z: 0}
-  - {x: 10, y: 5, z: 0}
-  - {x: 10, y: 0, z: 0}
-  - {x: 10, y: 0, z: -1}
-  - {x: 10, y: 5, z: 0}
-  - {x: 10, y: 5, z: -1}
-  - {x: 10, y: 0, z: -1}
+  - {x: 100, y: 5, z: 0}
+  - {x: 100, y: 0, z: 0}
+  - {x: 100, y: 0, z: -1}
+  - {x: 100, y: 5, z: 0}
+  - {x: 100, y: 5, z: -1}
+  - {x: 100, y: 0, z: -1}
   - {x: 0, y: 0, z: -1}
-  - {x: 10, y: 5, z: -1}
+  - {x: 100, y: 5, z: -1}
   - {x: 0, y: 5, z: -1}
   - {x: 0, y: 0, z: -1}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 5, z: -1}
   - {x: 0, y: 5, z: 0}
   - {x: 0, y: 5, z: 0}
-  - {x: 10, y: 5, z: 0}
+  - {x: 100, y: 5, z: 0}
   - {x: 0, y: 5, z: -1}
-  - {x: 10, y: 5, z: -1}
+  - {x: 100, y: 5, z: -1}
   - {x: 0, y: 0, z: -1}
-  - {x: 10, y: 0, z: -1}
+  - {x: 100, y: 0, z: -1}
   - {x: 0, y: 0, z: 0}
-  - {x: 10, y: 0, z: 0}
+  - {x: 100, y: 0, z: 0}
   _uv:
-  - {x: 10, y: 0}
+  - {x: 100, y: 0}
   - {x: 0, y: 0}
-  - {x: 10, y: 5}
+  - {x: 100, y: 5}
   - {x: 0, y: 5}
   - {x: 1, y: 0}
   - {x: 0, y: 0}
   - {x: 1, y: 5}
   - {x: 0, y: 5}
-  - {x: 10, y: 0}
+  - {x: 100, y: 0}
   - {x: 0, y: 0}
-  - {x: 10, y: 5}
+  - {x: 100, y: 5}
   - {x: 0, y: 5}
   - {x: 1, y: 0}
   - {x: 0, y: 0}
   - {x: 1, y: 5}
   - {x: 0, y: 5}
   - {x: 0, y: 1}
-  - {x: 10, y: 1}
+  - {x: 100, y: 1}
   - {x: 0, y: 0}
-  - {x: 10, y: 0}
-  - {x: 10, y: 0}
+  - {x: 100, y: 0}
+  - {x: 100, y: 0}
   - {x: 0, y: 0}
-  - {x: 10, y: 1}
+  - {x: 100, y: 1}
   - {x: 0, y: 1}
   _sharedIndicesUV: []
   _colors:
@@ -370,6 +370,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 160184}
+  m_RootGameObject: {fileID: 144926}
   m_IsPrefabParent: 1
   m_IsExploded: 1
