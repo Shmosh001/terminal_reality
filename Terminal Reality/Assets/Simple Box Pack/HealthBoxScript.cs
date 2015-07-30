@@ -2,9 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class AmmoBoxScript : MonoBehaviour {
+public class HealthBoxScript : MonoBehaviour {
 
-	
 	private Text pushE;
 
 	// Use this for initialization
