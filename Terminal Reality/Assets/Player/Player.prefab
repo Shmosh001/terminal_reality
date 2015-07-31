@@ -35,6 +35,7 @@ GameObject:
   - 114: {fileID: 11460628}
   - 114: {fileID: 11412926}
   - 114: {fileID: 11405794}
+  - 114: {fileID: 11452962}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -574,6 +575,21 @@ MonoBehaviour:
   maxAmmo: 60
   shotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
   reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
+--- !u!114 &11452962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c60bf913b4f9b4fbb0c441f5528aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 6.5
+  mouseSpeed: 3
+  jumpSpeed: 5.5
+  pushingPower: 2.5
 --- !u!114 &11460628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -585,10 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fff144fcafc82f448646c00eab6ed4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6.5
-  mouseSpeed: 3
-  jumpSpeed: 5.5
-  pushingPower: 2.5
 --- !u!124 &12424726
 Behaviour:
   m_ObjectHideFlags: 1

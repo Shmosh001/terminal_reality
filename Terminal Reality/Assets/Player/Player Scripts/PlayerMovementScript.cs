@@ -5,23 +5,18 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	private CharacterController characterController;
 
-	//PUBLIC MOVEMENT VARIABLES//
-	public float movementSpeed = 6.5f;
-	public float mouseSpeed = 3.0f;
-	public float jumpSpeed = 5.5f;
-	public float pushingPower = 2.5f;
-
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
 	private float verticalVelocity = -1;
 	private float movementMultiplier = 1;
+	private playerDataScript playerData;
 
 
 	// Use this for initialization
 	void Start () 
 	{
 		Screen.lockCursor = true; //take the mouse off the screen.
-
+		playerData = this.GetComponent<playerDataScript>();
 		characterController = this.GetComponent<CharacterController>();
 	
 	}
@@ -35,11 +30,11 @@ public class PlayerMovementScript : MonoBehaviour {
 		***********/
 
 		//left-right//
-		float rotLR = Input.GetAxis("Mouse X") * mouseSpeed;
+		float rotLR = Input.GetAxis("Mouse X") * playerData.mouseSpeed;
 		transform.Rotate(0, rotLR, 0);
 
 		//up-down//
-		rotUD -= Input.GetAxis ("Mouse Y") * mouseSpeed;
+		rotUD -= Input.GetAxis ("Mouse Y") * playerData.mouseSpeed;
 		rotUD = Mathf.Clamp (rotUD, -60.0f, 45.0f);
 		Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);
 
@@ -69,13 +64,13 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 
 
-		float forwardSpeed = Input.GetAxis("Vertical") * movementSpeed * movementMultiplier;
-		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed * movementMultiplier;
+		float forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
+		float sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
 
 		//JUMPING//
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
 		{
-			verticalVelocity = jumpSpeed;
+			verticalVelocity = playerData.jumpSpeed;
 		}
 		verticalVelocity += -9.8f * Time.deltaTime; //increase falling velocity as you are falling OR decrease velocity as you're going up.
 
@@ -95,7 +90,7 @@ public class PlayerMovementScript : MonoBehaviour {
 				return;
 			
 			Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-			body.velocity = pushDir * pushingPower;
+		body.velocity = pushDir * playerData.pushingPower;
 	} 
 
 }

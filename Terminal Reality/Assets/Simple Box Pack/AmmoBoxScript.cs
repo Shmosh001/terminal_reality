@@ -7,6 +7,7 @@ public class AmmoBoxScript : MonoBehaviour {
 	
 	//PUBLIC AMMO BOX VARIABLES//
 	public int pistolAmmo;
+	public int machineGunAmmo;
 	
 	private Text pushE;
 	private bool playerInRange;
