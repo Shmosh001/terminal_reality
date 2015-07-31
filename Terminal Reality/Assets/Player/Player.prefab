@@ -578,6 +578,7 @@ MonoBehaviour:
   maxAmmo: 60
   shotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
   reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
+  outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
 --- !u!114 &11452962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c60bf913b4f9b4fbb0c441f5528aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   movementSpeed: 6.5
   mouseSpeed: 3
   jumpSpeed: 5.5

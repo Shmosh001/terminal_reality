@@ -19,6 +19,7 @@ public class weaponDataScript : ammoHUDScript
 	//AUDIO VARIABLES//
 	public AudioClip shotSound;
 	public AudioClip reloadSound;
+	public AudioClip outOfAmmoSound;
 	private AudioSource soundSource;
 
 	void Awake()
@@ -114,6 +115,7 @@ public class weaponDataScript : ammoHUDScript
 	 //PLAY EMPTY CLIP SOUND//
 	public void playEmptyClip()
 	{
+		soundSource.PlayOneShot(outOfAmmoSound);
 	}
 
 	//PLAY SHOOTING SOUND//

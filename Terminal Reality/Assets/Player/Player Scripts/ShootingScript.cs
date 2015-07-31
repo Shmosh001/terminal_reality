@@ -116,19 +116,23 @@ public class ShootingScript : ammoHUDScript {
 		//RELOAD//
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			//if the gun reloads successfully...
-			if (weapon.GetComponent<weaponDataScript>().reload()) 
+			//Can only reload if the clip is NOT full//
+			if (weapon.GetComponent<weaponDataScript>().getRemainingClip() != weapon.GetComponent<weaponDataScript>().clipSize)
 			{
-				weapon.GetComponent<weaponDataScript>().playReload(); //play reload sound
+				//if the gun reloads successfully...
+				if (weapon.GetComponent<weaponDataScript>().reload()) 
+				{
+					weapon.GetComponent<weaponDataScript>().playReload(); //play reload sound
 
-				//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-				updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-				               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 
-				//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
-				checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
-				                   weapon.GetComponent<weaponDataScript>().clipSize,
-				                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
+					//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
+					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
+					                   weapon.GetComponent<weaponDataScript>().clipSize,
+					                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
+				}
 			}
 		}
 
