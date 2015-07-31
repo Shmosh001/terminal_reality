@@ -11,6 +11,9 @@ public class interactionScript : MonoBehaviour {
 	private bool inRangeOfHealth;
 	private Collider interactingCollider; //the collider of the object the player was last in
 
+	//PUBLIC VARIABLES FOR INTERACTION//
+	public AudioClip weaponPickup;
+
 	// Use this for initialization
 	void Start () {
 		playerData = this.GetComponent<playerDataScript>();
@@ -47,6 +50,8 @@ public class interactionScript : MonoBehaviour {
 				//If the player has a pistol//
 				if (playerData.pistolPickedUp)
 				{
+					playWeaponPickupSound();
+
 					GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 					//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
 					weapon.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
@@ -102,5 +107,11 @@ public class interactionScript : MonoBehaviour {
 		{
 			inRangeOfHealth = false;
 		}
+	}
+
+	//WEAPON RELATED PICKUP SOUND - sound that plays for weapon pickup and ammo pickup//
+	void playWeaponPickupSound()
+	{
+		interactingCollider.GetComponentInParent<AudioSource>().PlayOneShot(weaponPickup);
 	}
 }
