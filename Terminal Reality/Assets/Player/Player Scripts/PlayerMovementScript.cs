@@ -9,6 +9,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	private float rotUD = 0;
 	private float verticalVelocity = -1;
 	private float movementMultiplier = 1;
+	private float forwardSpeed = 0;
+	private float sideSpeed = 0;
 	private playerDataScript playerData;
 
 
@@ -63,16 +65,38 @@ public class PlayerMovementScript : MonoBehaviour {
 			movementMultiplier = 1.0f;
 		}
 
+		if (characterController.isGrounded) //can only adjust directional speed when player is grounded//
+		{
+			forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
+			sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
+		}
+		else //if player is in the air, slow down speed//
+		{
+			if (forwardSpeed > 0)
+			{
+				forwardSpeed -= 0.025f;
+			}
+			else if (forwardSpeed < 0)
+			{
+				forwardSpeed += 0.025f;
+			}
 
-		float forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
-		float sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
+			if (sideSpeed > 0)
+			{
+				sideSpeed -= 0.025f;
+			}
+			else if (sideSpeed < 0)
+			{
+				sideSpeed += 0.025f;
+			}
+		}
 
 		//JUMPING//
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
 		{
 			verticalVelocity = playerData.jumpSpeed;
 		}
-		verticalVelocity += -9.8f * Time.deltaTime; //increase falling velocity as you are falling OR decrease velocity as you're going up.
+		verticalVelocity += -10.0f * Time.deltaTime; //increase falling velocity as you are falling OR decrease velocity as you're going up.
 
 		Vector3 speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed); //set speed vector in which player is moving in xyz		
 		speed = transform.rotation * speed;		
