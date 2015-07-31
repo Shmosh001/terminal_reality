@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class NavigationScript : MonoBehaviour {
-
+	//debug
+	public bool debug;
 	public GameObject pointDebug;
+	public GameObject pointDebug2;
+
 	public string pathName;
 	public string fileName;
 	public GameObject target;
@@ -13,7 +16,7 @@ public class NavigationScript : MonoBehaviour {
 	string[] paths;
 	Pathfinding.RouteData data = new Pathfinding.RouteData();
 
-	public bool debug;
+
 
 	// Use this for initialization
 	void Start () {
@@ -29,13 +32,18 @@ public class NavigationScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Pathfinding.NodesEqual(data.curNode, data.nextNode)){
+		if (data.nextNode == null){
+			data.nextNode = data.curNode;
+		}
+		else if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) < 1){
 			Debug.Log("point reached");
-			getPathToTarget();
+			//getPathToTarget();
+			data = Pathfinding.GetNextNode(data);
 		}
 		else{
 			if (debug){
 				pointDebug.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.nextNode);
+				pointDebug2.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.curNode);
 			}
 
 			print(pointDebug.transform.position.x + " " + pointDebug.transform.position.y + " " + pointDebug.transform.position.z );
@@ -43,6 +51,8 @@ public class NavigationScript : MonoBehaviour {
 			cc.Move(transform.forward * speed * Time.deltaTime);
 
 		}
+
+
 		//print("test");
 		//Debug.Log("test");
 	}
