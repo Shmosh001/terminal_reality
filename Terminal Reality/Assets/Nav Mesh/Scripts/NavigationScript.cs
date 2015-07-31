@@ -116,7 +116,7 @@ public class NavigationScript : MonoBehaviour {
 	 * if player moves away while we are following him:
 	 * 
 	 * have his last position as a new destination when he goes out of sight?
-	 * /
+	 * **/
 
 
 
