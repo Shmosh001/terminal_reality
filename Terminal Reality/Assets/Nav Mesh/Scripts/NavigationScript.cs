@@ -13,6 +13,10 @@ public class NavigationScript : MonoBehaviour {
 	private CharacterController cc;
 	public float speed = 4;
 
+	private Vector3 oldPosition;
+	private float positionCheckC;
+	public float positionCheckD = 1.5f;
+
 	string[] paths;
 	Pathfinding.RouteData data = new Pathfinding.RouteData();
 
@@ -35,15 +39,23 @@ public class NavigationScript : MonoBehaviour {
 
 		//can create ramble at any point if we just choose random point in the field? does not make sense though
 		//maybe we can get random point close to the node we are moving to?
-		/*if (data.nextNode == null){
-			data.nextNode = data.curNode;
+
+		positionCheckC += Time.deltaTime;
+
+		if (positionCheckC > positionCheckD){
+			if (oldPosition != target.transform.position){
+				getPathToTarget();
+			}
+			positionCheckC = 0;
 		}
-		else */if (chasePlayer){
+
+
+		if (chasePlayer){
 			transform.LookAt(target.transform.position);
 			cc.Move(transform.forward * speed * Time.deltaTime);
 		}
 		else if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) < 1){
-			Debug.Log("point reached");
+			//Debug.Log("point reached");
 			data = Pathfinding.GetNextNode(data);
 			//Debug.Log(data.nextNode);
 			//Debug.Log(data.nextNode);
@@ -93,12 +105,18 @@ public class NavigationScript : MonoBehaviour {
 
 	public void getPathToTarget(){
 		data = Pathfinding.GetRouteForPoint(data, paths, target.transform.position, transform.position, 0.4f, 0);
-
+		oldPosition = target.transform.position;
 	}
 
-	public void moveToTarget(){
 
-	}
+
+	/***
+	 * NOTES
+	 * 
+	 * if player moves away while we are following him:
+	 * 
+	 * have his last position as a new destination when he goes out of sight?
+	 * /
 
 
 
