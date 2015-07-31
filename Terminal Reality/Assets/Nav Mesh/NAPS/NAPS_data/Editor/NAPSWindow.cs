@@ -797,7 +797,7 @@ Pathfinding.Paths[pathIndex].Waypoints[n1].atypicalConnections[i] = tempConnecti
 	string IsNodeOfPath(GameObject g){
 	 string result = "";
 	if(Pathfinding.PathsRoot==null ){
-		Debug.Log ("Error: Paths object not found!");
+		//Debug.Log ("Error: Paths object not found!");
 					return result;
 	}
 		if(g==null){

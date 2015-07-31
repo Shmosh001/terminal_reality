@@ -31,18 +31,29 @@ public static class BINS
 
     public static object Load(string folder,string fileName)
     {
+		Debug.Log("stage0");
 		Debug.Log ("Load:"+folder+"/"+fileName);
-		if(!System.IO.Directory.Exists(folder))
-			return null;
-        if (!File.Exists(folder+"/"+fileName)) return null;
+		Debug.Log("stage0.1");
+		if(!System.IO.Directory.Exists(folder)){
 
+			Debug.Log("stage0.2");
+			return null;}
+        if (!File.Exists(folder+"/"+fileName)) {
+			Debug.Log("stage0.3");
+			return null;
+		}
+		Debug.Log("stage1");
         FileStream fs = new FileStream(folder+"/"+fileName, FileMode.Open);
         object obj = null;
+		Debug.Log("stage2");
         try
         {
+			Debug.Log("stage3");
                 BinaryFormatter formatter = new BinaryFormatter();
 
-                obj = (object)formatter.Deserialize(fs);
+			obj = (object)formatter.Deserialize(fs);
+			Debug.Log("stage4");
+
         }
         catch (SerializationException e)
         {
@@ -53,6 +64,7 @@ public static class BINS
         {
             fs.Close();
         }
+		Debug.Log("stage5");
         return obj;
     }
 }
