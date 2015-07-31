@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class playerDataScript : MonoBehaviour {
@@ -17,4 +18,5 @@ public class playerDataScript : MonoBehaviour {
 	public bool machineGunPickedUp;
 	public bool pistolEquipped;
 	public bool machineGunEquipped;
+
 }

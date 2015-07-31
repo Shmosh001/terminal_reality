@@ -64,7 +64,7 @@ public class interactionScript : MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
 			if (inRangeOfHealth)
 			{
-				print ("PICKING UP HEALTH!!!");
+				this.GetComponent<playerHealthScript>().fullPlayerHealth();
 			}
 		}
 	
