@@ -891,7 +891,7 @@ RectTransform:
   - {fileID: 1147952167}
   - {fileID: 2079620122}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -997,7 +997,7 @@ Transform:
   - {fileID: 1099574869}
   - {fileID: 1838570407}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!135 &724251082
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ Transform:
   - {fileID: 671364516}
   - {fileID: 1413866009}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &748415586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,7 +1833,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: .200000003
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1857,7 +1857,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 1434572235}
   m_GameObject: {fileID: 1352650407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .200000003}
+  m_LocalPosition: {x: 0, y: 0, z: .219999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1288242413}
@@ -1989,6 +1989,14 @@ Prefab:
       propertyPath: reloadText
       value: 
       objectReference: {fileID: 903820058}
+    - target: {fileID: 2024726, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: near clip plane
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 22431446, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .219999999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
   m_RootGameObject: {fileID: 159071498}
