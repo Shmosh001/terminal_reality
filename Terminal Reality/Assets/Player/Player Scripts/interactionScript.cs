@@ -7,6 +7,7 @@ public class interactionScript : MonoBehaviour {
 	private Ray ray;
 	private bool inRangeOfAmmo;
 	private bool inRangeOfHealth;
+	private Collider interactingCollider; //the collider of the object the player was last in
 
 	// Use this for initialization
 	void Start () {
@@ -41,7 +42,7 @@ public class interactionScript : MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
 			{
-				print ("PICKING UP AMMO!!!");
+				print ("PICKING UP " + interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo + " AMMO!!!");
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
@@ -60,12 +61,14 @@ public class interactionScript : MonoBehaviour {
 		if (other.tag == "AmmoBox")
 		{
 			inRangeOfAmmo = true;
+			interactingCollider = other;
 		}
 		
 		//IF PLAYER IN RANGE OF AN HEALTH BOX
 		if (other.tag == "HealthBox")
 		{
 			inRangeOfHealth = true;
+			interactingCollider = other;
 		}
 	}
 	

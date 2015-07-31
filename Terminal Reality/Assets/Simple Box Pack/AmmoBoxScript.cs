@@ -5,6 +5,9 @@ using System.Collections;
 public class AmmoBoxScript : MonoBehaviour {
 
 	
+	//PUBLIC AMMO BOX VARIABLES//
+	public int pistolAmmo;
+	
 	private Text pushE;
 	private bool playerInRange;
 
@@ -43,9 +46,5 @@ public class AmmoBoxScript : MonoBehaviour {
 		}
 	}
 	
-	//RETURN IF THE PLAYER IS IN RANGE OF THE AMMO BOX//
-	protected bool isInRangeOfAmmo()
-	{
-		return playerInRange;
-	}
+	
 }

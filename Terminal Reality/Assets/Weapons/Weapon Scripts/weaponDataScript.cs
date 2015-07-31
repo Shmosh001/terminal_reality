@@ -88,6 +88,12 @@ public class weaponDataScript : MonoBehaviour
 			return false;
 		}
 	}
+	
+	//WHEN PICKING UP AMMO AND ADDING IT TO TOTAL AMMO//
+	public void ammoPickup (int pickupAmount)
+	{
+	
+	}
 
 	/*
 	 * METHODS FOR PLAYING GUN RELATED SOUNDS
