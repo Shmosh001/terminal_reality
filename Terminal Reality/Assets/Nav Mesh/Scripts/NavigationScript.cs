@@ -11,7 +11,7 @@ public class NavigationScript : MonoBehaviour {
 	public string fileName;
 	public GameObject target;
 	private CharacterController cc;
-	float speed = 4;
+	public float speed = 4;
 
 	string[] paths;
 	Pathfinding.RouteData data = new Pathfinding.RouteData();
@@ -35,36 +35,39 @@ public class NavigationScript : MonoBehaviour {
 
 		//can create ramble at any point if we just choose random point in the field? does not make sense though
 		//maybe we can get random point close to the node we are moving to?
-		if (data.nextNode == null){
+		/*if (data.nextNode == null){
 			data.nextNode = data.curNode;
 		}
-		else if (chasePlayer){
+		else */if (chasePlayer){
 			transform.LookAt(target.transform.position);
 			cc.Move(transform.forward * speed * Time.deltaTime);
 		}
 		else if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) < 1){
 			Debug.Log("point reached");
 			data = Pathfinding.GetNextNode(data);
+			//Debug.Log(data.nextNode);
+			//Debug.Log(data.nextNode);
 			//need to check visibility here before we movev to the player
 			float nodeDistance = Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position);
-			float playerDistance = Vector3.Distance(target.transform.position,gameObject.transform.position ;
-			if ( nodeDistance > playerDistance )){
+			float playerDistance = Vector3.Distance(target.transform.position,gameObject.transform.position );
+			/*Pathfinding.ObjectIsVisible(target.transform.position,transform.position,0.7f)*/ 
+			if ( nodeDistance > playerDistance || Pathfinding.NodesEqual(data.curNode,data.nextNode)){
 				chasePlayer = true;
 			}
 		}
 		else{
-			if (debug){
-				pointDebug.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.nextNode);
-				pointDebug2.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.curNode);
-			}
 
-			print(pointDebug.transform.position.x + " " + pointDebug.transform.position.y + " " + pointDebug.transform.position.z );
+
+			//print(pointDebug.transform.position.x + " " + pointDebug.transform.position.y + " " + pointDebug.transform.position.z );
 			transform.LookAt(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode));
 			cc.Move(transform.forward * speed * Time.deltaTime);
 
 		}
 
-
+		if (debug){
+			pointDebug.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.nextNode);
+			pointDebug2.transform.position = Pathfinding.GetWaypointInSpace(0.5f,data.curNode);
+		}
 		//print("test");
 		//Debug.Log("test");
 	}
