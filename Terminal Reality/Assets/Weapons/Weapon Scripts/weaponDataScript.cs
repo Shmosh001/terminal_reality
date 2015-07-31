@@ -10,6 +10,7 @@ public class weaponDataScript : MonoBehaviour
 	public int ammo;
 	public int clipSize;	
 	public Light flareLight;
+	public int maxAmmo;
 
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
