@@ -16,7 +16,7 @@ public class NavigationScript : MonoBehaviour {
 	string[] paths;
 	Pathfinding.RouteData data = new Pathfinding.RouteData();
 
-
+	bool chasePlayer;
 
 	// Use this for initialization
 	void Start () {
@@ -35,10 +35,16 @@ public class NavigationScript : MonoBehaviour {
 		if (data.nextNode == null){
 			data.nextNode = data.curNode;
 		}
+		else if (chasePlayer){
+			transform.LookAt(target.transform.position);
+			cc.Move(transform.forward * speed * Time.deltaTime);
+		}
 		else if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) < 1){
 			Debug.Log("point reached");
-			//getPathToTarget();
 			data = Pathfinding.GetNextNode(data);
+			if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) > Vector3.Distance(target.transform.position,gameObject.transform.position )){
+				chasePlayer = true;
+			}
 		}
 		else{
 			if (debug){
