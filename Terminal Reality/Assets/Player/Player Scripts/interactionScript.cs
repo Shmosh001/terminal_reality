@@ -3,6 +3,8 @@ using System.Collections;
 
 public class interactionScript : MonoBehaviour {
 
+	private playerDataScript playerData;
+
 	//PRIVATE VARIABLES INTERACTION//
 	private Ray ray;
 	private bool inRangeOfAmmo;
@@ -11,7 +13,7 @@ public class interactionScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		playerData = this.GetComponent<playerDataScript>();
 	}
 	
 	// Update is called once per frame
@@ -41,8 +43,22 @@ public class interactionScript : MonoBehaviour {
 			
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
-			{
-				print ("PICKING UP " + interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo + " AMMO!!!");
+			{	
+				//If the player has a pistol//
+				if (playerData.pistolPickedUp)
+				{
+					GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+					//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
+					weapon.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
+
+				}
+
+				//If the player has a machine gun//
+				if (playerData.machineGunPickedUp)
+				{
+
+					//TODO: MACHINE GUN LATER WHEN HAVE MACHINE GUN OBJECT//
+				}
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP

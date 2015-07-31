@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class weaponDataScript : MonoBehaviour 
+public class weaponDataScript : ammoHUDScript
 {
 	//PUBLIC VARIABLES FOR THE WEAPON//
 	public float damage;
@@ -92,7 +92,20 @@ public class weaponDataScript : MonoBehaviour
 	//WHEN PICKING UP AMMO AND ADDING IT TO TOTAL AMMO//
 	public void ammoPickup (int pickupAmount)
 	{
-	
+		//If there is more ammo in box than there is to full to max ammo
+		if (pickupAmount > (maxAmmo - ammo))
+		{
+			ammo = maxAmmo; //set ammo to max ammo
+		}
+
+		//if there is less ammo in the ammo box than there is needed to full max ammo
+		if (pickupAmount < (maxAmmo - ammo))
+		{
+			ammo += pickupAmount;
+		}
+
+		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+		updateAmmoText(ammo, ammoInClip);
 	}
 
 	/*
