@@ -6,6 +6,7 @@ public class AmmoBoxScript : MonoBehaviour {
 
 	
 	private Text pushE;
+	private bool playerInRange;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class AmmoBoxScript : MonoBehaviour {
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == "Player")
 		{
-			
+			playerInRange = true;
 			pushE.enabled = true;
 			
 		}
@@ -37,7 +38,14 @@ public class AmmoBoxScript : MonoBehaviour {
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
 		if (other.tag == "Player")
 		{
+			playerInRange = false;
 			pushE.enabled = false;
 		}
+	}
+	
+	//RETURN IF THE PLAYER IS IN RANGE OF THE AMMO BOX//
+	protected bool isInRangeOfAmmo()
+	{
+		return playerInRange;
 	}
 }

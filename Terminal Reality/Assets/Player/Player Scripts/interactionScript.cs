@@ -5,6 +5,8 @@ public class interactionScript : MonoBehaviour {
 
 	//PRIVATE VARIABLES INTERACTION//
 	private Ray ray;
+	private bool inRangeOfAmmo;
+	private bool inRangeOfHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -32,9 +34,54 @@ public class interactionScript : MonoBehaviour {
 				{
 					DoorScript ds = hitObject.GetComponent<DoorScript>();
 					ds.interaction();
-				}
+				}								
+				
+			}
+			
+			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
+			if (inRangeOfAmmo)
+			{
+				print ("PICKING UP AMMO!!!");
+			}
+			
+			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
+			if (inRangeOfHealth)
+			{
+				print ("PICKING UP HEALTH!!!");
 			}
 		}
 	
+	}
+	
+	//PLAYER ENTERS AN OBJECTS TRIGGER//
+	void OnTriggerEnter (Collider other)
+	{
+		//IF PLAYER IN RANGE OF AN AMMO BOX
+		if (other.tag == "AmmoBox")
+		{
+			inRangeOfAmmo = true;
+		}
+		
+		//IF PLAYER IN RANGE OF AN HEALTH BOX
+		if (other.tag == "HealthBox")
+		{
+			inRangeOfHealth = true;
+		}
+	}
+	
+	//PLAYER EXITS AN OBJECTS TRIGGER//
+	void OnTriggerExit (Collider other)
+	{
+		//IF PLAYER IN RANGE OF AN AMMO BOX
+		if (other.tag == "AmmoBox")
+		{
+			inRangeOfAmmo = false;
+		}
+		
+		//IF PLAYER IN RANGE OF AN HEALTH BOX
+		if (other.tag == "HealthBox")
+		{
+			inRangeOfHealth = false;
+		}
 	}
 }
