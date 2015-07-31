@@ -586,10 +586,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c60bf913b4f9b4fbb0c441f5528aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   movementSpeed: 6.5
   mouseSpeed: 3
   jumpSpeed: 5.5
   pushingPower: 2.5
+  pistolPickedUp: 0
+  machineGunPickedUp: 0
+  pistolEquipped: 0
+  machineGunEquipped: 0
 --- !u!114 &11460628
 MonoBehaviour:
   m_ObjectHideFlags: 1

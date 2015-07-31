@@ -3,6 +3,9 @@ using System.Collections;
 
 public class playerDataScript : MonoBehaviour {
 
+	//PLAYER HEALTH//
+	public int health;
+
 	//PUBLIC MOVEMENT VARIABLES//
 	public float movementSpeed = 6.5f;
 	public float mouseSpeed = 3.0f;
