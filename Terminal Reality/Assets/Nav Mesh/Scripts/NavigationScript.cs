@@ -46,8 +46,9 @@ public class NavigationScript : MonoBehaviour {
 			Debug.Log("point reached");
 			data = Pathfinding.GetNextNode(data);
 			//need to check visibility here before we movev to the player
-
-			if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) > Vector3.Distance(target.transform.position,gameObject.transform.position )){
+			float nodeDistance = Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position);
+			float playerDistance = Vector3.Distance(target.transform.position,gameObject.transform.position ;
+			if ( nodeDistance > playerDistance )){
 				chasePlayer = true;
 			}
 		}
