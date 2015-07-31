@@ -32,6 +32,9 @@ public class NavigationScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//can create ramble at any point if we just choose random point in the field? does not make sense though
+		//maybe we can get random point close to the node we are moving to?
 		if (data.nextNode == null){
 			data.nextNode = data.curNode;
 		}
@@ -42,6 +45,8 @@ public class NavigationScript : MonoBehaviour {
 		else if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) < 1){
 			Debug.Log("point reached");
 			data = Pathfinding.GetNextNode(data);
+			//need to check visibility here before we movev to the player
+
 			if (Vector3.Distance(Pathfinding.GetWaypointInSpace(0.5f,data.nextNode), transform.position) > Vector3.Distance(target.transform.position,gameObject.transform.position )){
 				chasePlayer = true;
 			}
