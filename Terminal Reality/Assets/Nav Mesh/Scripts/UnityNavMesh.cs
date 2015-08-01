@@ -23,5 +23,6 @@ public class UnityNavMesh : MonoBehaviour {
 			agent.destination = destination.position; 
 			counter1 = 0;
 		}
+
 	}
 }
