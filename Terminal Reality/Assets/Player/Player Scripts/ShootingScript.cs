@@ -136,6 +136,20 @@ public class ShootingScript : ammoHUDScript {
 			}
 		}
 
+		//SWITCHING WEAPONS//
+
+		//pistol//
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			print("ONE! - pistol");
+		}
+
+
+		//machine gun//
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			print("TWO! - machine gun");
+		}
 	
 	}
 

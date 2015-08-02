@@ -19,4 +19,21 @@ public class playerDataScript : MonoBehaviour {
 	public bool pistolEquipped;
 	public bool machineGunEquipped;
 
+
+	//RETURNS A STRING OF THE CURRENT WEAPON EQUIPPED BY THE PLAYER//
+	public string currentWeapon()
+	{
+		string weaponStr = "";
+
+		if (pistolEquipped)
+		{
+			weaponStr = "pistol";
+		}
+		else if (machineGunEquipped)
+		{
+			weaponStr = "machineGun";
+		}
+
+		return weaponStr;
+	}
 }
