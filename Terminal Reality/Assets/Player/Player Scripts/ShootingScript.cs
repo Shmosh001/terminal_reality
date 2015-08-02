@@ -146,7 +146,7 @@ public class ShootingScript : ammoHUDScript {
 
 
 		//machine gun//
-		if (Input.GetKeyDown(KeyCode.Alpha1))
+		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
 			print("TWO! - machine gun");
 		}
