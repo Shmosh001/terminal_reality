@@ -141,14 +141,20 @@ public class ShootingScript : ammoHUDScript {
 		//pistol//
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			print("ONE! - pistol");
+			if (this.GetComponent<weaponSwitchScript>().switchToPistol())
+			{
+				//TODO: switch to pistol game object...
+			}
 		}
 
 
 		//machine gun//
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			print("TWO! - machine gun");
+			if (this.GetComponent<weaponSwitchScript>().switchToMachineGun())
+			{
+				//TODO: switch to machine gun game object...
+			}
 		}
 	
 	}
