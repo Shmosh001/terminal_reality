@@ -37,6 +37,7 @@ GameObject:
   - 114: {fileID: 11405794}
   - 114: {fileID: 11452962}
   - 114: {fileID: 11471848}
+  - 114: {fileID: 11429672}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -557,6 +558,17 @@ MonoBehaviour:
   ammoText: {fileID: 0}
   reloadText: {fileID: 0}
   shotRange: 100
+--- !u!114 &11429672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11431446
 MonoBehaviour:
   m_ObjectHideFlags: 1
