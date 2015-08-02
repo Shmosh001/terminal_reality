@@ -88,7 +88,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b19ed4096bf89164585e2a52c163e6d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b19ed4096bf89164585e2a52c163e6d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -112,7 +112,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b19ed4096bf89164585e2a52c163e6d5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: b19ed4096bf89164585e2a52c163e6d5, type: 3}
       propertyPath: m_Enabled
@@ -196,7 +196,7 @@ Transform:
   m_PrefabInternal: {fileID: 611499480}
   m_GameObject: {fileID: 823719600}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -1, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 1455651271}
@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba798f543138a447af4a0355e0d6628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 1692174249}
 --- !u!1 &1455651269
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +330,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1692174245}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &1692174247
 Behaviour:
   m_ObjectHideFlags: 0
