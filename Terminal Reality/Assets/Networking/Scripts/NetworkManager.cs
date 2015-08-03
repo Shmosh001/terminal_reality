@@ -3,16 +3,17 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
 
-
+	public bool offlineMode;
 	public Camera mainCam;
-	public Transform spawn;
+	private ObjectSpawner spawn;
 
 	// Use this for initialization
 	void Start () {
-		Connect();
+		spawn = gameObject.GetComponent<ObjectSpawner>();
+		ConnectToNetwork(offlineMode);
 	}
 
-	void Connect(){
+	void ConnectToNetwork(bool offline){
 		PhotonNetwork.ConnectUsingSettings("v1.0");
 		//PhotonNetwork.offlineMode = true;  we use this for single player
 	}
@@ -39,7 +40,12 @@ public class NetworkManager : MonoBehaviour {
 	void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
 		mainCam.enabled = false;
-		PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
+		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
+
+
+		Transform location = spawn.getSpawnLocation(ObjectSpawner.SpawnTypes.player);
+
+		PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
 	}
 
 
