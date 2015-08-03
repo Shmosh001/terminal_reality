@@ -5,7 +5,7 @@ public class NetworkManager : MonoBehaviour {
 
 
 	public Camera mainCam;
-
+	public Transform spawn;
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour {
 	void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
 		mainCam.enabled = false;
-		PhotonNetwork.Instantiate("First Person Controller", Vector3.zero, Quaternion.identity, 0);//group id is for seperating things
+		PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
 	}
 
 

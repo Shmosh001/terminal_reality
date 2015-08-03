@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 1692174249}
+  spawn: {fileID: 1929881081}
 --- !u!1 &1455651269
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 464398, guid: 2918968712e8978419e17037aa6bdb25, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 464398, guid: 2918968712e8978419e17037aa6bdb25, type: 2}
       propertyPath: m_LocalPosition.z
@@ -513,7 +514,7 @@ Transform:
   m_PrefabInternal: {fileID: 1679625333}
   m_GameObject: {fileID: 1929881080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.2999992, y: 0, z: 31.1000004}
+  m_LocalPosition: {x: -42.2999992, y: 1, z: 31.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 253160306}
