@@ -45,7 +45,12 @@ public class NetworkManager : MonoBehaviour {
 
 		Transform location = spawn.getSpawnLocation(ObjectSpawner.SpawnTypes.player);
 
-		PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
+		GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
+
+		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
+		localPlayer.GetComponent<MouseLook>().enabled = true;
+		((MonoBehaviour)localPlayer.GetComponent("FPSInputController")).enabled = true;
+		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
 	}
 
 
