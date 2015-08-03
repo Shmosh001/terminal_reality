@@ -67,6 +67,7 @@ GameObject:
   - 114: {fileID: 11485226}
   - 114: {fileID: 11485224}
   - 114: {fileID: 11461296}
+  - 114: {fileID: 11430296}
   m_Layer: 0
   m_Name: First Person Controller
   m_TagString: Untagged
@@ -198,6 +199,17 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185222}
   m_Enabled: 1
+--- !u!114 &11430296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfc657196ec68240998143c3b9c8ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11461296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,7 +230,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 485224}
+  - {fileID: 11430296}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -258,7 +270,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ab79d7f243824f5d9826bd83522c8df, type: 3}
   m_Name: 

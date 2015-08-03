@@ -4,7 +4,7 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour {
 
 	public bool offlineMode;
-	public Camera mainCam;
+	public GameObject mainCam;
 	private ObjectSpawner spawn;
 
 	// Use this for initialization
@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
-		mainCam.enabled = false;
+		mainCam.SetActive(false);
 		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
 
 
@@ -48,9 +48,11 @@ public class NetworkManager : MonoBehaviour {
 		GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
 
 		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
-		localPlayer.GetComponent<MouseLook>().enabled = true;
-		((MonoBehaviour)localPlayer.GetComponent("FPSInputController")).enabled = true;
-		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
+
+		localPlayer.GetComponent<MouseLook>().enabled = true;//remove mosue movement
+		((MonoBehaviour)localPlayer.GetComponent("FPSInputController")).enabled = true;//remove movement
+		((MonoBehaviour)localPlayer.GetComponent("CharacterMotor")).enabled = true;//remove jitter while jumping
+		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera
 	}
 
 
