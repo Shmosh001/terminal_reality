@@ -9,6 +9,8 @@ public class interactionScript : MonoBehaviour {
 	private Ray ray;
 	private bool inRangeOfAmmo;
 	private bool inRangeOfHealth;
+	private bool inRangeOfPistol;
+	private bool inRangeOfMachineGun;
 	private Collider interactingCollider; //the collider of the object the player was last in
 
 	//PUBLIC VARIABLES FOR INTERACTION//
@@ -71,6 +73,18 @@ public class interactionScript : MonoBehaviour {
 			{
 				this.GetComponent<playerHealthScript>().fullPlayerHealth();
 			}
+
+			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
+			if (inRangeOfPistol)
+			{
+				print ("PICKED UP PISTOL!");
+			}
+
+			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
+			if (inRangeOfMachineGun)
+			{
+				print ("PICKED UP MACHINE GUN!");
+			}
 		}
 	
 	}
@@ -91,21 +105,47 @@ public class interactionScript : MonoBehaviour {
 			inRangeOfHealth = true;
 			interactingCollider = other;
 		}
+
+		//IF PLAYER IN RANGE OF PISTOL
+		if (other.tag == "pistolPickup")
+		{
+			inRangeOfPistol = true;
+			interactingCollider = other;
+		}
+
+		//IF PLAYER IN RANGE OF MACHINE GUN
+		if (other.tag == "machineGunPickup")
+		{
+			inRangeOfMachineGun = true;
+			interactingCollider = other;
+		}
 	}
 	
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		//IF PLAYER IN RANGE OF AN AMMO BOX
+		//IF PLAYER NOT IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
 			inRangeOfAmmo = false;
 		}
 		
-		//IF PLAYER IN RANGE OF AN HEALTH BOX
+		//IF PLAYER NOT IN RANGE OF AN HEALTH BOX
 		if (other.tag == "HealthBox")
 		{
 			inRangeOfHealth = false;
+		}
+
+		//IF PLAYER NOT IN RANGE OF PISTOL
+		if (other.tag == "pistolPickup")
+		{
+			inRangeOfPistol = false;
+		}
+		
+		//IF PLAYER NOT IN RANGE OF MACHINE GUN
+		if (other.tag == "machineGunPickup")
+		{
+			inRangeOfMachineGun = false;
 		}
 	}
 
