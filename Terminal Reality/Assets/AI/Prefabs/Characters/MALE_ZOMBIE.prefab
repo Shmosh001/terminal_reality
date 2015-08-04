@@ -34,23 +34,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &114542
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 414542}
-  - 135: {fileID: 13514540}
-  - 135: {fileID: 13514538}
-  m_Layer: 0
-  m_Name: Triggers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &179060
 GameObject:
   m_ObjectHideFlags: 1
@@ -780,6 +763,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 479156}
+  - 135: {fileID: 13567124}
   m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
@@ -947,10 +931,10 @@ GameObject:
   - 4: {fileID: 479178}
   - 95: {fileID: 9579242}
   - 143: {fileID: 14379242}
-  - 114: {fileID: 11479242}
-  - 114: {fileID: 11414538}
   - 114: {fileID: 11414540}
   - 114: {fileID: 11414542}
+  - 135: {fileID: 13567122}
+  - 135: {fileID: 13567120}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Untagged
@@ -1449,7 +1433,7 @@ Transform:
   m_LocalScale: {x: 32, y: 1, z: 32}
   m_Children: []
   m_Father: {fileID: 479178}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &414540
 Transform:
   m_ObjectHideFlags: 1
@@ -1459,18 +1443,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -.999000013, z: 0}
   m_LocalScale: {x: 16, y: 1, z: 16}
-  m_Children: []
-  m_Father: {fileID: 479178}
-  m_RootOrder: 3
---- !u!4 &414542
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 479178}
   m_RootOrder: 2
@@ -2241,7 +2213,6 @@ Transform:
   m_Children:
   - {fileID: 479156}
   - {fileID: 479152}
-  - {fileID: 414542}
   - {fileID: 414540}
   - {fileID: 414538}
   m_Father: {fileID: 0}
@@ -2741,31 +2712,20 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11414538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 179178}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cbd3eb4e2194047a88e5653eea4380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11414540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79d7581efb5a9714ebcb3556944e9e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
   player: {fileID: 0}
-  debug: 0
+  debug: 1
   eventChoiceD: 10
   wanderD: 20
   checkPlayerD: 10
@@ -2792,50 +2752,48 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44cc7a8fcdac6204aad6140104a0bd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
   isEnemy: 1
---- !u!114 &11479242
-MonoBehaviour:
+--- !u!135 &13567120
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179178}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1cddbd2479be70468e098f09a618196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: {x: 3, y: 10, z: 10}
-  player: {fileID: 0}
-  debug: 0
---- !u!135 &13514538
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114542}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.60000002
+  m_Radius: 16
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &13514540
+--- !u!135 &13567122
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 114542}
+  m_GameObject: {fileID: 179178}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .800000012
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13567124
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13779242
 SkinnedMeshRenderer:
