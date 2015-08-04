@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: floor_tile_downtown_01_d
-  m_Shader: {fileID: 4800000, guid: 5f2e318166a2346a4a1c50f27f484127, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8fcd28945cd81407da69b5a25a08d4ca, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,5 +20,23 @@ Material:
           m_Texture: {fileID: 2800000, guid: 419111d8eb9f34fb5b441fdc436136c6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _RefractTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ReflectTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats: {}
-    m_Colors: {}
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
