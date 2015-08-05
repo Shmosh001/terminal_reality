@@ -40,6 +40,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110114230
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110272646}
+  m_DstState: {fileID: 110202798}
+  m_TransitionDuration: .0898203552
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .910179615
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110123616
 Transition:
   serializedVersion: 2
@@ -140,22 +160,22 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110159378
+--- !u!1101 &110153652
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110272646}
+  m_SrcState: {fileID: 110202798}
   m_DstState: {fileID: 110272640}
-  m_TransitionDuration: .0898203552
+  m_TransitionDuration: .0619834624
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .910179615
+    m_ExitTime: .938016534
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -260,6 +280,21 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1102 &110202798
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: mixamo.com 11
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 235722e8c74db1c4fa132a42a52f90d5, type: 3}
+  m_ParentStateMachine: {fileID: 110784716}
+  m_Position: {x: -288, y: 216, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110272640
 State:
   m_ObjectHideFlags: 3
@@ -461,57 +496,62 @@ StateMachine:
   - {fileID: 110272658}
   - {fileID: 110272660}
   - {fileID: 110272662}
+  - {fileID: 110202798}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110272662}
+      first: {fileID: 110202798}
       second:
-      - {fileID: 110128836}
+      - {fileID: 110153652}
     data:
-      first: {fileID: 110272660}
+      first: {fileID: 110272640}
       second:
-      - {fileID: 110195396}
-    data:
-      first: {fileID: 110272658}
-      second:
-      - {fileID: 110172352}
-    data:
-      first: {fileID: 110272656}
-      second:
-      - {fileID: 110193138}
-    data:
-      first: {fileID: 110272654}
-      second:
-      - {fileID: 110123616}
-    data:
-      first: {fileID: 110272652}
-      second:
-      - {fileID: 110187478}
-    data:
-      first: {fileID: 110272650}
-      second:
-      - {fileID: 110146466}
-    data:
-      first: {fileID: 110272648}
-      second:
-      - {fileID: 110197584}
-    data:
-      first: {fileID: 110272646}
-      second:
-      - {fileID: 110159378}
-    data:
-      first: {fileID: 110272644}
-      second:
-      - {fileID: 110135518}
+      - {fileID: 110105574}
     data:
       first: {fileID: 110272642}
       second:
       - {fileID: 110130618}
     data:
-      first: {fileID: 110272640}
+      first: {fileID: 110272644}
       second:
-      - {fileID: 110105574}
+      - {fileID: 110135518}
+    data:
+      first: {fileID: 110272646}
+      second:
+      - {fileID: 110114230}
+    data:
+      first: {fileID: 110272648}
+      second:
+      - {fileID: 110197584}
+    data:
+      first: {fileID: 110272650}
+      second:
+      - {fileID: 110146466}
+    data:
+      first: {fileID: 110272652}
+      second:
+      - {fileID: 110187478}
+    data:
+      first: {fileID: 110272654}
+      second:
+      - {fileID: 110123616}
+    data:
+      first: {fileID: 110272656}
+      second:
+      - {fileID: 110193138}
+    data:
+      first: {fileID: 110272658}
+      second:
+      - {fileID: 110172352}
+    data:
+      first: {fileID: 110272660}
+      second:
+      - {fileID: 110195396}
+    data:
+      first: {fileID: 110272662}
+      second:
+      - {fileID: 110128836}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
