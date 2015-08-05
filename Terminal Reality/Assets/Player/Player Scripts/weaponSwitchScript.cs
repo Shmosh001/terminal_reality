@@ -4,10 +4,15 @@ using System.Collections;
 public class weaponSwitchScript : MonoBehaviour {
 
 	playerDataScript playerData;
+	GameObject pistolGameObject;
+	GameObject machineGunGameObject;
 
 	void Start()
 	{
 		playerData = this.GetComponent<playerDataScript>();
+		pistolGameObject = GameObject.FindGameObjectWithTag("Pistol");
+		machineGunGameObject = GameObject.FindGameObjectWithTag("MachineGun");
+		enableWeapon();
 	}
 
 	//1 PRESSED - SWITCH TO PISTOL//
@@ -92,5 +97,32 @@ public class weaponSwitchScript : MonoBehaviour {
 		}
 		
 		return weaponStr;
+	}
+
+	//MAKE THE WEAPON SWITCHED TO VISIBLE//
+	public void enableWeapon()
+	{
+		//If no weapon is equipped...
+		if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
+		{
+			//machineGunGameObject.SetActive(false);
+			//pistolGameObject.SetActive(false);
+			machineGunGameObject.gameObject.SetActive(false);
+			pistolGameObject.gameObject.SetActive(false);
+		}
+
+		//If the pistol is equipped...
+		else if (playerData.pistolEquipped)
+		{
+			machineGunGameObject.SetActive(false);
+			pistolGameObject.SetActive(true);
+		}
+
+		//If the machine gun is equipped...
+		else if (playerData.machineGunEquipped)
+		{
+			pistolGameObject.SetActive(false);
+			machineGunGameObject.SetActive(true);
+		}
 	}
 }

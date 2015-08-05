@@ -77,8 +77,6 @@ public class interactionScript : MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
 			if (inRangeOfPistol)
 			{
-				print ("PICKED UP PISTOL!");
-
 				//If the player already has a pistol, just pickup pistol ammo.
 				if (playerData.pistolPickedUp)
 				{
@@ -91,14 +89,27 @@ public class interactionScript : MonoBehaviour {
 				else 
 				{
 					playerData.pistolPickedUp = true;
+
+					//if this is the only gun that the player now has - enable it
+					if (!playerData.machineGunPickedUp)
+					{
+						this.GetComponent<weaponSwitchScript>().enableWeapon();
+					}
 				}
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
 			if (inRangeOfMachineGun)
 			{
-				print ("PICKED UP MACHINE GUN!");
-				playerData.machineGunPickedUp = true;
+				//If the player already has a machine gun, just pickup the ammo
+				if (playerData.machineGunPickedUp)
+				{
+
+				}
+				else
+				{
+					playerData.machineGunPickedUp = true;
+				}
 			}
 		}
 	

@@ -245,9 +245,9 @@ MonoBehaviour:
   mouseSpeed: 3
   jumpSpeed: 5.5
   pushingPower: 2.5
-  pistolPickedUp: 1
+  pistolPickedUp: 0
   machineGunPickedUp: 0
-  pistolEquipped: 1
+  pistolEquipped: 0
   machineGunEquipped: 0
 --- !u!114 &159071509
 MonoBehaviour:
@@ -2482,6 +2482,14 @@ Prefab:
       propertyPath: reloadText
       value: 
       objectReference: {fileID: 903820058}
+    - target: {fileID: 11452962, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: pistolEquipped
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452962, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: pistolPickedUp
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
   m_RootGameObject: {fileID: 159071498}
