@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
+
+
+	public bool debug;
 
 	//booleans to accertain certain state specifics
 	private bool puking, wandering, alerted, walking, running;
@@ -16,13 +20,18 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//distance values
 	public float runningDistance, attackingDistance, losingDistance;
 	//actual values
-	private float viewingSens, listeningSens, speed;
+	private float viewingSens, listeningSens;
+
+	public float speed;
 
 
 	private HealthScript health;
 	private Animator animator;
 
 	public GameObject target;
+
+	public Text text;
+	public Text text2;
 
 
 	private StateMachineClass<StateEnums.ZombieStates> fsm;
@@ -185,6 +194,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		default:
 			break;
 		}
+		//debugging
+		if (debug){
+			text.text = fsm.getCurrentState().ToString();
+			text2.text = getDistance(player.transform, transform).ToString();
+		}
+		else{
+			text.text = "";
+			text2.text = "";
+		}
 	}
 
 
@@ -204,6 +222,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			alerted = true;
 			fsm.enterState(StateEnums.ZombieStates.Alerted);
 			//set rotation = players position to make viewing easier
+			transform.LookAt(player.transform.position);
 			//enhance viewing and listening 
 			heightenSenses();
 		}
@@ -316,7 +335,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		listeningSens = listeningSensNorm;
 	}
 
-
+	void OnTriggerEnter(Collider collider){
+		Debug.Log("registered collision at " + collider.gameObject.name);
+	}
 
 	/*animator.SetBool("Arm Stretch",false);
 	animator.SetBool("Dead",false);
