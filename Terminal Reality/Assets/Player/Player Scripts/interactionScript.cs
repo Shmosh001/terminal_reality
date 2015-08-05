@@ -78,12 +78,27 @@ public class interactionScript : MonoBehaviour {
 			if (inRangeOfPistol)
 			{
 				print ("PICKED UP PISTOL!");
+
+				//If the player already has a pistol, just pickup pistol ammo.
+				if (playerData.pistolPickedUp)
+				{
+					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+
+					//pickup ammo for the pistol
+					//amount randomly generate - from 10 - 30 bullets picked up
+					pistol.GetComponent<weaponDataScript>().ammoPickup(Random.Range(10, 30)); 
+				}
+				else 
+				{
+					playerData.pistolPickedUp = true;
+				}
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
 			if (inRangeOfMachineGun)
 			{
 				print ("PICKED UP MACHINE GUN!");
+				playerData.machineGunPickedUp = true;
 			}
 		}
 	
