@@ -336,16 +336,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	}
 
 	void OnTriggerEnter(Collider collider){
-		Debug.Log("registered collision at " + collider.gameObject.name);
+		if (collider.tag == "Player"){
+			Debug.Log("registered collision with " + collider.gameObject.name);
+		}
+
 	}
 
-	/*animator.SetBool("Arm Stretch",false);
-	animator.SetBool("Dead",false);
-	animator.SetBool("Searching",false);
-	animator.SetBool("Alerted",false);
-	animator.SetBool("Puking",false);
-	animator.SetBool("Wandering",false);
-	animator.SetBool("Searching",false);
-	animator.SetBool("Attacking",false);*/
+
 
 }
