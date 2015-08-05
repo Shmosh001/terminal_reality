@@ -335,7 +335,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		listeningSens = listeningSensNorm;
 	}
 
-	void OnCollisionEnter(Collision collider){
+	void OnTriggerEnter(Collider collider){
 		Debug.Log("registered collision at " + collider.gameObject.name);
 	}
 
