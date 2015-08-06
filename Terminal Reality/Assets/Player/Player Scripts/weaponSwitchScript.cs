@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class weaponSwitchScript : MonoBehaviour {
+public class weaponSwitchScript : ammoHUDScript {
 
 	playerDataScript playerData;
 	GameObject pistolGameObject;
@@ -106,15 +106,21 @@ public class weaponSwitchScript : MonoBehaviour {
 		if (currentWeapon() == "nothing")
 		{
 			machineGunGameObject.gameObject.SetActive(false);
-			pistolGameObject.gameObject.SetActive(false);			
+			pistolGameObject.gameObject.SetActive(false);
+			
+			//After switch, update ammo HUD
+			updateAmmoText(0,0);			
 		}
 
 		//If the pistol is equipped...
 		else if (currentWeapon() == "Pistol")
 		{
-			print ("ENABLING PISTOL!");
 			machineGunGameObject.SetActive(false);
 			pistolGameObject.SetActive(true);
+			
+			//After switch, update ammo HUD
+			updateAmmoText(pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+			               pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 
 		//If the machine gun is equipped...
@@ -122,6 +128,10 @@ public class weaponSwitchScript : MonoBehaviour {
 		{
 			pistolGameObject.SetActive(false);
 			machineGunGameObject.SetActive(true);
+			
+			//After switch, update ammo HUD
+			updateAmmoText(machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+			               machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 	}
 }

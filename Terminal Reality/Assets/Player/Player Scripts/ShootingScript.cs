@@ -144,6 +144,7 @@ public class ShootingScript : ammoHUDScript {
 			if (this.GetComponent<weaponSwitchScript>().switchToPistol())
 			{
 				//TODO: switch to pistol game object...
+				
 			}
 		}
 
@@ -154,6 +155,8 @@ public class ShootingScript : ammoHUDScript {
 			if (this.GetComponent<weaponSwitchScript>().switchToMachineGun())
 			{
 				//TODO: switch to machine gun game object...
+				
+				
 			}
 		}
 	
