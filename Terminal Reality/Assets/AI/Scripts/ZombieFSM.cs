@@ -6,6 +6,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 	public bool debug;
+	public bool animDebug;
 
 	//booleans to accertain certain state specifics
 	private bool puking, wandering, alerted, walking, running;
@@ -26,12 +27,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 	private HealthScript health;
-	private Animator animator;
 
 	public GameObject target;
 
 	public Text text;
 	public Text text2;
+
+	//animation
+	private ZombieAnimationController animatorCont;
 
 
 	private StateMachineClass<StateEnums.ZombieStates> fsm;
@@ -41,10 +44,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
-		health = gameObject.GetComponent<HealthScript>();
-		animator = gameObject.GetComponent<Animator>();
+
+		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		lessenSenses();
 		speed = walkingSpeed;
+
+		//we need to choose a default position for the zombie to start on
+		animatorCont.chooseStartingState();
+		health = gameObject.GetComponent<HealthScript>();
 	}
 
 
@@ -61,10 +68,65 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 
 
+		if (animDebug){
+			fsm.enterState(StateEnums.ZombieStates.Idle);
+			if (Input.GetKeyDown(KeyCode.Space)){
+				//animatorCont.setInterger("DeathD", 0);
+				//animatorCont.setBoolean("Dead", true);
+				animatorCont.setBoolean("Alerted", true);
+			}
+			if (Input.GetKeyDown(KeyCode.Alpha1)){
+				//animatorCont.setInterger("DeathD", 0);
+				animatorCont.setBoolean("Alerted", false);
+				animatorCont.setBoolean("Dead", true);
+				animatorCont.setInteger("DeathD", 1);
+				/*animatorCont.setBoolean("Charge", true);
+			animatorCont.setInteger("AttD", 0);
+			animatorCont.setBoolean("Alerted", false);*/
+			}
+			
+			/*if (Input.GetKeyDown(KeyCode.Alpha2)){
+			//animatorCont.setInterger("DeathD", 0);
+			//animatorCont.setBoolean("Dead", true);
+			animatorCont.setBoolean("Charge", false);
+			//animatorCont.setInterger("AttD", 0);
+			animatorCont.setBoolean("Attacking", true);
+		}*/
+			
+			/*if (Input.GetKeyDown(KeyCode.Alpha3)){
+			//animatorCont.setInterger("DeathD", 0);
+			//animatorCont.setBoolean("Dead", true);
+			animatorCont.setBoolean("Charge", false);
+			//animatorCont.setInterger("AttD", 0);
+			animatorCont.setBoolean("Searching", true);
+		}*/
+			
+			if (Input.GetKeyDown(KeyCode.Alpha2)){
+				//animatorCont.setInterger("DeathD", 0);
+				//animatorCont.setBoolean("Dead", true);
+				animatorCont.setBoolean("Charge", false);
+				//animatorCont.setInterger("AttD", 0);
+				animatorCont.setInteger("HitD", 2);
+				animatorCont.setBoolean("Shot", true);
+			}
+
+		}
+
 
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
+
+			if (animDebug){
+				animatorCont.setStartState(0);
+				
+				//animatorCont.setBoolean("ChangeBool", true);
+				//animatorCont.setInterger("IdleD", 3);
+				//animatorCont.setInterger("IdleVarD", 3);
+				
+				break;
+			}
+
 			//techincally do nothing
 			eventChoiceC += Time.deltaTime;
 			checkPlayerC += Time.deltaTime;
@@ -199,10 +261,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			text.text = fsm.getCurrentState().ToString();
 			text2.text = getDistance(player.transform, transform).ToString();
 		}
-		else{
+		/*else{
 			text.text = "";
 			text2.text = "";
-		}
+		}*/
 	}
 
 

@@ -14,7 +14,9 @@ public class AIEntity <T>: MonoBehaviour{
 	//ideally we should keep the players at 0 & 1
 
 
+	void Start(){
 
+	}
 
 	public void addTarget(GameObject entity){
 		targets.Add(entity);
