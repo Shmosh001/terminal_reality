@@ -12,7 +12,7 @@ public class ShootingScript : ammoHUDScript {
 	private float rateOfFire;
 	private bool singleFire;
 	private float coolDownTimer;
-	private GameObject weapon;
+	public GameObject weapon;
 
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -21,17 +21,19 @@ public class ShootingScript : ammoHUDScript {
 	// Use this for initialization
 	void Start () {
 	
-		weapon = GameObject.FindGameObjectWithTag("Pistol");
+		//weapon = GameObject.FindGameObjectWithTag("Pistol");
+	
+		//damage = weapon.GetComponent<weaponDataScript>().damage;
+		//rateOfFire = weapon.GetComponent<weaponDataScript>().rateOfFire;
+		//singleFire = weapon.GetComponent<weaponDataScript>().singleFire;
 
-		damage = weapon.GetComponent<weaponDataScript>().damage;
-		rateOfFire = weapon.GetComponent<weaponDataScript>().rateOfFire;
-		singleFire = weapon.GetComponent<weaponDataScript>().singleFire;
-
-		coolDownTimer = rateOfFire;
+		//coolDownTimer = rateOfFire;
+		
 
 		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-		updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-		               weapon.GetComponent<weaponDataScript>().getRemainingClip());
+		//updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+		               //weapon.GetComponent<weaponDataScript>().getRemainingClip());
+		updateAmmoText(0,0);
 
 	}
 	
@@ -141,9 +143,11 @@ public class ShootingScript : ammoHUDScript {
 		//pistol//
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
+			//if successfully switched to pistol...
 			if (this.GetComponent<weaponSwitchScript>().switchToPistol())
 			{
-				//TODO: switch to pistol game object...
+				//update to the new weapon being used
+				weapon = GameObject.FindGameObjectWithTag("Pistol");
 				
 			}
 		}
@@ -154,12 +158,20 @@ public class ShootingScript : ammoHUDScript {
 		{
 			if (this.GetComponent<weaponSwitchScript>().switchToMachineGun())
 			{
-				//TODO: switch to machine gun game object...
+				//update to the new weapon being used
+				weapon = GameObject.FindGameObjectWithTag("MachineGun");	
 				
 				
 			}
 		}
 	
+	}
+	
+	//LOAD A NEW WEAPON INTO THE WEAPON GAMEOBJECT
+	//ALSO UPDATE ALL THE STATS TO THOSE OF THE WEAPON
+	public void loadNewWeapon(string weaponTag)
+	{
+		//TODO:................
 	}
 
 	void checkHit()

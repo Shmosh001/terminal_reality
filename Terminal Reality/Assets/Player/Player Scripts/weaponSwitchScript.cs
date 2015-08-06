@@ -27,6 +27,7 @@ public class weaponSwitchScript : ammoHUDScript {
 			if (!playerData.pistolEquipped)
 			{
 				playerData.pistolEquipped = true;
+				enableWeapon(); //activate the pistol 
 
 				if (playerData.machineGunEquipped)
 				{
@@ -59,6 +60,7 @@ public class weaponSwitchScript : ammoHUDScript {
 			if (!playerData.machineGunEquipped)
 			{
 				playerData.machineGunEquipped = true;
+				enableWeapon(); //activate the pistol
 
 				if (playerData.pistolEquipped)
 				{

@@ -88,13 +88,15 @@ public class interactionScript : MonoBehaviour {
 				}
 				else 
 				{
-					playerData.pistolPickedUp = true;
+					playerData.pistolPickedUp = true;					
 
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.machineGunPickedUp)
 					{
 						playerData.pistolEquipped = true;
 						this.GetComponent<weaponSwitchScript>().enableWeapon();
+						
+						//TODO: load new weapon into shooting script...............
 					}
 				}
 			}
@@ -116,6 +118,8 @@ public class interactionScript : MonoBehaviour {
 					{
 						playerData.machineGunEquipped = true;
 						this.GetComponent<weaponSwitchScript>().enableWeapon();
+						
+						//TODO: load new weapon into shooting script...............
 					}
 				}
 			}
