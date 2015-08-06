@@ -93,6 +93,7 @@ public class interactionScript : MonoBehaviour {
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.machineGunPickedUp)
 					{
+						playerData.pistolEquipped = true;
 						this.GetComponent<weaponSwitchScript>().enableWeapon();
 					}
 				}

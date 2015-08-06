@@ -105,16 +105,14 @@ public class weaponSwitchScript : MonoBehaviour {
 		//If no weapon is equipped...
 		if (currentWeapon() == "nothing")
 		{
-			//machineGunGameObject.SetActive(false);
-			//pistolGameObject.SetActive(false);
 			machineGunGameObject.gameObject.SetActive(false);
-			pistolGameObject.gameObject.SetActive(false);
-			
+			pistolGameObject.gameObject.SetActive(false);			
 		}
 
 		//If the pistol is equipped...
 		else if (currentWeapon() == "Pistol")
 		{
+			print ("ENABLING PISTOL!");
 			machineGunGameObject.SetActive(false);
 			pistolGameObject.SetActive(true);
 		}
