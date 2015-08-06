@@ -103,23 +103,24 @@ public class weaponSwitchScript : MonoBehaviour {
 	public void enableWeapon()
 	{
 		//If no weapon is equipped...
-		if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
+		if (currentWeapon() == "nothing")
 		{
 			//machineGunGameObject.SetActive(false);
 			//pistolGameObject.SetActive(false);
 			machineGunGameObject.gameObject.SetActive(false);
 			pistolGameObject.gameObject.SetActive(false);
+			
 		}
 
 		//If the pistol is equipped...
-		else if (playerData.pistolEquipped)
+		else if (currentWeapon() == "Pistol")
 		{
 			machineGunGameObject.SetActive(false);
 			pistolGameObject.SetActive(true);
 		}
 
 		//If the machine gun is equipped...
-		else if (playerData.machineGunEquipped)
+		else if (currentWeapon() == "machineGun")
 		{
 			pistolGameObject.SetActive(false);
 			machineGunGameObject.SetActive(true);
