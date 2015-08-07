@@ -8,11 +8,8 @@ public class ShootingScript : ammoHUDScript {
 
 	//PRIVATE VARIABLES SHOOTING//
 	private Ray ray;
-	private float damage;
-	private float rateOfFire;
-	private bool singleFire;
 	private float coolDownTimer;
-	public GameObject weapon;
+	private GameObject weapon;
 
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -20,19 +17,7 @@ public class ShootingScript : ammoHUDScript {
 
 	// Use this for initialization
 	void Start () {
-	
-		//weapon = GameObject.FindGameObjectWithTag("Pistol");
-	
-		//damage = weapon.GetComponent<weaponDataScript>().damage;
-		//rateOfFire = weapon.GetComponent<weaponDataScript>().rateOfFire;
-		//singleFire = weapon.GetComponent<weaponDataScript>().singleFire;
-
-		//coolDownTimer = rateOfFire;
-		
-
-		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-		//updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-		               //weapon.GetComponent<weaponDataScript>().getRemainingClip());
+				
 		updateAmmoText(0,0);
 
 	}
@@ -41,7 +26,7 @@ public class ShootingScript : ammoHUDScript {
 	void Update () 
 	{
 		//SINGLE FIRE//
-		if (singleFire)
+		if (weapon.GetComponent<weaponDataScript>().singleFire)
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -104,7 +89,7 @@ public class ShootingScript : ammoHUDScript {
 
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
-						coolDownTimer = rateOfFire;
+						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;
 					}
 				}
 
@@ -166,9 +151,11 @@ public class ShootingScript : ammoHUDScript {
 	//ALSO UPDATE ALL THE STATS TO THOSE OF THE WEAPON
 	public void loadNewWeapon(string weaponTag)
 	{
-		print ("Switching to - " + weaponTag);
 		//update to the new weapon being used
 		weapon = GameObject.FindGameObjectWithTag(weaponTag);
+		
+		//update variables to weapon stats
+		
 	}
 
 	void checkHit()

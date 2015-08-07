@@ -119,7 +119,6 @@ public class weaponSwitchScript : ammoHUDScript {
 		//If the pistol is equipped...
 		else if (currentWeapon() == "Pistol")
 		{
-			print ("Pistol switch is happening");
 			machineGunGameObject.SetActive(false);
 			pistolGameObject.SetActive(true);
 			
@@ -131,7 +130,6 @@ public class weaponSwitchScript : ammoHUDScript {
 		//If the machine gun is equipped...
 		else if (currentWeapon() == "MachineGun")
 		{
-			print ("MG switch is happening");
 			pistolGameObject.SetActive(false);
 			machineGunGameObject.SetActive(true);
 			
