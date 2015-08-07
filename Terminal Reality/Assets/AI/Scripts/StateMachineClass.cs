@@ -22,9 +22,15 @@ public class StateMachineClass <T> : MonoBehaviour{
 
 	//reverts back to previous state
 	public void enterPreviousState(){
-		T temp = currentState;
-		currentState = previousState;
-		previousState = temp;
+		if (hasPreviousState()){
+			Debug.Log("previos state is being applied");
+			enterState(previousState);
+/*			T temp = currentState;
+			currentState = previousState;
+			previousState = temp;*/
+			Debug.Log("applied " + currentState.ToString());
+		}
+		
 	}
 
 	//checks if a previous state exists

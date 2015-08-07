@@ -5,6 +5,12 @@ using UnityEngine.UI;
 public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
+	//particle effects
+
+	public GameObject pukeEffect;
+
+
+	//debug
 	public bool debug;
 	public bool animDebug;
 
@@ -52,6 +58,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//we need to choose a default position for the zombie to start on
 		animatorCont.chooseStartingState();
 		health = gameObject.GetComponent<HealthScript>();
+
+		pukeD = 7.917f;
+		fsm.enterState(StateEnums.ZombieStates.Idle);
 	}
 
 
@@ -69,7 +78,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		if (animDebug){
-			fsm.enterState(StateEnums.ZombieStates.Idle);
+			//fsm.enterState(StateEnums.ZombieStates.Idle);
 			if (Input.GetKeyDown(KeyCode.Space)){
 				//animatorCont.setInterger("DeathD", 0);
 				//animatorCont.setBoolean("Dead", true);
@@ -112,7 +121,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		}
 
-
+		Debug.Log(gameObject.renderer.bounds.size.y);
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
@@ -120,9 +129,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (animDebug){
 				animatorCont.setStartState(0);
 				
-				//animatorCont.setBoolean("ChangeBool", true);
-				//animatorCont.setInterger("IdleD", 3);
-				//animatorCont.setInterger("IdleVarD", 3);
+				animatorCont.setBoolean("ChangeBool", true);
+				//animatorCont.setInteger("IdleD", 3);
+				animatorCont.setInteger("IdleVarD", 2);
+				fsm.enterState(StateEnums.ZombieStates.Puking);
 				
 				break;
 			}
@@ -174,6 +184,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			//check if we can see player every 1s
 			if (checkPlayerC > checkPlayerD){
+				//need to still set this up
 				checkForPlayer();
 				checkPlayerC = 0;
 			}
@@ -238,9 +249,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 			//if timer is over the limit
 			if (pukeC > pukeD){
+				Debug.Log("puke time is over");
 				fsm.enterPreviousState();
 				pukeC = 0;
 				puking = false;
+				pukeEffect.SetActive(false);
 			}
 
 			break;
@@ -291,7 +304,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//debugging
 		if (debug){
 			text.text = fsm.getCurrentState().ToString();
-			text2.text = getDistance(player.transform, transform).ToString();
+			//text2.text = getDistance(player.transform, transform).ToString();
 		}
 		/*else{
 			text.text = "";
@@ -303,6 +316,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//we check if the AI unit can see the player
 	public void checkForPlayer(){
 		//could maybe place view frustum and check if the player is detected?
+
+		Vector3 topRayPos = new Vector3(gameObject.transform.position.x, gameObject.renderer.bounds.size.y ,gameObject.transform.position.z);
+		//RayCastHit[] topRay = Physics.RaycastAll(transform.position,0,0 );
+
 		//if we find the player
 		fsm.enterState(StateEnums.ZombieStates.Running);
 	}
@@ -392,8 +409,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//pukes at position
 	public void puke(){
 		//after exit time of the animation we revert back to idle
-		//set animation and boolean
+		//set the puking particle effect
+		Debug.Log("Enetered puke method");
 		puking = true;
+		pukeEffect.SetActive(true);
+		/*Component[] comp = pukeEffect.GetComponentsInChildren<ParticleSystem>();
+		for (int i = 0; i < 7;i++){
+
+		}*/
+
 	}
 
 
