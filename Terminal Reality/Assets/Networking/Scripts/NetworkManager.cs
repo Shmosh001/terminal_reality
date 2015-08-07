@@ -56,6 +56,7 @@ public class NetworkManager : MonoBehaviour {
 
 		localPlayer.GetComponent<MouseLook>().enabled = true;//remove mosue movement
 		localPlayer.GetComponent<PlayerScript>().enabled = true;//remove mosue movement
+		localPlayer.GetComponent<Animator>().enabled = true;//remove mosue movement
 		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera
 	}
 
