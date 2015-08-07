@@ -26,13 +26,14 @@ public class weaponSwitchScript : ammoHUDScript {
 			//if the pistol is not currently equipped
 			if (!playerData.pistolEquipped)
 			{
-				playerData.pistolEquipped = true;
-				enableWeapon(); //activate the pistol 
+				playerData.pistolEquipped = true; 
 
 				if (playerData.machineGunEquipped)
 				{
 					playerData.machineGunEquipped = false;
 				}
+				
+				enableWeapon(); //activate the pistol
 
 			}
 			else //weapon is already equipped and no need to switch
@@ -60,12 +61,13 @@ public class weaponSwitchScript : ammoHUDScript {
 			if (!playerData.machineGunEquipped)
 			{
 				playerData.machineGunEquipped = true;
-				enableWeapon(); //activate the pistol
 
 				if (playerData.pistolEquipped)
 				{
 					playerData.pistolEquipped = false;
 				}
+				
+				enableWeapon(); //activate the machine gun
 			}
 			else //weapon is already equipped and no need to switch
 			{
@@ -91,7 +93,7 @@ public class weaponSwitchScript : ammoHUDScript {
 		}
 		else if (playerData.machineGunEquipped)
 		{
-			weaponStr = "machineGun";
+			weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
 		{
@@ -117,6 +119,7 @@ public class weaponSwitchScript : ammoHUDScript {
 		//If the pistol is equipped...
 		else if (currentWeapon() == "Pistol")
 		{
+			print ("Pistol switch is happening");
 			machineGunGameObject.SetActive(false);
 			pistolGameObject.SetActive(true);
 			
@@ -126,8 +129,9 @@ public class weaponSwitchScript : ammoHUDScript {
 		}
 
 		//If the machine gun is equipped...
-		else if (currentWeapon() == "machineGun")
+		else if (currentWeapon() == "MachineGun")
 		{
+			print ("MG switch is happening");
 			pistolGameObject.SetActive(false);
 			machineGunGameObject.SetActive(true);
 			
