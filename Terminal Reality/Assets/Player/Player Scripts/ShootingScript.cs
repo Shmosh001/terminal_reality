@@ -17,7 +17,7 @@ public class ShootingScript : ammoHUDScript {
 
 	// Use this for initialization
 	void Start () {
-				
+						
 		updateAmmoText(0,0);
 
 	}
@@ -26,7 +26,7 @@ public class ShootingScript : ammoHUDScript {
 	void Update () 
 	{
 		//SINGLE FIRE//
-		if (weapon.GetComponent<weaponDataScript>().singleFire)
+		if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire)
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -66,7 +66,7 @@ public class ShootingScript : ammoHUDScript {
 			}
 		}
 		//AUTOMATIC FIRE//
-		else
+		else if (weapon != null && !weapon.GetComponent<weaponDataScript>().singleFire)
 		{
 			if (Input.GetMouseButton(0))
 			{
