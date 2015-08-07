@@ -146,9 +146,7 @@ public class ShootingScript : ammoHUDScript {
 			//if successfully switched to pistol...
 			if (this.GetComponent<weaponSwitchScript>().switchToPistol())
 			{
-				//update to the new weapon being used
-				weapon = GameObject.FindGameObjectWithTag("Pistol");
-				
+				loadNewWeapon("Pistol");				
 			}
 		}
 
@@ -158,10 +156,7 @@ public class ShootingScript : ammoHUDScript {
 		{
 			if (this.GetComponent<weaponSwitchScript>().switchToMachineGun())
 			{
-				//update to the new weapon being used
-				weapon = GameObject.FindGameObjectWithTag("MachineGun");	
-				
-				
+				loadNewWeapon("MachineGun");			
 			}
 		}
 	
@@ -171,7 +166,8 @@ public class ShootingScript : ammoHUDScript {
 	//ALSO UPDATE ALL THE STATS TO THOSE OF THE WEAPON
 	public void loadNewWeapon(string weaponTag)
 	{
-		//TODO:................
+		//update to the new weapon being used
+		weapon = GameObject.FindGameObjectWithTag(weaponTag);
 	}
 
 	void checkHit()

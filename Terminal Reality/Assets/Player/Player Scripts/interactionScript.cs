@@ -95,8 +95,7 @@ public class interactionScript : MonoBehaviour {
 					{
 						playerData.pistolEquipped = true;
 						this.GetComponent<weaponSwitchScript>().enableWeapon();
-						
-						//TODO: load new weapon into shooting script...............
+						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
 			}
@@ -118,8 +117,7 @@ public class interactionScript : MonoBehaviour {
 					{
 						playerData.machineGunEquipped = true;
 						this.GetComponent<weaponSwitchScript>().enableWeapon();
-						
-						//TODO: load new weapon into shooting script...............
+						this.GetComponent<ShootingScript>().loadNewWeapon("MachineGun");
 					}
 				}
 			}
