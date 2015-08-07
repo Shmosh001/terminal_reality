@@ -169,7 +169,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -289,7 +289,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .892857134
   - m_ConditionMode: 2
@@ -433,7 +433,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .918918908
   m_Atomic: 1
@@ -453,7 +453,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -777,7 +777,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .910179615
   m_Atomic: 1
@@ -1064,8 +1064,8 @@ Transition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
+  - m_ConditionMode: 2
+    m_ConditionEvent: Wandering
     m_EventTreshold: 0
     m_ExitTime: .977272749
   m_Atomic: 1
@@ -1085,7 +1085,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .978479207
   m_Atomic: 1
@@ -1213,7 +1213,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .968421042
   m_Atomic: 1
@@ -1525,7 +1525,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .892857134
   - m_ConditionMode: 2
@@ -1653,7 +1653,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -2773,15 +2773,6 @@ StateMachine:
   - {x: 456, y: -204, z: 0}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110275492}
-      second:
-      - {fileID: 110120382}
-    data:
-      first: {fileID: 110208292}
-      second:
-      - {fileID: 110109444}
-      - {fileID: 110104678}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110112672}
@@ -2798,6 +2789,11 @@ StateMachine:
       first: {fileID: 110204900}
       second:
       - {fileID: 110138042}
+    data:
+      first: {fileID: 110208292}
+      second:
+      - {fileID: 110109444}
+      - {fileID: 110104678}
     data:
       first: {fileID: 110209254}
       second:
@@ -2940,6 +2936,10 @@ StateMachine:
       - {fileID: 110102604}
       - {fileID: 110104082}
       - {fileID: 110116090}
+    data:
+      first: {fileID: 110275492}
+      second:
+      - {fileID: 110120382}
     data:
       first: {fileID: 110276944}
       second:

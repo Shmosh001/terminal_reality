@@ -127,16 +127,48 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				break;
 			}
 
+
+
+
 			//techincally do nothing
 			eventChoiceC += Time.deltaTime;
 			checkPlayerC += Time.deltaTime;
 			//update counters
 			//keep counting for random event
 			if (eventChoiceC > eventChoiceD){
-				if (eventChoice()){
-					StateEnums.ZombieStates eventChange = chooseAction(StateEnums.ZombieStates.Puking, StateEnums.ZombieStates.Wandering);
-					fsm.enterState(eventChange);
+				bool result = animatorCont.setRandomBoolean("ChangeBool");
+				if (result){
+					int path  = animatorCont.setRandomInteger("IdleVarD", 4);
+
+					switch(path){
+					//agonizing
+					case 0:
+						//dont need to change state
+
+						//need to play a sound that accuratelt represents this animation
+						break;
+					//scream
+					case 1:
+						//dont need to change state
+						//need to play screaming sound
+						break;
+					//crying/puking
+					case 2:
+						fsm.enterState(StateEnums.ZombieStates.Puking);
+						break;
+					//wandering
+					case 3:
+						fsm.enterState(StateEnums.ZombieStates.Wandering);
+						break;
+					//default
+					default:
+						//set to screaming
+						break;
+					}
+
+
 				}
+
 				eventChoiceC = 0;
 			}
 

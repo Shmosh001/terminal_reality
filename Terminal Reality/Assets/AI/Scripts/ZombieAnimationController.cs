@@ -32,8 +32,28 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	public void setBoolean(string name, bool value){
 		animator.SetBool(name, value);
+
+	}
+
+	public bool setRandomBoolean(string name){
+		int choice = getRandomInt(2);
+		if (choice == 0){
+			animator.SetBool(name, true);
+			return true;
+		}
+		else{
+			animator.SetBool(name, false);
+			return false;
+		}
+
 	}
 	
+	public int setRandomInteger(string name, int max){
+		int choice = getRandomInt(max);
+		animator.SetInteger(name, choice);
+		return choice;
+	}
+
 	public void setInteger(string name, int value){
 		animator.SetInteger(name, value);
 	}
