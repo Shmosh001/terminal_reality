@@ -16,16 +16,16 @@ public class weaponDataScript : ammoHUDScript
 	private int ammoInClip;
 	private bool equipped;
 
-	//AUDIO VARIABLES//
-	public AudioClip shotSound;
-	public AudioClip reloadSound;
-	public AudioClip outOfAmmoSound;
-	private AudioSource soundSource;
+//	//AUDIO VARIABLES//
+//	public AudioClip shotSound;
+//	public AudioClip reloadSound;
+//	public AudioClip outOfAmmoSound;
+//	public AudioSource soundSource;
 
 	void Awake()
 	{
 		ammoInClip = clipSize;
-		soundSource = this.GetComponent<AudioSource>();
+		//soundSource = this.GetComponent<AudioSource>();
 	}
 
 	//GET REMAINING AMMO//
@@ -109,26 +109,26 @@ public class weaponDataScript : ammoHUDScript
 		updateAmmoText(ammo, ammoInClip);
 	}
 
-	/*
-	 * METHODS FOR PLAYING GUN RELATED SOUNDS
-	 */
-	 //PLAY EMPTY CLIP SOUND//
-	public void playEmptyClip()
-	{
-		soundSource.PlayOneShot(outOfAmmoSound);
-	}
-
-	//PLAY SHOOTING SOUND//
-	public void playShot()
-	{
-		soundSource.PlayOneShot(shotSound);
-	}
-
-	//PLAY RELOAD SOUND//
-	public void playReload()
-	{
-		soundSource.PlayOneShot(reloadSound);
-	}
+//	/*
+//	 * METHODS FOR PLAYING GUN RELATED SOUNDS
+//	 */
+//	 //PLAY EMPTY CLIP SOUND//
+//	public void playEmptyClip()
+//	{
+//		soundSource.PlayOneShot(outOfAmmoSound);
+//	}
+//
+//	//PLAY SHOOTING SOUND//
+//	public void playShot()
+//	{
+//		soundSource.PlayOneShot(shotSound);
+//	}
+//
+//	//PLAY RELOAD SOUND//
+//	public void playReload()
+//	{
+//		soundSource.PlayOneShot(reloadSound);
+//	}
 
 	//METHOD TO ENABLE AND DISABLE GUN FLARE//
 	public void gunFlare(bool state)

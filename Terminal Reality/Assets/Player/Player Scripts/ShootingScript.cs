@@ -10,6 +10,7 @@ public class ShootingScript : ammoHUDScript {
 	private Ray ray;
 	private float coolDownTimer;
 	private GameObject weapon;
+	private GameObject soundController;
 
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -19,6 +20,7 @@ public class ShootingScript : ammoHUDScript {
 	void Start () {
 						
 		updateAmmoText(0,0);
+		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 
 	}
 	
@@ -37,7 +39,7 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0)
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
-						weapon.GetComponent<weaponDataScript>().playShot(); //play sound of a pistol shot
+						soundController.GetComponent<soundControllerScript>().playPistolShot(); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						flareLoopCount = 0;
 	
@@ -55,7 +57,7 @@ public class ShootingScript : ammoHUDScript {
 				}
 				else //if clip is empty
 				{
-					weapon.GetComponent<weaponDataScript>().playEmptyClip(); //play empty clip sound
+					soundController.GetComponent<soundControllerScript>().playEmptyClip(); //play empty clip sound
 				}
 			}
 			else
@@ -108,7 +110,7 @@ public class ShootingScript : ammoHUDScript {
 				{
 					if (coolDownTimer <= 0)
 					{
-						weapon.GetComponent<weaponDataScript>().playEmptyClip(); //play empty clip sound
+						soundController.GetComponent<soundControllerScript>().playEmptyClip(); //play empty clip sound
 						coolDownTimer = 0.8f; //so sound doesn't play too fast.
 					}
 					weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
@@ -137,7 +139,7 @@ public class ShootingScript : ammoHUDScript {
 				if (weapon.GetComponent<weaponDataScript>().reload()) 
 				{
 					coolDownTimer = 1.3f; //so can't start shooting while the sound is playing
-					weapon.GetComponent<weaponDataScript>().playReload(); //play reload sound
+					soundController.GetComponent<soundControllerScript>().playReload(); //play reload sound
 
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
