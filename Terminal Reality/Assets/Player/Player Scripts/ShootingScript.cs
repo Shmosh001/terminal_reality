@@ -84,6 +84,7 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0) //can shoot
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
+						soundController.GetComponent<soundControllerScript>().playPistolShot(); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						
 

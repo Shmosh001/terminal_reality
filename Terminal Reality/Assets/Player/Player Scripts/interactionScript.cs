@@ -81,6 +81,7 @@ public class interactionScript : MonoBehaviour {
 				//If the player already has a pistol, just pickup pistol ammo.
 				if (playerData.pistolPickedUp)
 				{
+					soundController.GetComponent<soundControllerScript>().playPickupSound();
 					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 					//pickup ammo for the pistol
 					//amount randomly generate - from 10 - 30 bullets picked up
@@ -88,7 +89,8 @@ public class interactionScript : MonoBehaviour {
 				}
 				else 
 				{
-					playerData.pistolPickedUp = true;					
+					playerData.pistolPickedUp = true;	
+					soundController.GetComponent<soundControllerScript>().playPickupSound();				
 
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.machineGunPickedUp)
@@ -106,6 +108,7 @@ public class interactionScript : MonoBehaviour {
 				//If the player already has a machine gun, just pickup the ammo
 				if (playerData.machineGunPickedUp)
 				{
+					soundController.GetComponent<soundControllerScript>().playPickupSound();
 					GameObject machineGun = GameObject.FindGameObjectWithTag("MachineGun"); //find the pistol object					
 					//pickup ammo for the machine gun
 					//amount randomly generate - from 10 - 50 bullets picked up
@@ -114,6 +117,7 @@ public class interactionScript : MonoBehaviour {
 				else
 				{
 					playerData.machineGunPickedUp = true;
+					soundController.GetComponent<soundControllerScript>().playPickupSound();
 					
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.pistolPickedUp)
