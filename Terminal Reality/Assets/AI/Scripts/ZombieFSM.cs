@@ -9,13 +9,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 	public GameObject pukeEffect;
 
-
+	public float rayCastOffset = 1.7f;
 	//debug
 	public bool debug;
 	public bool animDebug;
 
 	//booleans to accertain certain state specifics
-	private bool puking, wandering, alerted, walking, running;
+	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert;
 	//counters
 	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC;
 	//duration holders
@@ -50,7 +50,6 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
-
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		lessenSenses();
 		speed = walkingSpeed;
@@ -60,7 +59,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		health = gameObject.GetComponent<HealthScript>();
 
 		pukeD = 7.917f;
-		fsm.enterState(StateEnums.ZombieStates.Idle);
+
 	}
 
 
@@ -149,7 +148,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			checkPlayerC += Time.deltaTime;
 			//update counters
 			//keep counting for random event
-			if (eventChoiceC > eventChoiceD){
+		/*	if (eventChoiceC > eventChoiceD){
 				bool result = animatorCont.setRandomBoolean("ChangeBool");
 				if (result){
 					int path  = animatorCont.setRandomInteger("IdleVarD", 4);
@@ -184,10 +183,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				}
 
 				eventChoiceC = 0;
-			}
+			}*/
 
 			//check if we can see player every 1s
-			if (checkPlayerC > checkPlayerD){
+			if (sightAlert && checkPlayerC > checkPlayerD){
 				//need to still set this up
 				checkForPlayer();
 				checkPlayerC = 0;
@@ -317,15 +316,56 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	}
 
 
+	bool checkRayCast(RaycastHit[] rayData){
+		int i = 0;
+		int size = rayData.Length;
+		float lastDist = viewingSens;
+		Transform closestObject = null;
+		while(i < size){
+				//we loop through and assign the closest object
+			if (rayData[i].transform != this.transform && rayData[i].distance < lastDist){
+				closestObject = rayData[i].transform;
+				lastDist = rayData[i].distance;
+			}
+			i++;
+			Debug.Log("checked object");
+		}
+		if (closestObject != null){
+
+			Debug.Log(closestObject.ToString());
+			Debug.Log(closestObject.parent.ToString());
+			Debug.Log(closestObject.parent.tag.ToString());
+			if (closestObject.parent.tag == "Player"){
+				return true;
+				
+			}
+		}
+
+
+		return false;
+
+
+	}
+
+
 	//we check if the AI unit can see the player
 	public void checkForPlayer(){
 		//could maybe place view frustum and check if the player is detected?
 
-		Vector3 topRayPos = new Vector3(gameObject.transform.position.x, gameObject.renderer.bounds.size.y ,gameObject.transform.position.z);
-		//RayCastHit[] topRay = Physics.RaycastAll(transform.position,0,0 );
+		Vector3 enemyHead = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + rayCastOffset,gameObject.transform.position.z);
+		transform.LookAt(player.transform.position);
+		RaycastHit[] raycast = Physics.RaycastAll(enemyHead, transform.forward, viewingSens);
+		Debug.DrawRay(enemyHead, transform.forward*viewingSens, Color.green);
+		if (checkRayCast(raycast)){
+			//if we find the player
+			fsm.enterState(StateEnums.ZombieStates.Running);
+			//activate the nav mesh agen here as well
+			//maybe do this in running?
+		}
+		else{
+			//do nothing
+		}
 
-		//if we find the player
-		fsm.enterState(StateEnums.ZombieStates.Running);
 	}
 
 	//we alert this unit that a sound trigger has gone off
@@ -460,6 +500,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	void OnTriggerEnter(Collider collider){
 		if (collider.tag == "Player"){
 			Debug.Log("registered collision with " + collider.gameObject.name);
+			sightAlert = true;
+			player = collider.gameObject;
 		}
 
 	}
