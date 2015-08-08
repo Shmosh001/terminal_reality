@@ -1821,7 +1821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &218437674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3619,6 +3619,10 @@ Prefab:
     - target: {fileID: 11414540, guid: f5d2085346e851749ba6b4627569629a, type: 2}
       propertyPath: dyingD
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9579242, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5d2085346e851749ba6b4627569629a, type: 2}
@@ -12049,7 +12053,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 124726, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
@@ -16425,6 +16429,8 @@ GameObject:
   - 135: {fileID: 1452960662}
   - 135: {fileID: 1452960661}
   - 114: {fileID: 1452960657}
+  - 195: {fileID: 1452960660}
+  - 114: {fileID: 1452960665}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Untagged
@@ -16487,9 +16493,29 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d5713b5be3847f446a618f6598469ecd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!195 &1452960660
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1452960655}
+  m_Enabled: 1
+  m_Radius: .5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!135 &1452960661
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16567,6 +16593,18 @@ MonoBehaviour:
   target: {fileID: 0}
   text: {fileID: 871842190}
   text2: {fileID: 0}
+--- !u!114 &1452960665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1452960655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4353190759fbfea4c936aae2393b3257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: {fileID: 218437682}
 --- !u!1 &1457499371
 GameObject:
   m_ObjectHideFlags: 0

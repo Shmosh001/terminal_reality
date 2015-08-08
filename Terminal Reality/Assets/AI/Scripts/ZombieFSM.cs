@@ -78,11 +78,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		if (animDebug){
-			//fsm.enterState(StateEnums.ZombieStates.Idle);
+			//fsm.enterState(StateEnums.ZombieStates.);
 			if (Input.GetKeyDown(KeyCode.Space)){
 				//animatorCont.setInterger("DeathD", 0);
 				//animatorCont.setBoolean("Dead", true);
-				animatorCont.setBoolean("Alerted", true);
+				animatorCont.setBoolean("Alerted", false);
+				animatorCont.setBoolean("Charge",true);
+				animatorCont.setInteger("AttD",0);
+
 			}
 			if (Input.GetKeyDown(KeyCode.Alpha1)){
 				//animatorCont.setInterger("DeathD", 0);
@@ -115,13 +118,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				//animatorCont.setBoolean("Dead", true);
 				animatorCont.setBoolean("Charge", false);
 				//animatorCont.setInterger("AttD", 0);
-				animatorCont.setInteger("HitD", 2);
+				animatorCont.setInteger("HitD", 0);
 				animatorCont.setBoolean("Shot", true);
 			}
 
 		}
 
-		Debug.Log(gameObject.renderer.bounds.size.y);
+		//Debug.Log(gameObject.renderer.bounds.size.y);
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
@@ -129,10 +132,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (animDebug){
 				animatorCont.setStartState(0);
 				
-				animatorCont.setBoolean("ChangeBool", true);
+
 				//animatorCont.setInteger("IdleD", 3);
-				animatorCont.setInteger("IdleVarD", 2);
-				fsm.enterState(StateEnums.ZombieStates.Puking);
+				//animatorCont.setBoolean("Charge",true);
+				//animatorCont.setInteger("AttD",0);
+				//fsm.enterState(StateEnums.ZombieStates.Puking);
 				
 				break;
 			}
