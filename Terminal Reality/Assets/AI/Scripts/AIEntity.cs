@@ -8,6 +8,8 @@ public class AIEntity <T>: MonoBehaviour{
 
 	public GameObject player;
 
+	protected NavMeshAgent navAgent;
+
 
 	//list of targets that the AI element can attack
 	public ArrayList targets;
@@ -15,7 +17,7 @@ public class AIEntity <T>: MonoBehaviour{
 
 
 	void Start(){
-
+		navAgent = gameObject.GetComponent<NavMeshAgent>();
 	}
 
 	public void addTarget(GameObject entity){

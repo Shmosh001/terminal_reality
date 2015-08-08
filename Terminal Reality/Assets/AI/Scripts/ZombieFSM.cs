@@ -9,19 +9,19 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 	public GameObject pukeEffect;
 
-	public float rayCastOffset = 1.7f;
+	public float rayCastOffset = 1.5f;
 	//debug
 	public bool debug;
 	public bool animDebug;
 
 	//booleans to accertain certain state specifics
-	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert;
+	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger;
 	//counters
 	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC;
 	//duration holders
 	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD;
 	//sense values
-	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm, listeningSensAlert;
+	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
 	//speed values
 	public float walkingSpeed, RunningSpeed;
 	//distance values
@@ -43,11 +43,18 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private ZombieAnimationController animatorCont;
 
 
+	private Vector3 debugPos;
+	private Vector3 debugPos1;
+
 	private StateMachineClass<StateEnums.ZombieStates> fsm;
+	private PreyDetection detection;
+	
+	private SphereCollider soundCollider;
 
 	// Use this for initialization
 	void Start () {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
+		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
@@ -59,6 +66,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		health = gameObject.GetComponent<HealthScript>();
 
 		pukeD = 7.917f;
+		soundCollider  = gameObject.GetComponent<SphereCollider>();
+
 
 	}
 
@@ -68,7 +77,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	// Update is called once per frame
 	void Update () {
 
-
+		//Debug.DrawRay(debugPos, debugPos1*viewingSens, Color.green);
 		//update all counters
 
 		if (health.health <= 0){
@@ -76,7 +85,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 
 
-		if (animDebug){
+		/*if (animDebug){
 			//fsm.enterState(StateEnums.ZombieStates.);
 			if (Input.GetKeyDown(KeyCode.Space)){
 				//animatorCont.setInterger("DeathD", 0);
@@ -94,7 +103,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				/*animatorCont.setBoolean("Charge", true);
 			animatorCont.setInteger("AttD", 0);
 			animatorCont.setBoolean("Alerted", false);*/
-			}
+			/*}*/
 			
 			/*if (Input.GetKeyDown(KeyCode.Alpha2)){
 			//animatorCont.setInterger("DeathD", 0);
@@ -112,7 +121,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			animatorCont.setBoolean("Searching", true);
 		}*/
 			
-			if (Input.GetKeyDown(KeyCode.Alpha2)){
+			/*if (Input.GetKeyDown(KeyCode.Alpha2)){
 				//animatorCont.setInterger("DeathD", 0);
 				//animatorCont.setBoolean("Dead", true);
 				animatorCont.setBoolean("Charge", false);
@@ -121,14 +130,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				animatorCont.setBoolean("Shot", true);
 			}
 
-		}
+		}*/
 
 		//Debug.Log(gameObject.renderer.bounds.size.y);
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
 
-			if (animDebug){
+		/*	if (animDebug){
 				animatorCont.setStartState(0);
 				
 
@@ -138,7 +147,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				//fsm.enterState(StateEnums.ZombieStates.Puking);
 				
 				break;
-			}
+			}*/
 
 
 
@@ -186,7 +195,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}*/
 
 			//check if we can see player every 1s
-			if (sightAlert && checkPlayerC > checkPlayerD){
+			if (soundTrigger && checkPlayerC > checkPlayerD){
 				//need to still set this up
 				checkForPlayer();
 				checkPlayerC = 0;
@@ -197,11 +206,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Alerted:
+
+			animatorCont.setBoolean("Alerted", true);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
+				animatorCont.setBoolean("Alerted", false);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -223,14 +235,24 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Searching:
-			searchingC += Time.deltaTime;
 
-			if (searchingC > searchingD){
+
+			//we search for the player by moving to his last known position
+			//once we are there, we stop searching
+
+			if (detection.lastSighting == transform.position){
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
 			}
 			else{
-				searchForPlayer();
+				navAgent.SetDestination(detection.lastSighting);
 			}
+			//left off here
+
+
+
+
+			searchForPlayer();
+
 
 
 			break;
@@ -316,72 +338,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	}
 
 
-	bool checkRayCast(RaycastHit[] rayData){
-		int i = 0;
-		int size = rayData.Length;
-		float lastDist = viewingSens;
-		Transform closestObject = null;
-		while(i < size){
-				//we loop through and assign the closest object
-			if (rayData[i].transform != this.transform && rayData[i].distance < lastDist){
-				closestObject = rayData[i].transform;
-				lastDist = rayData[i].distance;
-			}
-			i++;
-			Debug.Log("checked object");
-		}
-		if (closestObject != null){
-
-			Debug.Log(closestObject.ToString());
-			Debug.Log(closestObject.parent.ToString());
-			Debug.Log(closestObject.parent.tag.ToString());
-			if (closestObject.parent.tag == "Player"){
-				return true;
-				
-			}
-		}
 
 
-		return false;
 
 
-	}
 
-
-	//we check if the AI unit can see the player
-	public void checkForPlayer(){
-		//could maybe place view frustum and check if the player is detected?
-
-		Vector3 enemyHead = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + rayCastOffset,gameObject.transform.position.z);
-		transform.LookAt(player.transform.position);
-		RaycastHit[] raycast = Physics.RaycastAll(enemyHead, transform.forward, viewingSens);
-		Debug.DrawRay(enemyHead, transform.forward*viewingSens, Color.green);
-		if (checkRayCast(raycast)){
-			//if we find the player
-			fsm.enterState(StateEnums.ZombieStates.Running);
-			//activate the nav mesh agen here as well
-			//maybe do this in running?
-		}
-		else{
-			//do nothing
-		}
-
-	}
-
-	//we alert this unit that a sound trigger has gone off
-	public void alertUnit(){
-		if (alerted){
-			fsm.enterState(StateEnums.ZombieStates.Searching);
-		}
-		else{
-			alerted = true;
-			fsm.enterState(StateEnums.ZombieStates.Alerted);
-			//set rotation = players position to make viewing easier
-			transform.LookAt(player.transform.position);
-			//enhance viewing and listening 
-			heightenSenses();
-		}
-	}
 
 	//we send the AI unit on a path to search for the player
 	public void searchForPlayer(){
@@ -490,22 +451,71 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	void heightenSenses(){
 		viewingSens = viewingSensAlert;
 		listeningSens = listeningSensAlert;
+		soundCollider.radius = listeningSens;
 	}
 
 	void lessenSenses(){
 		viewingSens = viewingSenseNorm;
 		listeningSens = listeningSensNorm;
+		soundCollider.radius = listeningSens;
 	}
 
 	void OnTriggerEnter(Collider collider){
 		if (collider.tag == "Player"){
-			Debug.Log("registered collision with " + collider.gameObject.name);
-			sightAlert = true;
+			Debug.Log("registered collider entrance with " + collider.gameObject.name);
+			detection.assignTarget(collider.gameObject);
 			player = collider.gameObject;
+			soundTrigger = true;
 		}
 
 	}
+	void OnTriggerExit(Collider collider){
+		if (collider.tag == "Player"){
+			Debug.Log("registered collider exit with " + collider.gameObject.name);
+			detection.assignTarget(null);
+			player = null;
+			soundTrigger = false;
+		}
+	}
 
+	//we check if the AI unit can see the player
+	void checkForPlayer(){
+		//we check for sounds last as viewing is more important
+
+
+		//we need to be in the radius of the sound collider in order to be seen. radius is much larger than the viewing distance
+		if (soundTrigger && detection.targetInSight(viewingSens)){
+			//we need to now change into the approriate state
+			fsm.enterState(StateEnums.ZombieStates.Attacking);
+		}
+
+		if (soundTrigger){
+			if (detection.targetHeard()){
+				alertUnit();
+			}
+		}
+
+
+	}
+
+	//we alert this unit that a sound trigger has gone off
+	void alertUnit(){
+		//if this is the >second  sound alert
+		if (soundAlert){
+			//the position should have been set
+			//then searching method should take care of moving the npc there
+			fsm.enterState(StateEnums.ZombieStates.Searching);
+			
+		}
+		else{
+			soundAlert = true;
+			//enhance viewing and listening 
+			heightenSenses();
+			
+			fsm.enterState(StateEnums.ZombieStates.Alerted);
+			
+		}
+	}
 
 
 }
