@@ -82,6 +82,8 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0) //can shoot
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
+						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
+						
 
 						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
@@ -94,7 +96,11 @@ public class ShootingScript : ammoHUDScript {
 
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
-						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;
+						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;						
+					}
+					else
+					{
+						weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
 					}
 				}
 
@@ -105,6 +111,18 @@ public class ShootingScript : ammoHUDScript {
 						weapon.GetComponent<weaponDataScript>().playEmptyClip(); //play empty clip sound
 						coolDownTimer = 0.8f; //so sound doesn't play too fast.
 					}
+					weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
+				}
+			}
+			else
+			{
+				if (flareLoopCount >= 2)
+				{
+					weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
+				}
+				else
+				{
+					flareLoopCount++;
 				}
 			}
 		}
