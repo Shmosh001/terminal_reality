@@ -105,10 +105,10 @@ public class interactionScript : MonoBehaviour {
 				//If the player already has a machine gun, just pickup the ammo
 				if (playerData.machineGunPickedUp)
 				{
-					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object					
+					GameObject machineGun = GameObject.FindGameObjectWithTag("MachineGun"); //find the pistol object					
 					//pickup ammo for the machine gun
 					//amount randomly generate - from 10 - 50 bullets picked up
-					pistol.GetComponent<weaponDataScript>().ammoPickup(Random.Range(10, 50)); 
+					machineGun.GetComponent<weaponDataScript>().ammoPickup(Random.Range(10, 50)); 
 				}
 				else
 				{
