@@ -70,6 +70,10 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	}
 
+	public void setTrigger(string name){
+		animator.SetTrigger(name);
+	}
+
 	//gets a random number between 0 and max-1
 	public int getRandomInt(int max){
 		return Random.Range(0,max);
@@ -86,7 +90,7 @@ public class ZombieAnimationController : MonoBehaviour {
 		animator.SetBool("ChangeBool",false);
 		animator.SetBool("Wakeup",false);
 		animator.SetBool("Charge",false);
-		animator.SetBool("Chasing",false);
+
 	}
 
 }

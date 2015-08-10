@@ -170,8 +170,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 			chasePlayer();
-
+			//update the position of the target we are chasing
 			if (chasing && chasingC > chasingD){
+				if (stateDebugStatements){Debug.LogError("chasing case: if statement " + Time.timeSinceLevelLoad);}
 				navAgent.SetDestination(target.transform.position);
 				detection.assignLastPosition(target.transform.position);
 				detection.assignTarget(target);
@@ -292,11 +293,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("chasePlayer method: chasing false at" + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
 			//we set the animation
-			animatorCont.setBoolean("Charge",true);
+			//animatorCont.setBoolean("Charge",true);
+			animatorCont.setTrigger("TriggerTest");
 			animatorCont.setRandomInteger("AttD",2);
 			navAgent.SetDestination(target.transform.position);
-			animatorCont.setBoolean("Chasing",true);
-			animatorCont.setBoolean("Charge",false);
+
 			chasing = true;
 		}
 
@@ -465,11 +466,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		//we need to be in the radius of the sound collider in order to be seen. radius is much larger than the viewing distance
 		if (soundTrigger && detection.targetInSight(viewingSens)){
+			if (debugStatements){Debug.LogError("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
 			//we need to now change into the approriate state
 			fsm.enterState(StateEnums.ZombieStates.Chasing);
 		}
 
-		if (soundTrigger){
+		else if (soundTrigger){
 			if (debugStatements){Debug.Log("checkForPlayer method: soundTrigger = true at" + Time.timeSinceLevelLoad);}
 			if (detection.targetHeard()){
 				if (debugStatements){Debug.Log("checkForPlayer method: target heard at" + Time.timeSinceLevelLoad);}
