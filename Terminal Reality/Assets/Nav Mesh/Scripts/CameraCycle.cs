@@ -3,9 +3,11 @@ using System.Collections;
 
 public class CameraCycle : MonoBehaviour {
 	
+	public GameObject player;
 
 	//which camera we are currently on
 	public int counter;
+	private int amount;
 	//counter values
 	//0 - orbit
 	//1 - chase
@@ -20,10 +22,12 @@ public class CameraCycle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		amount = cams.Length;
 		//counter = 2;//start with the fps cam
-		for (int i = 0; i < 2; i++){
+		for (int i = 0; i < amount; i++){
 			cams[i].enabled = false;
 		}
+		cams[counter].enabled = true;
 	}
 
 
@@ -37,15 +41,17 @@ public class CameraCycle : MonoBehaviour {
 	public void next(){
 		counter++;
 		//ensures no out of bounds
-		if (counter > 2){
+		if (counter >= amount){
 			counter = 0;
 		}
 
 		//disable all cameras
-		for (int i = 0; i < 2; i++){
+		for (int i = 0; i < amount; i++){
 			cams[i].enabled = false;
 		}
-
+		if(counter != 0){
+			player.SetActive(false);
+		}
 
 		//enable the right camera again
 		cams[counter].enabled = true;

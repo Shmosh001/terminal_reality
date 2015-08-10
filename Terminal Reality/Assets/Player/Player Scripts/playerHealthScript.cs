@@ -58,6 +58,6 @@ public class playerHealthScript : MonoBehaviour {
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
-		healthText.text = playerData.health + "";
+//		healthText.text = playerData.health + "";
 	}
 }

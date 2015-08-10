@@ -7,16 +7,18 @@ public class WanderScript : MonoBehaviour {
 	private Transform[] locations;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 
 		GameObject[] locs = GameObject.FindGameObjectsWithTag(Tags.WANDERLOC);
 		locations = new Transform[locs.Length];
+		assignPositions(locs);
 	}
 	
 
 	void assignPositions(GameObject[] pos){
 		for (int i = 0; i < pos.Length; i++){
 			locations[i] = pos[i].transform;
+			//Debug.Log("added in location");
 		}
 	}
 

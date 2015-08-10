@@ -18,7 +18,7 @@ public class AIEntity <T>: MonoBehaviour{
 	protected GameObject target;
 
 
-	void Start(){
+	void Awake(){
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
 		health = gameObject.GetComponent<HealthScript>();
 		wanderScript = gameObject.GetComponent<WanderScript>();

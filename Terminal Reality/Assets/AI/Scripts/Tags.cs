@@ -9,6 +9,6 @@ public class Tags : MonoBehaviour {
 
 
 	public const string WANDERLOC = "wanderLoc"; 
-
+	public const string PLAYER = "Player";
 
 }

@@ -15,6 +15,7 @@ public class StateMachineClass <T> : MonoBehaviour{
 
 	//eneters the specified state
 	public void enterState(T newState){
+		Debug.Log("entered state: " + newState.ToString());
 		previousState = currentState;
 		currentState = newState;
 
@@ -23,12 +24,8 @@ public class StateMachineClass <T> : MonoBehaviour{
 	//reverts back to previous state
 	public void enterPreviousState(){
 		if (hasPreviousState()){
-			Debug.Log("previos state is being applied");
 			enterState(previousState);
-/*			T temp = currentState;
-			currentState = previousState;
-			previousState = temp;*/
-			Debug.Log("applied " + currentState.ToString());
+			Debug.Log("applied previous state: " + currentState.ToString());
 		}
 		
 	}
