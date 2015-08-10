@@ -11,7 +11,6 @@ public class LightFlicker : MonoBehaviour {
 		void Start()
 		{
 			random = Random.Range(0.0f, 65535.0f);
-			
 		}
 		
 		void Update()
