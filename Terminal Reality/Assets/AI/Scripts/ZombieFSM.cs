@@ -15,11 +15,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	public bool animDebug;
 
 	//booleans to accertain certain state specifics
-	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger;
+	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing;
 	//counters
-	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC;
+	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC;
 	//duration holders
-	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD;
+	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD, chasingD = 1.5f;
 	//sense values
 	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
 	//speed values
@@ -32,10 +32,6 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	public float speed;
 
 
-
-	/*private HealthScript health;*/
-
-	public GameObject target;
 
 	public Text text;
 	public Text text2;
@@ -78,78 +74,17 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	// Update is called once per frame
 	void Update () {
 
-		//Debug.DrawRay(debugPos, debugPos1*viewingSens, Color.green);
-		//update all counters
+
 
 		if (health.health <= 0){
 			fsm.enterState(StateEnums.ZombieStates.Dying);
 		}
 
 
-		/*if (animDebug){
-			//fsm.enterState(StateEnums.ZombieStates.);
-			if (Input.GetKeyDown(KeyCode.Space)){
-				//animatorCont.setInterger("DeathD", 0);
-				//animatorCont.setBoolean("Dead", true);
-				animatorCont.setBoolean("Alerted", false);
-				animatorCont.setBoolean("Charge",true);
-				animatorCont.setInteger("AttD",0);
 
-			}
-			if (Input.GetKeyDown(KeyCode.Alpha1)){
-				//animatorCont.setInterger("DeathD", 0);
-				animatorCont.setBoolean("Alerted", false);
-				animatorCont.setBoolean("Dead", true);
-				animatorCont.setInteger("DeathD", 1);
-				/*animatorCont.setBoolean("Charge", true);
-			animatorCont.setInteger("AttD", 0);
-			animatorCont.setBoolean("Alerted", false);*/
-			/*}*/
-			
-			/*if (Input.GetKeyDown(KeyCode.Alpha2)){
-			//animatorCont.setInterger("DeathD", 0);
-			//animatorCont.setBoolean("Dead", true);
-			animatorCont.setBoolean("Charge", false);
-			//animatorCont.setInterger("AttD", 0);
-			animatorCont.setBoolean("Attacking", true);
-		}*/
-			
-			/*if (Input.GetKeyDown(KeyCode.Alpha3)){
-			//animatorCont.setInterger("DeathD", 0);
-			//animatorCont.setBoolean("Dead", true);
-			animatorCont.setBoolean("Charge", false);
-			//animatorCont.setInterger("AttD", 0);
-			animatorCont.setBoolean("Searching", true);
-		}*/
-			
-			/*if (Input.GetKeyDown(KeyCode.Alpha2)){
-				//animatorCont.setInterger("DeathD", 0);
-				//animatorCont.setBoolean("Dead", true);
-				animatorCont.setBoolean("Charge", false);
-				//animatorCont.setInterger("AttD", 0);
-				animatorCont.setInteger("HitD", 0);
-				animatorCont.setBoolean("Shot", true);
-			}
-
-		}*/
-
-		//Debug.Log(gameObject.renderer.bounds.size.y);
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
-
-		/*	if (animDebug){
-				animatorCont.setStartState(0);
-				
-
-				//animatorCont.setInteger("IdleD", 3);
-				//animatorCont.setBoolean("Charge",true);
-				//animatorCont.setInteger("AttD",0);
-				//fsm.enterState(StateEnums.ZombieStates.Puking);
-				
-				break;
-			}*/
-
 
 			animatorCont.resetBooleans();
 
@@ -224,14 +159,23 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			break;
 
 
-		case StateEnums.ZombieStates.Running:
+		case StateEnums.ZombieStates.Chasing:
 			//maybe add in timer so we dont update path every frame?
-			if (lostPlayer()){
-				loosePlayer();
+
+			chasingC += Time.deltaTime;
+
+
+
+			chasePlayer();
+
+			if (chasing && chasingC > chasingD){
+				navAgent.SetDestination(target.transform.position);
+				detection.assignLastPosition(target.transform.position);
+				detection.assignTarget(target);
+				chasingC = 0;
 			}
-			else{
-				chasePlayer();
-			}
+
+
 			break;
 
 
@@ -243,6 +187,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			if (detection.lastSighting == transform.position || !detection.hasLastPosition()){
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
+
 			}
 			else{
 				searchForPlayer();
@@ -253,7 +198,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Attacking:
-			attackPlayer(target);
+			attackPlayer();
 
 			break;
 
@@ -279,16 +224,17 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			break;
 		case StateEnums.ZombieStates.Wandering:
-			//updating counter
-			wanderC += Time.deltaTime;
+
 
 			if (!wandering){
 				startWandering();
+				animatorCont.resetBooleans();
+				animatorCont.setBoolean("Wandering", true);
 			}
 
-			if (wanderC > wanderD){
+			if (navAgent.destination == transform.position){
+				navAgent.Stop();
 				fsm.enterPreviousState();
-				wanderC = 0;
 				wandering = false;
 			}
 
@@ -297,27 +243,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Dying:
-
-			if (dyingC == 0){
-				killUnit();
-			}
-
-			dyingC += Time.deltaTime;
-
-
-
-			if (dyingC > dyingD){
-				fsm.enterState(StateEnums.ZombieStates.Dead);
-			}
-
-
+			killUnit();
 			break;
-
-
+		
 		case StateEnums.ZombieStates.Dead:
 			dead ();
 			break;
-
 
 		default:
 			break;
@@ -336,19 +267,62 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 	//*******************************************************************************************************************************
+	//working zone
 
 
 	
-	//starts wandering in a random direction
-	public void startWandering(){
-		//set boolean 
-		wandering = true;
-		//we get a location to move to from the wandering script
-		Transform dest = wanderScript.getClosestPoint(transform);
-		navAgent.SetDestination(dest.position);
-		navAgent.speed = walkingSpeed;
+	//chases the nearest player
+	void chasePlayer(){
+
+
+
+
+		if (!chasing){
+			animatorCont.resetBooleans();
+			//we set the animation
+			animatorCont.setBoolean("Charge",true);
+			animatorCont.setRandomInteger("AttD",2);
+			navAgent.SetDestination(target.transform.position);
+			chasing = true;
+		}
+
+
+
+
+		float distance = getDistance(target.transform, gameObject.transform);
+
+
+		if (distance < attackingDistance){
+			fsm.enterState(StateEnums.ZombieStates.Attacking);
+			navAgent.Stop();
+			animatorCont.setBoolean("Attacking",true);
+			animatorCont.setBoolean("Charge",false);
+		}
+		else if (distance > losingDistance){
+			fsm.enterState(StateEnums.ZombieStates.Searching);
+			animatorCont.resetBooleans();
+		}
+		
 	}
 
+
+
+
+	//kills the unit and plays specific animation
+	void killUnit(){
+		//play animation
+		animatorCont.resetBooleans();
+		animatorCont.setBoolean("Dead", true);
+		animatorCont.setRandomInteger("DeathD",2);
+		fsm.enterState(StateEnums.ZombieStates.Dead);
+	}
+	
+	//disables all parts to the unit to only leave dead body
+	void dead(){
+		gameObject.GetComponent<CharacterController>().enabled = false;
+		gameObject.GetComponent<SphereCollider>().enabled = false;
+		//remove unnessesary parts
+	}
 
 
 
@@ -357,75 +331,60 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	void searchForPlayer(){
 		//we go to the players last known position
 	
-		navAgent.SetDestination(detection.lastSighting);
-		animatorCont.setBoolean("Searching",true);
-		
+		if (navAgent.SetDestination(detection.lastSighting)){
+			navAgent.speed = walkingSpeed;
+			animatorCont.setBoolean("Searching",true);
+			heightenSenses();
+		}
+		//if the paths 
+		else{
+			//stop any path navigation
+			lessenSenses();
+			navAgent.Stop();
+			fsm.enterState(StateEnums.ZombieStates.Wandering);
+		}
 
-	
+	}
+
+
+	//starts wandering in a random direction
+	void startWandering(){
+		//set boolean 
+		lessenSenses();
+		wandering = true;
+		//we get a location to move to from the wandering script
+		Transform dest = wanderScript.getClosestPoint(transform);
+		if (navAgent.SetDestination(dest.position)){
+			navAgent.speed = walkingSpeed;
+		}
+		//if for some reason the path setting fails
+		else{
+			//stop any path navigation
+			navAgent.Stop();
+			fsm.enterPreviousState();
+		}
+		
 	}
 
 	//attacks the player
-	public void attackPlayer(GameObject target){
+	void attackPlayer(){
 		//change animation
 		//inflict damage on player
 		HealthScript targetH = target.GetComponent<HealthScript>();
 		if (targetH != null){
 			targetH.takeDamage(damage);
 		}
+		float distance = getDistance(transform, target.transform);
+		//add a small offset
+		if (distance > attackingDistance+5){
+			fsm.enterState(StateEnums.ZombieStates.Chasing);
+		}
 	}
 
-	//chases the nearest player
-	public void chasePlayer(){
-		//check which entity is closer
-		//based on distance
 
-		float distance = 0.1f;//= checkDistance(Player, gameObject.transform);
-		if (distance > runningDistance){
-			//if we are far away we walk if not already set
-			
-			if (!walking){
-				//set speed
-				speed = walkingSpeed;
-				//set animation
-			}
-			//reasess direction & path
-
-		}
-		else if (distance > attackingDistance){
-			
-			//if we are closer we run
-			if (!running){
-				//set speed
-				speed = RunningSpeed;
-				//set animation
-			}
-			//reasess direction & path
-		}
-		else if (distance < attackingDistance){
-			fsm.enterState(StateEnums.ZombieStates.Attacking);
-		}
-		else if (distance > losingDistance){
-			loosePlayer();
-		}
-
-	}
-
-	//check if we have lost the player
-	public bool lostPlayer(){
-		//check if the player is still in sight
-		//check how far away the player is
-		return true;
-	}
-
-	//instruct the AI unit that it has lost the player
-	public void loosePlayer(){
-		fsm.enterState(StateEnums.ZombieStates.Searching);
-		walking = false;
-		running = false;
-	}
 
 	//pukes at position
-	public void puke(){
+	void puke(){
 		//after exit time of the animation we revert back to idle
 		//set the puking particle effect
 		//Debug.Log("Enetered puke method");
@@ -438,15 +397,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 
-	//kills the unit and plays specific animation
-	public void killUnit(){
-		//play animation
-	}
 
-	//disables all parts to the unit to only leave dead body
-	public void dead(){
-		//remove unnessesary parts
-	}
 
 
 	void heightenSenses(){
@@ -465,7 +416,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (collider.tag == "Player"){
 			Debug.Log("registered collider entrance with " + collider.gameObject.name);
 			detection.assignTarget(collider.gameObject);
-			player = collider.gameObject;
+			target = collider.gameObject;
 			soundTrigger = true;
 		}
 
@@ -474,7 +425,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (collider.tag == "Player"){
 			Debug.Log("registered collider exit with " + collider.gameObject.name);
 			detection.assignTarget(null);
-			player = null;
+			target = null;
 			soundTrigger = false;
 		}
 	}
@@ -487,7 +438,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//we need to be in the radius of the sound collider in order to be seen. radius is much larger than the viewing distance
 		if (soundTrigger && detection.targetInSight(viewingSens)){
 			//we need to now change into the approriate state
-			fsm.enterState(StateEnums.ZombieStates.Attacking);
+			fsm.enterState(StateEnums.ZombieStates.Chasing);
 		}
 
 		if (soundTrigger){

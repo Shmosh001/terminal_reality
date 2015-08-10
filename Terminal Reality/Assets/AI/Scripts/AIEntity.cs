@@ -6,7 +6,7 @@ public class AIEntity <T>: MonoBehaviour{
 
 	public int damage;
 
-	public GameObject player;
+
 
 	protected NavMeshAgent navAgent;
 	protected HealthScript health;
@@ -15,12 +15,14 @@ public class AIEntity <T>: MonoBehaviour{
 	public ArrayList targets;
 	//ideally we should keep the players at 0 & 1
 	protected WanderScript wanderScript;
+	protected GameObject target;
 
 
 	void Start(){
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
 		health = gameObject.GetComponent<HealthScript>();
 		wanderScript = gameObject.GetComponent<WanderScript>();
+		target = null;
 	}
 
 	public void addTarget(GameObject entity){
@@ -60,7 +62,7 @@ public class AIEntity <T>: MonoBehaviour{
 		}
 	}
 	//general class
-	public float getDistance(Transform entity1, Transform entity2){
+	protected float getDistance(Transform entity1, Transform entity2){
 		return Vector3.Distance(entity1.position,entity2.position);
 	}
 
