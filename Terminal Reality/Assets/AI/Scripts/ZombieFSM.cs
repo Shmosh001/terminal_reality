@@ -32,7 +32,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	public float speed;
 
 
-	private HealthScript health;
+
+	/*private HealthScript health;*/
 
 	public GameObject target;
 
@@ -63,7 +64,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		//we need to choose a default position for the zombie to start on
 		animatorCont.chooseStartingState();
-		health = gameObject.GetComponent<HealthScript>();
+		/*health = gameObject.GetComponent<HealthScript>();*/
 
 		pukeD = 7.917f;
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
@@ -150,14 +151,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}*/
 
 
-
+			animatorCont.resetBooleans();
 
 			//techincally do nothing
 			eventChoiceC += Time.deltaTime;
 			checkPlayerC += Time.deltaTime;
 			//update counters
 			//keep counting for random event
-		/*	if (eventChoiceC > eventChoiceD){
+			if (eventChoiceC > eventChoiceD){
 				bool result = animatorCont.setRandomBoolean("ChangeBool");
 				if (result){
 					int path  = animatorCont.setRandomInteger("IdleVarD", 4);
@@ -192,7 +193,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				}
 
 				eventChoiceC = 0;
-			}*/
+			}
 
 			//check if we can see player every 1s
 			if (soundTrigger && checkPlayerC > checkPlayerD){
@@ -206,7 +207,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Alerted:
-
+			animatorCont.resetBooleans();
 			animatorCont.setBoolean("Alerted", true);
 			alertedC += Time.deltaTime;
 
@@ -240,20 +241,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//we search for the player by moving to his last known position
 			//once we are there, we stop searching
 
-			if (detection.lastSighting == transform.position){
+			if (detection.lastSighting == transform.position || !detection.hasLastPosition()){
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
 			}
 			else{
-				navAgent.SetDestination(detection.lastSighting);
+				searchForPlayer();
+
 			}
-			//left off here
-
-
-
-
-			searchForPlayer();
-
-
 
 			break;
 
@@ -274,11 +268,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 			//if timer is over the limit
 			if (pukeC > pukeD){
-				Debug.Log("puke time is over");
+				//Debug.Log("puke time is over");
 				fsm.enterPreviousState();
 				pukeC = 0;
 				puking = false;
 				pukeEffect.SetActive(false);
+				animatorCont.resetBooleans();
+
 			}
 
 			break;
@@ -339,16 +335,33 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 
+	//*******************************************************************************************************************************
+
+
+	
+	//starts wandering in a random direction
+	public void startWandering(){
+		//set boolean 
+		wandering = true;
+		//we get a location to move to from the wandering script
+		Transform dest = wanderScript.getClosestPoint(transform);
+		navAgent.SetDestination(dest.position);
+		navAgent.speed = walkingSpeed;
+	}
 
 
 
 
 
 	//we send the AI unit on a path to search for the player
-	public void searchForPlayer(){
-		//based on players position lay a path that leads to a point close to the player or in his general direction
-		//needs to be reassesed often
-		//maybe have a counter of how often the path gets recalculated
+	void searchForPlayer(){
+		//we go to the players last known position
+	
+		navAgent.SetDestination(detection.lastSighting);
+		animatorCont.setBoolean("Searching",true);
+		
+
+	
 	}
 
 	//attacks the player
@@ -415,25 +428,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	public void puke(){
 		//after exit time of the animation we revert back to idle
 		//set the puking particle effect
-		Debug.Log("Enetered puke method");
+		//Debug.Log("Enetered puke method");
 		puking = true;
 		pukeEffect.SetActive(true);
-		/*Component[] comp = pukeEffect.GetComponentsInChildren<ParticleSystem>();
-		for (int i = 0; i < 7;i++){
-
-		}*/
 
 	}
 
 
-	//starts wandering in a random direction
-	public void startWandering(){
-		//choose direction or path?
-		//send AI unit off at slow pace
-		speed = walkingSpeed;
-		//set boolean 
-		wandering = true;
-	}
 
 
 

@@ -11,7 +11,7 @@ public class ZombieAnimationController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = this.gameObject.GetComponent<Animator>();
-
+		resetBooleans();
 	}
 	
 	// Update is called once per frame
@@ -66,4 +66,17 @@ public class ZombieAnimationController : MonoBehaviour {
 	public int getRandomInt(int max){
 		return Random.Range(0,max);
 	}
+
+	public void resetBooleans(){
+		animator.SetBool("Searching",false);
+		animator.SetBool("Wandering",false);
+		animator.SetBool("Shot",false);
+		animator.SetBool("Attacking",false);
+		animator.SetBool("Alerted",false);
+		animator.SetBool("Dead",false);
+		animator.SetBool("ChangeBool",false);
+		animator.SetBool("Wakeup",false);
+		animator.SetBool("Charge",false);
+	}
+
 }

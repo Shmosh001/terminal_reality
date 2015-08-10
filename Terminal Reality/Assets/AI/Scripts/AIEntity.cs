@@ -9,15 +9,18 @@ public class AIEntity <T>: MonoBehaviour{
 	public GameObject player;
 
 	protected NavMeshAgent navAgent;
-
+	protected HealthScript health;
 
 	//list of targets that the AI element can attack
 	public ArrayList targets;
 	//ideally we should keep the players at 0 & 1
+	protected WanderScript wanderScript;
 
 
 	void Start(){
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
+		health = gameObject.GetComponent<HealthScript>();
+		wanderScript = gameObject.GetComponent<WanderScript>();
 	}
 
 	public void addTarget(GameObject entity){

@@ -11,7 +11,7 @@ public class PreyDetection : MonoBehaviour {
 
 	private NavMeshAgent navAgent;
 	private SphereCollider triggerCollider;
-	private Animator preyAnimator;
+	private Animator targetAnimator;
 
 
 	// Use this for initialization
@@ -30,15 +30,25 @@ public class PreyDetection : MonoBehaviour {
 
 	public void assignTarget(GameObject entity){
 		target = entity;
-		preyAnimator = target.GetComponent<Animator>();
+		targetAnimator = target.GetComponent<Animator>();
 	}
 
 	void OnTriggerStay(Collider entity){
 
 	}
 
+	public bool hasLastPosition(){
+		if (lastSighting == Vector3.zero){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
 
-
+	public void assignLastPosition(Vector3 pos){
+		lastSighting = pos;
+	}
 
 	public bool targetHeard(){
 		//we use the players animator controller to decide this
@@ -46,7 +56,8 @@ public class PreyDetection : MonoBehaviour {
 
 
 		//if we find that we do hear the player, we need to set the location for the search to work
-
+		//still need to check if we heard the player
+		lastSighting = target.transform.position;
 		return false;
 	}
 
