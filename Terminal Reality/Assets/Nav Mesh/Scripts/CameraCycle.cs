@@ -51,6 +51,8 @@ public class CameraCycle : MonoBehaviour {
 		}
 		if(counter != 0){
 			player.SetActive(false);
+		}else{
+			player.SetActive(true);
 		}
 
 		//enable the right camera again

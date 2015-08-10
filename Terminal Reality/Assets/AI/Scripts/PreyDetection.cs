@@ -30,7 +30,7 @@ public class PreyDetection : MonoBehaviour {
 
 	public void assignTarget(GameObject entity){
 		target = entity;
-		targetAnimator = target.GetComponent<Animator>();
+		//targetAnimator = target.GetComponent<Animator>();
 	}
 
 	void OnTriggerStay(Collider entity){

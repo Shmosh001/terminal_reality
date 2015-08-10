@@ -16656,12 +16656,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  debugStatements: 0
+  stateDebugStatements: 0
+  debugStatements: 1
   pukeEffect: {fileID: 1532611219}
   rayCastOffset: 1.5
   debug: 1
   animDebug: 0
-  eventChoiceD: 0
+  eventChoiceD: 10
   wanderD: 0
   checkPlayerD: 0
   pukeD: 0
@@ -16671,13 +16672,13 @@ MonoBehaviour:
   chasingD: 1.5
   viewingSenseNorm: 30
   viewingSensAlert: 40
-  listeningSensNorm: 30
-  listeningSensAlert: 40
-  walkingSpeed: 5
-  RunningSpeed: 7
+  listeningSensNorm: 8
+  listeningSensAlert: 12
+  walkingSpeed: 3
+  RunningSpeed: 5
   runningDistance: 10
-  attackingDistance: 1
-  losingDistance: 30
+  attackingDistance: 1.5
+  losingDistance: 20
   speed: 0
   text: {fileID: 871842190}
   text2: {fileID: 0}

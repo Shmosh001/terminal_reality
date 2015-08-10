@@ -15,7 +15,7 @@ public class StateMachineClass <T> : MonoBehaviour{
 
 	//eneters the specified state
 	public void enterState(T newState){
-		Debug.Log("entered state: " + newState.ToString());
+		Debug.Log("entered state: " + newState.ToString()+ " at " + Time.timeSinceLevelLoad);
 		previousState = currentState;
 		currentState = newState;
 
@@ -25,7 +25,7 @@ public class StateMachineClass <T> : MonoBehaviour{
 	public void enterPreviousState(){
 		if (hasPreviousState()){
 			enterState(previousState);
-			Debug.Log("applied previous state: " + currentState.ToString());
+			Debug.Log("applied previous state: " + currentState.ToString()+ " at " + Time.timeSinceLevelLoad);
 		}
 		
 	}

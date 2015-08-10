@@ -62,10 +62,20 @@ public class AIEntity <T>: MonoBehaviour{
 		}
 	}
 	//general class
-	protected float getDistance(Transform entity1, Transform entity2){
+	protected float getDistanceT(Transform entity1, Transform entity2){
 		return Vector3.Distance(entity1.position,entity2.position);
 	}
 
+	protected float getDistanceP(Vector3 entity1, Vector3 entity2){
+		return Vector3.Distance(entity1,entity2);
+	}
+
+	protected bool checkArrival(Vector3 pos1, Vector3 pos2){
+		if (getDistanceP(pos1,pos2) < 1.5){
+			return true;
+		}
+		return false;
+	}
 
 
 }
