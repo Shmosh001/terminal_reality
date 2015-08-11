@@ -147,13 +147,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		case StateEnums.ZombieStates.Alerted:
 			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
-			animatorCont.setBoolean(hash.alertedBool, true);
+			animatorCont.setTrigger(hash.alertedTrigger);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
-				animatorCont.setBoolean(hash.alertedBool, false);
+				animatorCont.setTrigger(hash.alertedTrigger);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -313,7 +313,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 			navAgent.Stop();
 			animatorCont.setBoolean(hash.attackingBool,true);
-			animatorCont.setBoolean(hash.chargeBool,false);
+			animatorCont.setTrigger(hash.chargeTrigger);
 		}
 		else if (distance > losingDistance){
 			if (debugStatements){Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad);}
@@ -331,7 +331,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (debugStatements){Debug.Log("killUnit method at" + Time.timeSinceLevelLoad);}
 		//play animation
 		animatorCont.resetBooleans();
-		animatorCont.setBoolean(hash.deadBool, true);
+		animatorCont.setTrigger(hash.deadTrigger);
 		animatorCont.setRandomInteger(hash.deathDsInt,2);
 		fsm.enterState(StateEnums.ZombieStates.Dead);
 	}

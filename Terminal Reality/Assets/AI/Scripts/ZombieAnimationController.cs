@@ -14,10 +14,14 @@ public class ZombieAnimationController : MonoBehaviour {
 		resetBooleans();
 	}
 	
-	// Update is called once per frame
-	void Update () {
 	
+	public void setTrigger(int name){
+		Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
+		animator.SetTrigger(name);
 	}
+
+
+
 
 	public void chooseStartingState(){
 		int choice = getRandomInt(4);
@@ -70,9 +74,6 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	}
 
-	public void setTrigger(int name){
-		animator.SetTrigger(name);
-	}
 
 	//gets a random number between 0 and max-1
 	public int getRandomInt(int max){
@@ -83,13 +84,8 @@ public class ZombieAnimationController : MonoBehaviour {
 		Debug.Log("booleans reset"+ " at " + Time.timeSinceLevelLoad);
 		animator.SetBool(hash.searchingBool,false);
 		animator.SetBool(hash.wanderingBool,false);
-		animator.SetBool(hash.shotBool,false);
 		animator.SetBool(hash.attackingBool,false);
-		animator.SetBool(hash.alertedBool,false);
-		animator.SetBool(hash.deadBool,false);
 		animator.SetBool(hash.changeBool,false);
-		animator.SetBool(hash.wakeupBool,false);
-		animator.SetBool(hash.chargeBool,false);
 
 	}
 
