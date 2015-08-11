@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HashScript : MonoBehaviour {
+public class EnemyHashScript : MonoBehaviour {
 
 	/**
 	 * paramaters

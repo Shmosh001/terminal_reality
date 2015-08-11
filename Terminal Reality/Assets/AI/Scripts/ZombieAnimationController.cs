@@ -1,16 +1,16 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class ZombieAnimationController : MonoBehaviour {
 
 	private Animator animator;
-
-
+	private EnemyHashScript hash;
 
 
 	// Use this for initialization
 	void Start () {
 		animator = this.gameObject.GetComponent<Animator>();
+		hash = this.gameObject.GetComponent<EnemyHashScript>();
 		resetBooleans();
 	}
 	
@@ -22,22 +22,22 @@ public class ZombieAnimationController : MonoBehaviour {
 	public void chooseStartingState(){
 		int choice = getRandomInt(4);
 		//need to handle dead body spawn if we are in biting state
-		setInteger("stateD",choice);
+		setInteger(hash.stateDInt,choice);
 		Debug.Log("random starting state set to" + choice + " at " + Time.timeSinceLevelLoad);
 	}
 
 	public void setStartState(int value){
-		setInteger("StateD",value);
+		setInteger(hash.stateDInt,value);
 		Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
 
-	public void setBoolean(string name, bool value){
+	public void setBoolean(int name, bool value){
 		animator.SetBool(name, value);
 		Debug.Log("boolean " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
-	public bool setRandomBoolean(string name){
+	public bool setRandomBoolean(int name){
 		int choice = getRandomInt(2);
 		if (choice == 0){
 			animator.SetBool(name, true);
@@ -52,25 +52,25 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	}
 	
-	public int setRandomInteger(string name, int max){
+	public int setRandomInteger(int name, int max){
 		int choice = getRandomInt(max);
 		animator.SetInteger(name, choice);
 		Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
 		return choice;
 	}
 
-	public void setInteger(string name, int value){
+	public void setInteger(int name, int value){
 		animator.SetInteger(name, value);
 		Debug.Log("int " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
-	public void setFloat(string name, float value){
+	public void setFloat(int name, float value){
 		animator.SetFloat(name, value);
 		Debug.Log("float " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 
 	}
 
-	public void setTrigger(string name){
+	public void setTrigger(int name){
 		animator.SetTrigger(name);
 	}
 
@@ -81,15 +81,15 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	public void resetBooleans(){
 		Debug.Log("booleans reset"+ " at " + Time.timeSinceLevelLoad);
-		animator.SetBool("Searching",false);
-		animator.SetBool("Wandering",false);
-		animator.SetBool("Shot",false);
-		animator.SetBool("Attacking",false);
-		animator.SetBool("Alerted",false);
-		animator.SetBool("Dead",false);
-		animator.SetBool("ChangeBool",false);
-		animator.SetBool("Wakeup",false);
-		animator.SetBool("Charge",false);
+		animator.SetBool(hash.searchingBool,false);
+		animator.SetBool(hash.wanderingBool,false);
+		animator.SetBool(hash.shotBool,false);
+		animator.SetBool(hash.attackingBool,false);
+		animator.SetBool(hash.alertedBool,false);
+		animator.SetBool(hash.deadBool,false);
+		animator.SetBool(hash.changeBool,false);
+		animator.SetBool(hash.wakeupBool,false);
+		animator.SetBool(hash.chargeBool,false);
 
 	}
 

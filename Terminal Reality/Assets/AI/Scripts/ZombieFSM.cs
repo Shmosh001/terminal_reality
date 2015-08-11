@@ -49,7 +49,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private PreyDetection detection;
 	
 	private SphereCollider soundCollider;
-
+	private EnemyHashScript hash;
 	// Use this for initialization
 	void Start () {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
@@ -57,6 +57,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
+		hash = this.gameObject.GetComponent<EnemyHashScript>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		lessenSenses();
 		speed = walkingSpeed;
@@ -96,9 +97,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//update counters
 			//keep counting for random event
 			if (eventChoiceC > eventChoiceD){
-				bool result = animatorCont.setRandomBoolean("ChangeBool");
+				bool result = animatorCont.setRandomBoolean(hash.changeBool);
 				if (result){
-					int path  = animatorCont.setRandomInteger("IdleVarD", 4);
+					int path  = animatorCont.setRandomInteger(hash.idleVarDInt, 4);
 
 					switch(path){
 					//agonizing
@@ -146,13 +147,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		case StateEnums.ZombieStates.Alerted:
 			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
-			animatorCont.setBoolean("Alerted", true);
+			animatorCont.setBoolean(hash.alertedBool, true);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
-				animatorCont.setBoolean("Alerted", false);
+				animatorCont.setBoolean(hash.alertedBool, false);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -235,7 +236,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				if (debugStatements){Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad);}
 				startWandering();
 				//animatorCont.resetBooleans();
-				animatorCont.setBoolean("Wandering", true);
+				animatorCont.setBoolean(hash.wanderingBool, true);
 			}
 
 
@@ -294,8 +295,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			animatorCont.resetBooleans();
 			//we set the animation
 			//animatorCont.setBoolean("Charge",true);
-			animatorCont.setTrigger("TriggerTest");
-			animatorCont.setRandomInteger("AttD",2);
+			//animatorCont.setTrigger("TriggerTest");
+			animatorCont.setRandomInteger(hash.attDInt,2);
 			navAgent.SetDestination(target.transform.position);
 
 			chasing = true;
@@ -311,8 +312,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);}
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 			navAgent.Stop();
-			animatorCont.setBoolean("Attacking",true);
-			animatorCont.setBoolean("Charge",false);
+			animatorCont.setBoolean(hash.attackingBool,true);
+			animatorCont.setBoolean(hash.chargeBool,false);
 		}
 		else if (distance > losingDistance){
 			if (debugStatements){Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad);}
@@ -330,8 +331,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (debugStatements){Debug.Log("killUnit method at" + Time.timeSinceLevelLoad);}
 		//play animation
 		animatorCont.resetBooleans();
-		animatorCont.setBoolean("Dead", true);
-		animatorCont.setRandomInteger("DeathD",2);
+		animatorCont.setBoolean(hash.deadBool, true);
+		animatorCont.setRandomInteger(hash.deathDsInt,2);
 		fsm.enterState(StateEnums.ZombieStates.Dead);
 	}
 	
@@ -353,7 +354,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (navAgent.SetDestination(detection.lastSighting)){
 			if (debugStatements){Debug.Log("searchForPlayer method: dest set true at" + Time.timeSinceLevelLoad);}
 			navAgent.speed = walkingSpeed;
-			animatorCont.setBoolean("Searching",true);
+			animatorCont.setBoolean(hash.searchingBool,true);
 			heightenSenses();
 		}
 		//if the paths 
