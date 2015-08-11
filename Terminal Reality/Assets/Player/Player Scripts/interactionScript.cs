@@ -63,7 +63,6 @@ public class interactionScript : MonoBehaviour {
 				//If the player has a machine gun//
 				if (playerData.machineGunPickedUp)
 				{
-					print ("Picking up machine gun ammo...");
 					soundController.GetComponent<soundControllerScript>().playPickupSound();
 					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
