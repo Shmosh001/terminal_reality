@@ -26,6 +26,7 @@ public class EnemyHashScript : MonoBehaviour {
 	public int alertedTrigger;
 	public int deadTrigger;
 	public int shotTrigger;
+	public int alertToIdleTrigger;
 
 
 	/**
@@ -100,7 +101,7 @@ public class EnemyHashScript : MonoBehaviour {
 		stateDInt = Animator.StringToHash("StateD");
 		wakeupTrigger = Animator.StringToHash("Wakeup");
 		chargeTrigger = Animator.StringToHash("Charge");
-
+		alertToIdleTrigger = Animator.StringToHash("AlertToIdle");
 
 		//states
 
