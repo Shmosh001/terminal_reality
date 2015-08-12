@@ -7,7 +7,6 @@ public class EnemyHashScript : MonoBehaviour {
 	 * paramaters
 	 **/
 	//booleans
-	public int changeBool;
 	public int attackingBool;
 	public int searchingBool;
 	public int wanderingBool;
@@ -27,6 +26,7 @@ public class EnemyHashScript : MonoBehaviour {
 	public int deadTrigger;
 	public int shotTrigger;
 	public int alertToIdleTrigger;
+	public int changeTrigger;
 
 
 	/**
@@ -97,7 +97,7 @@ public class EnemyHashScript : MonoBehaviour {
 		attDInt = Animator.StringToHash("AttD");
 		hitDInt = Animator.StringToHash("HitD");
 		idleDInt = Animator.StringToHash("IdleD");
-		changeBool = Animator.StringToHash("ChangeBool");
+		changeTrigger = Animator.StringToHash("ChangeTrigger");
 		stateDInt = Animator.StringToHash("StateD");
 		wakeupTrigger = Animator.StringToHash("Wakeup");
 		chargeTrigger = Animator.StringToHash("Charge");

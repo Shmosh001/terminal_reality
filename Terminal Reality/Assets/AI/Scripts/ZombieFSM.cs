@@ -9,6 +9,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	public bool stateDebugStatements;
 	public bool debugStatements;
 	public GameObject pukeEffect;
+	private AudioSource audioSource;
+	private BoxCollider boxCollider;
 
 	public float rayCastOffset = 1.5f;
 	//debug
@@ -53,12 +55,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	// Use this for initialization
 	void Start () {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
+		audioSource = gameObject.GetComponent<AudioSource>();
 		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		hash = this.gameObject.GetComponent<EnemyHashScript>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
+		boxCollider = gameObject.GetComponent<BoxCollider>();
 		lessenSenses();
 		speed = walkingSpeed;
 
@@ -97,7 +101,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//update counters
 			//keep counting for random event
 			if (eventChoiceC > eventChoiceD){
-				bool result = animatorCont.setRandomBoolean(hash.changeBool);
+				bool result = animatorCont.setRandomTrigger(hash.changeTrigger);
 				if (result){
 					int path  = animatorCont.setRandomInteger(hash.idleVarDInt, 4);
 
@@ -107,13 +111,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 						//dont need to change state
 
 						//need to play a sound that accuratelt represents this animation
-						sound.playFemaleScream(transform.position);
+						sound.playFemaleScream(audioSource);
 						break;
 					//scream
 					case 1:
 						//dont need to change state
 						//need to play screaming sound
-						sound.playMaleScream(transform.position);
+						sound.playMaleScream(audioSource);
 						break;
 					//crying/puking
 					case 2:
@@ -449,7 +453,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			detection.assignTarget(collider.gameObject);
 			target = collider.gameObject;
 			soundTrigger = true;
+		}
+		else if(collider is BoxCollider){
+			//we set the awake boolean
 			animatorCont.setTrigger(hash.wakeupTrigger);
+			boxCollider.enabled = false;
 		}
 
 	}
@@ -458,7 +466,6 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("collider exit with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
 			//detection.assignTarget(null);
 			//target = null;
-
 			soundTrigger = false;
 		}
 	}

@@ -62,12 +62,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: ChangeBool
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: StateD
     m_Type: 3
     m_DefaultFloat: 0
@@ -105,6 +99,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Charge
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: ChangeTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -215,7 +215,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .946808517
   m_Atomic: 1
@@ -255,7 +255,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .94094491
   m_Atomic: 1
@@ -435,7 +435,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .942307711
   m_Atomic: 1
@@ -474,12 +474,8 @@ Transition:
   m_TransitionDuration: .0625
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .9375
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -782,12 +778,8 @@ Transition:
   m_TransitionDuration: .0576923043
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .942307711
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -867,7 +859,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .959016383
   m_Atomic: 1
@@ -886,12 +878,8 @@ Transition:
   m_TransitionDuration: .0531914867
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .946808517
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .949999988
   m_Atomic: 1
@@ -911,7 +899,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .9375
   m_Atomic: 1
@@ -1139,7 +1127,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: ChangeTrigger
     m_EventTreshold: 0
     m_ExitTime: .994423807
   m_Atomic: 1
@@ -1218,12 +1206,8 @@ Transition:
   m_TransitionDuration: .059055116
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .94094491
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -1322,12 +1306,8 @@ Transition:
   m_TransitionDuration: .00557620777
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .994423807
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .99000001
   m_Atomic: 0
@@ -1406,12 +1386,8 @@ Transition:
   m_TransitionDuration: .0409836024
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ChangeBool
-    m_EventTreshold: 0
-    m_ExitTime: .959016383
   - m_ConditionMode: 5
-    m_ConditionEvent: ChangeBool
+    m_ConditionEvent: Searching
     m_EventTreshold: 0
     m_ExitTime: .959999979
   m_Atomic: 1
@@ -1670,7 +1646,7 @@ State:
   - {fileID: 7400000, guid: 95fe143a97a7d87488acd410f068687d, type: 2}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110749314}
-  m_Position: {x: 252, y: -204, z: 0}
+  m_Position: {x: 264, y: -228, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2334,6 +2310,19 @@ StateMachine:
       - {fileID: 110157184}
       - {fileID: 110166726}
     data:
+      first: {fileID: 110284680}
+      second:
+      - {fileID: 110146172}
+    data:
+      first: {fileID: 110215498}
+      second:
+      - {fileID: 110161884}
+      - {fileID: 110110400}
+    data:
+      first: {fileID: 110253406}
+      second:
+      - {fileID: 110168486}
+    data:
       first: {fileID: 110204484}
       second:
       - {fileID: 110148026}
@@ -2361,11 +2350,6 @@ StateMachine:
       first: {fileID: 110214296}
       second:
       - {fileID: 110146596}
-    data:
-      first: {fileID: 110215498}
-      second:
-      - {fileID: 110161884}
-      - {fileID: 110110400}
     data:
       first: {fileID: 110215526}
       second:
@@ -2430,10 +2414,6 @@ StateMachine:
       second:
       - {fileID: 110138996}
     data:
-      first: {fileID: 110253406}
-      second:
-      - {fileID: 110168486}
-    data:
       first: {fileID: 110253748}
       second:
       - {fileID: 110117488}
@@ -2493,10 +2473,6 @@ StateMachine:
       - {fileID: 110168550}
       - {fileID: 110185888}
       - {fileID: 110135316}
-    data:
-      first: {fileID: 110284680}
-      second:
-      - {fileID: 110146172}
     data:
       first: {fileID: 110287324}
       second: []

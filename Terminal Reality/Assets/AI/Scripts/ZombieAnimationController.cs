@@ -21,7 +21,18 @@ public class ZombieAnimationController : MonoBehaviour {
 	}
 
 
-
+	public bool setRandomTrigger(int name){
+		int choice = getRandomInt(2);
+		if (choice == 0){
+			animator.SetTrigger(name);
+			Debug.Log("random trigger  set to " + true + " at " + Time.timeSinceLevelLoad);
+			return true;
+		}
+		else{
+			Debug.Log("random trigger set to " + false+ " at " + Time.timeSinceLevelLoad);
+			return false;
+		}
+	}
 
 	public void chooseStartingState(){
 		int choice = getRandomInt(4);
@@ -85,8 +96,6 @@ public class ZombieAnimationController : MonoBehaviour {
 		animator.SetBool(hash.searchingBool,false);
 		animator.SetBool(hash.wanderingBool,false);
 		animator.SetBool(hash.attackingBool,false);
-		animator.SetBool(hash.changeBool,false);
-
 	}
 
 }

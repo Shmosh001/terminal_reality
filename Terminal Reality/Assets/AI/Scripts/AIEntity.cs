@@ -5,8 +5,7 @@ public class AIEntity <T>: MonoBehaviour{
 
 
 	public int damage;
-	public GameObject scripts;
-	protected SoundManager sound;
+	protected soundControllerScript sound;
 
 
 	protected NavMeshAgent navAgent;
@@ -23,7 +22,7 @@ public class AIEntity <T>: MonoBehaviour{
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
 		health = gameObject.GetComponent<HealthScript>();
 		wanderScript = gameObject.GetComponent<WanderScript>();
-		sound = scripts.GetComponent<SoundManager>();
+		sound = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER).GetComponent<soundControllerScript>();
 		target = null;
 	}
 
