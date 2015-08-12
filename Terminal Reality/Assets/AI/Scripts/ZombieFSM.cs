@@ -251,6 +251,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				navAgent.Stop();
 				fsm.enterPreviousState();
 				wandering = false;
+				animatorCont.setBoolean(hash.wanderingBool, false);
 			}
 			checkForPlayer();
 

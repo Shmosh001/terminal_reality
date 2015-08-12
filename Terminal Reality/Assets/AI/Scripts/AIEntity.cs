@@ -72,7 +72,7 @@ public class AIEntity <T>: MonoBehaviour{
 	}
 
 	protected bool checkArrival(Vector3 pos1, Vector3 pos2){
-		if (getDistanceP(pos1,pos2) < 1.5){
+		if (getDistanceP(pos1,pos2) <= 2){
 			return true;
 		}
 		return false;
