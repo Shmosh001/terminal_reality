@@ -16296,6 +16296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  scripts: {fileID: 1482687999}
   stateDebugStatements: 1
   debugStatements: 1
   pukeEffect: {fileID: 1532611219}
@@ -16376,6 +16377,7 @@ MonoBehaviour:
   alertedTrigger: 0
   deadTrigger: 0
   shotTrigger: 0
+  alertToIdleTrigger: 0
   startState: 0
   alertedState: 0
   searchingState: 0
@@ -18848,6 +18850,47 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!1 &1482687999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1482688001}
+  - 114: {fileID: 1482688000}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1482688000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482687999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cf538a96b9f5a4088739878aa1e656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maleScream: {fileID: 8300000, guid: 49bde2579f03399458124ca1bd8a3ead, type: 3}
+  femaleScream: {fileID: 8300000, guid: aeb8208c3cade8e42820336ea0e9bb36, type: 3}
+--- !u!4 &1482688001
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482687999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1489328168
 GameObject:
   m_ObjectHideFlags: 0
@@ -19167,6 +19210,10 @@ Prefab:
       propertyPath: destination
       value: 
       objectReference: {fileID: 218437682}
+    - target: {fileID: 11414540, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: scripts
+      value: 
+      objectReference: {fileID: 1482687999}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5d2085346e851749ba6b4627569629a, type: 2}
   m_RootGameObject: {fileID: 1452960655}

@@ -107,11 +107,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 						//dont need to change state
 
 						//need to play a sound that accuratelt represents this animation
+						sound.playFemaleScream(transform.position);
 						break;
 					//scream
 					case 1:
 						//dont need to change state
 						//need to play screaming sound
+						sound.playMaleScream(transform.position);
 						break;
 					//crying/puking
 					case 2:
@@ -447,6 +449,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			detection.assignTarget(collider.gameObject);
 			target = collider.gameObject;
 			soundTrigger = true;
+			animatorCont.setTrigger(hash.wakeupTrigger);
 		}
 
 	}
