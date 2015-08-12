@@ -762,10 +762,6 @@ MonoBehaviour:
   clipSize: 10
   flareLight: {fileID: 10831444}
   maxAmmo: 60
-  shotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
-  reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
-  outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
-  soundSource: {fileID: 0}
 --- !u!114 &11452962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -782,6 +778,8 @@ MonoBehaviour:
   mouseSpeed: 3
   jumpSpeed: 5.5
   pushingPower: 2.5
+  pistolGameObject: {fileID: 131438}
+  machineGunGameObject: {fileID: 196512}
   pistolPickedUp: 0
   machineGunPickedUp: 0
   pistolEquipped: 0
@@ -829,10 +827,6 @@ MonoBehaviour:
   clipSize: 20
   flareLight: {fileID: 10845984}
   maxAmmo: 160
-  shotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
-  reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
-  outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
-  soundSource: {fileID: 0}
 --- !u!124 &12424726
 Behaviour:
   m_ObjectHideFlags: 1
