@@ -2,29 +2,32 @@
 using System.Collections;
 
 
-public class StateMachineClass <T>{
+public class StateMachineClass <T> : MonoBehaviour{
 
 
-	private T currenState;
+	private T currentState;
 	private T previousState;
 
 	void Start(){
-		currenState = default(T);
+		currentState = default(T);
 		previousState = default(T);
 	}
 
 	//eneters the specified state
 	public void enterState(T newState){
-		previousState = currenState;
-		currenState = newState;
+		Debug.Log("entered state: " + newState.ToString()+ " at " + Time.timeSinceLevelLoad);
+		previousState = currentState;
+		currentState = newState;
 
 	}
 
 	//reverts back to previous state
 	public void enterPreviousState(){
-		T temp = currenState;
-		currenState = previousState;
-		previousState = temp;
+		if (hasPreviousState()){
+			enterState(previousState);
+			Debug.Log("applied previous state: " + currentState.ToString()+ " at " + Time.timeSinceLevelLoad);
+		}
+		
 	}
 
 	//checks if a previous state exists
@@ -42,13 +45,13 @@ public class StateMachineClass <T>{
 	
 	//returns the current state
 	public T getCurrentState(){
-		return currenState;
+		return currentState;
 	}
 	
 
 	//checks if the current state is the state sent in
 	public bool checkCurrentState(T state){
-		//if (currenState == state){
+		//if (currentState == state){
 			//return true;
 		//}
 		return false;
