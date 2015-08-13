@@ -296,6 +296,7 @@ MonoBehaviour:
   machineGunPickedUp: 0
   pistolEquipped: 0
   machineGunEquipped: 0
+  torch: {fileID: 0}
 --- !u!114 &159071509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +383,50 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1001 &190245250
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1352650412}
+    m_Modifications:
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.141000032
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.219999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+  m_RootGameObject: {fileID: 295832018}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &251198639
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +571,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!1 &295832018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 111902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+  m_PrefabInternal: {fileID: 190245250}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 295832019}
+  - 108: {fileID: 295832020}
+  m_Layer: 0
+  m_Name: Torch
+  m_TagString: Torch
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &295832019
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 411902, guid: 5ee7a4a15e015d24bb942e00c0732dfa, type: 2}
+  m_PrefabInternal: {fileID: 190245250}
+  m_GameObject: {fileID: 295832018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.141000032, z: -.219999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1352650412}
+  m_RootOrder: 2
+--- !u!108 &295832020
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10811902, guid: 5ee7a4a15e015d24bb942e00c0732dfa,
+    type: 2}
+  m_PrefabInternal: {fileID: 190245250}
+  m_GameObject: {fileID: 295832018}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1001 &310392215
 Prefab:
   m_ObjectHideFlags: 0
@@ -2582,6 +2691,7 @@ RectTransform:
   m_Children:
   - {fileID: 1288242413}
   - {fileID: 1381634079}
+  - {fileID: 295832019}
   m_Father: {fileID: 159071499}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
