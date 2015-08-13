@@ -182,10 +182,14 @@ public class ShootingScript : ammoHUDScript {
 	//ALSO UPDATE ALL THE STATS TO THOSE OF THE WEAPON
 	public void loadNewWeapon(string weaponTag)
 	{
-		//update to the new weapon being used
-		weapon = GameObject.FindGameObjectWithTag(weaponTag);
-		
-		//update variables to weapon stats
+		if (weaponTag == "Pistol")
+		{
+			weapon = this.GetComponent<playerDataScript>().pistolGameObject;
+		}
+		else if (weaponTag == "MachineGun")
+		{
+			weapon = this.GetComponent<playerDataScript>().machineGunGameObject;
+		}
 		
 	}
 

@@ -4,14 +4,10 @@ using System.Collections;
 public class weaponSwitchScript : ammoHUDScript {
 
 	playerDataScript playerData;
-	GameObject pistolGameObject;
-	GameObject machineGunGameObject;
 
 	void Start()
 	{
 		playerData = this.GetComponent<playerDataScript>();
-		pistolGameObject = GameObject.FindGameObjectWithTag("Pistol");
-		machineGunGameObject = GameObject.FindGameObjectWithTag("MachineGun");
 		enableWeapon();
 	}
 
@@ -109,8 +105,8 @@ public class weaponSwitchScript : ammoHUDScript {
 		//If no weapon is equipped...
 		if (currentWeapon() == "nothing")
 		{
-			machineGunGameObject.gameObject.SetActive(false);
-			pistolGameObject.gameObject.SetActive(false);
+			playerData.machineGunGameObject.gameObject.SetActive(false);
+			playerData.pistolGameObject.gameObject.SetActive(false);
 			
 			//After switch, update ammo HUD
 			updateAmmoText(0,0);			
@@ -119,23 +115,23 @@ public class weaponSwitchScript : ammoHUDScript {
 		//If the pistol is equipped...
 		else if (currentWeapon() == "Pistol")
 		{
-			machineGunGameObject.SetActive(false);
-			pistolGameObject.SetActive(true);
+			playerData.machineGunGameObject.SetActive(false);
+			playerData.pistolGameObject.SetActive(true);
 			
 			//After switch, update ammo HUD
-			updateAmmoText(pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-			               pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+			updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 
 		//If the machine gun is equipped...
 		else if (currentWeapon() == "MachineGun")
 		{
-			pistolGameObject.SetActive(false);
-			machineGunGameObject.SetActive(true);
+			playerData.pistolGameObject.SetActive(false);
+			playerData.machineGunGameObject.SetActive(true);
 			
 			//After switch, update ammo HUD
-			updateAmmoText(machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-			               machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+			updateAmmoText(playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+			               playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 	}
 }
