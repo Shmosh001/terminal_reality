@@ -25,8 +25,6 @@ public class soundControllerScript : MonoBehaviour {
 	//PLAY EMPTY CLIP SOUND//
 	public void playEmptyClip(AudioSource soundSource)
 	{
-		//Get the audio source for the current weapon
-		//AudioSource soundSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		//play sound
 		soundSource.PlayOneShot(outOfAmmoSound);
 	}
@@ -34,8 +32,6 @@ public class soundControllerScript : MonoBehaviour {
 	//PLAY PISTOL SHOOTING SOUND//
 	public void playPistolShot(AudioSource soundSource)
 	{
-		//Get the audio source for the current weapon
-		//AudioSource soundSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		//play sound
 		soundSource.PlayOneShot(pistolShotSound);
 	}
@@ -43,8 +39,6 @@ public class soundControllerScript : MonoBehaviour {
 	//PLAY RELOAD SOUND//
 	public void playReload(AudioSource soundSource)
 	{
-		//Get the audio source for the current weapon
-		//AudioSource soundSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		//play sound
 		soundSource.PlayOneShot(reloadSound);
 	}
@@ -52,18 +46,16 @@ public class soundControllerScript : MonoBehaviour {
 	//PLAY AMMO AND WEAPON PICKUP SOUND//
 	public void playPickupSound(AudioSource soundSource)
 	{
-		//Get the audio source for the current weapon
-		//AudioSource soundSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
 		//play sound
 		soundSource.PlayOneShot(ammoAndWeaponPickupSound);
 	}
 
-
-
+	//PLAY SCREAM FOR MALE ZOMBIE//
 	public void playMaleScream(AudioSource soundSource){
 		soundSource.PlayOneShot(maleScreamingSound);
 	}
 
+	//PLAY SCREAM FOR FEMALE ZOMBIE//
 	public void playFemaleScream(AudioSource soundSource){
 		soundSource.PlayOneShot(femaleScreamingSound);
 	}
