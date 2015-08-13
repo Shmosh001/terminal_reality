@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-	public Vector3 speed = new Vector3(7,5,7);
+	public Vector3 speed = new Vector3(70,5,7);
 
 	public Transform player;
 
@@ -12,11 +12,14 @@ public class AI : MonoBehaviour {
 	//public FSM.State state;
 	private CharacterController controller;
 
+	private ZombieFSM fsm;
+
 	// Use this for initialization
 	void Start () {
 		//state = FSM.State.stationary;
 		//controller.attachedRigidbody.
-		controller = (CharacterController)this.gameObject.GetComponent<CharacterController>();
+		controller = gameObject.GetComponent<CharacterController>();
+		fsm = gameObject.GetComponent<ZombieFSM>();
 		//controller.Move(speed);
 	}
 	
@@ -24,8 +27,8 @@ public class AI : MonoBehaviour {
 	void Update () {
 		//we need to check the state of the enemy
 		if (!debug){
-			transform.LookAt(player.position);
-			controller.Move(transform.forward * speed.x * Time.deltaTime); 
+			//transform.LookAt(player.position);
+			controller.Move(transform.forward * fsm.speed * Time.deltaTime); 
 
 
 		}

@@ -10,7 +10,7 @@ public class StateEnums : MonoBehaviour {
 	public enum ZombieStates{
 		Idle,
 		Wandering,
-		Running,
+		Chasing,
 		Searching,
 		Puking,
 		Attacking,

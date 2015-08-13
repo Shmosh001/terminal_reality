@@ -1,33 +1,74 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
+
+	//particle effects
+	public bool stateDebugStatements;
+	public bool debugStatements;
+	public GameObject pukeEffect;
+
+	public float rayCastOffset = 1.5f;
+	//debug
+	public bool debug;
+	public bool animDebug;
+	private float time;
+
 	//booleans to accertain certain state specifics
-	private bool puking, wandering, alerted, walking, running;
+	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing;
 	//counters
-	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC;
+	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC;
 	//duration holders
-	public float eventChoiceD, wanderD, checkPlayerD, pukeD, alertedD, searchingD;
+	public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD, chasingD = 1.5f;
 	//sense values
-	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm, listeningSensAlert;
+	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
 	//speed values
 	public float walkingSpeed, RunningSpeed;
 	//distance values
-	public float runningDistance, attackingDistance, losingDistance;
+	public float runningDistance, attackingDistance = 1.5f, losingDistance = 20.0f;
 	//actual values
-	private float viewingSens, listeningSens, speed;
+	private float viewingSens, listeningSens;
 
+	public float speed;
+
+	private Transform wanderDest;
+
+	public Text text;
+	public Text text2;
+
+	//animation
+	private ZombieAnimationController animatorCont;
+
+
+	private Vector3 debugPos;
+	private Vector3 debugPos1;
 
 	private StateMachineClass<StateEnums.ZombieStates> fsm;
-
+	private PreyDetection detection;
+	
+	private SphereCollider soundCollider;
+	private EnemyHashScript hash;
 	// Use this for initialization
 	void Start () {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
+		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
+		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
+		hash = this.gameObject.GetComponent<EnemyHashScript>();
+		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		lessenSenses();
 		speed = walkingSpeed;
+
+		//we need to choose a default position for the zombie to start on
+		animatorCont.chooseStartingState();
+		/*health = gameObject.GetComponent<HealthScript>();*/
+
+		pukeD = 7.917f;
+
+
 	}
 
 
@@ -37,30 +78,66 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	void Update () {
 
 
-		//update all counters
 
-
+		if (health.health <= 0){
+			fsm.enterState(StateEnums.ZombieStates.Dying);
+		}
 
 
 
 		switch(fsm.getCurrentState()){
 
 		case StateEnums.ZombieStates.Idle:
+
+
+			if (stateDebugStatements){Debug.Log("idle case: entering " + Time.timeSinceLevelLoad);}
 			//techincally do nothing
 			eventChoiceC += Time.deltaTime;
 			checkPlayerC += Time.deltaTime;
 			//update counters
 			//keep counting for random event
 			if (eventChoiceC > eventChoiceD){
-				if (eventChoice()){
-					StateEnums.ZombieStates eventChange = chooseAction(StateEnums.ZombieStates.Puking, StateEnums.ZombieStates.Wandering);
-					fsm.enterState(eventChange);
+				bool result = animatorCont.setRandomBoolean(hash.changeBool);
+				if (result){
+					int path  = animatorCont.setRandomInteger(hash.idleVarDInt, 4);
+
+					switch(path){
+					//agonizing
+					case 0:
+						//dont need to change state
+
+						//need to play a sound that accuratelt represents this animation
+						sound.playFemaleScream(transform.position);
+						break;
+					//scream
+					case 1:
+						//dont need to change state
+						//need to play screaming sound
+						sound.playMaleScream(transform.position);
+						break;
+					//crying/puking
+					case 2:
+						fsm.enterState(StateEnums.ZombieStates.Puking);
+						break;
+					//wandering
+					case 3:
+						fsm.enterState(StateEnums.ZombieStates.Wandering);
+						break;
+					//default
+					default:
+						//set to screaming
+						break;
+					}
+
+
 				}
+
 				eventChoiceC = 0;
 			}
 
 			//check if we can see player every 1s
-			if (checkPlayerC > checkPlayerD){
+			if (soundTrigger && checkPlayerC > checkPlayerD){
+				//need to still set this up
 				checkForPlayer();
 				checkPlayerC = 0;
 			}
@@ -70,11 +147,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
 		case StateEnums.ZombieStates.Alerted:
+			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
+			animatorCont.resetBooleans();
+			animatorCont.setTrigger(hash.alertedTrigger);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
+				animatorCont.setTrigger(hash.alertedTrigger);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -84,38 +165,54 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			break;
 
 
-		case StateEnums.ZombieStates.Running:
+		case StateEnums.ZombieStates.Chasing:
 			//maybe add in timer so we dont update path every frame?
-			if (lostPlayer()){
-				loosePlayer();
+			if (stateDebugStatements){Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);}
+			chasingC += Time.deltaTime;
+
+
+
+			chasePlayer();
+			//update the position of the target we are chasing
+			if (chasing && chasingC > chasingD){
+				if (stateDebugStatements){Debug.LogError("chasing case: if statement " + Time.timeSinceLevelLoad);}
+				navAgent.SetDestination(target.transform.position);
+				detection.assignLastPosition(target.transform.position);
+				detection.assignTarget(target);
+				chasingC = 0;
 			}
-			else{
-				chasePlayer();
-			}
+
+
 			break;
 
 
 		case StateEnums.ZombieStates.Searching:
-			searchingC += Time.deltaTime;
 
-			if (searchingC > searchingD){
+			if (stateDebugStatements){Debug.Log("searching case: entering " + Time.timeSinceLevelLoad);}
+			//we search for the player by moving to his last known position
+			//once we are there, we stop searching
+
+			if (checkArrival(transform.position, navAgent.destination) || !detection.hasLastPosition()){
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
+
 			}
 			else{
 				searchForPlayer();
-			}
 
+			}
 
 			break;
 
 
 		case StateEnums.ZombieStates.Attacking:
+			if (stateDebugStatements){Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad);}
+			attackPlayer();
 
 			break;
 
 
 		case StateEnums.ZombieStates.Puking:
-
+			if (stateDebugStatements){Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);}
 			//updating counter
 			pukeC += Time.deltaTime;
 
@@ -124,176 +221,292 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 			//if timer is over the limit
 			if (pukeC > pukeD){
+				if (debugStatements){Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad);}
 				fsm.enterPreviousState();
 				pukeC = 0;
 				puking = false;
+				pukeEffect.SetActive(false);
+				//animatorCont.resetBooleans();
+
 			}
 
 			break;
 		case StateEnums.ZombieStates.Wandering:
-			//updating counter
-			wanderC += Time.deltaTime;
+			if (stateDebugStatements){Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad);}
 
 			if (!wandering){
+				if (debugStatements){Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad);}
 				startWandering();
+				//animatorCont.resetBooleans();
+				animatorCont.setBoolean(hash.wanderingBool, true);
 			}
 
-			if (wanderC > wanderD){
+
+			if (checkArrival(transform.position, wanderDest.position)){
+				if (debugStatements){Debug.Log("wandering case: at position " + Time.timeSinceLevelLoad);}
+				navAgent.Stop();
 				fsm.enterPreviousState();
-				wanderC = 0;
 				wandering = false;
 			}
-
+			checkForPlayer();
 
 			break;
 
 
 		case StateEnums.ZombieStates.Dying:
-
+			if (stateDebugStatements){Debug.Log("dying case: entering " + Time.timeSinceLevelLoad);}
+			killUnit();
 			break;
-
-
+		
 		case StateEnums.ZombieStates.Dead:
-
+			if (stateDebugStatements){Debug.Log("dead case: entering " + Time.timeSinceLevelLoad);}
+			dead ();
 			break;
-
 
 		default:
 			break;
 		}
-	}
-	//moved into AI Entity
-	/*//could have this in an AIEntity class ad base method
-	public void activateEntity(){
-		this.gameObject.SetActive(true);
-	}
-
-	//could also be in base class
-	//choses between 2 states randomly
-	public void chooseAction(StateEnums state1, StateEnums state2){
-
-	}
-	//general class
-	public float checkDistance(Transform entity1, Transform entity2){
-		return Vector3.Distance(entity1,entity2);
-	}
-	*/
-
-	//we check if the AI unit can see the player
-	public void checkForPlayer(){
-		//could maybe place view frustum and check if the player is detected?
-		//if we find the player
-		fsm.enterState(StateEnums.ZombieStates.Running);
-	}
-
-	//we alert this unit that a sound trigger has gone off
-	public void alertUnit(){
-		if (alerted){
-			fsm.enterState(StateEnums.ZombieStates.Searching);
+		//debugging
+		if (debug){
+			text.text = fsm.getCurrentState().ToString();
+			//text2.text = getDistance(player.transform, transform).ToString();
 		}
-		else{
-			alerted = true;
-			fsm.enterState(StateEnums.ZombieStates.Alerted);
-			//set rotation = players position to make viewing easier
-			//enhance viewing and listening 
-			heightenSenses();
-		}
+		/*else{
+			text.text = "";
+			text2.text = "";
+		}*/
 	}
 
-	//we send the AI unit on a path to search for the player
-	public void searchForPlayer(){
-		//based on players position lay a path that leads to a point close to the player or in his general direction
-		//needs to be reassesed often
-		//maybe have a counter of how often the path gets recalculated
-	}
 
-	//attacks the player
-	public void attackPlayer(GameObject target){}
+
+	//*******************************************************************************************************************************
+	//working zone
+
+
+
+
 
 	//chases the nearest player
-	public void chasePlayer(){
-		//check which entity is closer
-		//based on distance
+	void chasePlayer(){
 
-		float distance = 0.1f;//= checkDistance(Player, gameObject.transform);
-		if (distance > runningDistance){
-			//if we are far away we walk if not already set
-			
-			if (!walking){
-				//set speed
-				speed = walkingSpeed;
-				//set animation
-			}
-			//reasess direction & path
 
+		if (debugStatements){Debug.Log("chasePlayer method at" + Time.timeSinceLevelLoad);}
+
+		if (!chasing){
+			if (debugStatements){Debug.Log("chasePlayer method: chasing false at" + Time.timeSinceLevelLoad);}
+			animatorCont.resetBooleans();
+			//we set the animation
+			//animatorCont.setBoolean("Charge",true);
+			//animatorCont.setTrigger("TriggerTest");
+			animatorCont.setRandomInteger(hash.attDInt,2);
+			navAgent.SetDestination(target.transform.position);
+
+			chasing = true;
 		}
-		else if (distance > attackingDistance){
-			
-			//if we are closer we run
-			if (!running){
-				//set speed
-				speed = RunningSpeed;
-				//set animation
-			}
-			//reasess direction & path
-		}
-		else if (distance < attackingDistance){
+
+
+
+
+		float distance = getDistanceT(target.transform, gameObject.transform);
+
+
+		if (distance < attackingDistance){
+			if (debugStatements){Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);}
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
+			navAgent.Stop();
+			animatorCont.setBoolean(hash.attackingBool,true);
+			animatorCont.setTrigger(hash.chargeTrigger);
 		}
 		else if (distance > losingDistance){
-			loosePlayer();
+			if (debugStatements){Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad);}
+			fsm.enterState(StateEnums.ZombieStates.Searching);
+			animatorCont.resetBooleans();
 		}
-
+		
 	}
 
-	//check if we have lost the player
-	public bool lostPlayer(){
-		//check if the player is still in sight
-		//check how far away the player is
-		return true;
-	}
-
-	//instruct the AI unit that it has lost the player
-	public void loosePlayer(){
-		fsm.enterState(StateEnums.ZombieStates.Searching);
-		walking = false;
-		running = false;
-	}
-
-	//pukes at position
-	public void puke(){
-		//after exit time of the animation we revert back to idle
-		//set animation and boolean
-		puking = true;
-	}
-
-
-	//starts wandering in a random direction
-	public void startWandering(){
-		//choose direction or path?
-		//send AI unit off at slow pace
-		speed = walkingSpeed;
-		//set boolean 
-		wandering = true;
-	}
 
 
 
 	//kills the unit and plays specific animation
-	public void killUnit(){}
-
+	void killUnit(){
+		if (debugStatements){Debug.Log("killUnit method at" + Time.timeSinceLevelLoad);}
+		//play animation
+		animatorCont.resetBooleans();
+		animatorCont.setTrigger(hash.deadTrigger);
+		animatorCont.setRandomInteger(hash.deathDsInt,2);
+		fsm.enterState(StateEnums.ZombieStates.Dead);
+	}
+	
 	//disables all parts to the unit to only leave dead body
-	public void dead(){}
+	void dead(){
+		if (debugStatements){Debug.Log("dead method at" + Time.timeSinceLevelLoad);}
+		gameObject.GetComponent<CharacterController>().enabled = false;
+		gameObject.GetComponent<SphereCollider>().enabled = false;
+		//remove unnessesary parts
+	}
+
+
+
+
+	//we send the AI unit on a path to search for the player
+	void searchForPlayer(){
+		//we go to the players last known position
+		if (debugStatements){Debug.Log("searchForPlayer method at" + Time.timeSinceLevelLoad);}
+		if (navAgent.SetDestination(detection.lastSighting)){
+			if (debugStatements){Debug.Log("searchForPlayer method: dest set true at" + Time.timeSinceLevelLoad);}
+			navAgent.speed = walkingSpeed;
+			animatorCont.setBoolean(hash.searchingBool,true);
+			heightenSenses();
+		}
+		//if the paths 
+		else{
+			if (debugStatements){Debug.Log("searchForPlayer method: dest set false at" + Time.timeSinceLevelLoad);}
+			//stop any path navigation
+			lessenSenses();
+			navAgent.Stop();
+			fsm.enterState(StateEnums.ZombieStates.Wandering);
+		}
+
+	}
+
+
+	//starts wandering in a random direction
+	void startWandering(){
+		if (debugStatements){Debug.Log("startWandering method at" + Time.timeSinceLevelLoad);}
+		//set boolean 
+		lessenSenses();
+		wandering = true;
+		//we get a location to move to from the wandering script
+		wanderDest = wanderScript.getClosestPoint(transform);
+		if (navAgent.SetDestination(wanderDest.position)){
+			if (debugStatements){Debug.Log("startWandering method: if path was set succesfully at" + Time.timeSinceLevelLoad);}
+			navAgent.speed = walkingSpeed;
+		}
+		//if for some reason the path setting fails
+		else{
+			if (debugStatements){Debug.Log("startWandering method: if path set failed at" + Time.timeSinceLevelLoad);}
+			//stop any path navigation
+			navAgent.Stop();
+			fsm.enterPreviousState();
+		}
+		
+	}
+
+	//attacks the player
+	void attackPlayer(){
+		if (debugStatements){Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);}
+		//change animation
+		//inflict damage on player
+		HealthScript targetH = target.GetComponent<HealthScript>();
+		if (targetH != null){
+			targetH.takeDamage(damage);
+		}
+		float distance = getDistanceT(transform, target.transform);
+		//add a small offset
+		if (distance > attackingDistance+5){
+			fsm.enterState(StateEnums.ZombieStates.Chasing);
+		}
+	}
+
+
+
+	//pukes at position
+	void puke(){
+		if (debugStatements){Debug.Log("puke method at" + Time.timeSinceLevelLoad);}
+		//after exit time of the animation we revert back to idle
+		//set the puking particle effect
+		//Debug.Log("Enetered puke method");
+		puking = true;
+		pukeEffect.SetActive(true);
+
+	}
+
+
+
+
+
+
 
 
 	void heightenSenses(){
+		if (debugStatements){Debug.Log("heightenSenses at" + Time.timeSinceLevelLoad);}
 		viewingSens = viewingSensAlert;
 		listeningSens = listeningSensAlert;
+		soundCollider.radius = listeningSens;
 	}
 
 	void lessenSenses(){
+		if (debugStatements){Debug.Log("lessenSenses at" + Time.timeSinceLevelLoad);}
 		viewingSens = viewingSenseNorm;
 		listeningSens = listeningSensNorm;
+		soundCollider.radius = listeningSens;
 	}
+
+	void OnTriggerEnter(Collider collider){
+		if (collider.tag == Tags.PLAYER){
+			if (debugStatements){Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
+			detection.assignTarget(collider.gameObject);
+			target = collider.gameObject;
+			soundTrigger = true;
+			animatorCont.setTrigger(hash.wakeupTrigger);
+		}
+
+	}
+	void OnTriggerExit(Collider collider){
+		if (collider.tag == Tags.PLAYER){
+			if (debugStatements){Debug.Log("collider exit with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
+			//detection.assignTarget(null);
+			//target = null;
+
+			soundTrigger = false;
+		}
+	}
+
+	//we check if the AI unit can see the player
+	void checkForPlayer(){
+		//we check for sounds last as viewing is more important
+		if (debugStatements){Debug.Log("checkForPlayer method at" + Time.timeSinceLevelLoad);}
+
+		//we need to be in the radius of the sound collider in order to be seen. radius is much larger than the viewing distance
+		if (soundTrigger && detection.targetInSight(viewingSens)){
+			if (debugStatements){Debug.LogError("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
+			//we need to now change into the approriate state
+			fsm.enterState(StateEnums.ZombieStates.Chasing);
+		}
+
+		else if (soundTrigger){
+			if (debugStatements){Debug.Log("checkForPlayer method: soundTrigger = true at" + Time.timeSinceLevelLoad);}
+			if (detection.targetHeard()){
+				if (debugStatements){Debug.Log("checkForPlayer method: target heard at" + Time.timeSinceLevelLoad);}
+				alertUnit();
+			}
+		}
+
+
+	}
+
+	//we alert this unit that a sound trigger has gone off
+	void alertUnit(){
+		if (debugStatements){Debug.Log("alertUnit method at" + Time.timeSinceLevelLoad);}
+		//if this is the >second  sound alert
+		if (soundAlert){
+			if (debugStatements){Debug.Log("alertUnit method: sound alert = true at" + Time.timeSinceLevelLoad);}
+			//the position should have been set
+			//then searching method should take care of moving the npc there
+			fsm.enterState(StateEnums.ZombieStates.Searching);
+			
+		}
+		else{
+			if (debugStatements){Debug.Log("alertUnit method else branch at" + Time.timeSinceLevelLoad);}
+			soundAlert = true;
+			//enhance viewing and listening 
+			heightenSenses();
+			
+			fsm.enterState(StateEnums.ZombieStates.Alerted);
+			
+		}
+	}
+
 
 }
