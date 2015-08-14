@@ -86,12 +86,12 @@ public class EnemyHashScript : MonoBehaviour {
 
 		//params
 		speedFloat = Animator.StringToHash("Speed");
-		searchingBool = Animator.StringToHash("Searching");
-		wanderingBool = Animator.StringToHash("Wandering");
-		shotTrigger = Animator.StringToHash("Shot");
-		attackingBool = Animator.StringToHash("Attacking");
-		alertedTrigger = Animator.StringToHash("Alerted");
-		deadTrigger = Animator.StringToHash("Dead");
+		searchingBool = Animator.StringToHash("SearchingParam");
+		wanderingBool = Animator.StringToHash("WanderingParam");
+		shotTrigger = Animator.StringToHash("ShotParam");
+		attackingBool = Animator.StringToHash("AttackingParam");
+		alertedTrigger = Animator.StringToHash("AlertedParam");
+		deadTrigger = Animator.StringToHash("DeadParam");
 		deathDsInt = Animator.StringToHash("DeathD");
 		idleVarDInt = Animator.StringToHash("IdleVarD");
 		attDInt = Animator.StringToHash("AttD");
@@ -99,8 +99,8 @@ public class EnemyHashScript : MonoBehaviour {
 		idleDInt = Animator.StringToHash("IdleD");
 		changeTrigger = Animator.StringToHash("ChangeTrigger");
 		stateDInt = Animator.StringToHash("StateD");
-		wakeupTrigger = Animator.StringToHash("Wakeup");
-		chargeTrigger = Animator.StringToHash("Charge");
+		wakeupTrigger = Animator.StringToHash("WakeupParam");
+		chargeTrigger = Animator.StringToHash("ChargeParam");
 		alertToIdleTrigger = Animator.StringToHash("AlertToIdle");
 
 		//states

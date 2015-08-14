@@ -1079,17 +1079,16 @@ GameObject:
   - 4: {fileID: 479178}
   - 95: {fileID: 9579242}
   - 143: {fileID: 14379242}
-  - 114: {fileID: 11414540}
-  - 114: {fileID: 11414542}
   - 135: {fileID: 13567120}
-  - 114: {fileID: 11447646}
+  - 65: {fileID: 6505950}
+  - 82: {fileID: 8205950}
   - 195: {fileID: 19547648}
-  - 114: {fileID: 11447642}
+  - 114: {fileID: 11414540}
+  - 114: {fileID: 11447646}
+  - 114: {fileID: 11414542}
   - 114: {fileID: 11447640}
   - 114: {fileID: 11447644}
   - 114: {fileID: 11447648}
-  - 82: {fileID: 8205950}
-  - 65: {fileID: 6505950}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Untagged
@@ -3058,8 +3057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  stateDebugStatements: 1
-  debugStatements: 1
+  stateDebugStatements: 0
+  debugStatements: 0
   pukeEffect: {fileID: 147632}
   rayCastOffset: 1.5
   debug: 1
@@ -3109,18 +3108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSighting: {x: 0, y: 0, z: 0}
---- !u!114 &11447642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 179178}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4353190759fbfea4c936aae2393b3257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: {fileID: 0}
 --- !u!114 &11447644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3154,7 +3141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a06c3700b8b2e47981688990aead8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeBool: 0
   attackingBool: 0
   searchingBool: 0
   wanderingBool: 0
@@ -3171,6 +3157,7 @@ MonoBehaviour:
   deadTrigger: 0
   shotTrigger: 0
   alertToIdleTrigger: 0
+  changeTrigger: 0
   startState: 0
   alertedState: 0
   searchingState: 0

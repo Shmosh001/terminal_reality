@@ -14,19 +14,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Searching
+  - m_Name: SearchingParam
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Wandering
+  - m_Name: WanderingParam
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attacking
+  - m_Name: AttackingParam
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -68,13 +68,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Shot
+  - m_Name: ShotParam
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Alerted
+  - m_Name: AlertedParam
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -86,19 +86,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Dead
+  - m_Name: DeadParam
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Wakeup
+  - m_Name: WakeupParam
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Charge
+  - m_Name: ChargeParam
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -175,7 +175,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Wandering
+    m_ConditionEvent: WanderingParam
     m_EventTreshold: 0
     m_ExitTime: .797297299
   m_Atomic: 1
@@ -195,7 +195,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -275,7 +275,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .965909064
   m_Atomic: 1
@@ -355,7 +355,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .918918908
   m_Atomic: 1
@@ -375,7 +375,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -475,7 +475,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -495,7 +495,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Wakeup
+    m_ConditionEvent: WakeupParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -515,7 +515,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .918918908
   m_Atomic: 1
@@ -535,7 +535,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .6875
   m_Atomic: 1
@@ -575,7 +575,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .910179615
   m_Atomic: 1
@@ -595,7 +595,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Wakeup
+    m_ConditionEvent: WakeupParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -635,7 +635,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .910179615
   m_Atomic: 1
@@ -655,11 +655,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .904458582
   - m_ConditionMode: 2
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .904458582
   m_Atomic: 1
@@ -679,7 +679,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Wakeup
+    m_ConditionEvent: WakeupParam
     m_EventTreshold: 0
     m_ExitTime: .892857134
   m_Atomic: 1
@@ -699,7 +699,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -739,7 +739,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Wakeup
+    m_ConditionEvent: WakeupParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -779,7 +779,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -819,7 +819,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .978479207
   m_Atomic: 1
@@ -879,7 +879,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .949999988
   m_Atomic: 1
@@ -919,7 +919,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Dead
+    m_ConditionEvent: DeadParam
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 0
@@ -959,7 +959,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .968421042
   m_Atomic: 1
@@ -979,7 +979,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .925000012
   m_Atomic: 1
@@ -999,7 +999,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .875
   m_Atomic: 1
@@ -1039,7 +1039,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Charge
+    m_ConditionEvent: ChargeParam
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 0
@@ -1059,11 +1059,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .930000007
   - m_ConditionMode: 2
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .930000007
   m_Atomic: 1
@@ -1083,7 +1083,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Shot
+    m_ConditionEvent: ShotParam
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -1103,11 +1103,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attacking
+    m_ConditionEvent: AttackingParam
     m_EventTreshold: 0
     m_ExitTime: .625
   - m_ConditionMode: 2
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .625
   m_Atomic: 1
@@ -1147,7 +1147,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .797297299
   m_Atomic: 1
@@ -1187,7 +1187,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Alerted
+    m_ConditionEvent: AlertedParam
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -1207,7 +1207,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .939999998
   m_Atomic: 1
@@ -1267,7 +1267,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .625
   m_Atomic: 1
@@ -1307,7 +1307,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .99000001
   m_Atomic: 0
@@ -1327,7 +1327,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: 0
   m_Atomic: 1
@@ -1347,7 +1347,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attacking
+    m_ConditionEvent: AttackingParam
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -1387,7 +1387,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .959999979
   m_Atomic: 1
@@ -1447,7 +1447,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .915730357
   m_Atomic: 1
@@ -1467,7 +1467,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Attacking
+    m_ConditionEvent: AttackingParam
     m_EventTreshold: 0
     m_ExitTime: .6875
   m_Atomic: 1
@@ -1487,7 +1487,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .884615421
   m_Atomic: 1
@@ -1507,7 +1507,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: Searching
+    m_ConditionEvent: SearchingParam
     m_EventTreshold: 0
     m_ExitTime: .915730357
   m_Atomic: 1

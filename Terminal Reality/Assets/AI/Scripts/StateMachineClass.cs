@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class StateMachineClass <T> : MonoBehaviour{
+public class StateMachineClass <T> {
 
 
 	private T currentState;

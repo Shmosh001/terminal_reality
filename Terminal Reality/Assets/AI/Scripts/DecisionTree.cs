@@ -16,6 +16,11 @@ public class DecisionTree : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		condition1 = false;
+		condition2 = false;
+		condition3 = false;
+		condition4 = false;
+		condition5 = false;
 	
 	}
 	
