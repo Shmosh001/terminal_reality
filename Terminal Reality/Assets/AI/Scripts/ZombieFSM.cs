@@ -162,16 +162,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			/***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
 		case StateEnums.ZombieStates.Chasing:
-			//maybe add in timer so we dont update path every frame?
 			if (stateDebugStatements){Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);}
 			chasingC += Time.deltaTime;
+
 
 
 
 			chasePlayer();
 			//update the position of the target we are chasing
 			if (chasing && chasingC > chasingD){
-				if (stateDebugStatements){Debug.LogError("chasing case: if statement " + Time.timeSinceLevelLoad);}
+				if (stateDebugStatements){Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad);}
 				navAgent.SetDestination(target.transform.position);
 				detection.assignLastPosition(target.transform.position);
 				detection.assignTarget(target);
@@ -312,19 +312,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		if (debugStatements){Debug.Log("chasePlayer method at" + Time.timeSinceLevelLoad);}
 
-		if (!chasing){
-			if (debugStatements){Debug.Log("chasePlayer method: chasing false at" + Time.timeSinceLevelLoad);}
-			animatorCont.resetBooleans();
-			//we set the animation
-			//animatorCont.setBoolean("Charge",true);
-			//animatorCont.setTrigger("TriggerTest");
-			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
-			navAgent.SetDestination(target.transform.position);
 
+		if (!chasing){
+			if (debugStatements){Debug.Log("chasing case:: forcing chase animation " + Time.timeSinceLevelLoad);}
+			//we set the animation
+			animatorCont.resetBooleans();
+			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
+			animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
+			navAgent.SetDestination(target.transform.position);
 			chasing = true;
 		}
-
-
 
 
 		float distance = getDistanceT(target.transform, gameObject.transform);
@@ -335,12 +332,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 			navAgent.Stop();
 			animatorCont.setBoolean(EnemyHashScript.attackingBool,true);
-			animatorCont.setTrigger(EnemyHashScript.chargeTrigger);
+			chasing = false;
 		}
 		else if (distance > losingDistance){
 			if (debugStatements){Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad);}
 			fsm.enterState(StateEnums.ZombieStates.Searching);
 			animatorCont.resetBooleans();
+			chasing = false;
 		}
 		
 	}
@@ -351,6 +349,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//kills the unit and plays specific animation
 	void killUnit(){
 		if (debugStatements){Debug.Log("killUnit method at" + Time.timeSinceLevelLoad);}
+		//stop moviing on the nav mesh
+		navAgent.Stop();
 		//play animation
 		animatorCont.resetBooleans();
 		animatorCont.setTrigger(EnemyHashScript.deadTrigger);
@@ -361,8 +361,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//disables all parts to the unit to only leave dead body
 	void dead(){
 		if (debugStatements){Debug.Log("dead method at" + Time.timeSinceLevelLoad);}
-		gameObject.GetComponent<CharacterController>().enabled = false;
+		gameObject.GetComponent<BoxCollider>().enabled = false;
 		gameObject.GetComponent<SphereCollider>().enabled = false;
+		gameObject.GetComponent<CapsuleCollider>().enabled = false;
+		gameObject.GetComponent<EnemyHealthScript>().enabled = false;
 		//remove unnessesary parts
 	}
 
@@ -420,13 +422,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//inflict damage on player
 		playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 		if (targetH != null){
-			targetH.reducePlayerHealth(damage);
+			//targetH.reducePlayerHealth(damage);
 			//targetH.takeDamage(damage);
 		}
 		float distance = getDistanceT(transform, target.transform);
 		//add a small offset
 		if (distance > attackingDistance+5){
 			fsm.enterState(StateEnums.ZombieStates.Chasing);
+			animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
+/*			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
+			animatorCont.setTrigger(EnemyHashScript.chargeTrigger);*/
 		}
 	}
 

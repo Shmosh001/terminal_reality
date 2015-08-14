@@ -106,4 +106,8 @@ public class ZombieAnimationController : MonoBehaviour {
 	}
 
 
+	public void forceAnimation(int animation){
+		animator.Play(animation);
+	}
+
 }

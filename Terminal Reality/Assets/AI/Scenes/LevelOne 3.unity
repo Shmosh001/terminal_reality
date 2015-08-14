@@ -19676,8 +19676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  stateDebugStatements: 0
-  debugStatements: 0
+  stateDebugStatements: 1
+  debugStatements: 1
   pukeEffect: {fileID: 1532611219}
   rayCastOffset: 1.5
   debug: 1
@@ -27678,6 +27678,14 @@ Prefab:
       propertyPath: text
       value: 
       objectReference: {fileID: 871842190}
+    - target: {fileID: 11414540, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: debugStatements
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414540, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: stateDebugStatements
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5d2085346e851749ba6b4627569629a, type: 2}
   m_RootGameObject: {fileID: 1452960655}

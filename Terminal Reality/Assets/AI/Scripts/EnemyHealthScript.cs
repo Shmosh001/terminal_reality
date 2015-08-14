@@ -7,7 +7,7 @@ public class EnemyHealthScript : MonoBehaviour {
 	public int health;
 
 	public bool isEnemy;
-
+	private bool alerted;
 
 	private ZombieFSM fsm;
 
@@ -20,8 +20,9 @@ public class EnemyHealthScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0){
+		if (health <= 0 && !alerted){
 			fsm.alertDead();
+			alerted = true;
 			//Destroy(gameObject,1);
 		}
 	}
@@ -37,9 +38,9 @@ public class EnemyHealthScript : MonoBehaviour {
 	public void takeDamage(int value, GameObject entity){
 		health -= value;
 		fsm.alertShot(entity);
-		if (health <= 0){
+		if (health <= 0 && !alerted){
 			fsm.alertDead();
-
+			alerted = true;
 		}
 
 	}
