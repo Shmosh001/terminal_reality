@@ -51,7 +51,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private PreyDetection detection;
 	
 	private SphereCollider soundCollider;
-	private EnemyHashScript hash;
+
 	// Use this for initialization
 	void Start () {
 		//fsm = gameObject.GetComponent<StateMachineClass<StateEnums.ZombieStates>>();
@@ -60,7 +60,6 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
 		fsm.enterState(StateEnums.ZombieStates.Idle);
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
-		hash = this.gameObject.GetComponent<EnemyHashScript>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		boxCollider = gameObject.GetComponent<BoxCollider>();
 		lessenSenses();
@@ -94,9 +93,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//update counters
 			//keep counting for random event
 			if (eventChoiceC > eventChoiceD){
-				bool result = animatorCont.setRandomTrigger(hash.changeTrigger);
+				bool result = animatorCont.setRandomTrigger(EnemyHashScript.changeTrigger);
 				if (result){
-					int path  = animatorCont.setRandomInteger(hash.idleVarDInt, 4);
+					int path  = animatorCont.setRandomInteger(EnemyHashScript.idleVarDInt, 4);
 
 					switch(path){
 					//agonizing
@@ -146,13 +145,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		case StateEnums.ZombieStates.Alerted:
 			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
-			animatorCont.setTrigger(hash.alertedTrigger);
+			animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
-				animatorCont.setTrigger(hash.alertedTrigger);
+				animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -236,7 +235,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				if (debugStatements){Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad);}
 				startWandering();
 				//animatorCont.resetBooleans();
-				animatorCont.setBoolean(hash.wanderingBool, true);
+				animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
 			}
 
 
@@ -245,7 +244,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				navAgent.Stop();
 				fsm.enterPreviousState();
 				wandering = false;
-				animatorCont.setBoolean(hash.wanderingBool, false);
+				animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
 			}
 			checkForPlayer();
 
@@ -255,13 +254,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (stateDebugStatements){Debug.Log("shot case: entering " + Time.timeSinceLevelLoad);}
 			if (!shot){
 				//we set the random int value for the decision
-				animatorCont.setRandomInteger(hash.hitDInt,3);
+				animatorCont.setRandomInteger(EnemyHashScript.hitDInt,3);
 				//we activate the shot trigger 
-				animatorCont.setTrigger(hash.shotTrigger);
+				animatorCont.setTrigger(EnemyHashScript.shotTrigger);
 				shot = true;
 			}
 
-			if (animatorCont.checkAnimationState(hash.attackDecisionState)){
+			if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)){
 				Debug.Log("arrived at decision state");
 				shot = false;
 			}
@@ -315,7 +314,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//we set the animation
 			//animatorCont.setBoolean("Charge",true);
 			//animatorCont.setTrigger("TriggerTest");
-			animatorCont.setRandomInteger(hash.attDInt,2);
+			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
 			navAgent.SetDestination(target.transform.position);
 
 			chasing = true;
@@ -332,7 +331,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 			navAgent.Stop();
 			animatorCont.setBoolean(EnemyHashScript.attackingBool,true);
-			animatorCont.setTrigger(hash.chargeTrigger);
+			animatorCont.setTrigger(EnemyHashScript.chargeTrigger);
 		}
 		else if (distance > losingDistance){
 			if (debugStatements){Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad);}
@@ -350,8 +349,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (debugStatements){Debug.Log("killUnit method at" + Time.timeSinceLevelLoad);}
 		//play animation
 		animatorCont.resetBooleans();
-		animatorCont.setTrigger(hash.deadTrigger);
-		animatorCont.setRandomInteger(hash.deathDsInt,2);
+		animatorCont.setTrigger(EnemyHashScript.deadTrigger);
+		animatorCont.setRandomInteger(EnemyHashScript.deathDsInt,2);
 		fsm.enterState(StateEnums.ZombieStates.Dead);
 	}
 	
@@ -373,7 +372,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (navAgent.SetDestination(detection.lastSighting)){
 			if (debugStatements){Debug.Log("searchForPlayer method: dest set true at" + Time.timeSinceLevelLoad);}
 			navAgent.speed = walkingSpeed;
-			animatorCont.setBoolean(hash.searchingBool,true);
+			animatorCont.setBoolean(EnemyHashScript.searchingBool,true);
 			heightenSenses();
 		}
 		//if the paths 
@@ -470,7 +469,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 		else if(collider is BoxCollider){
 			//we set the awake boolean
-			animatorCont.setTrigger(hash.wakeupTrigger);
+			animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
 			boxCollider.enabled = false;
 		}
 
@@ -537,3 +536,4 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		fsm.enterState(StateEnums.ZombieStates.Shot);
 	}
 }
+

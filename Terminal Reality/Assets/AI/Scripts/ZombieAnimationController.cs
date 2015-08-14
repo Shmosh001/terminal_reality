@@ -4,7 +4,7 @@ using System.Collections;
 public class ZombieAnimationController : MonoBehaviour {
 
 	private Animator animator;
-	private EnemyHashScript hash;
+	//private EnemyHashScript hash;
 
 
 	public bool debug;
@@ -12,7 +12,7 @@ public class ZombieAnimationController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		animator = this.gameObject.GetComponent<Animator>();
-		hash = this.gameObject.GetComponent<EnemyHashScript>();
+		//hash = this.gameObject.GetComponent<EnemyHashScript>();
 
 	}
 	
@@ -39,12 +39,12 @@ public class ZombieAnimationController : MonoBehaviour {
 	public void chooseStartingState(){
 		int choice = getRandomInt(4);
 		//need to handle dead body spawn if we are in biting state
-		setInteger(hash.stateDInt,choice);
+		setInteger(EnemyHashScript.stateDInt,choice);
 		if (debug)Debug.Log("random starting state set to" + choice + " at " + Time.timeSinceLevelLoad);
 	}
 
 	public void setStartState(int value){
-		setInteger(hash.stateDInt,value);
+		setInteger(EnemyHashScript.stateDInt,value);
 		if (debug)Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -95,8 +95,8 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	public void resetBooleans(){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-		animator.SetBool(hash.searchingBool,false);
-		animator.SetBool(hash.wanderingBool,false);
+		animator.SetBool(EnemyHashScript.searchingBool,false);
+		animator.SetBool(EnemyHashScript.wanderingBool,false);
 		animator.SetBool(EnemyHashScript.attackingBool,false);
 	}
 

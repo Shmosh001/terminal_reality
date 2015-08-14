@@ -7,79 +7,79 @@ public class EnemyHashScript : MonoBehaviour {
 	 * paramaters
 	 **/
 	//booleans
-	public static int attackingBool = Animator.StringToHash("AttackingParam");
-	public int searchingBool;
-	public int wanderingBool;
+	public static int attackingBool;
+	public static  int searchingBool;
+	public static int wanderingBool;
 	//integers
-	public int attDInt;
-	public int hitDInt;
-	public int idleDInt;
-	public int stateDInt;
-	public int deathDsInt;
-	public int idleVarDInt;
+	public static int attDInt;
+	public static int hitDInt;
+	public static int idleDInt;
+	public static int stateDInt;
+	public static int deathDsInt;
+	public static int idleVarDInt;
 	//floats
-	public int speedFloat;
+	public static int speedFloat;
 	//triggers
-	public int wakeupTrigger;
-	public int chargeTrigger;
-	public int alertedTrigger;
-	public int deadTrigger;
-	public int shotTrigger;
-	public int alertToIdleTrigger;
-	public int changeTrigger;
+	public static int wakeupTrigger;
+	public static int chargeTrigger;
+	public static int alertedTrigger;
+	public static int deadTrigger;
+	public static int shotTrigger;
+	public static int alertToIdleTrigger;
+	public static int changeTrigger;
 
 
 	/**
 	 * states
 	 **/
 	//base layer
-	public int startState;
-	public int alertedState;
-	public int searchingState;
+	public static int startState;
+	public static int alertedState;
+	public static int searchingState;
 	//StartState SSM
-	public int startDecisionState;
-	public int bitingState1;
-	public int bitingStandUp1;
-	public int standUpIdleState1;
-	public int standUpState1;
-	public int standUpIdleState2;
-	public int standUpState2;
-	public int standUpIdleState3;
-	public int standUpState3;
+	public static int startDecisionState;
+	public static int bitingState1;
+	public static int bitingStandUp1;
+	public static int standUpIdleState1;
+	public static int standUpState1;
+	public static int standUpIdleState2;
+	public static int standUpState2;
+	public static int standUpIdleState3;
+	public static int standUpState3;
 	//Idle SSM
-	public int idleChangeDecisionState;
-	public int idleDecisionState;
-	public int drunkWaitState;
-	public int idle1State;
-	public int idle2State;
-	public int idle3State;
-	public int idle4State;
-	public int idleScratchState;
+	public static int idleChangeDecisionState;
+	public static int idleDecisionState;
+	public static int drunkWaitState;
+	public static int idle1State;
+	public static int idle2State;
+	public static int idle3State;
+	public static int idle4State;
+	public static int idleScratchState;
 	//IdleVar SSM
-	public int idleVarDecisionState;
-	public int wanderingState;
-	public int pukingState;
-	public int screamingState;
-	public int agonizingState;
+	public static int idleVarDecisionState;
+	public static int wanderingState;
+	public static int pukingState;
+	public static int screamingState;
+	public static int agonizingState;
 	//Shot SSM
-	public int screamState;
-	public int shotDecisionState;
-	public int shotStumbleState;
-	public int shotStumble2State;
-	public int shotStumble3State;
-	public int shotGetUpState;
+	public static int screamState;
+	public static int shotDecisionState;
+	public static int shotStumbleState;
+	public static int shotStumble2State;
+	public static int shotStumble3State;
+	public static int shotGetUpState;
 	//Attack SSM
-	public int attackDecisionState;
-	public int crawlState;
-	public int runningState;
-	public int punchingState;
-	public int attackState;
+	public static int attackDecisionState;
+	public static int crawlState;
+	public static int runningState;
+	public static int punchingState;
+	public static int attackState;
 	//Dying SSM
-	public int dyingDecisionState;
-	public int death1State;
-	public int death2State;
-	public int death1IdleState;
-	public int death2IdleState;
+	public static int dyingDecisionState;
+	public static int death1State;
+	public static int death2State;
+	public static int death1IdleState;
+	public static int death2IdleState;
 
 
 	void Awake(){
@@ -89,7 +89,7 @@ public class EnemyHashScript : MonoBehaviour {
 		searchingBool = Animator.StringToHash("SearchingParam");
 		wanderingBool = Animator.StringToHash("WanderingParam");
 		shotTrigger = Animator.StringToHash("ShotParam");
-		//attackingBool = Animator.StringToHash("AttackingParam");
+		attackingBool = Animator.StringToHash("AttackingParam");
 		alertedTrigger = Animator.StringToHash("AlertedParam");
 		deadTrigger = Animator.StringToHash("DeadParam");
 		deathDsInt = Animator.StringToHash("DeathD");
