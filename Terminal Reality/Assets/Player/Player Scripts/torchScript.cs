@@ -6,6 +6,7 @@ public class torchScript : MonoBehaviour {
 	//PUBLIC TORCH VARIABLES//
 	public bool torchOn = false;
 	public Light torch;
+	public GameObject soundController;
 	
 	//PRIVATE TORCH VARIABLES//
 	private float batteryLife;
@@ -22,6 +23,7 @@ public class torchScript : MonoBehaviour {
 		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
 		if (Input.GetKeyDown(KeyCode.F))
 		{
+			soundController.GetComponent<soundControllerScript>().playTorchSound(this.GetComponent<AudioSource>()); //play torch on/off sound
 			torchOn = !torchOn;
 		}
 

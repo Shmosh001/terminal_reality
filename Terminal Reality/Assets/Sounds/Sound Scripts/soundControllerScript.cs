@@ -10,6 +10,7 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip reloadSound;
 	public AudioClip outOfAmmoSound;
 	public AudioClip ammoAndWeaponPickupSound;
+	public AudioClip torchButtonSound;
 
 
 	//PUBLIC ZOMBIE SOUND VARIABLES//
@@ -48,6 +49,13 @@ public class soundControllerScript : MonoBehaviour {
 	{
 		//play sound
 		soundSource.PlayOneShot(ammoAndWeaponPickupSound);
+	}
+
+	//PLAY TORCH ON/OFF SOUND//
+	public void playTorchSound(AudioSource soundSource)
+	{
+		//play sound
+		soundSource.PlayOneShot(torchButtonSound);
 	}
 
 	//PLAY SCREAM FOR MALE ZOMBIE//
