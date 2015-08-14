@@ -16,7 +16,8 @@ public class StateEnums : MonoBehaviour {
 		Attacking,
 		Alerted,
 		Dying,
-		Dead
+		Dead,
+		Shot
 	};
 
 	//list all states and have a switch statement with behaviour

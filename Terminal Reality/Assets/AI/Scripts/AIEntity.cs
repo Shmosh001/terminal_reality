@@ -9,7 +9,7 @@ public class AIEntity <T>: MonoBehaviour{
 
 
 	protected NavMeshAgent navAgent;
-	protected HealthScript health;
+	protected EnemyHealthScript health;
 
 	//list of targets that the AI element can attack
 	public ArrayList targets;
@@ -20,7 +20,7 @@ public class AIEntity <T>: MonoBehaviour{
 
 	void Awake(){
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
-		health = gameObject.GetComponent<HealthScript>();
+		health = gameObject.GetComponent<EnemyHealthScript>();
 		wanderScript = gameObject.GetComponent<WanderScript>();
 		sound = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER).GetComponent<soundControllerScript>();
 		target = null;

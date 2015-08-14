@@ -20,7 +20,7 @@ public class KeyListener : MonoBehaviour {
 			if (debug){
 				Debug.Log("We shot");
 			}
-			HealthScript script = enemy.GetComponent<HealthScript>();
+			EnemyHealthScript script = enemy.GetComponent<EnemyHealthScript>();
 			script.takeDamage(damage);
 		}
 

@@ -19,11 +19,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private float time;
 
 	//booleans to accertain certain state specifics
-	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing;
+	private bool puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot;
 	//counters
-	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC;
+	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC;
 	//duration holders
-	public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD, chasingD = 1.5f;
+	public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD, chasingD = 1.5f, shotD;
 	//sense values
 	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
 	//speed values
@@ -82,15 +82,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	void Update () {
 
 
-
-		if (health.health <= 0){
-			fsm.enterState(StateEnums.ZombieStates.Dying);
-		}
-
-
-
 		switch(fsm.getCurrentState()){
-
+			/***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
 		case StateEnums.ZombieStates.Idle:
 
 
@@ -149,7 +142,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//this handles event changes itself
 			break;
 
-
+			/***********Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*/
 		case StateEnums.ZombieStates.Alerted:
 			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
@@ -168,7 +161,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 			break;
 
-
+			/***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
 		case StateEnums.ZombieStates.Chasing:
 			//maybe add in timer so we dont update path every frame?
 			if (stateDebugStatements){Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);}
@@ -189,7 +182,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			break;
 
-
+			/***********Searching*******Searching*******Searching*******Searching*******Searching*******Searching*******Searching*/
 		case StateEnums.ZombieStates.Searching:
 
 			if (stateDebugStatements){Debug.Log("searching case: entering " + Time.timeSinceLevelLoad);}
@@ -207,14 +200,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			break;
 
-
+			/***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
 		case StateEnums.ZombieStates.Attacking:
 			if (stateDebugStatements){Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad);}
 			attackPlayer();
 
 			break;
 
-
+			/***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
 		case StateEnums.ZombieStates.Puking:
 			if (stateDebugStatements){Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);}
 			//updating counter
@@ -235,6 +228,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 
 			break;
+			/***********Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*/
 		case StateEnums.ZombieStates.Wandering:
 			if (stateDebugStatements){Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad);}
 
@@ -256,13 +250,31 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			checkForPlayer();
 
 			break;
+			/***********Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*/
+		case StateEnums.ZombieStates.Shot:
+			if (stateDebugStatements){Debug.Log("shot case: entering " + Time.timeSinceLevelLoad);}
+			if (!shot){
+				//we set the random int value for the decision
+				animatorCont.setRandomInteger(hash.hitDInt,3);
+				//we activate the shot trigger 
+				animatorCont.setTrigger(hash.shotTrigger);
+				shot = true;
+			}
 
-
+			if (animatorCont.checkAnimationState(hash.attackDecisionState)){
+				Debug.Log("arrived at decision state");
+				shot = false;
+			}
+			else{
+				//Debug.Log("some other state");
+			}
+			break;
+			/***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
 		case StateEnums.ZombieStates.Dying:
 			if (stateDebugStatements){Debug.Log("dying case: entering " + Time.timeSinceLevelLoad);}
 			killUnit();
 			break;
-		
+			/***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
 		case StateEnums.ZombieStates.Dead:
 			if (stateDebugStatements){Debug.Log("dead case: entering " + Time.timeSinceLevelLoad);}
 			dead ();
@@ -319,7 +331,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);}
 			fsm.enterState(StateEnums.ZombieStates.Attacking);
 			navAgent.Stop();
-			animatorCont.setBoolean(hash.attackingBool,true);
+			animatorCont.setBoolean(EnemyHashScript.attackingBool,true);
 			animatorCont.setTrigger(hash.chargeTrigger);
 		}
 		else if (distance > losingDistance){
@@ -403,9 +415,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (debugStatements){Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);}
 		//change animation
 		//inflict damage on player
-		HealthScript targetH = target.GetComponent<HealthScript>();
+		playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 		if (targetH != null){
-			targetH.takeDamage(damage);
+			targetH.reducePlayerHealth(damage);
+			//targetH.takeDamage(damage);
 		}
 		float distance = getDistanceT(transform, target.transform);
 		//add a small offset
@@ -516,5 +529,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 	}
 
+	public void alertDead(){
+		fsm.enterState(StateEnums.ZombieStates.Dying);
+	}
 
+	public void alertShot(){
+		fsm.enterState(StateEnums.ZombieStates.Shot);
+	}
 }

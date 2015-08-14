@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HealthScript : MonoBehaviour {
+public class EnemyHealthScript : MonoBehaviour {
 
 
 	public int health;
@@ -9,17 +9,20 @@ public class HealthScript : MonoBehaviour {
 	public bool isEnemy;
 
 
+	private ZombieFSM fsm;
+
 
 
 	// Use this for initialization
 	void Start () {
-	
+		fsm = gameObject.GetComponent<ZombieFSM>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0){
-			Destroy(gameObject,1);
+			fsm.alertDead();
+			//Destroy(gameObject,1);
 		}
 	}
 
@@ -33,5 +36,6 @@ public class HealthScript : MonoBehaviour {
 
 	public void takeDamage(int value){
 		health -= value;
+		fsm.alertShot();
 	}
 }
