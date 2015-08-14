@@ -40,6 +40,7 @@ public class ZombieAnimationController : MonoBehaviour {
 		int choice = getRandomInt(4);
 		//need to handle dead body spawn if we are in biting state
 		setInteger(EnemyHashScript.stateDInt,choice);
+		setRandomInteger(EnemyHashScript.idleDInt,6);
 		if (debug)Debug.Log("random starting state set to" + choice + " at " + Time.timeSinceLevelLoad);
 	}
 

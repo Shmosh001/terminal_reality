@@ -2520,6 +2520,7 @@ GameObject:
   - 114: {fileID: 218437674}
   - 114: {fileID: 218437685}
   - 114: {fileID: 218437684}
+  - 81: {fileID: 218437683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2654,6 +2655,13 @@ Transform:
   - {fileID: 560105615}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!81 &218437683
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 218437673}
+  m_Enabled: 1
 --- !u!114 &218437684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6555,6 +6563,10 @@ Prefab:
       propertyPath: text
       value: 
       objectReference: {fileID: 871842190}
+    - target: {fileID: 11414540, guid: f5d2085346e851749ba6b4627569629a, type: 2}
+      propertyPath: attackingDistance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5d2085346e851749ba6b4627569629a, type: 2}
   m_RootGameObject: {fileID: 1452960655}
@@ -28907,7 +28919,7 @@ MonoBehaviour:
   walkingSpeed: 3
   RunningSpeed: 5
   runningDistance: 10
-  attackingDistance: 1.5
+  attackingDistance: 2
   losingDistance: 20
   speed: 0
   text: {fileID: 871842190}
