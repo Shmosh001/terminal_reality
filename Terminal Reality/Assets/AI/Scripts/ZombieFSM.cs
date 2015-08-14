@@ -499,7 +499,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 		//we need to be in the radius of the sound collider in order to be seen. radius is much larger than the viewing distance
 		if (soundTrigger && detection.targetInSight(viewingSens)){
-			if (debugStatements){Debug.LogError("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
+			if (debugStatements){Debug.Log("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
 			//we need to now change into the approriate state
 			fsm.enterState(StateEnums.ZombieStates.Chasing);
 		}
