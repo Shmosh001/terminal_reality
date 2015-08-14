@@ -19,6 +19,12 @@ public class torchScript : MonoBehaviour {
 	
 	void Update()
 	{
+		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			torchOn = !torchOn;
+		}
+
 		//if the torch is on, reduce the battery life.
 		if (torchOn && batteryLife >= 0.0f)
 		{
@@ -36,6 +42,8 @@ public class torchScript : MonoBehaviour {
 		{
 			torchOn = false;
 		}
+
+		print ("Battery life: " + batteryLife);
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		updateTorchActivity();
