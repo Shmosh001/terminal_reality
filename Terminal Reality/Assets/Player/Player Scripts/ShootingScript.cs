@@ -213,7 +213,7 @@ public class ShootingScript : ammoHUDScript {
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag("Enemy"))
 			{
-				//hitObject.GetComponent<EnemyHealthScript>().takeDamage(weapon.GetComponent<weaponDataScript>().damage);
+				//hitObject.GetComponent<EnemyHealthScript>().takeDamage(weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 			}
 		}
 	}
