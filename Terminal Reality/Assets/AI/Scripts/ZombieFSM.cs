@@ -253,15 +253,19 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		case StateEnums.ZombieStates.Shot:
 			if (stateDebugStatements){Debug.Log("shot case: entering " + Time.timeSinceLevelLoad);}
 			if (!shot){
+				if (stateDebugStatements){Debug.Log("shot case: setting up animation " + Time.timeSinceLevelLoad);}
 				//we set the random int value for the decision
 				animatorCont.setRandomInteger(EnemyHashScript.hitDInt,3);
 				//we activate the shot trigger 
 				animatorCont.setTrigger(EnemyHashScript.shotTrigger);
 				shot = true;
+				navAgent.Stop();
 			}
 
 			if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)){
-				Debug.Log("arrived at decision state");
+				if (stateDebugStatements){Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad);}
+				fsm.enterState(StateEnums.ZombieStates.Chasing);
+				navAgent.Resume();
 				shot = false;
 			}
 			else{
@@ -532,8 +536,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		fsm.enterState(StateEnums.ZombieStates.Dying);
 	}
 
-	public void alertShot(){
-		fsm.enterState(StateEnums.ZombieStates.Shot);
+	public void alertShot(GameObject entity){
+		//we want to assign the new target either way
+		detection.assignTarget(entity.gameObject);
+		target = entity.gameObject;
+		// we only want to transition into the state if are not currently in the state
+		if (!shot){
+			fsm.enterState(StateEnums.ZombieStates.Shot);
+		}
 	}
 }
 

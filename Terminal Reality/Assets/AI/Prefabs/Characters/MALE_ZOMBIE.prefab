@@ -1078,9 +1078,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 479178}
   - 95: {fileID: 9579242}
-  - 143: {fileID: 14379242}
   - 135: {fileID: 13567120}
   - 65: {fileID: 6505950}
+  - 136: {fileID: 13653328}
+  - 54: {fileID: 5453328}
   - 82: {fileID: 8205950}
   - 195: {fileID: 19547648}
   - 114: {fileID: 11414540}
@@ -2946,6 +2947,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!54 &5453328
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179178}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6505950
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3071,6 +3087,7 @@ MonoBehaviour:
   searchingD: 0
   dyingD: 0
   chasingD: 1.5
+  shotD: 0
   viewingSenseNorm: 30
   viewingSensAlert: 40
   listeningSensNorm: 8
@@ -3130,6 +3147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931219f9cd6451f48b37155e6113524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
 --- !u!114 &11447648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3141,64 +3159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a06c3700b8b2e47981688990aead8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackingBool: 0
-  searchingBool: 0
-  wanderingBool: 0
-  attDInt: 0
-  hitDInt: 0
-  idleDInt: 0
-  stateDInt: 0
-  deathDsInt: 0
-  idleVarDInt: 0
-  speedFloat: 0
-  wakeupTrigger: 0
-  chargeTrigger: 0
-  alertedTrigger: 0
-  deadTrigger: 0
-  shotTrigger: 0
-  alertToIdleTrigger: 0
-  changeTrigger: 0
-  startState: 0
-  alertedState: 0
-  searchingState: 0
-  startDecisionState: 0
-  bitingState1: 0
-  bitingStandUp1: 0
-  standUpIdleState1: 0
-  standUpState1: 0
-  standUpIdleState2: 0
-  standUpState2: 0
-  standUpIdleState3: 0
-  standUpState3: 0
-  idleChangeDecisionState: 0
-  idleDecisionState: 0
-  drunkWaitState: 0
-  idle1State: 0
-  idle2State: 0
-  idle3State: 0
-  idle4State: 0
-  idleScratchState: 0
-  idleVarDecisionState: 0
-  wanderingState: 0
-  pukingState: 0
-  screamingState: 0
-  agonizingState: 0
-  screamState: 0
-  shotDecisionState: 0
-  shotStumbleState: 0
-  shotStumble2State: 0
-  shotStumble3State: 0
-  shotGetUpState: 0
-  attackDecisionState: 0
-  crawlState: 0
-  runningState: 0
-  punchingState: 0
-  attackState: 0
-  dyingDecisionState: 0
-  death1State: 0
-  death2State: 0
-  death1IdleState: 0
-  death2IdleState: 0
 --- !u!124 &12447648
 Behaviour:
   m_ObjectHideFlags: 1
@@ -3218,6 +3178,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &13653328
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .300000012
+  m_Height: 1.79999995
+  m_Direction: 1
+  m_Center: {x: 0, y: .899999976, z: 0}
 --- !u!137 &13779242
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3233,7 +3206,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: 41669e4712621974fa4857ba891501df, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
+  m_UseLightProbes: 1
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
@@ -3326,20 +3299,6 @@ SkinnedMeshRenderer:
     m_Center: {x: .000570416451, y: -.0641658902, z: .0243835747}
     m_Extent: {x: .959622264, y: .901977956, z: .173813432}
   m_DirtyAABB: 0
---- !u!143 &14379242
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 179178}
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: .400000006
-  m_SlopeLimit: 45
-  m_StepOffset: .300000012
-  m_SkinWidth: .0799999982
-  m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &19547648
 NavMeshAgent:
   m_ObjectHideFlags: 1

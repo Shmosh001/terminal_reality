@@ -3,6 +3,7 @@ using System.Collections;
 
 public class KeyListener : MonoBehaviour {
 
+	public GameObject player;
 	public GameObject enemy;
 	public bool debug;
 	public int damage;
@@ -21,7 +22,7 @@ public class KeyListener : MonoBehaviour {
 				Debug.Log("We shot");
 			}
 			EnemyHealthScript script = enemy.GetComponent<EnemyHealthScript>();
-			script.takeDamage(damage);
+			script.takeDamage(damage, player.gameObject);
 		}
 
 

@@ -34,8 +34,13 @@ public class EnemyHealthScript : MonoBehaviour {
 		}
 	}
 
-	public void takeDamage(int value){
+	public void takeDamage(int value, GameObject entity){
 		health -= value;
-		fsm.alertShot();
+		fsm.alertShot(entity);
+		if (health <= 0){
+			fsm.alertDead();
+
+		}
+
 	}
 }

@@ -35,7 +35,7 @@ public class playerHealthScript : MonoBehaviour {
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
-			print ("PLAYER IS DEAD!!!"); //temp print out
+//			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 
 	}
