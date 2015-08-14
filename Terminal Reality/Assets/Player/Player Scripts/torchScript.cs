@@ -5,6 +5,7 @@ public class torchScript : MonoBehaviour {
 
 	//PUBLIC TORCH VARIABLES//
 	public bool torchOn = false;
+	public Light torch;
 	
 	//PRIVATE TORCH VARIABLES//
 	private float batteryLife;
@@ -21,19 +22,37 @@ public class torchScript : MonoBehaviour {
 		//if the torch is on, reduce the battery life.
 		if (torchOn && batteryLife >= 0.0f)
 		{
-			batteryLife -= 0.5f;
+			batteryLife -= 0.05f;
 		}
 		
 		//if torch is off, charge the battery
 		if (!torchOn && batteryLife <= 100.0f)
 		{
-			batteryLife += 1.0f;
+			batteryLife += 0.1f;
 		}
 		
 		//if the battery is dead (<0), then turn the torch off//
 		if (batteryLife <= 0.0f)
 		{
 			torchOn = false;
+		}
+
+		//at the end of each update cycle, check whether the torch needs to be turned on or off.
+		updateTorchActivity();
+
+	}
+
+	//CHECK WHETHER THE TORCH IS ON OR OFF, 
+	//AND THEN TURN THE LIGHT ON OR OFF.
+	private void updateTorchActivity()
+	{
+		if (torchOn)
+		{
+			torch.enabled = true;
+		}
+		else
+		{
+			torch.enabled = false;
 		}
 	}
 }
