@@ -5,8 +5,7 @@ using System.Collections;
 public class playerHealthScript : MonoBehaviour {
 
 	playerDataScript playerData;
-
-	public Text healthText;
+	public UIBarScript UIBarScript;
 
 	// Use this for initialization
 	void Start () {
@@ -58,6 +57,7 @@ public class playerHealthScript : MonoBehaviour {
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
-		healthText.text = playerData.health + "";
+
+		UIBarScript.UpdateValue(playerData.health, 100);
 	}
 }
