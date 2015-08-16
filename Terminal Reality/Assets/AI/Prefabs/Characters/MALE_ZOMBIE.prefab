@@ -11,7 +11,6 @@ GameObject:
   - 20: {fileID: 2047648}
   - 124: {fileID: 12447648}
   - 92: {fileID: 9247648}
-  - 81: {fileID: 8147648}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2974,13 +2973,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30, y: 1, z: 30}
   m_Center: {x: 0, y: .5, z: 0}
---- !u!81 &8147648
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147628}
-  m_Enabled: 0
 --- !u!82 &8205950
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3083,7 +3075,7 @@ MonoBehaviour:
   wanderD: 0
   checkPlayerD: 0
   pukeD: 0
-  alertedD: 0
+  alertedD: 10
   searchingD: 0
   dyingD: 0
   chasingD: 1.5
@@ -3095,7 +3087,7 @@ MonoBehaviour:
   walkingSpeed: 3
   RunningSpeed: 5
   runningDistance: 10
-  attackingDistance: 1.5
+  attackingDistance: 2
   losingDistance: 20
   speed: 0
   text: {fileID: 0}

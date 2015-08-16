@@ -111,4 +111,8 @@ public class ZombieAnimationController : MonoBehaviour {
 		animator.Play(animation);
 	}
 
+	public void turnOff(){
+		animator.applyRootMotion = false;
+	}
+
 }

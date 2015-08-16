@@ -16,6 +16,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//debug
 	public bool debug;
 	public bool animDebug;
+
+	private bool tempBool;
 	private float time;
 
 	//booleans to accertain certain state specifics
@@ -23,7 +25,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	//counters
 	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC;
 	//duration holders
-	public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD, alertedD, searchingD, dyingD, chasingD = 1.5f, shotD;
+	public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD = 7.917f, alertedD = 10.0f, searchingD, dyingD, chasingD = 1.5f, shotD;
 	//sense values
 	public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
 	//speed values
@@ -69,7 +71,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		animatorCont.chooseStartingState();
 		/*health = gameObject.GetComponent<HealthScript>();*/
 
-		pukeD = 7.917f;
+		tempBool = true;
 
 
 	}
@@ -102,21 +104,26 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 					case 0:
 						//dont need to change state
 
-						//need to play a sound that accuratelt represents this animation
+						//need to play a sound that accurately represents this animation
 						sound.playFemaleScream(audioSource);
+						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+
 						break;
 					//scream
 					case 1:
 						//dont need to change state
 						//need to play screaming sound
 						sound.playMaleScream(audioSource);
+						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
 						break;
 					//crying/puking
 					case 2:
+						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
 						fsm.enterState(StateEnums.ZombieStates.Puking);
 						break;
 					//wandering
 					case 3:
+						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
 						fsm.enterState(StateEnums.ZombieStates.Wandering);
 						break;
 					//default
@@ -145,13 +152,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		case StateEnums.ZombieStates.Alerted:
 			if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
 			animatorCont.resetBooleans();
-			animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
 			alertedC += Time.deltaTime;
 
 			checkForPlayer();
 
 			if (alertedC > alertedD){
-				animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
+				if (stateDebugStatements){Debug.Log("alerted case: timer ran over " + Time.timeSinceLevelLoad);}
+				animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
+				animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
 				alerted = false;
@@ -189,6 +197,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//once we are there, we stop searching
 
 			if (checkArrival(transform.position, navAgent.destination) || !detection.hasLastPosition()){
+				navAgent.Stop();
+				animatorCont.setBoolean(EnemyHashScript.searchingBool, false);
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
 
 			}
@@ -262,6 +272,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				navAgent.Stop();
 			}
 
+			if (animatorCont.checkAnimationState(EnemyHashScript.shotScreamState) && tempBool){
+				sound.playMaleScream(audioSource);
+				tempBool = false;
+			}
+
 			if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)){
 				if (stateDebugStatements){Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad);}
 				fsm.enterState(StateEnums.ZombieStates.Chasing);
@@ -270,6 +285,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			}
 			else{
 				//Debug.Log("some other state");
+				//here we still take off health
+				//TODO take off health
 			}
 			break;
 			/***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
@@ -280,6 +297,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			/***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
 		case StateEnums.ZombieStates.Dead:
 			if (stateDebugStatements){Debug.Log("dead case: entering " + Time.timeSinceLevelLoad);}
+			animatorCont.turnOff();
 			dead ();
 			break;
 

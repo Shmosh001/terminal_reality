@@ -62,7 +62,7 @@ public class EnemyHashScript : MonoBehaviour {
 	public static int screamingState;
 	public static int agonizingState;
 	//Shot SSM
-	public static int screamState;
+	public static int shotScreamState;
 	public static int shotDecisionState;
 	public static int shotStumbleState;
 	public static int shotStumble2State;
@@ -137,7 +137,7 @@ public class EnemyHashScript : MonoBehaviour {
 		screamingState = Animator.StringToHash("IdleVar.zombie_scream");
 		agonizingState = Animator.StringToHash("IdleVar.zombie_agonizing");
 		//Shot SSM
-		screamState = Animator.StringToHash("Shot.zombie_scream");
+		shotScreamState = Animator.StringToHash("Shot.zombie_scream");
 		shotDecisionState = Animator.StringToHash("Shot.Decision");
 		shotStumbleState = Animator.StringToHash("Shot.zombie_death");
 		shotStumble2State = Animator.StringToHash("Shot.zombie_reaction_hit");
