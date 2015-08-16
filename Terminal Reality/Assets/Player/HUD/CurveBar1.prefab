@@ -10,7 +10,7 @@ GameObject:
   - 224: {fileID: 22475976}
   - 222: {fileID: 22275976}
   - 114: {fileID: 11475970}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: RatioTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 222: {fileID: 22275978}
   - 114: {fileID: 11475972}
   - 114: {fileID: 11475974}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 475986}
   - 114: {fileID: 11475976}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: CurveBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - 222: {fileID: 22275980}
   - 114: {fileID: 11475978}
   - 114: {fileID: 11475980}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - 224: {fileID: 22475982}
   - 222: {fileID: 22275982}
   - 114: {fileID: 11475982}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: PercentTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - 224: {fileID: 22475984}
   - 222: {fileID: 22275984}
   - 114: {fileID: 11475984}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - 224: {fileID: 22475986}
   - 222: {fileID: 22275986}
   - 114: {fileID: 11475986}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,8 +127,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 265, y: -50, z: 0}
-  m_LocalScale: {x: 1.42857146, y: 1.42857146, z: 1.42857146}
+  m_LocalPosition: {x: -49.2999992, y: -55, z: 40}
+  m_LocalScale: {x: .349999994, y: 1.64999998, z: 0}
   m_Children:
   - {fileID: 22475986}
   - {fileID: 22475978}
@@ -162,7 +162,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50/100
+  m_Text: 
 --- !u!114 &11475972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FillStyle: 0
   MaskOffset: 0
-  NewValue: .5
+  NewValue: 1
   HPColor:
     key0:
       serializedVersion: 2
@@ -394,7 +394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100%
+  m_Text: 
 --- !u!114 &11475984
 MonoBehaviour:
   m_ObjectHideFlags: 1

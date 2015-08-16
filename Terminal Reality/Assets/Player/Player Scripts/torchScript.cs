@@ -11,7 +11,7 @@ public class torchScript : MonoBehaviour {
 	public Image torchHUD;
 	public Sprite torchOnImage;
 	public Sprite torchOffImage;
-	public UIBarScript UIBarScript;
+	public Slider torchSlider;
 	
 	//PRIVATE TORCH VARIABLES//
 	private float batteryLife;
@@ -50,7 +50,7 @@ public class torchScript : MonoBehaviour {
 			torchOn = false;
 		}
 
-		//print ("Battery life: " + (int)batteryLife);
+		print ("Battery life: " + (int)batteryLife);
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		updateTorchActivity();
@@ -77,6 +77,6 @@ public class torchScript : MonoBehaviour {
 	//UPDATE THE TORCH DISPLAYED ON THE HUD//
 	private void updateTorchHUD()
 	{		
-		UIBarScript.UpdateValue((int)batteryLife, 100);
+		torchSlider.value = batteryLife;
 	}
 }
