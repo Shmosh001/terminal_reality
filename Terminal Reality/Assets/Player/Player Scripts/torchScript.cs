@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class torchScript : MonoBehaviour {
@@ -7,6 +8,10 @@ public class torchScript : MonoBehaviour {
 	public bool torchOn = false;
 	public Light torch;
 	public GameObject soundController;
+	public Image torchHUD;
+	public Sprite torchOnImage;
+	public Sprite torchOffImage;
+	public UIBarScript UIBarScript;
 	
 	//PRIVATE TORCH VARIABLES//
 	private float batteryLife;
@@ -45,10 +50,11 @@ public class torchScript : MonoBehaviour {
 			torchOn = false;
 		}
 
-		print ("Battery life: " + batteryLife);
+		//print ("Battery life: " + (int)batteryLife);
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		updateTorchActivity();
+		updateTorchHUD();
 
 	}
 
@@ -59,10 +65,18 @@ public class torchScript : MonoBehaviour {
 		if (torchOn)
 		{
 			torch.enabled = true;
+			torchHUD.sprite = torchOnImage;
 		}
 		else
 		{
 			torch.enabled = false;
+			torchHUD.sprite = torchOffImage;
 		}
+	}
+
+	//UPDATE THE TORCH DISPLAYED ON THE HUD//
+	private void updateTorchHUD()
+	{		
+		UIBarScript.UpdateValue((int)batteryLife, 100);
 	}
 }
