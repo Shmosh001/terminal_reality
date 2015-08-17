@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 492876}
   - 95: {fileID: 9592872}
+  - 65: {fileID: 6595186}
   m_Layer: 0
   m_Name: cola
   m_TagString: Untagged
@@ -80,8 +81,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192876}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83.0049973, y: 1.53400004, z: 40.3310013}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: 12.3642273, y: -5.42956638, z: -53.3577156}
   m_LocalScale: {x: 300, y: 320, z: 200}
   m_Children:
   - {fileID: 492874}
@@ -142,6 +143,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192874}
   m_Mesh: {fileID: 4300000, guid: 9eb07ca1b9a63ad4bbbda4b8830beeaa, type: 3}
+--- !u!65 &6595186
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .00470197573, y: .00877378322, z: .00488401344}
+  m_Center: {x: 2.46683794e-05, y: .00028688609, z: -3.12805628e-06}
 --- !u!95 &9592872
 Animator:
   serializedVersion: 3
