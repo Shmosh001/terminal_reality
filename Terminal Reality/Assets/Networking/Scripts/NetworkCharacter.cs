@@ -19,8 +19,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!photonView.isMine){
-			transform.position = Vector3.Lerp(transform.position, foreignPosition, smoothing);
-			transform.rotation = Quaternion.Lerp(transform.rotation, foreignRotation, smoothing);
+			transform.position = Vector3.Lerp(transform.position, foreignPosition, smoothing *  Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, foreignRotation, smoothing * Time.deltaTime);
 			//Mathf.Lerp(animator.GetFloat("Speed"), realspeed, 0.1f);//aniamtion lerping
 		}
 	}

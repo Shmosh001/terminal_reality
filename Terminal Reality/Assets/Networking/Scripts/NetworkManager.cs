@@ -54,9 +54,9 @@ public class NetworkManager : MonoBehaviour {
 		((MonoBehaviour)localPlayer.GetComponent("CharacterMotor")).enabled = true;//remove jitter while jumping
 		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera*/
 
-		localPlayer.GetComponent<MouseLook>().enabled = true;//remove mosue movement
-		localPlayer.GetComponent<PlayerScript>().enabled = true;//remove mosue movement
-		localPlayer.GetComponent<Animator>().enabled = true;//remove mosue movement
+		localPlayer.GetComponent<MouseLook>().enabled = true;//remove mouse movement
+		localPlayer.GetComponent<PlayerScript>().enabled = true;//remove key movement
+		//localPlayer.GetComponent<Animator>().enabled = true;//remove animator //this broke the animation
 		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera
 	}
 
