@@ -96,7 +96,6 @@ public class ZombieAnimationController : MonoBehaviour {
 
 	public void resetBooleans(){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-		animator.SetBool(EnemyHashScript.searchingBool,false);
 		animator.SetBool(EnemyHashScript.wanderingBool,false);
 		animator.SetBool(EnemyHashScript.attackingBool,false);
 	}

@@ -198,7 +198,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 			if (checkArrival(transform.position, navAgent.destination) || !detection.hasLastPosition()){
 				navAgent.Stop();
-				animatorCont.setBoolean(EnemyHashScript.searchingBool, false);
+				animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
 				fsm.enterState(StateEnums.ZombieStates.Alerted);
 
 			}
@@ -382,7 +382,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		gameObject.GetComponent<BoxCollider>().enabled = false;
 		gameObject.GetComponent<SphereCollider>().enabled = false;
 		gameObject.GetComponent<CapsuleCollider>().enabled = false;
-		gameObject.GetComponent<EnemyHealthScript>().enabled = false;
+		//gameObject.GetComponent<EnemyHealthScript>().enabled = false;//causes zombie to come back to life
 		//remove unnessesary parts
 	}
 
@@ -396,7 +396,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (navAgent.SetDestination(detection.lastSighting)){
 			if (debugStatements){Debug.Log("searchForPlayer method: dest set true at" + Time.timeSinceLevelLoad);}
 			navAgent.speed = walkingSpeed;
-			animatorCont.setBoolean(EnemyHashScript.searchingBool,true);
+			animatorCont.setTrigger(EnemyHashScript.searchingTrigger);
 			heightenSenses();
 		}
 		//if the paths 
