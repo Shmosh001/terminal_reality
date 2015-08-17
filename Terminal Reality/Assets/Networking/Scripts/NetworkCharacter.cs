@@ -32,7 +32,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 			//aniamtion sync
-			stream.SendNext(animator.GetFloat("Speed"));//provided we have speed
+			//stream.SendNext(animator.GetFloat("Speed"));//provided we have speed
 			//sends the speed so that the aniamotr gets updated with this value
 		}
 		else{
@@ -40,7 +40,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			foreignPosition = (Vector3)stream.ReceiveNext();
 			foreignRotation = (Quaternion)stream.ReceiveNext();
 			//receives speed vra for animation
-			animator.SetFloat("Speed",(float)stream.ReceiveNext());
+			//animator.SetFloat("Speed",(float)stream.ReceiveNext());
 			//might need to add Mathf.lerp to lerp this
 		}
 	} 
