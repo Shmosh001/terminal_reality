@@ -36,8 +36,7 @@ public class LevelCreator : MonoBehaviour {
 				Vector3 pos = new Vector3(oldWall.transform.position.x, oldWall.transform.position.y, oldWall.transform.position.z);
 
 				GameObject obj = (GameObject)Instantiate(wall, pos, tempWall.transform.rotation);
-				//GameObject obj = (GameObject)Instantiate(wall, pos,  new Quaternion (Quaternion.identity.x, 90, Quaternion.identity.z, Quaternion.identity.w));
-				//obj.transform.parent = parent.transform;
+
 				if (!showOld){
 					oldWall.SetActive(false);
 				}
@@ -53,8 +52,7 @@ public class LevelCreator : MonoBehaviour {
 				tempWall.transform.eulerAngles = new Vector3(tempWall.transform.eulerAngles.x, 90.0f, tempWall.transform.eulerAngles.z);
 				Vector3 pos = new Vector3(oldWall.transform.position.x, oldWall.transform.position.y, oldWall.transform.position.z);
 				GameObject obj = (GameObject)Instantiate(wall, pos, tempWall.transform.rotation);
-				//GameObject obj = (GameObject)Instantiate(wall, pos, new Quaternion (Quaternion.identity.x, 90, Quaternion.identity.z, Quaternion.identity.w));
-				//obj.transform.parent = parent.transform;
+
 				if (!showOld){
 					oldWall.SetActive(false);
 				}
@@ -73,8 +71,7 @@ public class LevelCreator : MonoBehaviour {
 				tempHalfWall.transform.rotation = new Quaternion(tempHalfWall.transform.rotation.x,0,tempHalfWall.transform.rotation.z,tempHalfWall.transform.rotation.w);
 				Vector3 pos = new Vector3(oldHalfWall.transform.position.x, oldHalfWall.transform.position.y, oldHalfWall.transform.position.z);
 				GameObject obj = (GameObject)Instantiate(halfWall, pos, tempHalfWall.transform.rotation);
-				//GameObject obj = (GameObject)Instantiate(halfWall, pos,  new Quaternion (Quaternion.identity.x, 90, Quaternion.identity.z, Quaternion.identity.w));
-				//obj.transform.parent = parent.transform;
+
 				if (!showOld){
 					oldHalfWall.SetActive(false);
 				}
@@ -87,8 +84,7 @@ public class LevelCreator : MonoBehaviour {
 			{
 				Vector3 pos = new Vector3(oldHalfWall.transform.position.x, oldHalfWall.transform.position.y, oldHalfWall.transform.position.z);
 				GameObject obj = (GameObject)Instantiate(halfWall, pos, halfWall.transform.rotation);
-				//GameObject obj = (GameObject)Instantiate(halfWall, pos,  new Quaternion (Quaternion.identity.x, 90, Quaternion.identity.z, Quaternion.identity.w));
-				//obj.transform.parent = parent.transform;
+
 				if (!showOld){
 					oldHalfWall.SetActive(false);
 				}

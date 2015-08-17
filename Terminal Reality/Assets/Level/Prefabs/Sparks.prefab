@@ -11,6 +11,8 @@ GameObject:
   - 15: {fileID: 1594844}
   - 12: {fileID: 1294844}
   - 26: {fileID: 2694844}
+  - 114: {fileID: 11473010}
+  - 82: {fileID: 8273010}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -24,8 +26,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194844}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 79.8550034, y: 4.1880002, z: 75.0199966}
+  m_LocalRotation: {x: -.164654285, y: .0386380181, z: .272677273, w: .947123647}
+  m_LocalPosition: {x: 28.1074734, y: 98.6323929, z: -38.7812386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,9 +74,9 @@ EllipsoidParticleEmitter:
   minSize: .00999999978
   maxSize: .100000001
   minEnergy: 0
-  maxEnergy: 2
-  minEmission: 25
-  maxEmission: 50
+  maxEnergy: 4
+  minEmission: 20
+  maxEmission: 35
   worldVelocity: {x: 0, y: 0, z: 0}
   localVelocity: {x: -0, y: 0, z: 3}
   rndVelocity: {x: 3, y: 3, z: 3}
@@ -117,6 +119,75 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!82 &8273010
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194844}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2.39501572
+  MaxDistance: 18.1511974
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &11473010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584550c5cde7c8428fa9a3ad0989cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
