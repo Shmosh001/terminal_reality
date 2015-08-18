@@ -14,6 +14,9 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = gameObject.GetComponent<Animator>();
+		//TODO should be fine
+		//PhotonNetwork.sendRate = 20;
+		//PhotonNetwork.sendRateOnSerialize = 10;
 	}
 	
 	// Update is called once per frame
