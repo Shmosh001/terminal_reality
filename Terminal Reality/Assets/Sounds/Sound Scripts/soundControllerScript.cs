@@ -17,6 +17,9 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip maleScreamingSound;
 	public AudioClip femaleScreamingSound;
 
+	//PUBLIC LEVEL SOUNND VARIABLES
+	public AudioClip sparkSound;
+
 
 	// Use this for initialization
 	void Start () {
@@ -66,5 +69,10 @@ public class soundControllerScript : MonoBehaviour {
 	//PLAY SCREAM FOR FEMALE ZOMBIE//
 	public void playFemaleScream(AudioSource soundSource){
 		soundSource.PlayOneShot(femaleScreamingSound);
+	}
+
+	//PLAY SCREAM FOR FEMALE ZOMBIE//
+	public void playSparkSound(AudioSource soundSource){
+		soundSource.PlayOneShot(sparkSound);
 	}
 }
