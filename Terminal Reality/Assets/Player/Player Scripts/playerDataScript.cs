@@ -14,9 +14,16 @@ public class playerDataScript : MonoBehaviour {
 	public float pushingPower = 2.5f;
 	
 	//PUBLIC WEAPON RELATED VARIABLES//
+	public GameObject pistolGameObject;
+	public GameObject machineGunGameObject;
 	public bool pistolPickedUp;
 	public bool machineGunPickedUp;
 	public bool pistolEquipped;
 	public bool machineGunEquipped;
+	
+	//TORCH//
+	public Light torch;
+
+
 
 }
