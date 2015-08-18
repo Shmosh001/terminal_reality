@@ -13781,58 +13781,6 @@ Prefab:
   m_RootGameObject: {fileID: 1363242384}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1001 &275008600
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 516113683}
-    m_Modifications:
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: sparksSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9dbfc711eb9da8f4788cd6d140d2b0a8, type: 3}
-    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-      propertyPath: sparkSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9dbfc711eb9da8f4788cd6d140d2b0a8, type: 3}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-  m_RootGameObject: {fileID: 898714876}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &275585240
 GameObject:
   m_ObjectHideFlags: 0
@@ -24507,34 +24455,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1499503495}
   m_GameObject: {fileID: 515325289}
   m_Mesh: {fileID: 4300000, guid: b3198cdbac4cc0a4aa902da4f8a01222, type: 3}
---- !u!1 &516113682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 516113683}
-  m_Layer: 0
-  m_Name: Sound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &516113683
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 516113682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 898714877}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
 --- !u!1 &518531944
 GameObject:
   m_ObjectHideFlags: 0
@@ -43166,56 +43086,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1435766878}
   m_GameObject: {fileID: 894157677}
   m_Mesh: {fileID: 4300000, guid: 3da57b887e4888947839b3313e880f28, type: 3}
---- !u!1 &898714876
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 125504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-  m_PrefabInternal: {fileID: 275008600}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 898714877}
-  - 114: {fileID: 898714878}
-  m_Layer: 0
-  m_Name: Sound Controller
-  m_TagString: Sound Controller
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &898714877
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
-  m_PrefabInternal: {fileID: 275008600}
-  m_GameObject: {fileID: 898714876}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 516113683}
-  m_RootOrder: 0
---- !u!114 &898714878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f,
-    type: 2}
-  m_PrefabInternal: {fileID: 275008600}
-  m_GameObject: {fileID: 898714876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37075d67e0c448942aeb5281e75effc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pistolShotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
-  machineGunShotSound: {fileID: 0}
-  reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
-  outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
-  ammoAndWeaponPickupSound: {fileID: 8300000, guid: 488641ccc2df5944194eccf34a3778ad,
-    type: 3}
-  torchButtonSound: {fileID: 8300000, guid: af2309e28107d5a4eb2e03229ffdeceb, type: 3}
-  maleScreamingSound: {fileID: 0}
-  femaleScreamingSound: {fileID: 0}
-  sparkSound: {fileID: 8300000, guid: 9dbfc711eb9da8f4788cd6d140d2b0a8, type: 3}
 --- !u!1001 &900574945
 Prefab:
   m_ObjectHideFlags: 0
@@ -45667,7 +45537,7 @@ Transform:
   - {fileID: 154790457}
   - {fileID: 2121986024}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
 --- !u!95 &969992353
 Animator:
   serializedVersion: 3
