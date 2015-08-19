@@ -127,6 +127,81 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110214782
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_open_left_bck
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d79287c73bb5e694d8a2799afcd84739, type: 2}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 394, y: 286, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110234058
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_close_left_fwd
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 307983ba2595c4341bfc3a0aa974197f, type: 2}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 464, y: 416, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110234288
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_open_right_fwd
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 429, y: 351, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110238422
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_close_left_bck
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 9c1c6d93e154f3a43b28bb039e34ef75, type: 2}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 499, y: 481, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110249206
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_idle_right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 13fa9ea8a56939a4a9c6289c4b776371, type: 2}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 534, y: 546, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110277886
 State:
   m_ObjectHideFlags: 3
@@ -157,6 +232,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110292030
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DD_open_left_fwd
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 8fd7315ac693ba94c8b500541211f9f2, type: 2}
+  m_ParentStateMachine: {fileID: 110730382}
+  m_Position: {x: 359, y: 221, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1107 &110730382
 StateMachine:
   serializedVersion: 2
@@ -169,24 +259,30 @@ StateMachine:
   - {fileID: 110280392}
   - {fileID: 110277886}
   - {fileID: 110200434}
+  - {fileID: 110292030}
+  - {fileID: 110214782}
+  - {fileID: 110234288}
+  - {fileID: 110234058}
+  - {fileID: 110238422}
+  - {fileID: 110249206}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 0}
+      second: []
     data:
       first: {fileID: 110200434}
       second:
       - {fileID: 110121274}
     data:
-      first: {fileID: 110277886}
-      second:
-      - {fileID: 110110110}
-    data:
       first: {fileID: 110280392}
       second:
       - {fileID: 110129736}
     data:
-      first: {fileID: 0}
-      second: []
+      first: {fileID: 110277886}
+      second:
+      - {fileID: 110110110}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 360, y: 228, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

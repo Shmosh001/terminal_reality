@@ -58326,23 +58326,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451770, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22451770, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22451774, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22451774, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22451774, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05635dc7d77d1cc449d3913d0b1afdef, type: 2}
@@ -63814,6 +63814,8 @@ GameObject:
   - 33: {fileID: 1305347660}
   - 23: {fileID: 1305347659}
   - 65: {fileID: 1305347658}
+  - 95: {fileID: 1305347661}
+  - 114: {fileID: 1305347662}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: Untagged
@@ -63876,6 +63878,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1305347656}
   m_Mesh: {fileID: 4300002, guid: 89ef54136ce2352488874ca2b835c710, type: 3}
+--- !u!95 &1305347661
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305347656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 89ef54136ce2352488874ca2b835c710, type: 3}
+  m_Controller: {fileID: 9100000, guid: 44158df5dcf6d7244a0d4b082d5c6596, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1305347662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305347656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46640ba673553684681aad282c62623a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: 0
 --- !u!1 &1306362434
 GameObject:
   m_ObjectHideFlags: 0
@@ -98490,7 +98519,7 @@ GameObject:
   - 23: {fileID: 1940673243}
   - 65: {fileID: 1940673242}
   - 95: {fileID: 1940673241}
-  - 114: {fileID: 1940673240}
+  - 114: {fileID: 1940673245}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: Untagged
@@ -98510,17 +98539,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2137319428}
   m_RootOrder: 1
---- !u!114 &1940673240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1940673238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843e394597fce05428fa5e8106584bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1940673241
 Animator:
   serializedVersion: 3
@@ -98530,10 +98548,10 @@ Animator:
   m_GameObject: {fileID: 1940673238}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 89ef54136ce2352488874ca2b835c710, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8a3599fd3d4d3274fb8f617c7ec852d7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8111b5d235f9a264b956b97e020496f3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!65 &1940673242
@@ -98579,6 +98597,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1940673238}
   m_Mesh: {fileID: 4300002, guid: 89ef54136ce2352488874ca2b835c710, type: 3}
+--- !u!114 &1940673245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940673238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46640ba673553684681aad282c62623a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left: 0
 --- !u!1001 &1942026274
 Prefab:
   m_ObjectHideFlags: 0
