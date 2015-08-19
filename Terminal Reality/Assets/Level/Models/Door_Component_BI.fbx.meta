@@ -153,6 +153,9 @@ ModelImporter:
     7400012: Circle.002|Door
     7400014: Circle.002|End pin
     7400016: Circle.002|Grip
+    7400018: Open
+    7400020: Close
+    7400022: Closed
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -169,7 +172,853 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Plane.001|Door
+      takeName: Plane.001|Door
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Plane.001|End pin
+      takeName: Plane.001|End pin
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Plane.001|Grip
+      takeName: Plane.001|Grip
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Plane.003|Door
+      takeName: Plane.003|Door
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Plane.003|End pin
+      takeName: Plane.003|End pin
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Plane.003|Grip
+      takeName: Plane.003|Grip
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Circle.002|Door
+      takeName: Circle.002|Door
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Circle.002|End pin
+      takeName: Circle.002|End pin
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Circle.002|Grip
+      takeName: Circle.002|Grip
+      firstFrame: 0
+      lastFrame: 149
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door
+        weight: 1
+      - path: Door/Door|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.001
+        weight: 1
+      - path: Door.001/Door.001|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.002
+        weight: 1
+      - path: Door.002/Door.002|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.003
+        weight: 1
+      - path: Door.003/Door.003|Plane.002|Dupli|0
+        weight: 1
+      - path: Door.004
+        weight: 1
+      - path: Door.004/Door.004|Plane.002|Dupli|0
+        weight: 1
+      - path: Hemi
+        weight: 1
+      - path: Hemi.001
+        weight: 1
+      - path: Plane
+        weight: 1
+      - path: Plane.002
+        weight: 1
+      - path: Plane.002/Door.001|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.002|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.003|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door.004|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Door|Plane.001|Dupli|1
+        weight: 1
+      - path: Plane.002/Plane.001
+        weight: 1
+      - path: Plane.002/Plane.001/Circle.002
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.001|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.002|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.003|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door.004|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Circle.002|Dupli|3
+        weight: 1
+      - path: Plane.002/Plane.001/Door|Plane.003|Dupli|2
+        weight: 1
+      - path: Plane.002/Plane.001/Plane.003
+        weight: 1
+      - path: Plane.004
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
