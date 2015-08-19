@@ -50,8 +50,6 @@ public class torchScript : MonoBehaviour {
 			torchOn = false;
 		}
 
-		print ("Battery life: " + (int)batteryLife);
-
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		updateTorchActivity();
 		updateTorchHUD();
