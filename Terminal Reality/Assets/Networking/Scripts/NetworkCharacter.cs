@@ -8,7 +8,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	Quaternion foreignRotation;
 	Animator animator;
 
-	public float smoothing = 0.1f;
+	public float smoothing = 5.0f;
 
 
 	// Use this for initialization

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &124726
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,14 +33,12 @@ GameObject:
   - 54: {fileID: 5424726}
   - 143: {fileID: 14324726}
   - 114: {fileID: 11460628}
-  - 114: {fileID: 11412926}
-  - 114: {fileID: 11405794}
   - 114: {fileID: 11452962}
-  - 114: {fileID: 11471848}
-  - 114: {fileID: 11429672}
   - 82: {fileID: 8272998}
+  - 114: {fileID: 11448200}
+  - 114: {fileID: 11468834}
   m_Layer: 0
-  m_Name: Player
+  m_Name: ProperPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,32 +824,6 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11405794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 124726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c3213ce99318a4da0ee5e236d6621f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponPickup: {fileID: 8300000, guid: 488641ccc2df5944194eccf34a3778ad, type: 3}
---- !u!114 &11412926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 124726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
-  shotRange: 100
 --- !u!114 &11417672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,19 +842,6 @@ MonoBehaviour:
   torchOnImage: {fileID: 21300000, guid: 4f59f31234fd73e47b6e459d105464ea, type: 3}
   torchOffImage: {fileID: 21300000, guid: 6ff95deb65c45de41a1462c1ba95ef8d, type: 3}
   torchSlider: {fileID: 0}
---- !u!114 &11429672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 124726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
 --- !u!114 &11431446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -894,8 +853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
+  ammoText: {fileID: 11421520, guid: 11065911fb0f8084399e0da111e2dc7f, type: 2}
+  reloadText: {fileID: 11408150, guid: e6bcf9720e2f1154bb7b2cb700056793, type: 2}
   damage: 50
   rateOfFire: .100000001
   singleFire: 1
@@ -903,6 +862,31 @@ MonoBehaviour:
   clipSize: 10
   flareLight: {fileID: 10831444}
   maxAmmo: 60
+--- !u!114 &11448200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 11468834}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11452962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -925,19 +909,19 @@ MonoBehaviour:
   machineGunPickedUp: 0
   pistolEquipped: 0
   machineGunEquipped: 0
-  torch: {fileID: 0}
+  torch: {fileID: 10863026}
 --- !u!114 &11460628
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fff144fcafc82f448646c00eab6ed4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11471848
+--- !u!114 &11468834
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -945,10 +929,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 124726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b374b2f2d967248b213e8cd34e7190, type: 3}
+  m_Script: {fileID: 11500000, guid: dcfc657196ec68240998143c3b9c8ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIBarScript: {fileID: 0}
+  smoothing: 5
 --- !u!114 &11496516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -960,8 +944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
+  ammoText: {fileID: 11421520, guid: 11065911fb0f8084399e0da111e2dc7f, type: 2}
+  reloadText: {fileID: 11408150, guid: e6bcf9720e2f1154bb7b2cb700056793, type: 2}
   damage: 8
   rateOfFire: .200000003
   singleFire: 0

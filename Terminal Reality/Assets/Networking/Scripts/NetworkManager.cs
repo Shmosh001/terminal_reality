@@ -6,6 +6,7 @@ public class NetworkManager : MonoBehaviour {
 	public bool offlineMode;
 	public GameObject mainCam;
 	private ObjectSpawner spawn;
+	public GameObject hud;
 
 	// Use this for initialization
 	void Start () {
@@ -46,18 +47,24 @@ public class NetworkManager : MonoBehaviour {
 		Transform location = spawn.getSpawnLocation(ObjectSpawner.SpawnTypes.player);
 
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
-		GameObject localPlayer = PhotonNetwork.Instantiate("Beta", location.position, location.rotation, 0);
+		GameObject localPlayer = PhotonNetwork.Instantiate("ProperPlayer", location.position, location.rotation, 0);
 		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
+		enableComponents(localPlayer);
 
-		/*localPlayer.GetComponent<MouseLook>().enabled = true;//remove mosue movement
-		((MonoBehaviour)localPlayer.GetComponent("FPSInputController")).enabled = true;//remove movement
-		((MonoBehaviour)localPlayer.GetComponent("CharacterMotor")).enabled = true;//remove jitter while jumping
-		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera*/
 
-		localPlayer.GetComponent<MouseLook>().enabled = true;//remove mouse movement
-		localPlayer.GetComponent<PlayerScript>().enabled = true;//remove key movement
-		//localPlayer.GetComponent<Animator>().enabled = true;//remove animator //this broke the animation
-		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//remove camera
+
+	}
+
+	void enableComponents(GameObject localPlayer){
+		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
+		//localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
+		//localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
+		localPlayer.GetComponent<playerDataScript>().enabled = true;//enable the data script
+		//localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
+		//localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
+		//hud.SetActive(true);
+
+		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//enable camera again
 	}
 
 

@@ -49,12 +49,12 @@ public class torchScript : MonoBehaviour {
 		{
 			torchOn = false;
 		}
-
-		print ("Battery life: " + (int)batteryLife);
-
+		//TODO change back
+		//print ("Battery life: " + (int)batteryLife);
+		//TODO change back
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
-		updateTorchActivity();
-		updateTorchHUD();
+		//updateTorchActivity();
+		//updateTorchHUD();
 
 	}
 
@@ -62,6 +62,7 @@ public class torchScript : MonoBehaviour {
 	//AND THEN TURN THE LIGHT ON OR OFF.
 	private void updateTorchActivity()
 	{
+
 		if (torchOn)
 		{
 			torch.enabled = true;
