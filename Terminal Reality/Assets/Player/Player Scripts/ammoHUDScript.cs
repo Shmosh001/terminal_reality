@@ -4,13 +4,20 @@ using System.Collections;
 
 public class ammoHUDScript : MonoBehaviour {
 
-	public Text ammoText;
-	public Text reloadText;
+	private Text ammoText;
+	private Text reloadText;
+	
+	void Awake()
+	{
+		ammoText = GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>() as Text;
+		reloadText = (Text)GameObject.FindGameObjectWithTag("reloadText").GetComponent<Text>() as Text;
+	}
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
-	protected void updateAmmoText(int totAmmo, int clipAmmo)
+	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
-		ammoText.text = totAmmo + " / " + clipAmmo;
+		ammoText.text = totAmmo + " / " + clipAmmo;		
+		
 	}
 
 	//Check whether the clip is less than a third full

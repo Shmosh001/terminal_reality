@@ -16,12 +16,6 @@ public class weaponDataScript : ammoHUDScript
 	private int ammoInClip;
 	private bool equipped;
 
-//	//AUDIO VARIABLES//
-//	public AudioClip shotSound;
-//	public AudioClip reloadSound;
-//	public AudioClip outOfAmmoSound;
-//	public AudioSource soundSource;
-
 	void Awake()
 	{
 		ammoInClip = clipSize;
@@ -103,10 +97,7 @@ public class weaponDataScript : ammoHUDScript
 		if (pickupAmount < (maxAmmo - ammo))
 		{
 			ammo += pickupAmount;
-		}
-
-		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-		updateAmmoText(ammo, ammoInClip);
+		}		
 	}
 
 

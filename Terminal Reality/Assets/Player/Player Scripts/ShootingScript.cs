@@ -129,6 +129,10 @@ public class ShootingScript : ammoHUDScript {
 					flareLoopCount++;
 				}
 			}
+			
+			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+			               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 
 		//RELOAD//
@@ -203,13 +207,13 @@ public class ShootingScript : ammoHUDScript {
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
-			//TEST SHOOTING ON SPHERE
-			if (hitObject.CompareTag("Sphere"))
-			{
-				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
-
-				hitObject.renderer.material.color = c;
-			}
+//			//TEST SHOOTING ON SPHERE
+//			if (hitObject.CompareTag("Sphere"))
+//			{
+//				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
+//
+//				hitObject.renderer.material.color = c;
+//			}
 
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag("Enemy"))
