@@ -69,6 +69,8 @@ public class interactionScript : MonoBehaviour {
 					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
+				
+				///interactingCollider.transform.parent.gameObject.SetActive(false);
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
