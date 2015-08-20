@@ -812,7 +812,7 @@ Light:
     m_Bias: .0500000007
     m_Softness: 4
     m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
@@ -849,8 +849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
   shotRange: 100
 --- !u!114 &11417672
 MonoBehaviour:
@@ -881,8 +879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
 --- !u!114 &11431446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -894,8 +890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
   damage: 50
   rateOfFire: .100000001
   singleFire: 1
@@ -919,12 +913,12 @@ MonoBehaviour:
   mouseSpeed: 3
   jumpSpeed: 5.5
   pushingPower: 2.5
-  pistolGameObject: {fileID: 131438}
-  machineGunGameObject: {fileID: 196512}
   pistolPickedUp: 0
   machineGunPickedUp: 0
   pistolEquipped: 0
   machineGunEquipped: 0
+  pistolGameObject: {fileID: 0}
+  machineGunGameObject: {fileID: 0}
   torch: {fileID: 10863026}
 --- !u!114 &11460628
 MonoBehaviour:
@@ -960,8 +954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
   damage: 8
   rateOfFire: .200000003
   singleFire: 0

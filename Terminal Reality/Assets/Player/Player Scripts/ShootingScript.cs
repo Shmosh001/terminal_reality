@@ -98,8 +98,7 @@ public class ShootingScript : ammoHUDScript {
 						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-						//checkHit();
-						Debug.LogError(weapon.GetComponent<weaponDataScript>().rateOfFire);
+						checkHit();
 						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;						
 					}
 					else
