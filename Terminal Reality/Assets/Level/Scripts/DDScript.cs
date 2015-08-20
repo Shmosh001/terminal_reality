@@ -10,6 +10,7 @@ public class DDScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		aniamtor = gameObject.GetComponent<Animator>();
+		open = false;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,7 @@ public class DDScript : MonoBehaviour {
 	public void openDoorForwards(){
 		if (!open){
 			aniamtor.SetTrigger("OpenFWD");
+			open = true;
 		}
 	}
 
@@ -39,6 +41,7 @@ public class DDScript : MonoBehaviour {
 	public void closeDoorForwards(){
 		if (open){
 			aniamtor.SetTrigger("CloseFWD");
+			open = false;
 		}
 	}
 
@@ -46,6 +49,7 @@ public class DDScript : MonoBehaviour {
 	public void openDoorBackwards(){
 		if (!open){
 			aniamtor.SetTrigger("OpenBCK");
+			open = true;
 		}
 	}
 	
@@ -53,6 +57,7 @@ public class DDScript : MonoBehaviour {
 	public void closeDoorBackwards(){
 		if (open){
 			aniamtor.SetTrigger("CloseBCK");
+			open = false;
 		}
 	}
 

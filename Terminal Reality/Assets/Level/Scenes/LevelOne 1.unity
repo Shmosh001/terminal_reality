@@ -53866,6 +53866,18 @@ Prefab:
       propertyPath: m_Range
       value: 10.7399998
       objectReference: {fileID: 0}
+    - target: {fileID: 10812644, guid: d3488a91757f04449ba635106523412d, type: 2}
+      propertyPath: m_Flare
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 10812644, guid: d3488a91757f04449ba635106523412d, type: 2}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10812644, guid: d3488a91757f04449ba635106523412d, type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3488a91757f04449ba635106523412d, type: 2}
   m_RootGameObject: {fileID: 2011047418}
@@ -69625,6 +69637,14 @@ Prefab:
       propertyPath: torchSlider
       value: 
       objectReference: {fileID: 858608815}
+    - target: {fileID: 11496516, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: rateOfFire
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 10863026, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
+      propertyPath: m_Cookie
+      value: 
+      objectReference: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 738266dd4b0b4b14fa4396585fe2cfee, type: 2}
   m_RootGameObject: {fileID: 479743047}
@@ -92643,7 +92663,7 @@ Light:
     m_Bias: .0500000007
     m_Softness: 4
     m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
@@ -93783,6 +93803,10 @@ Prefab:
     - target: {fileID: 112642, guid: d3488a91757f04449ba635106523412d, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 10812644, guid: d3488a91757f04449ba635106523412d, type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3488a91757f04449ba635106523412d, type: 2}
