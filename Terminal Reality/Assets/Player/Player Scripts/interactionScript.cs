@@ -73,6 +73,7 @@ public class interactionScript : MonoBehaviour {
 
 				//After picking up ammo destroy the ammobox game object//
 				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+				interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
 				Destroy(interactingCollider.gameObject);
 				inRangeOfAmmo = false;
 			}
@@ -81,6 +82,11 @@ public class interactionScript : MonoBehaviour {
 			if (inRangeOfHealth)
 			{
 				this.GetComponent<playerHealthScript>().fullPlayerHealth();
+
+				//Destroy health box after picking it up//
+				interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
+				Destroy(interactingCollider.gameObject);
+				inRangeOfAmmo = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
@@ -110,7 +116,8 @@ public class interactionScript : MonoBehaviour {
 					}
 				}
 
-				//Destroy the pistol game object//
+				//Destroy the pistol game object//				
+				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
 				Destroy(interactingCollider.gameObject);
 				inRangeOfPistol = false;
 			}
@@ -144,6 +151,7 @@ public class interactionScript : MonoBehaviour {
 				}
 
 				//Destroy the machine gun game object//
+				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
 				Destroy(interactingCollider.gameObject);
 				inRangeOfMachineGun = false;
 			}
