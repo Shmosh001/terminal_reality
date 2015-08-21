@@ -121,6 +121,11 @@ public class weaponSwitchScript : ammoHUDScript {
 			//After switch, update ammo HUD
 			updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+
+			//check reload warnings
+			checkReloadWarning(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip(),
+			                   playerData.pistolGameObject.GetComponent<weaponDataScript>().clipSize,
+			                   playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
 		}
 
 		//If the machine gun is equipped...
@@ -132,6 +137,11 @@ public class weaponSwitchScript : ammoHUDScript {
 			//After switch, update ammo HUD
 			updateAmmoText(playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+
+			//check reload warnings
+			checkReloadWarning(playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip(),
+			                   playerData.machineGunGameObject.GetComponent<weaponDataScript>().clipSize,
+			                   playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
 		}
 	}
 }
