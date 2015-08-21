@@ -20,6 +20,8 @@ public class torchScript : MonoBehaviour {
 	void Start () {
 	
 		batteryLife = 100.0f;
+		torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
+		torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
 	
 	}
 	
