@@ -204,17 +204,17 @@ public class ShootingScript : ammoHUDScript {
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
 			//TEST SHOOTING ON SPHERE
-			if (hitObject.CompareTag("Sphere"))
+/*			if (hitObject.CompareTag("Sphere"))
 			{
 				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
 
 				hitObject.renderer.material.color = c;
-			}
+			}*/
 
 			//SHOOTING ENEMY//
-			if (hitObject.CompareTag("Enemy"))
+			if (hitObject.CompareTag(Tags.ENEMY))
 			{
-				//hitObject.GetComponent<EnemyHealthScript>().takeDamage(weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
+				hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 			}
 		}
 	}
