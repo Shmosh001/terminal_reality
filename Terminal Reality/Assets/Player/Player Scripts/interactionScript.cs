@@ -39,10 +39,11 @@ public class interactionScript : MonoBehaviour {
 				Vector3 hitPoint = hitInfo.point; //point where the collision happened
 				GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
+
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
-					DoorScript ds = hitObject.GetComponent<DoorScript>();
+					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 					ds.interaction();
 				}								
 				
