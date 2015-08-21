@@ -255,7 +255,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &819208
@@ -340,7 +340,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &2333127
@@ -462,11 +462,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -731,7 +735,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &10399009
@@ -874,7 +878,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &11085552
@@ -996,11 +1000,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -1967,7 +1975,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &35874828
@@ -2384,7 +2392,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &44381412
@@ -3903,6 +3911,10 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 149792, guid: a2e2354ed0755754ab2092ed5d8b2bcc, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2e2354ed0755754ab2092ed5d8b2bcc, type: 2}
   m_RootGameObject: {fileID: 1064833714}
@@ -4167,8 +4179,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &55741639
 BoxCollider:
@@ -4362,6 +4374,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5620,7 +5640,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &100229525
@@ -5705,8 +5725,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &102078166
 BoxCollider:
@@ -5993,8 +6013,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &105025797
 BoxCollider:
@@ -6229,8 +6249,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &110578870
 Transform:
@@ -7523,7 +7543,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &113244032
@@ -7944,8 +7964,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &132297884
 BoxCollider:
@@ -8164,7 +8184,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &137588538
@@ -8483,8 +8503,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &140951084
 BoxCollider:
@@ -8613,7 +8633,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -8634,8 +8658,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &144460131
 Transform:
@@ -8774,8 +8798,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &148955233
 Transform:
@@ -9113,7 +9137,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &160001514
@@ -9198,7 +9222,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &161016903
@@ -10163,7 +10187,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &188378358
@@ -10364,7 +10388,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &199608927
@@ -13150,7 +13174,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -13173,7 +13201,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &229092523
@@ -14395,7 +14423,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &249672492
@@ -14480,7 +14508,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &250624172
@@ -14565,7 +14593,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &251623168
@@ -14911,8 +14939,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &261546078
 BoxCollider:
@@ -15464,7 +15492,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -15593,6 +15625,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -15800,7 +15840,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &282953880
@@ -15885,7 +15925,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &283830578
@@ -16316,7 +16356,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &295386409
@@ -16401,7 +16441,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &295730889
@@ -16581,6 +16621,14 @@ Prefab:
     - target: {fileID: 405944, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
@@ -17708,7 +17756,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &322092014
@@ -17793,8 +17841,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &322172371
 BoxCollider:
@@ -19260,7 +19308,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &353926665
@@ -20634,7 +20682,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &361488342
@@ -21134,6 +21182,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 1041409948}
@@ -21192,7 +21248,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -21471,8 +21531,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &387301833
 Transform:
@@ -22713,7 +22773,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &412564642
@@ -23469,7 +23529,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &430269057
@@ -23614,7 +23674,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &433703367
@@ -23763,7 +23823,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &436078397
@@ -24251,7 +24311,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &451243060
@@ -25149,6 +25209,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 654016090}
@@ -25925,7 +25993,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &478714709
@@ -26799,7 +26867,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &490332147
@@ -27231,6 +27299,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 149792, guid: a2e2354ed0755754ab2092ed5d8b2bcc, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2e2354ed0755754ab2092ed5d8b2bcc, type: 2}
   m_RootGameObject: {fileID: 1906594853}
@@ -27250,8 +27322,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &506306003
 Transform:
@@ -27635,8 +27707,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &515325290
 Transform:
@@ -30014,7 +30086,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &554023824
@@ -30977,7 +31049,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &576519406
@@ -31110,7 +31182,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &579492309
@@ -31404,11 +31476,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -31635,7 +31711,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &585913542
@@ -32322,7 +32398,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -32422,7 +32502,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &596944880
@@ -32507,7 +32587,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &599961236
@@ -32854,8 +32934,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &604900919
 Transform:
@@ -34632,7 +34712,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -34963,8 +35047,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &624016690
 Transform:
@@ -35223,7 +35307,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &626519748
@@ -35600,8 +35684,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &631659438
 Transform:
@@ -36223,7 +36307,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &653022446
@@ -36714,7 +36798,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -37115,6 +37203,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 1328199776}
@@ -37233,11 +37329,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -38137,8 +38237,8 @@ GameObject:
   m_Name: Mesh0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &696933391
 Transform:
@@ -38282,6 +38382,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -40640,6 +40748,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 965313910}
@@ -40767,8 +40883,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &730276741
 BoxCollider:
@@ -41247,7 +41363,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &744633316
@@ -42020,7 +42136,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &762115682
@@ -42200,7 +42316,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -43534,6 +43654,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 1948511371}
@@ -44268,6 +44396,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 192874, guid: c3f17836f3f3a6b48bcc698a689d77cd, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 192872, guid: c3f17836f3f3a6b48bcc698a689d77cd, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 192874, guid: c3f17836f3f3a6b48bcc698a689d77cd, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 192872, guid: c3f17836f3f3a6b48bcc698a689d77cd, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3f17836f3f3a6b48bcc698a689d77cd, type: 2}
   m_RootGameObject: {fileID: 827031095}
@@ -44345,8 +44489,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &816455088
 Renderer:
@@ -44410,7 +44554,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &816885718
@@ -44647,7 +44791,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &818920158
@@ -44788,8 +44932,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &821828085
 Transform:
@@ -46215,7 +46359,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &833994606
@@ -46300,8 +46444,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &834817874
 BoxCollider:
@@ -46652,6 +46796,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 719506360}
@@ -46857,7 +47009,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &850064217
@@ -47362,8 +47514,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &857035405
 BoxCollider:
@@ -49298,7 +49450,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &927568226
@@ -49750,7 +49902,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &941208642
@@ -49932,11 +50084,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -50030,8 +50186,8 @@ GameObject:
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &948341379
 Transform:
@@ -50178,7 +50334,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &951700495
@@ -50307,7 +50463,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &952270702
@@ -50920,7 +51076,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &967271049
@@ -51002,7 +51158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .00300000003
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -51038,6 +51194,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -51125,7 +51289,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &975022217
@@ -51481,7 +51645,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &986711072
@@ -51784,7 +51948,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &991421291
@@ -53356,7 +53520,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1010515324
@@ -53983,8 +54147,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1032254535
 Transform:
@@ -54411,7 +54575,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1041235304
@@ -55574,7 +55738,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1070912049
@@ -56142,6 +56306,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 1227018687}
@@ -56596,6 +56768,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -57744,6 +57924,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 2057009257}
@@ -58208,7 +58396,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1133587279
@@ -59467,7 +59655,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -59546,8 +59738,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1157442078
 Renderer:
@@ -59610,8 +59802,8 @@ GameObject:
   m_Name: Snacks Vending Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1163117258
 Transform:
@@ -59874,7 +60066,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1167958604
@@ -60286,8 +60478,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1175204466
 BoxCollider:
@@ -60491,7 +60683,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1180032240
@@ -60598,6 +60790,14 @@ Prefab:
     - target: {fileID: 405944, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
@@ -60961,6 +61161,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -62048,8 +62256,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1227018688
 BoxCollider:
@@ -62478,8 +62686,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1233783202
 Transform:
@@ -62646,8 +62854,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &1236812386
 BoxCollider:
@@ -62896,8 +63104,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!23 &1239140692
 Renderer:
@@ -63121,7 +63329,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1245659160
@@ -63354,6 +63562,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
   m_RootGameObject: {fileID: 1089308962}
@@ -63463,7 +63679,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1252548292
@@ -63829,7 +64045,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1261189341
@@ -64487,6 +64703,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 261546077}
@@ -64508,8 +64732,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1279162355
 BoxCollider:
@@ -64731,6 +64955,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -65111,6 +65343,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 1489381112}
@@ -65223,6 +65463,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -65531,11 +65779,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -65630,8 +65882,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1303995915
 Transform:
@@ -65809,6 +66061,14 @@ Prefab:
     - target: {fileID: 401600, guid: a86a89fec5a5bb2428b9e3a821b87ad4, type: 2}
       propertyPath: m_RootOrder
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 101600, guid: a86a89fec5a5bb2428b9e3a821b87ad4, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 101600, guid: a86a89fec5a5bb2428b9e3a821b87ad4, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a86a89fec5a5bb2428b9e3a821b87ad4, type: 2}
@@ -65990,8 +66250,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1306362435
 Transform:
@@ -66055,7 +66315,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1308082766
@@ -66259,7 +66519,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1313520492
@@ -66402,7 +66662,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1316761382
@@ -66813,8 +67073,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1328700787
 Transform:
@@ -67222,8 +67482,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &1343754367
 BoxCollider:
@@ -67512,8 +67772,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1351790606
 BoxCollider:
@@ -67914,7 +68174,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -67935,8 +68199,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1358301749
 Renderer:
@@ -68299,6 +68563,14 @@ Prefab:
     - target: {fileID: 409190, guid: 4a72db9c7031fd046a825eef2f31e6c7, type: 2}
       propertyPath: m_RootOrder
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 109190, guid: 4a72db9c7031fd046a825eef2f31e6c7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 109190, guid: 4a72db9c7031fd046a825eef2f31e6c7, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a72db9c7031fd046a825eef2f31e6c7, type: 2}
@@ -68802,7 +69074,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1377530647
@@ -69670,8 +69942,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1400270618
 Transform:
@@ -71410,8 +71682,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1413372206
 Transform:
@@ -72078,7 +72350,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1422070757
@@ -72196,6 +72468,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -73424,7 +73704,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1443772620
@@ -73717,7 +73997,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1459287314
@@ -74170,7 +74450,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -74299,7 +74583,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1476778340
@@ -74808,7 +75092,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1487791875
@@ -74893,8 +75177,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1489381113
 BoxCollider:
@@ -75093,6 +75377,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -75462,6 +75754,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 1002833579}
@@ -75614,8 +75914,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1504840869
 Renderer:
@@ -76175,11 +76475,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -78145,7 +78449,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1544388027
@@ -78298,8 +78602,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1549341069
 Transform:
@@ -78510,11 +78814,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -79194,7 +79502,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1574942173
@@ -81011,7 +81319,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1595627690
@@ -81397,7 +81705,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1601416756
@@ -82771,6 +83079,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 1279162354}
@@ -83084,7 +83400,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1612327047
@@ -84572,7 +84888,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1622543126
@@ -85278,7 +85594,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1639607439
@@ -85760,8 +86076,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1650083164
 Transform:
@@ -87671,8 +87987,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1676070128
 Transform:
@@ -88460,7 +88776,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1698281791
@@ -88741,8 +89057,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!65 &1701296216
 BoxCollider:
@@ -90268,8 +90584,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1714059913
 Transform:
@@ -91041,7 +91357,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1737777149
@@ -91453,7 +91769,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1750956212
@@ -91538,7 +91854,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1753380808
@@ -92219,7 +92535,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -94100,7 +94420,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1791553361
@@ -94258,7 +94578,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1794728736
@@ -94629,6 +94949,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -95591,6 +95919,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 1351790605}
@@ -95713,7 +96049,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1824273897
@@ -96078,7 +96414,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1833373674
@@ -96163,7 +96499,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1838537195
@@ -96483,6 +96819,14 @@ Prefab:
     - target: {fileID: 405944, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
       propertyPath: m_RootOrder
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105946, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fb0903aff159fe40a88070039de614c, type: 2}
@@ -97211,7 +97555,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -97306,8 +97654,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1876710806
 Transform:
@@ -97600,7 +97948,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1878635815
@@ -97951,7 +98299,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -97974,7 +98326,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1891274619
@@ -98382,8 +98734,8 @@ GameObject:
   m_Name: Drinks Vending Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1899908159
 Transform:
@@ -98455,8 +98807,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1901733191
 Transform:
@@ -99187,8 +99539,8 @@ GameObject:
   m_Name: Mesh0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1907662176
 Renderer:
@@ -99289,8 +99641,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1912528743
 Transform:
@@ -99610,6 +99962,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
   m_RootGameObject: {fileID: 693226660}
@@ -99731,7 +100091,7 @@ Transform:
   m_PrefabInternal: {fileID: 969401884}
   m_GameObject: {fileID: 1924567113}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -.164000005, y: 0, z: -11.8149996}
+  m_LocalPosition: {x: -.164000005, y: .00300000003, z: -11.8149996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1650083164}
@@ -100027,7 +100387,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1934028890
@@ -101285,7 +101645,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1938357431
@@ -101368,8 +101728,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1940353893
 Transform:
@@ -101666,11 +102026,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -101770,8 +102134,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1947989493
 Transform:
@@ -102126,8 +102490,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1948511372
 BoxCollider:
@@ -103038,8 +103402,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1962353998
 Renderer:
@@ -104495,7 +104859,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1982974082
@@ -104762,8 +105126,8 @@ GameObject:
   m_Name: Mesh0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1988240642
 Renderer:
@@ -105085,8 +105449,8 @@ GameObject:
   m_Name: Mesh0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2003344892
 Transform:
@@ -105293,11 +105657,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 114938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
@@ -105534,6 +105902,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.22222233
       objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
   m_RootGameObject: {fileID: 132297883}
@@ -105632,6 +106008,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414938, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940, guid: dc67eff29748eae4a846552c2979a1f5, type: 2}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -105756,7 +106140,7 @@ GameObject:
   m_Name: Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &2020919518
@@ -107260,7 +107644,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &2032135008
@@ -107422,8 +107806,8 @@ GameObject:
   m_Name: Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &2033339203
 BoxCollider:
@@ -108909,8 +109293,8 @@ GameObject:
   m_Name: SMDImport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2054185570
 Transform:
@@ -109332,6 +109716,14 @@ Prefab:
     - target: {fileID: 462396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_LocalScale.z
       value: 2.22222233
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
@@ -111208,7 +111600,7 @@ GameObject:
   m_Name: Half Wall(Clone)(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &2089335984
@@ -112822,8 +113214,8 @@ GameObject:
   m_Name: Box002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2104040507
 Transform:
@@ -114215,7 +114607,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: 162396, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8feedda93214744b81b156b272e3c8, type: 2}
