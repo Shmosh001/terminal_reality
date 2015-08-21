@@ -27,7 +27,6 @@ public class DoorScript : MonoBehaviour {
 		//IF THE DOOR IS CLOSED//
 		else
 		{
-			Debug.Log("Open Door");
 			anim.SetTrigger("Open");
 			open = true;
 		}
@@ -46,7 +45,7 @@ public class DoorScript : MonoBehaviour {
 		}
 	}
 	
-	//WHEN SOMETHING LEAVES THE DOOR'S TRIGGER//
+	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//

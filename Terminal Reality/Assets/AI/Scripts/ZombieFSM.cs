@@ -306,7 +306,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 		//debugging
 		if (debug){
-			text.text = fsm.getCurrentState().ToString();
+//			text.text = fsm.getCurrentState().ToString();
 			//text2.text = getDistance(player.transform, transform).ToString();
 		}
 		/*else{
