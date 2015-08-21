@@ -51,13 +51,13 @@ public class playerHealthScript : MonoBehaviour {
 	public void fullPlayerHealth()
 	{
 		playerData.health = 100;
-		updateHealthHUD();
+		//updateHealthHUD();
 	}
 
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
 
-		UIBarScript.UpdateValue(playerData.health, 100);
+		//UIBarScript.UpdateValue(playerData.health, 100);
 	}
 }

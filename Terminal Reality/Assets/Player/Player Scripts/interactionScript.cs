@@ -69,8 +69,12 @@ public class interactionScript : MonoBehaviour {
 					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
-				
-				///interactingCollider.transform.parent.gameObject.SetActive(false);
+
+
+				//After picking up ammo destroy the ammobox game object//
+				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+				Destroy(interactingCollider.gameObject);
+				inRangeOfAmmo = false;
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
@@ -105,6 +109,10 @@ public class interactionScript : MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
+
+				//Destroy the pistol game object//
+				Destroy(interactingCollider.gameObject);
+				inRangeOfPistol = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
@@ -134,6 +142,10 @@ public class interactionScript : MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("MachineGun");
 					}
 				}
+
+				//Destroy the machine gun game object//
+				Destroy(interactingCollider.gameObject);
+				inRangeOfMachineGun = false;
 			}
 		}
 	
