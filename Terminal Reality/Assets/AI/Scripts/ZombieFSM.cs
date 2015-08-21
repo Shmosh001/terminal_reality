@@ -497,8 +497,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		else if(collider is BoxCollider){
 			//we set the awake boolean
 			animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
-			//boxCollider.enabled = false;
-			//TODO taken out
+			boxCollider.enabled = false;
 		}
 
 	}
