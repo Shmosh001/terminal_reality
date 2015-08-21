@@ -128,10 +128,6 @@ public class ShootingScript : ammoHUDScript {
 					flareLoopCount++;
 				}
 			}
-			
-			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-			               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 		}
 
 		//RELOAD//
@@ -179,7 +175,15 @@ public class ShootingScript : ammoHUDScript {
 				loadNewWeapon("MachineGun");			
 			}
 		}
-	
+
+		
+		if (weapon != null)
+		{
+			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+		    	           weapon.GetComponent<weaponDataScript>().getRemainingClip());
+		}
+
 	}
 	
 	//LOAD A NEW WEAPON INTO THE WEAPON GAMEOBJECT
