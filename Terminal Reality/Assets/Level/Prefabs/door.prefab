@@ -13,7 +13,7 @@ GameObject:
   - 65: {fileID: 6560034}
   m_Layer: 0
   m_Name: Plane.001
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -29,7 +29,8 @@ GameObject:
   - 33: {fileID: 3360034}
   - 23: {fileID: 2360034}
   - 95: {fileID: 9560034}
-  - 114: {fileID: 11460034}
+  - 114: {fileID: 11407976}
+  - 135: {fileID: 13507976}
   m_Layer: 0
   m_Name: door
   m_TagString: Door
@@ -55,8 +56,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160034}
-  m_LocalRotation: {x: -.5, y: .5, z: .5, w: .5}
-  m_LocalPosition: {x: 74.9319992, y: 0, z: 36.2509842}
+  m_LocalRotation: {x: -.5, y: -.5, z: -.5, w: .5}
+  m_LocalPosition: {x: 89.1149979, y: 0, z: 15.7600002}
   m_LocalScale: {x: 255, y: 100, z: 187}
   m_Children:
   - {fileID: 460032}
@@ -95,7 +96,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 67d943f09d0ec7048b34e93cbd351c82, type: 2}
+  - {fileID: 2100000, guid: 59a8fb386dfab0748b0e911bbf3c9473, type: 2}
   - {fileID: 2100000, guid: 67d943f09d0ec7048b34e93cbd351c82, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -145,7 +146,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11460034
+--- !u!114 &11407976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -153,9 +154,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 160034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843e394597fce05428fa5e8106584bc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4279922a590cd0c4ea4ca9632e626d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: 0
+--- !u!135 &13507976
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .00499999989
+  m_Center: {x: 4.65661287e-10, y: -9.51123002e-05, z: .0102999993}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
