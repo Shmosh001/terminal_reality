@@ -79600,6 +79600,14 @@ Prefab:
       propertyPath: sparkSound
       value: 
       objectReference: {fileID: 8300000, guid: de5a48d6fbd0ef949a20b3c92725c0b1, type: 3}
+    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
+      propertyPath: maleScreamingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c0d079aafeedde40b1dc7d7b6a28871, type: 3}
+    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
+      propertyPath: femaleScreamingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2143425ce26967e4daff5d9fe3ed6075, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
   m_RootGameObject: {fileID: 1567492243}
@@ -87775,8 +87783,9 @@ MonoBehaviour:
   ammoAndWeaponPickupSound: {fileID: 8300000, guid: 488641ccc2df5944194eccf34a3778ad,
     type: 3}
   torchButtonSound: {fileID: 8300000, guid: af2309e28107d5a4eb2e03229ffdeceb, type: 3}
-  maleScreamingSound: {fileID: 0}
-  femaleScreamingSound: {fileID: 0}
+  maleScreamingSound: {fileID: 8300000, guid: 2c0d079aafeedde40b1dc7d7b6a28871, type: 3}
+  femaleScreamingSound: {fileID: 8300000, guid: 2143425ce26967e4daff5d9fe3ed6075,
+    type: 3}
   sparkSound: {fileID: 8300000, guid: de5a48d6fbd0ef949a20b3c92725c0b1, type: 3}
 --- !u!4 &1567492245
 Transform:

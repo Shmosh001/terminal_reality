@@ -439,8 +439,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//change animation
 		//inflict damage on player
 		playerHealthScript targetH = target.GetComponent<playerHealthScript>();
-		if (targetH != null){
-			//targetH.reducePlayerHealth(damage);
+		if (targetH != null){//TODO add in a timer here otherwise we damage 60/s
+			targetH.reducePlayerHealth(damage);
 			//targetH.takeDamage(damage);
 		}
 		float distance = getDistanceT(transform, target.transform);
