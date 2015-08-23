@@ -210,6 +210,7 @@ public class ShootingScript : ammoHUDScript {
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
+<<<<<<< HEAD
 //			//TEST SHOOTING ON SPHERE
 //			if (hitObject.CompareTag("Sphere"))
 //			{
@@ -217,11 +218,21 @@ public class ShootingScript : ammoHUDScript {
 //
 //				hitObject.renderer.material.color = c;
 //			}
+=======
+			//TEST SHOOTING ON SPHERE
+/*			if (hitObject.CompareTag("Sphere"))
+			{
+				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
+
+				hitObject.renderer.material.color = c;
+			}*/
+>>>>>>> origin/Prototype_AI
 
 			//SHOOTING ENEMY//
-			if (hitObject.CompareTag("Enemy"))
+			if (hitObject.CompareTag(Tags.ENEMY))
 			{
-				//hitObject.GetComponent<EnemyHealthScript>().takeDamage(weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
+				Debug.Log("Enemy shot");
+				hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 			}
 		}
 	}

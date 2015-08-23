@@ -21,13 +21,13 @@ public class DoorScript : MonoBehaviour {
 		//IF THE DOOR IS OPEN//
 		if (open)
 		{
-			anim.SetBool("open", false);
+			anim.SetTrigger("Close");
 			open = false;
 		}
 		//IF THE DOOR IS CLOSED//
 		else
 		{
-			anim.SetBool("open", true);
+			anim.SetTrigger("Open");
 			open = true;
 		}
 	}
