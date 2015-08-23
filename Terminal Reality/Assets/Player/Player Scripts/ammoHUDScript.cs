@@ -9,8 +9,8 @@ public class ammoHUDScript : MonoBehaviour {
 	
 	void Awake()
 	{
-		ammoText = GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>() as Text;
-		reloadText = (Text)GameObject.FindGameObjectWithTag("reloadText").GetComponent<Text>() as Text;
+		ammoText = (Text)GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>();
+		reloadText = (Text)GameObject.FindGameObjectWithTag("reloadText").GetComponent<Text>();
 	}
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
