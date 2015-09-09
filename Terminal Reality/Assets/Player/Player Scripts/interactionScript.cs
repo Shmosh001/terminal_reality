@@ -71,23 +71,31 @@ public class interactionScript : MonoBehaviour {
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
 
-
-				//After picking up ammo destroy the ammobox game object//
-				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-				interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
-				inRangeOfAmmo = false;
+				//Only destroy the ammobox if ammo was picked up
+				// - i.e. player has a machine gun and/or pistol
+				if (playerData.pistolPickedUp || playerData.machineGunPickedUp)
+				{
+					//After picking up ammo destroy the ammobox game object//
+					//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+					interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
+					Destroy(interactingCollider.gameObject);
+					inRangeOfAmmo = false;
+				}
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
 			if (inRangeOfHealth)
 			{
-				this.GetComponent<playerHealthScript>().fullPlayerHealth();
+				//Only full player's health and destroy the health box if player's health is not full
+				if (playerData.health < 100)
+				{
+					this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
-				//Destroy health box after picking it up//
-				interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
-				inRangeOfAmmo = false;
+					//Destroy health box after picking it up//
+					interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
+					Destroy(interactingCollider.gameObject);
+					inRangeOfAmmo = false;
+				}
 			}
 
 			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
