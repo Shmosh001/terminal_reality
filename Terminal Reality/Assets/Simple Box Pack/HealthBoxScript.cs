@@ -24,8 +24,11 @@ public class HealthBoxScript : MonoBehaviour {
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == "Player")
 		{
-			
-			pushE.enabled = true;
+			// only show if the player does not have full health
+			if (other.GetComponent<playerDataScript>().health < 100)
+			{
+				pushE.enabled = true;
+			}
 			
 		}
 	}

@@ -10,7 +10,7 @@ public class AmmoBoxScript : MonoBehaviour {
 	public int machineGunAmmo;
 	
 	private Text pushE;
-	private bool playerInRange;
+	//private bool playerInRange;
 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +30,11 @@ public class AmmoBoxScript : MonoBehaviour {
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == "Player")
 		{
-			playerInRange = true;
-			pushE.enabled = true;
-			
+			// only show if player has a gun picked up
+			if (other.GetComponent<playerDataScript>().pistolPickedUp || other.GetComponent<playerDataScript>().machineGunPickedUp)
+			{
+				pushE.enabled = true;
+			}
 		}
 	}
 	
@@ -42,7 +44,6 @@ public class AmmoBoxScript : MonoBehaviour {
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
 		if (other.tag == "Player")
 		{
-			playerInRange = false;
 			pushE.enabled = false;
 		}
 	}
