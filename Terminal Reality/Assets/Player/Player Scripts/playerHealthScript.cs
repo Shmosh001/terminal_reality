@@ -64,6 +64,8 @@ public class playerHealthScript : MonoBehaviour {
 		if ((playerData.health - damage) > 0)
 		{
 			playerData.health -= damage;
+			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
+			heartBeatPlaying = false;
 			updateHealthHUD();
 		}
 		//if the damage kills the player//
