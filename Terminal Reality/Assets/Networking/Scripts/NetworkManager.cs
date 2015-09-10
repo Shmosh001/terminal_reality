@@ -60,6 +60,7 @@ public class NetworkManager : MonoBehaviour {
 	void enableComponents(GameObject localPlayer){
 		Debug.Log("enableComponents");
 		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
+		localPlayer.GetComponent<CharacterController>().enabled = true;
 		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//enable camera again
 
 

@@ -13,7 +13,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		animator = gameObject.GetComponent<Animator>();
+		//animator = gameObject.GetComponent<Animator>();
 		//TODO should be fine
 		//PhotonNetwork.sendRate = 20;
 		//PhotonNetwork.sendRateOnSerialize = 10;
@@ -32,6 +32,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
 		if (stream.isWriting){
 			//need to send position, meaning our player
+			//Debug.Log("own pos: " + transform.position + " at " + PhotonNetwork.time);
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 			//aniamtion sync
@@ -40,7 +41,10 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 		}
 		else{
 			//receiving other players things
+
 			foreignPosition = (Vector3)stream.ReceiveNext();
+			//Debug.Log("received pos: " + foreignPosition + " at " + PhotonNetwork.time);
+
 			foreignRotation = (Quaternion)stream.ReceiveNext();
 			//receives speed vra for animation
 			//animator.SetFloat("Speed",(float)stream.ReceiveNext());
