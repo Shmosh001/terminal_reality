@@ -7,6 +7,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject mainCam;
 	private ObjectSpawner spawn;
 	public GameObject hud;
+	public GameObject temp;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,7 @@ public class NetworkManager : MonoBehaviour {
 	void ConnectToNetwork(bool offline){
 		PhotonNetwork.ConnectUsingSettings("v1.0");
 		//PhotonNetwork.offlineMode = true;  we use this for single player
+		Debug.Log("ConnectToNetwork");
 	}
 
 	void OnGUI(){
@@ -44,10 +46,10 @@ public class NetworkManager : MonoBehaviour {
 		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
 
 
-		Transform location = spawn.getSpawnLocation(ObjectSpawner.SpawnTypes.player);
-
+//		Transform location = spawn.getSpawnLocation(ObjectSpawner.SpawnTypes.player);
+		Transform location = temp.transform;
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
-		GameObject localPlayer = PhotonNetwork.Instantiate("ProperPlayer", location.position, location.rotation, 0);
+		GameObject localPlayer = PhotonNetwork.Instantiate("NEWPLAYER", location.position, location.rotation, 0);
 		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
 		enableComponents(localPlayer);
 
@@ -56,6 +58,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void enableComponents(GameObject localPlayer){
+		Debug.Log("enableComponents");
 		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
 		//localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
 		//localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
