@@ -46,6 +46,12 @@ public class AmmoBoxScript : MonoBehaviour {
 			pushE.enabled = false;
 		}
 	}
+
+	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
+	public void turnOffText()
+	{
+		pushE.enabled = false;
+	}
 	
 	
 }

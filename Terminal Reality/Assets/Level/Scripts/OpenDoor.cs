@@ -15,10 +15,10 @@ public class OpenDoor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Alpha1)){
+		if (Input.GetKeyDown(KeyCode.Alpha3)){
 			openDoor ();
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha2)){
+		if (Input.GetKeyDown(KeyCode.Alpha4)){
 			closeDoor ();
 		}
 	}

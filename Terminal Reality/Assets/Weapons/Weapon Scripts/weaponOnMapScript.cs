@@ -20,6 +20,7 @@ public class weaponOnMapScript : MonoBehaviour {
 		if (other.tag == "Player")
 		{
 			pushE.enabled = true;
+
 		}
 	}
 
@@ -31,5 +32,11 @@ public class weaponOnMapScript : MonoBehaviour {
 		{
 			pushE.enabled = false;
 		}
+	}
+
+	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
+	public void turnOffText()
+	{
+		pushE.enabled = false;
 	}
 }

@@ -27,6 +27,7 @@ public class playerHealthScript : MonoBehaviour {
 		//i.e. damage does not make player health <= 0
 		if ((playerData.health - damage) > 0)
 		{
+			print ("Health: " + playerData.health);
 			playerData.health -= damage;
 			updateHealthHUD();
 		}
@@ -34,6 +35,7 @@ public class playerHealthScript : MonoBehaviour {
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
+			updateHealthHUD();
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 
@@ -57,7 +59,6 @@ public class playerHealthScript : MonoBehaviour {
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
-
 		UIBarScript.UpdateValue(playerData.health, 100);
 	}
 }

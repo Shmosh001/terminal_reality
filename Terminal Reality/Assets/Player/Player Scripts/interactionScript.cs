@@ -39,10 +39,11 @@ public class interactionScript : MonoBehaviour {
 				Vector3 hitPoint = hitInfo.point; //point where the collision happened
 				GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
+
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
-					DoorScript ds = hitObject.GetComponent<DoorScript>();
+					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 					ds.interaction();
 				}								
 				
@@ -69,12 +70,24 @@ public class interactionScript : MonoBehaviour {
 					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
+
+
+				//After picking up ammo destroy the ammobox game object//
+				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+				interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
+				Destroy(interactingCollider.gameObject);
+				inRangeOfAmmo = false;
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
 			if (inRangeOfHealth)
 			{
 				this.GetComponent<playerHealthScript>().fullPlayerHealth();
+
+				//Destroy health box after picking it up//
+				interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
+				Destroy(interactingCollider.gameObject);
+				inRangeOfAmmo = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
@@ -103,6 +116,11 @@ public class interactionScript : MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
+
+				//Destroy the pistol game object//				
+				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
+				Destroy(interactingCollider.gameObject);
+				inRangeOfPistol = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
@@ -132,6 +150,11 @@ public class interactionScript : MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("MachineGun");
 					}
 				}
+
+				//Destroy the machine gun game object//
+				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
+				Destroy(interactingCollider.gameObject);
+				inRangeOfMachineGun = false;
 			}
 		}
 	

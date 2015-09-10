@@ -20,6 +20,8 @@ public class torchScript : MonoBehaviour {
 	void Start () {
 	
 		batteryLife = 100.0f;
+		torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
+		torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
 	
 	}
 	
@@ -49,9 +51,7 @@ public class torchScript : MonoBehaviour {
 		{
 			torchOn = false;
 		}
-		//TODO change back
-		//print ("Battery life: " + (int)batteryLife);
-		//TODO change back
+
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		//updateTorchActivity();
 		//updateTorchHUD();

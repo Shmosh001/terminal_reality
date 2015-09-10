@@ -175,7 +175,15 @@ public class ShootingScript : ammoHUDScript {
 				loadNewWeapon("MachineGun");			
 			}
 		}
-	
+
+		
+		if (weapon != null)
+		{
+			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
+			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+		    	           weapon.GetComponent<weaponDataScript>().getRemainingClip());
+		}
+
 	}
 	
 	//LOAD A NEW WEAPON INTO THE WEAPON GAMEOBJECT
@@ -202,18 +210,20 @@ public class ShootingScript : ammoHUDScript {
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
+
 			//TEST SHOOTING ON SPHERE
-			if (hitObject.CompareTag("Sphere"))
+/*			if (hitObject.CompareTag("Sphere"))
 			{
 				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
 
 				hitObject.renderer.material.color = c;
-			}
+			}*/
 
 			//SHOOTING ENEMY//
-			if (hitObject.CompareTag("Enemy"))
+			if (hitObject.CompareTag(Tags.ENEMY))
 			{
-				//hitObject.GetComponent<EnemyHealthScript>().takeDamage(weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
+				Debug.Log("Enemy shot");
+				hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 			}
 		}
 	}

@@ -16,12 +16,6 @@ public class weaponDataScript : ammoHUDScript
 	private int ammoInClip;
 	private bool equipped;
 
-//	//AUDIO VARIABLES//
-//	public AudioClip shotSound;
-//	public AudioClip reloadSound;
-//	public AudioClip outOfAmmoSound;
-//	public AudioSource soundSource;
-
 	void Awake()
 	{
 		ammoInClip = clipSize;
@@ -103,32 +97,9 @@ public class weaponDataScript : ammoHUDScript
 		if (pickupAmount < (maxAmmo - ammo))
 		{
 			ammo += pickupAmount;
-		}
-
-		//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-		updateAmmoText(ammo, ammoInClip);
+		}		
 	}
 
-//	/*
-//	 * METHODS FOR PLAYING GUN RELATED SOUNDS
-//	 */
-//	 //PLAY EMPTY CLIP SOUND//
-//	public void playEmptyClip()
-//	{
-//		soundSource.PlayOneShot(outOfAmmoSound);
-//	}
-//
-//	//PLAY SHOOTING SOUND//
-//	public void playShot()
-//	{
-//		soundSource.PlayOneShot(shotSound);
-//	}
-//
-//	//PLAY RELOAD SOUND//
-//	public void playReload()
-//	{
-//		soundSource.PlayOneShot(reloadSound);
-//	}
 
 	//METHOD TO ENABLE AND DISABLE GUN FLARE//
 	public void gunFlare(bool state)
