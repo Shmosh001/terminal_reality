@@ -11,6 +11,7 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip outOfAmmoSound;
 	public AudioClip ammoAndWeaponPickupSound;
 	public AudioClip torchButtonSound;
+	public AudioClip lowHealthHeartBeat;
 
 
 	//PUBLIC ZOMBIE SOUND VARIABLES//
@@ -25,7 +26,14 @@ public class soundControllerScript : MonoBehaviour {
 	void Start () {
 
 	}
-	
+
+	//PLAY LOW HEALTH HEART BEAT//
+	public void playLowHealthHeartBeat(AudioSource soundSource)
+	{
+		//play sound
+		soundSource.PlayOneShot(lowHealthHeartBeat);
+	}
+
 	//PLAY EMPTY CLIP SOUND//
 	public void playEmptyClip(AudioSource soundSource)
 	{

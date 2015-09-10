@@ -6,11 +6,14 @@ public class playerHealthScript : MonoBehaviour {
 
 	playerDataScript playerData;
 	public UIBarScript UIBarScript;
+	private bool heartBeatPlaying = false;
+	private GameObject soundController;
 
 	// Use this for initialization
 	void Start () {
 	
 		playerData = this.GetComponent<playerDataScript>();
+		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		updateHealthHUD();
 
 	}
@@ -36,6 +39,19 @@ public class playerHealthScript : MonoBehaviour {
 				playerData.health += 5;
 				updateHealthHUD();
 			}
+		}
+		/////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+
+		if (!heartBeatPlaying && playerData.health < 50)
+		{
+			soundController.GetComponent<soundControllerScript>().playLowHealthHeartBeat(this.GetComponent<AudioSource>()); //play heart beat
+			heartBeatPlaying = true;
+		}
+		if (heartBeatPlaying && playerData.health >= 50)
+		{
+			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
+			heartBeatPlaying = false;
 		}
 	
 	}
