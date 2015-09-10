@@ -17,6 +17,26 @@ public class playerHealthScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//////////////
+		//TEMP CODE//
+		/////////////
+		if (Input.GetKeyDown(KeyCode.KeypadMinus)) // decrease health //
+		{
+			if (playerData.health >= 5)
+			{
+				playerData.health -= 5;			
+				updateHealthHUD();
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.KeypadPlus)) // increase health //
+		{
+			if (playerData.health <= 95)
+			{
+				playerData.health += 5;
+				updateHealthHUD();
+			}
+		}
 	
 	}
 
@@ -27,7 +47,6 @@ public class playerHealthScript : MonoBehaviour {
 		//i.e. damage does not make player health <= 0
 		if ((playerData.health - damage) > 0)
 		{
-			print ("Health: " + playerData.health);
 			playerData.health -= damage;
 			updateHealthHUD();
 		}
