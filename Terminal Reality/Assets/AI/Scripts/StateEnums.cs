@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// this class holds all the enums for the AI
+/// </summary>
 public class StateEnums : MonoBehaviour {
-
-
-
 
 
 	public enum ZombieStates{
@@ -19,9 +19,6 @@ public class StateEnums : MonoBehaviour {
 		Dead,
 		Shot
 	};
-
-	//list all states and have a switch statement with behaviour
-
 
 	public enum HumanStates{
 		Running, 
