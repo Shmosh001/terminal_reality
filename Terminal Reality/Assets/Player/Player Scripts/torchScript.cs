@@ -20,8 +20,10 @@ public class torchScript : MonoBehaviour {
 	void Start () {
 	
 		batteryLife = 100.0f;
-		torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
-		torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
+		//torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
+		//torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
+		//TODO uncommented
+
 	
 	}
 	
@@ -62,7 +64,8 @@ public class torchScript : MonoBehaviour {
 	//AND THEN TURN THE LIGHT ON OR OFF.
 	private void updateTorchActivity()
 	{
-
+		//TODO uncommented
+		/*
 		if (torchOn)
 		{
 			torch.enabled = true;
@@ -72,12 +75,22 @@ public class torchScript : MonoBehaviour {
 		{
 			torch.enabled = false;
 			torchHUD.sprite = torchOffImage;
-		}
+		}*/
 	}
 
 	//UPDATE THE TORCH DISPLAYED ON THE HUD//
 	private void updateTorchHUD()
 	{		
-		torchSlider.value = batteryLife;
+		//TODO uncommented
+		//torchSlider.value = batteryLife;
+	}
+
+	public void receiveNetworkData(PhotonStream stream, PhotonMessageInfo info){
+		torchOn = (bool)stream.ReceiveNext();
+	}
+	
+	
+	public void sendNetworkData(PhotonStream stream, PhotonMessageInfo info){
+		stream.SendNext(torchOn);
 	}
 }

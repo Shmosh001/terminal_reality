@@ -40,6 +40,7 @@ public class NetworkManager : MonoBehaviour {
 		SpawnPlayer();
 	}
 
+	//spawns a player into the game world using photons instantiate
 	void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
 		mainCam.SetActive(false);
@@ -57,6 +58,7 @@ public class NetworkManager : MonoBehaviour {
 
 	}
 
+	//enables all components which have sensitive information local to a player
 	void enableComponents(GameObject localPlayer){
 		Debug.Log("enableComponents");
 		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
@@ -65,12 +67,14 @@ public class NetworkManager : MonoBehaviour {
 
 
 
-		//localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
-		//localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
-		//localPlayer.GetComponent<playerDataScript>().enabled = true;//enable the data script
-		//localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
-		//localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
-		//hud.SetActive(true);
+		localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
+		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
+		localPlayer.GetComponent<playerDataScript>().enabled = true;//enable the data script
+		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
+		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
+		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
+		localPlayer.GetComponent<NetworkCharacter>().enabled = true;
+		hud.SetActive(true);//enable the HUD
 
 
 	}
