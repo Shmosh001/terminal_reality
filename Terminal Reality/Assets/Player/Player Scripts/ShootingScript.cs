@@ -34,7 +34,7 @@ public class ShootingScript : ammoHUDScript {
 		
 			if (Input.GetMouseButtonDown(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0)
 					{
@@ -79,7 +79,7 @@ public class ShootingScript : ammoHUDScript {
 			
 			if (Input.GetMouseButton(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0) //can shoot
 					{
@@ -209,15 +209,6 @@ public class ShootingScript : ammoHUDScript {
 		{
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
-
-
-			//TEST SHOOTING ON SPHERE
-/*			if (hitObject.CompareTag("Sphere"))
-			{
-				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
-
-				hitObject.renderer.material.color = c;
-			}*/
 
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY))
