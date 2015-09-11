@@ -6,6 +6,7 @@ public class playerDataScript : MonoBehaviour {
 
 	//PLAYER HEALTH//
 	public int health = 100;
+	public bool playerAlive = true;
 
 	//PUBLIC MOVEMENT VARIABLES//
 	public float movementSpeed = 6.5f;

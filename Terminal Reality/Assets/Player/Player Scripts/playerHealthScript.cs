@@ -72,8 +72,9 @@ public class playerHealthScript : MonoBehaviour {
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
+			playerData.playerAlive = false; //boolean to send over network
 			updateHealthHUD();
-			print ("PLAYER IS DEAD!!!"); //temp print out
+			print ("PLAYER IS DEAD!!!"); //temp --> print out
 		}
 
 	}
