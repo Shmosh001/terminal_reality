@@ -19,7 +19,6 @@ public class weaponDataScript : ammoHUDScript
 	void Awake()
 	{
 		ammoInClip = clipSize;
-		//soundSource = this.GetComponent<AudioSource>();
 	}
 
 	//GET REMAINING AMMO//
