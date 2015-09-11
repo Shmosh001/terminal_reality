@@ -35,4 +35,18 @@ public class playerDataScript : MonoBehaviour {
 		torch = GameObject.FindGameObjectWithTag("torch").light;
 	}
 
+	/*
+	public void receiveNetworkData (PhotonStream stream, PhotonMessageInfo info)
+	{
+		pistolEquipped = (bool)stream.ReceiveNext();
+		machineGunEquipped = (bool)stream.ReceiveNext();
+	}
+
+	public void sendNetworkData (PhotonStream stream, PhotonMessageInfo info)
+	{
+		stream.SendNext(pistolEquipped);
+		stream.SendNext(machineGunEquipped);
+	}
+	*/
+
 }
