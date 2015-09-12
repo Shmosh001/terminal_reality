@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class interactionScript : MonoBehaviour {
+public class interactionScript : Photon.MonoBehaviour {
 
 	private playerDataScript playerData;
 
@@ -75,7 +75,16 @@ public class interactionScript : MonoBehaviour {
 				//After picking up ammo destroy the ammobox game object//
 				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
 				interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
+                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
+
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                if (pView == null) {
+                    Debug.LogError("No PhotonView component found");
+                }
+                else {
+                    pView.RPC("destroyObject", PhotonTargets.All);
+                }
+                
 				inRangeOfAmmo = false;
 			}
 			
