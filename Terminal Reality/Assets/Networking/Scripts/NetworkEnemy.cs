@@ -20,7 +20,7 @@ public class NetworkEnemy : Photon.MonoBehaviour {
 	private Animator animator;
 
     //other scripts that have data that needs to be synced
-
+    private ZombieFSM script;
 
     //used to first set the script vars before syncing
 	private bool init = false;

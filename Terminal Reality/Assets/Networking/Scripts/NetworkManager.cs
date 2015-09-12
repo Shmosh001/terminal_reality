@@ -75,7 +75,7 @@ public class NetworkManager : MonoBehaviour {
 		SpawnPlayer();
         if (PhotonNetwork.isMasterClient) {
             //PhotonNetwork.InstantiateSceneObject()
-            PhotonNetwork.Instantiate("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0);
+            //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, new object[0]);
 
         }
         
