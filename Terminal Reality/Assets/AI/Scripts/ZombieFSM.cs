@@ -631,5 +631,22 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			fsm.enterState(StateEnums.ZombieStates.Shot);
 		}
 	}
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.isWriting) {
+            //Debug.Log("writing");
+            stream.SendNext(fsm.getCurrentState());
+        }
+        else {
+            //Debug.Log("receiving");
+            StateEnums.ZombieStates state = (StateEnums.ZombieStates)stream.ReceiveNext();
+            if (fsm.getCurrentState() != state) {
+                fsm.enterState(state);
+            }
+        }
+    }
+
+
 }
 

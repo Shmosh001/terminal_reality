@@ -60,12 +60,15 @@ public class AmmoBoxScript : MonoBehaviour {
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()
 	{
-		pushE.enabled = false;
+        if (pushE != null) {
+            pushE.enabled = false;
+        }
 	}
 	
 
     [PunRPC]
     public void destroyObject() {
+        turnOffText();
         Destroy(gameObject);
     }
 	

@@ -102,12 +102,14 @@ public class weaponSwitchScript : ammoHUDScript {
 	//MAKE THE WEAPON SWITCHED TO VISIBLE//
 	public void enableWeapon()
 	{
-		/*
+		
 		//If no weapon is equipped...
 		if (currentWeapon() == "nothing")
 		{
-			playerData.machineGunGameObject.gameObject.SetActive(false);
-			playerData.pistolGameObject.gameObject.SetActive(false);
+           
+            playerData.machineGunGameObject.gameObject.SetActive(false);
+            
+            playerData.pistolGameObject.gameObject.SetActive(false);
 			
 			//After switch, update ammo HUD
 			updateAmmoText(0,0);			
@@ -144,6 +146,6 @@ public class weaponSwitchScript : ammoHUDScript {
 			                   playerData.machineGunGameObject.GetComponent<weaponDataScript>().clipSize,
 			                   playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
 		}
-		*/
+		
 	}
 }

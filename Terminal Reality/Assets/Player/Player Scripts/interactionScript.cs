@@ -53,11 +53,11 @@ public class interactionScript : Photon.MonoBehaviour {
                             Debug.LogError("No PhotonView component found on " + hitObject);
                         }
                         else {
-                            pView.RPC("interaction", PhotonTargets.All);
+                            pView.RPC("interaction", PhotonTargets.AllBuffered);
                         }
                     }
                     else {
-                        pView.RPC("interaction", PhotonTargets.All);
+                        pView.RPC("interaction", PhotonTargets.AllBuffered);
                     }
                     
 				}								
@@ -89,7 +89,7 @@ public class interactionScript : Photon.MonoBehaviour {
 
 				//After picking up ammo destroy the ammobox game object//
 				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-				interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
+				//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
                 //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
 
                 PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
@@ -97,7 +97,7 @@ public class interactionScript : Photon.MonoBehaviour {
                     Debug.LogError("No PhotonView component found");
                 }
                 else {
-                    pView.RPC("destroyObject", PhotonTargets.All);
+                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
                 }
                 
 				inRangeOfAmmo = false;
@@ -142,9 +142,19 @@ public class interactionScript : Photon.MonoBehaviour {
 				}
 
 				//Destroy the pistol game object//				
-				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
-				inRangeOfPistol = false;
+				//interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
+				//Destroy(interactingCollider.gameObject);
+
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                if (pView == null) {
+                    Debug.LogError("No PhotonView component found");
+                }
+                else {
+                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                }
+
+
+                inRangeOfPistol = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP

@@ -106,10 +106,32 @@ public class NetworkManager : MonoBehaviour {
     void enableComponents(GameObject localPlayer){
 		Debug.Log("enableComponents");
 		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
-		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//enable camera again
+
+        //rewrite
+        GameObject mainCam = localPlayer.transform.FindChild("Main Camera").gameObject;
+        mainCam.SetActive(true);//enable camera again
+
+
+        //rewrite
+        playerDataScript pData = localPlayer.GetComponent<playerDataScript>();
+        pData.enabled = true;//enable the data script
+
+        //assign pistol
+        pData.pistolGameObject = mainCam.transform.FindChild("Pistol05").gameObject;
+
+        //assign machine gun 
+        pData.machineGunGameObject = mainCam.transform.FindChild("UMP-45").gameObject;
+        
+        //check jtbs
+        if (pData.pistolGameObject == null || pData.machineGunGameObject == null) {
+            Debug.LogWarning("Gun objects have not been assigned successfully");
+        }
+
+
+
+
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
-		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
-		localPlayer.GetComponent<playerDataScript>().enabled = true;//enable the data script
+		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script	
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script

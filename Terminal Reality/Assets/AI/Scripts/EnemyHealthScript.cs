@@ -47,7 +47,8 @@ public class EnemyHealthScript : MonoBehaviour {
     /// <param name="value">
     /// amount of health
     /// </param>
-	public void gainHealth(int value){
+    [PunRPC]
+    public void gainHealth(int value){
 		health += value;
 		if (health > 100){
 			health = 100;
@@ -63,6 +64,7 @@ public class EnemyHealthScript : MonoBehaviour {
     /// <param name="entity">
     /// entity
     /// </param>
+    [PunRPC]
 	public void takeDamage(int value, GameObject entity){
         //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
         if (health > 0){
