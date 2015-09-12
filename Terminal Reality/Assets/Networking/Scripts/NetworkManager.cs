@@ -14,6 +14,7 @@ public class NetworkManager : MonoBehaviour {
     public GameObject hud;
     //temp spawning location
     public GameObject temp;
+    public GameObject zombieSpawn;
     //main stand by camera 
     public GameObject mainCam;
 
@@ -62,7 +63,8 @@ public class NetworkManager : MonoBehaviour {
 	void OnPhotonRandomJoinFailed(){
 		Debug.Log("OnPhotonRandomJoinFailed");
 		PhotonNetwork.CreateRoom(null);
-	}
+        PhotonNetwork.Instantiate("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0);
+    }
 
     /// <summary>
     /// when we have joined a room
