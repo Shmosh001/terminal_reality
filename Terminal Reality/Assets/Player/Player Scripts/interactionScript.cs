@@ -43,8 +43,23 @@ public class interactionScript : Photon.MonoBehaviour {
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
-					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-					ds.interaction();
+					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+
+                    PhotonView pView = hitObject.GetComponent<PhotonView>();
+                    
+                    if (pView == null) {
+                        pView = hitObject.GetComponentInParent<PhotonView>();
+                        if (pView == null) {
+                            Debug.LogError("No PhotonView component found on " + hitObject);
+                        }
+                        else {
+                            pView.RPC("interaction", PhotonTargets.All);
+                        }
+                    }
+                    else {
+                        pView.RPC("interaction", PhotonTargets.All);
+                    }
+                    
 				}								
 				
 			}
