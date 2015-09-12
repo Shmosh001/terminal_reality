@@ -28,12 +28,14 @@ public class NetworkManager : MonoBehaviour {
     /// <summary>
     /// connects us to a network
     /// </summary>
-    /// <param name="offline"></param>
+    /// <param name="offline">
+    /// true/false
+    /// </param>
 	void ConnectToNetwork(bool offline){
 		PhotonNetwork.ConnectUsingSettings("v1.0");
-		if (offline) {
+		/*if (offline) {
             PhotonNetwork.offlineMode = true; //we use this for single player
-        }
+        }*/
 		Debug.Log("ConnectToNetwork");
 	}
 
@@ -77,10 +79,10 @@ public class NetworkManager : MonoBehaviour {
     void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
 		mainCam.SetActive(false);
-		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for seperating things
+		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for separating things
 
 		Transform location = temp.transform;
-		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for seperating things
+		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
 		GameObject localPlayer = PhotonNetwork.Instantiate("NEWPLAYER", location.position, location.rotation, 0);
 		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
 		enableComponents(localPlayer);
@@ -96,7 +98,6 @@ public class NetworkManager : MonoBehaviour {
     void enableComponents(GameObject localPlayer){
 		Debug.Log("enableComponents");
 		localPlayer.GetComponent<PlayerMovementScript>().enabled = true;//enable the movement script
-		localPlayer.GetComponent<CharacterController>().enabled = true;
 		localPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);//enable camera again
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
 		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script
