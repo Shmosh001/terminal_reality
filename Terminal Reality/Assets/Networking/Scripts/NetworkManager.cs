@@ -63,7 +63,7 @@ public class NetworkManager : MonoBehaviour {
 	void OnPhotonRandomJoinFailed(){
 		Debug.Log("OnPhotonRandomJoinFailed");
 		PhotonNetwork.CreateRoom(null);
-        PhotonNetwork.Instantiate("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0);
+        
     }
 
     /// <summary>
@@ -73,6 +73,12 @@ public class NetworkManager : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
+        if (PhotonNetwork.isMasterClient) {
+            //PhotonNetwork.InstantiateSceneObject()
+            PhotonNetwork.Instantiate("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0);
+
+        }
+        
 	}
 
     /// <summary>
