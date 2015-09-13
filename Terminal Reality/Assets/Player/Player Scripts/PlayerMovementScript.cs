@@ -45,7 +45,6 @@ public class PlayerMovementScript : MonoBehaviour {
 		/***********
 		//MOVEMENT//
 		**********/	
-		print ("SPRINT ENERGY" + sprintEnergy);
 		//SPRINTING//
 		if (Input.GetKeyDown(KeyCode.LeftShift)) //If sprint button is being held down//
 		{

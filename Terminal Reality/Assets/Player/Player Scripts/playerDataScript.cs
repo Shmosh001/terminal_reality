@@ -32,6 +32,9 @@ public class playerDataScript : MonoBehaviour {
 	//TORCH//
 	public Light torch;
 
+	//PLAYER HAS KEY
+	public bool hasKey = false;
+
 
 	//AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
 	void Awake()
