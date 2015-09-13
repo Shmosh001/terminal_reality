@@ -41,7 +41,7 @@ public class playerDataScript : MonoBehaviour {
 	{
 		pistolGameObject = GameObject.FindGameObjectWithTag("Pistol");
 		machineGunGameObject = GameObject.FindGameObjectWithTag("MachineGun");
-		torch = GameObject.FindGameObjectWithTag("torch").light;
+		torch = GameObject.FindGameObjectWithTag("Torch").light;
 	}
 
 	/*
