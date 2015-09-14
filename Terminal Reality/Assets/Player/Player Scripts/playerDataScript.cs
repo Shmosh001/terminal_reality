@@ -39,30 +39,10 @@ public class playerDataScript : MonoBehaviour {
 	//AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
 	void Awake()
 	{
-<<<<<<< HEAD
 		pistolGameObject = GameObject.FindGameObjectWithTag("Pistol");
 		machineGunGameObject = GameObject.FindGameObjectWithTag("MachineGun");
 		torch = GameObject.FindGameObjectWithTag("Torch").light;
 	}
-
-	/*
-	public void receiveNetworkData (PhotonStream stream, PhotonMessageInfo info)
-	{
-		pistolEquipped = (bool)stream.ReceiveNext();
-		machineGunEquipped = (bool)stream.ReceiveNext();
-	}
-
-	public void sendNetworkData (PhotonStream stream, PhotonMessageInfo info)
-	{
-		stream.SendNext(pistolEquipped);
-		stream.SendNext(machineGunEquipped);
-=======
-		//pistolGameObject = GameObject.FindGameObjectWithTag("Pistol");
-		//machineGunGameObject = GameObject.FindGameObjectWithTag("MachineGun");
->>>>>>> origin/Prototype_Networking
-	}
-	*/
-
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting) {
