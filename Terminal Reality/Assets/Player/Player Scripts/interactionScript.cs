@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class interactionScript : MonoBehaviour {
+public class interactionScript : Photon.MonoBehaviour {
 
 	private playerDataScript playerData;
 
@@ -43,8 +43,23 @@ public class interactionScript : MonoBehaviour {
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
-					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-					ds.interaction();
+					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+
+                    PhotonView pView = hitObject.GetComponent<PhotonView>();
+                    
+                    if (pView == null) {
+                        pView = hitObject.GetComponentInParent<PhotonView>();
+                        if (pView == null) {
+                            Debug.LogError("No PhotonView component found on " + hitObject);
+                        }
+                        else {
+                            pView.RPC("interaction", PhotonTargets.AllBuffered);
+                        }
+                    }
+                    else {
+                        pView.RPC("interaction", PhotonTargets.AllBuffered);
+                    }
+                    
 				}								
 				
 			}
@@ -71,6 +86,7 @@ public class interactionScript : MonoBehaviour {
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
 
+<<<<<<< HEAD
 				//Only destroy the ammobox if ammo was picked up
 				// - i.e. player has a machine gun and/or pistol
 				if (playerData.pistolPickedUp || playerData.machineGunPickedUp)
@@ -81,6 +97,23 @@ public class interactionScript : MonoBehaviour {
 					Destroy(interactingCollider.gameObject);
 					inRangeOfAmmo = false;
 				}
+=======
+
+				//After picking up ammo destroy the ammobox game object//
+				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+				//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
+                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
+
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                if (pView == null) {
+                    Debug.LogError("No PhotonView component found");
+                }
+                else {
+                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                }
+                
+				inRangeOfAmmo = false;
+>>>>>>> origin/Prototype_Networking
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
@@ -126,9 +159,19 @@ public class interactionScript : MonoBehaviour {
 				}
 
 				//Destroy the pistol game object//				
-				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
-				inRangeOfPistol = false;
+				//interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
+				//Destroy(interactingCollider.gameObject);
+
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                if (pView == null) {
+                    Debug.LogError("No PhotonView component found");
+                }
+                else {
+                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                }
+
+
+                inRangeOfPistol = false;
 			}
 
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP

@@ -13,8 +13,13 @@ public class playerHealthScript : MonoBehaviour {
 	void Start () {
 	
 		playerData = this.GetComponent<playerDataScript>();
+<<<<<<< HEAD
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		updateHealthHUD();
+=======
+		//updateHealthHUD();
+		//TODO uncommented
+>>>>>>> origin/Prototype_Networking
 
 	}
 	
@@ -64,17 +69,28 @@ public class playerHealthScript : MonoBehaviour {
 		if ((playerData.health - damage) > 0)
 		{
 			playerData.health -= damage;
+<<<<<<< HEAD
 			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
 			heartBeatPlaying = false;
 			updateHealthHUD();
+=======
+			//updateHealthHUD();
+			//TODO uncommented
+>>>>>>> origin/Prototype_Networking
 		}
 		//if the damage kills the player//
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
+<<<<<<< HEAD
 			playerData.playerAlive = false; //boolean to send over network
 			updateHealthHUD();
 			print ("PLAYER IS DEAD!!!"); //temp --> print out
+=======
+			//updateHealthHUD();
+			//TODO uncommented
+			print ("PLAYER IS DEAD!!!"); //temp print out
+>>>>>>> origin/Prototype_Networking
 		}
 
 	}
@@ -91,7 +107,8 @@ public class playerHealthScript : MonoBehaviour {
 	public void fullPlayerHealth()
 	{
 		playerData.health = 100;
-		updateHealthHUD();
+		//updateHealthHUD();
+		//TODO uncommented
 	}
 
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//

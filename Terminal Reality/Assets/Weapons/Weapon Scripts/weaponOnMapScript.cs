@@ -6,15 +6,30 @@ public class weaponOnMapScript : MonoBehaviour {
 
 	private Text pushE;
 
-	// Use this for initialization
-	void Start () {
+    private GameObject pushETextObj;
 
-		pushE = GameObject.FindGameObjectWithTag("PushE").GetComponent<Text>();
-	
-	}
+    // Use this for initialization
+    void Start() {
+        pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+        if (pushETextObj != null) {
+            pushE = pushETextObj.GetComponent<Text>();
+        }
 
-	//WALKING INTO THE TRIGGER SURROUNDING WEAPON//
-	void OnTriggerEnter(Collider other)
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (pushETextObj == null) {
+            pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+            if (pushETextObj != null) {
+                pushE = pushETextObj.GetComponent<Text>();
+            }
+        }
+    }
+
+    //WALKING INTO THE TRIGGER SURROUNDING WEAPON//
+    void OnTriggerEnter(Collider other)
 	{
 		//If player walks into trigger...
 		if (other.tag == "Player")
@@ -37,6 +52,15 @@ public class weaponOnMapScript : MonoBehaviour {
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()
 	{
-		pushE.enabled = false;
+        if (pushE != null) {
+            pushE.enabled = false;
+        }
+        
 	}
+
+    [PunRPC]
+    public void destroyObject() {
+        turnOffText();
+        Destroy(gameObject);
+    }
 }

@@ -164,7 +164,7 @@ public class UIBarScript : MonoBehaviour {
 	public void UpdateValue(int HP, int MaxHP)
 	{
 		//this will set the RatioTxt
-		RatioTxt.GetComponent<Text>().text = HP.ToString() + "/" + MaxHP.ToString(); 
+//		RatioTxt.GetComponent<Text>().text = HP.ToString() + "/" + MaxHP.ToString(); 
 
 
 		//NewValue
