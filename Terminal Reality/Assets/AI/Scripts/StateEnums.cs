@@ -7,8 +7,8 @@ using System.Collections;
 public class StateEnums : MonoBehaviour {
 
 
-	public enum ZombieStates{
-		Idle,
+	public enum ZombieStates: byte{
+		Idle = 0,
 		Wandering,
 		Chasing,
 		Searching,
@@ -20,8 +20,8 @@ public class StateEnums : MonoBehaviour {
 		Shot
 	};
 
-	public enum HumanStates{
-		Running, 
+	public enum HumanStates : byte{
+		Running = 0, 
 		Screaming, 
 		Dying, 
 		Dead, 
