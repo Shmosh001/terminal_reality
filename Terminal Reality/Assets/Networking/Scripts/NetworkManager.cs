@@ -23,7 +23,7 @@ public class NetworkManager : MonoBehaviour {
     /// initialization
     /// </summary>
     void Start () {
-		ConnectToNetwork(offlineMode);
+		ConnectToNetwork();
 	}
 
     /// <summary>
@@ -32,11 +32,11 @@ public class NetworkManager : MonoBehaviour {
     /// <param name="offline">
     /// true/false
     /// </param>
-	void ConnectToNetwork(bool offline){
+	void ConnectToNetwork(){
 		PhotonNetwork.ConnectUsingSettings("v1.0");
-		/*if (offline) {
+		if (offlineMode) {
             PhotonNetwork.offlineMode = true; //we use this for single player
-        }*/
+        }
 		Debug.Log("ConnectToNetwork");
 	}
 
