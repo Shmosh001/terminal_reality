@@ -7,8 +7,10 @@ using System.Collections;
 /// </summary>
 public class NetworkManager : MonoBehaviour {
 
-
     //PUBLIC VARS
+    //array of enemies
+    public GameObject[] enemies;
+    //boolean for offline mode
     public bool offlineMode;
     //the hud
     public GameObject hud;
@@ -73,12 +75,8 @@ public class NetworkManager : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
-        if (PhotonNetwork.isMasterClient) {
-            //PhotonNetwork.InstantiateSceneObject()
-            //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, new object[0]);
-
-        }
-        
+        activateEnemies();
+                
 	}
 
     /// <summary>
@@ -92,10 +90,17 @@ public class NetworkManager : MonoBehaviour {
 		Transform location = temp.transform;
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
 		GameObject localPlayer = PhotonNetwork.Instantiate("NEWPLAYER", location.position, location.rotation, 0);
-		//we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
-		enableComponents(localPlayer);
+        if (PhotonNetwork.isMasterClient) {
+            localPlayer.tag = Tags.PLAYER1;
+        }
+        else {
+            localPlayer.tag = Tags.PLAYER2;
+        }
+        //we enable all parts here that have to do with each local player ie movement, and mouse scripts and main camera
+        enableComponents(localPlayer);
+        
 
-	}
+    }
 
     /// <summary>
     /// enables all components which have sensitive information local to a player
@@ -138,8 +143,14 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<NetworkCharacter>().enabled = true;
 		hud.SetActive(true);//enable the HUD
 
-
+        
 	}
 
+
+    void activateEnemies() {
+        for(int i  = 0; i < enemies.Length; i++) {
+            enemies[i].SetActive(true);
+        }
+    }
 
 }

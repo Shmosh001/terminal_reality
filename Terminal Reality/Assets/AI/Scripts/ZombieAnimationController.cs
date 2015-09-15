@@ -12,20 +12,27 @@ public class ZombieAnimationController : MonoBehaviour {
     //debug
 	public bool debug;
 
+    private PhotonView pView;
+
     /// <summary>
     /// initialization
     /// </summary>
     void Awake () {
 		animator = this.gameObject.GetComponent<Animator>();
-	}
-	
-	/// <summary>
+        pView = this.gameObject.GetComponent<PhotonView>();
+        if (pView == null) {
+            Debug.LogError("No PhotonView component found");
+        }
+    }
+
+    /// <summary>
     /// sets a trigger 
     /// </summary>
     /// <param name="name">
     /// hash of the trigger
     /// </param>
-	public void setTrigger(int name){
+    [PunRPC]
+    public void setTrigger(int name){
 		if (debug)Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
 		animator.SetTrigger(name);
 	}
@@ -42,8 +49,13 @@ public class ZombieAnimationController : MonoBehaviour {
 	public bool setRandomTrigger(int name){
 		int choice = getRandomInt(2);
 		if (choice == 0){
-			animator.SetTrigger(name);
-			if (debug)Debug.Log("random trigger  set to " + true + " at " + Time.timeSinceLevelLoad);
+
+
+
+            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer,name);
+            //TODO rpc conversion
+            //animator.SetTrigger(name);
+            if (debug)Debug.Log("random trigger  set to " + true + " at " + Time.timeSinceLevelLoad);
 			return true;
 		}
 		else{
@@ -57,9 +69,18 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </summary>
 	public void chooseStartingState(){
 		int choice = getRandomInt(4);
-		//TODO need to handle dead body spawn if we are in biting state
-		setInteger(EnemyHashScript.stateDInt,choice);
-		setRandomInteger(EnemyHashScript.idleDInt,6);
+        //TODO need to handle dead body spawn if we are in biting state
+
+        //TODO rpc conversion
+        //setInteger(EnemyHashScript.stateDInt,choice);
+        pView.RPC("setInteger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.stateDInt, choice);
+
+
+
+
+
+
+        setRandomInteger(EnemyHashScript.idleDInt,6);
 		if (debug)Debug.Log("random starting state set to" + choice + " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -69,7 +90,8 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value to be set
     /// </param>
-	public void setStartState(int value){
+    [PunRPC]
+    public void setStartState(int value){
 		setInteger(EnemyHashScript.stateDInt,value);
 		if (debug)Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
 	}
@@ -83,7 +105,8 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-	public void setBoolean(int name, bool value){
+    [PunRPC]
+    public void setBoolean(int name, bool value){
 		animator.SetBool(name, value);
 		if (debug)Debug.Log("boolean " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
@@ -100,13 +123,21 @@ public class ZombieAnimationController : MonoBehaviour {
 	public bool setRandomBoolean(int name){
 		int choice = getRandomInt(2);
 		if (choice == 0){
-			animator.SetBool(name, true);
-			if (debug)Debug.Log("random boolean " + name + " set to " + true+ " at " + Time.timeSinceLevelLoad);
+			//animator.SetBool(name, true);
+            //TODO rpc conversion
+            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, name, true);
+
+
+
+
+            if (debug)Debug.Log("random boolean " + name + " set to " + true+ " at " + Time.timeSinceLevelLoad);
 			return true;
 		}
 		else{
-			animator.SetBool(name, false);
-			if (debug)Debug.Log("random boolean " + name + " set to " + false+ " at " + Time.timeSinceLevelLoad);
+			//animator.SetBool(name, false);
+            //TODO rpc conversion
+            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, name, false);
+            if (debug)Debug.Log("random boolean " + name + " set to " + false+ " at " + Time.timeSinceLevelLoad);
 			return false;
 		}
 
@@ -126,8 +157,10 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </returns>
 	public int setRandomInteger(int name, int max){
 		int choice = getRandomInt(max);
-		animator.SetInteger(name, choice);
-		if (debug)Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
+		//animator.SetInteger(name, choice);
+        //TODO rpc conversion
+        pView.RPC("setInteger", PhotonTargets.AllBufferedViaServer, name, choice);
+        if (debug)Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
 		return choice;
 	}
 
@@ -140,6 +173,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
+    [PunRPC]
 	public void setInteger(int name, int value){
 		animator.SetInteger(name, value);
 		if (debug)Debug.Log("int " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
@@ -154,6 +188,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
+    [PunRPC]
 	public void setFloat(int name, float value){
 		animator.SetFloat(name, value);
 		if (debug)Debug.Log("float " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
@@ -177,11 +212,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <summary>
     /// resets all booleans to false
     /// </summary>
-	public void resetBooleans(){
+    public void resetBooleans(){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-		animator.SetBool(EnemyHashScript.wanderingBool,false);
-		animator.SetBool(EnemyHashScript.attackingBool,false);
-	}
+		//animator.SetBool(EnemyHashScript.wanderingBool,false);
+		//animator.SetBool(EnemyHashScript.attackingBool,false);
+        //TODO rpc conversion
+        pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackingBool, false);
+        pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wanderingBool, false);
+    }
 
     /// <summary>
     /// checks if the animator is in a state
@@ -202,6 +240,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="animation">
     /// animation hash
     /// </param>
+    [PunRPC]
 	public void forceAnimation(int animation){
 		animator.Play(animation);
 	}

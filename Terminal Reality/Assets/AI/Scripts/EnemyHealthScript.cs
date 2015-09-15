@@ -65,8 +65,16 @@ public class EnemyHealthScript : MonoBehaviour {
     /// entity
     /// </param>
     [PunRPC]
-	public void takeDamage(int value, GameObject entity){
+	public void takeDamage(int value, string tag){
         //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
+
+        GameObject entity = GameObject.FindGameObjectWithTag(tag);
+
+        if (entity == null) {
+            Debug.LogError("tagged object not found");
+            return;
+        }
+
         if (health > 0){
 			health -= value;
 			fsm.alertShot(entity);

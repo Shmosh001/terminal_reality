@@ -68,6 +68,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     //the collider that checks for sound
 	private SphereCollider soundCollider;
 
+    //photon view component for rpc calls
+    private PhotonView pView;
+
 
     //METHODS
 
@@ -80,6 +83,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		boxCollider = gameObject.GetComponent<BoxCollider>();
+        pView = gameObject.GetComponent<PhotonView>();
+        if (pView == null) {
+            Debug.LogError("No photon view component found");
+        }
         //lessen senses
         lessenSenses();
         
@@ -178,8 +185,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (alertedC > alertedD){
 				if (stateDebugStatements){Debug.Log("alerted case: timer ran over " + Time.timeSinceLevelLoad);}
                     //we got back to idle
-                animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
-				animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                //animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
+                //rpc conversion
+                pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.alertToIdleTrigger);
+                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                     //we change states
 				fsm.enterState(StateEnums.ZombieStates.Idle);
 				alertedC = 0;
@@ -219,9 +228,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (!detection.hasLastPosition() || checkArrival(transform.position, navAgent.destination)){
                     //stop the nav agent from moving and revert to the alerted state
                 navAgent.Stop();
-				animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
-				fsm.enterState(StateEnums.ZombieStates.Alerted);
-			}
+                //rpc conversion
+                pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.alertedTrigger);
+                //animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
+				//fsm.enterState(StateEnums.ZombieStates.Alerted);
+                //rpc conversion
+                pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Alerted);
+            }
 			else{
                     //keep searching
 				searchForPlayer();
@@ -262,8 +275,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (!wandering){
 				if (debugStatements){Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad);}
 				startWandering();
-				animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
-			}
+				//animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
+                //rpc conversion
+                pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wanderingBool, true);
+
+                }
 
             //check if we have arrived at the destination
 			if (checkArrival(transform.position, wanderDest.position)){
@@ -273,8 +289,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 navAgent.Stop();
 				fsm.enterPreviousState();
 				wandering = false;
-				animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
-			}
+                //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
+                //rpc conversion
+                pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wanderingBool, false);
+            }
 
                 //lastly we always check if we can see/hear the player
 			checkForPlayer();
@@ -292,8 +310,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 				    //we set the random int value for the decision
                 animatorCont.setRandomInteger(EnemyHashScript.hitDInt,3);
 				    //we activate the shot trigger 
-				animatorCont.setTrigger(EnemyHashScript.shotTrigger);
-				shot = true;
+				//animatorCont.setTrigger(EnemyHashScript.shotTrigger);
+                //rpc conversion
+                pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.shotTrigger);
+                shot = true;
                     //stop nav agent movement
 				navAgent.Stop();
 			}
@@ -307,9 +327,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //check to see if we are in the attack state
 			if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)){
 				if (stateDebugStatements){Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad);}
-				fsm.enterState(StateEnums.ZombieStates.Chasing);
+				//fsm.enterState(StateEnums.ZombieStates.Chasing);
+                //rpc conversion
+                pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Chasing);
                     //resume movement
-                navAgent.Resume();
+                    navAgent.Resume();
 				shot = false;
 			}
 			break;
@@ -354,9 +376,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			    //we set the animation and relevant parameters
 			animatorCont.resetBooleans();
 			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
-			animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
-                //we set a new nav mesh destination
-			navAgent.SetDestination(target.transform.position);
+			//animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
+            //rpc conversion
+            pView.RPC("forceAnimation", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackDecisionState);
+            //we set a new nav mesh destination
+            navAgent.SetDestination(target.transform.position);
 			chasing = true;
 		}
 
@@ -367,17 +391,23 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
         if (distance < attackingDistance) {
             if (debugStatements) { Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad); }
-                //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
-            fsm.enterState(StateEnums.ZombieStates.Attacking);
+            //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
+            //fsm.enterState(StateEnums.ZombieStates.Attacking);
+            //rpc conversion
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Attacking);
             navAgent.Stop();
-            animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
+            //animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
+            //rpc conversion
+            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackingBool, true);
             chasing = false;
         }
         //lost the target
         else if (distance > losingDistance) {
             if (debugStatements) { Debug.Log("chasePlayer method: too far away to attack at" + Time.timeSinceLevelLoad); }
                 //we make appropriate changes in the fsm and the animations
-            fsm.enterState(StateEnums.ZombieStates.Searching);
+            //fsm.enterState(StateEnums.ZombieStates.Searching);
+            //rpc conversion
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Searching);
             animatorCont.resetBooleans();
             chasing = false;
         }
@@ -395,9 +425,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		navAgent.Stop();
 		    //play animation
 		animatorCont.resetBooleans();
-		animatorCont.setTrigger(EnemyHashScript.deadTrigger);
-		animatorCont.setRandomInteger(EnemyHashScript.deathDsInt,2);
+		//animatorCont.setTrigger(EnemyHashScript.deadTrigger);
+        //rpc conversion
+        pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.deadTrigger);
+        animatorCont.setRandomInteger(EnemyHashScript.deathDsInt,2);
 		fsm.enterState(StateEnums.ZombieStates.Dead);
+
 	}
 
     /// <summary>
@@ -425,8 +458,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("searchForPlayer method: dest set true at" + Time.timeSinceLevelLoad);}
                 //set the entity up to go search 
             navAgent.speed = walkingSpeed;
-			animatorCont.setTrigger(EnemyHashScript.searchingTrigger);
-			heightenSenses();
+			//animatorCont.setTrigger(EnemyHashScript.searchingTrigger);
+            //rpc conversion
+            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.searchingTrigger);
+            heightenSenses();
 		}
 		//if the paths 
 		else{
@@ -434,8 +469,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//stop any path navigation
 			lessenSenses();
 			navAgent.Stop();
-			fsm.enterState(StateEnums.ZombieStates.Wandering);
-		}
+			//fsm.enterState(StateEnums.ZombieStates.Wandering);
+            //rpc conversion
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Wandering);
+        }
 
 	}
 
@@ -489,8 +526,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//add a small offset
 		if (distance > attackingDistance+5){
 			fsm.enterState(StateEnums.ZombieStates.Chasing);
-			animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
-		}
+			//animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
+            //rpc conversion
+            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackingBool, false);
+        }
 	}
 
 
@@ -533,7 +572,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// the entity that is colliding with the collider
     /// </param>
 	void OnTriggerEnter(Collider collider){
-        //if we player enetered
+        //if we player entered
         if (collider.tag == Tags.PLAYER){
 			if (debugStatements){Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
                 //assign the target
@@ -543,9 +582,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		}
 		else if(collider is BoxCollider){
 			    //we set the awake boolean
-			animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
-                //disable collider
-			boxCollider.enabled = false;
+			//animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
+            //rpc conversion
+            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wakeupTrigger);
+
+            //disable collider
+            boxCollider.enabled = false;
 		}
 
 	}
@@ -628,11 +670,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		target = entity.gameObject;
 		// we only want to transition into the state if are not currently in the state
 		if (!shot){
-			fsm.enterState(StateEnums.ZombieStates.Shot);
+			enterState(StateEnums.ZombieStates.Shot);
 		}
 	}
 
-
+    /*
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting) {
             //Debug.Log("writing");
@@ -645,7 +687,20 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 fsm.enterState(state);
             }
         }
+    }*/
+
+
+    //for networking purposes
+    [PunRPC]
+    public void enterState(StateEnums.ZombieStates state) {
+        fsm.enterState(state);
     }
+
+    [PunRPC]
+    public void enterPrevState() {
+        fsm.enterPreviousState();
+    }
+
 
 
 }

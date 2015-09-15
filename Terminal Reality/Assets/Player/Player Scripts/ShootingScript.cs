@@ -223,7 +223,7 @@ public class ShootingScript : ammoHUDScript {
 			if (hitObject.CompareTag(Tags.ENEMY))
 			{
 				Debug.Log("Enemy shot");
-				hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
+				//hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 
                 PhotonView pView = hitObject.GetComponent<PhotonView>();
 
@@ -231,7 +231,7 @@ public class ShootingScript : ammoHUDScript {
                     Debug.LogError("No PhotonView component found on " + hitObject);
                 }
                 else {
-                    pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
+                    pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
                 }
             }
 		}
