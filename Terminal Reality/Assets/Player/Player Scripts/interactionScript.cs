@@ -86,18 +86,6 @@ public class interactionScript : Photon.MonoBehaviour {
 					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 				}
 
-<<<<<<< HEAD
-				//Only destroy the ammobox if ammo was picked up
-				// - i.e. player has a machine gun and/or pistol
-				if (playerData.pistolPickedUp || playerData.machineGunPickedUp)
-				{
-					//After picking up ammo destroy the ammobox game object//
-					//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-					interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();
-					Destroy(interactingCollider.gameObject);
-					inRangeOfAmmo = false;
-				}
-=======
 
 				//After picking up ammo destroy the ammobox game object//
 				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
@@ -113,7 +101,6 @@ public class interactionScript : Photon.MonoBehaviour {
                 }
                 
 				inRangeOfAmmo = false;
->>>>>>> origin/Prototype_Networking
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
