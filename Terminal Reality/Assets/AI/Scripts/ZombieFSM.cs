@@ -75,18 +75,24 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     //METHODS
 
 	// Use this for initialization
-	void Start () { 
-		audioSource = gameObject.GetComponent<AudioSource>();
-		detection = gameObject.GetComponent<PreyDetection>();
-		fsm = new StateMachineClass<StateEnums.ZombieStates>();
-		fsm.enterState(StateEnums.ZombieStates.Idle);
-		animatorCont = gameObject.GetComponent<ZombieAnimationController>();
-		soundCollider  = gameObject.GetComponent<SphereCollider>();
-		boxCollider = gameObject.GetComponent<BoxCollider>();
+	void Start () {
         pView = gameObject.GetComponent<PhotonView>();
         if (pView == null) {
             Debug.LogError("No photon view component found");
+            return;
         }
+        audioSource = gameObject.GetComponent<AudioSource>();
+		detection = gameObject.GetComponent<PreyDetection>();
+		fsm = new StateMachineClass<StateEnums.ZombieStates>();
+        //fsm.enterState(StateEnums.ZombieStates.Idle);
+        Debug.LogWarning("before");
+        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Idle);
+        Debug.LogWarning("after");
+        animatorCont = gameObject.GetComponent<ZombieAnimationController>();
+		soundCollider  = gameObject.GetComponent<SphereCollider>();
+		boxCollider = gameObject.GetComponent<BoxCollider>();
+        
+        
         //lessen senses
         lessenSenses();
         
@@ -106,7 +112,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// </summary>
     void Update () {
 
-
+        Debug.LogWarning("loop");
 		switch(fsm.getCurrentState()){
 		
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
@@ -148,13 +154,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                             //enter the new state 
                             //set the animator  parameter
                         animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-						fsm.enterState(StateEnums.ZombieStates.Puking);
-						break;
+						//fsm.enterState(StateEnums.ZombieStates.Puking);
+                        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Puking);
+                        break;
 					//wandering animation
 					case 3:
 						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-						fsm.enterState(StateEnums.ZombieStates.Wandering);
-						break;
+                        //fsm.enterState(StateEnums.ZombieStates.Wandering);
+                        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Wandering);
+                        break;
 					}
 				}
                     //reset
@@ -190,8 +198,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.alertToIdleTrigger);
                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                     //we change states
-				fsm.enterState(StateEnums.ZombieStates.Idle);
-				alertedC = 0;
+				//fsm.enterState(StateEnums.ZombieStates.Idle);
+                pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Idle);
+                alertedC = 0;
 				alerted = false;
                     //we revert the heightened senses again
                 lessenSenses();
@@ -259,8 +268,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			    //if timer is over the limit
 			if (pukeC > pukeD){
 				if (debugStatements){Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad);}
-				fsm.enterPreviousState();
-				pukeC = 0;
+				//fsm.enterPreviousState();
+                pView.RPC("enterPrevState", PhotonTargets.AllBufferedViaServer);
+                pukeC = 0;
 				puking = false;
 				pukeEffect.SetActive(false);
 			}
@@ -287,8 +297,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
                     //if we have arrived we stop nav agent movement and assign the previous state
                 navAgent.Stop();
-				fsm.enterPreviousState();
-				wandering = false;
+				//fsm.enterPreviousState();
+                pView.RPC("enterPrevState", PhotonTargets.AllBufferedViaServer);
+                wandering = false;
                 //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
                 //rpc conversion
                 pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wanderingBool, false);
@@ -331,7 +342,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 //rpc conversion
                 pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Chasing);
                     //resume movement
-                    navAgent.Resume();
+                navAgent.Resume();
 				shot = false;
 			}
 			break;
@@ -429,9 +440,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         //rpc conversion
         pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.deadTrigger);
         animatorCont.setRandomInteger(EnemyHashScript.deathDsInt,2);
-		fsm.enterState(StateEnums.ZombieStates.Dead);
+		//fsm.enterState(StateEnums.ZombieStates.Dead);
+        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Dead);
 
-	}
+    }
 
     /// <summary>
     /// disables all parts to the unit to only leave dead body
@@ -497,8 +509,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("startWandering method: if path set failed at" + Time.timeSinceLevelLoad);}
 			//stop any path navigation
 			navAgent.Stop();
-			fsm.enterPreviousState();
-		}
+			//fsm.enterPreviousState();
+            pView.RPC("enterPrevState", PhotonTargets.AllBufferedViaServer);
+        }
 		
 	}
 
@@ -525,8 +538,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		float distance = getDistanceT(transform, target.transform);
 		//add a small offset
 		if (distance > attackingDistance+5){
-			fsm.enterState(StateEnums.ZombieStates.Chasing);
-			//animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
+			//fsm.enterState(StateEnums.ZombieStates.Chasing);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Chasing);
+            //animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
             //rpc conversion
             pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackingBool, false);
         }
@@ -616,8 +630,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         if (soundTrigger && detection.targetInSight(viewingSens)){
 			if (debugStatements){Debug.Log("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
 			    //we need to now change into the appropriate state
-			fsm.enterState(StateEnums.ZombieStates.Chasing);
-		}
+			//fsm.enterState(StateEnums.ZombieStates.Chasing);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Chasing);
+        }
         //if we hear the player based on his animation state
 		else if (soundTrigger){
             //TODO set up
@@ -639,23 +654,26 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("alertUnit method: sound alert = true at" + Time.timeSinceLevelLoad);}
 			//the position should have been set
 			//then searching method should take care of moving the npc there
-			fsm.enterState(StateEnums.ZombieStates.Searching);
-		}
+			//fsm.enterState(StateEnums.ZombieStates.Searching);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Searching);
+        }
 		else{
 			if (debugStatements){Debug.Log("alertUnit method else branch at" + Time.timeSinceLevelLoad);}
 			soundAlert = true;
 			//enhance viewing and listening 
 			heightenSenses();
-			fsm.enterState(StateEnums.ZombieStates.Alerted);
-		}
+			//fsm.enterState(StateEnums.ZombieStates.Alerted);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Alerted);
+        }
 	}
 
     /// <summary>
     /// alerts the unit that is has died, basically just a state change
     /// </summary>
 	public void alertDead(){
-		fsm.enterState(StateEnums.ZombieStates.Dying);
-	}
+		//fsm.enterState(StateEnums.ZombieStates.Dying);
+        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Dying);
+    }
 
     /// <summary>
     /// alerts the unit that it has been shot
@@ -670,8 +688,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		target = entity.gameObject;
 		// we only want to transition into the state if are not currently in the state
 		if (!shot){
-			enterState(StateEnums.ZombieStates.Shot);
-		}
+			//enterState(StateEnums.ZombieStates.Shot);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, StateEnums.ZombieStates.Shot);
+        }
 	}
 
     /*
