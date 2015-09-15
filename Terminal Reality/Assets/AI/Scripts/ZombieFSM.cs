@@ -712,7 +712,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     //for networking purposes
     [PunRPC]
     public void enterState(byte state) {
-        fsm.enterState((StateEnums.ZombieStates)state);
+        if (fsm != null) {
+            fsm.enterState((StateEnums.ZombieStates)state);
+        }
+        
     }
 
     [PunRPC]

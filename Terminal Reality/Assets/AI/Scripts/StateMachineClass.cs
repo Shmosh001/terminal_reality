@@ -9,6 +9,9 @@ using System.Collections;
 /// </typeparam>
 public class StateMachineClass <T> {
 
+
+    public bool debug = false;
+
     //vars
 	private T currentState;
 	private T previousState;
@@ -28,7 +31,7 @@ public class StateMachineClass <T> {
     /// new state
     /// </param>
     public void enterState(T newState){
-		Debug.Log("entered state: " + newState.ToString()+ " at " + Time.timeSinceLevelLoad);
+		if (debug)Debug.Log("entered state: " + newState.ToString()+ " at " + Time.timeSinceLevelLoad);
 		previousState = currentState;
 		currentState = newState;
 	}
@@ -39,7 +42,7 @@ public class StateMachineClass <T> {
     public void enterPreviousState(){
 		if (hasPreviousState()){
 			enterState(previousState);
-			Debug.Log("applied previous state: " + currentState.ToString()+ " at " + Time.timeSinceLevelLoad);
+            if (debug) Debug.Log("applied previous state: " + currentState.ToString()+ " at " + Time.timeSinceLevelLoad);
 		}
 		
 	}
