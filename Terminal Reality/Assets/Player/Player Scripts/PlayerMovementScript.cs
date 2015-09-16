@@ -12,6 +12,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	private float forwardSpeed = 0;
 	private float sideSpeed = 0;
 	private playerDataScript playerData;
+	private float sprintEnergy = 15.0f;
 
 
 	// Use this for initialization
@@ -48,21 +49,63 @@ public class PlayerMovementScript : MonoBehaviour {
 		//SPRINTING//
 		if (Input.GetKeyDown(KeyCode.LeftShift)) //If sprint button is being held down//
 		{
-			movementMultiplier = 1.5f;
+			if (sprintEnergy > 0.0f) // if the player has sprint energy --> can sprint
+			{
+				movementMultiplier = 1.5f;
+				
+				//update movement state
+				playerData.sprinting = true;
+				playerData.sneaking = false;
+				playerData.walking = false;
+			}
 		}
 		if (Input.GetKeyUp(KeyCode.LeftShift)) //Release sprint button//
 		{
 			movementMultiplier = 1.0f;
+			
+			//update movement state
+			playerData.sprinting = false;
+			playerData.sneaking = false;
+			playerData.walking = true;
+		}
+		
+		// if the player is sprinting --> decrease sprint energry 
+		if (playerData.sprinting)
+		{
+			if (sprintEnergy > -1.0f) {sprintEnergy -= Time.deltaTime;} // decrease sprint energy only if sprint energy is greater than 0
+			if (sprintEnergy <= 0)
+			{
+				movementMultiplier = 1.0f;
+				
+				//update movement state
+				playerData.sprinting = false;
+				playerData.sneaking = false;
+				playerData.walking = true;
+			}
+		}
+		else //if the player is NOT sprinting --> increase sprint energy
+		{
+			if (sprintEnergy < 15.0f) {sprintEnergy += Time.deltaTime;} //increase sprint energy until 30.0f
 		}
 
 		//SNEAKING//
 		if (Input.GetKeyDown(KeyCode.LeftControl)) //If sneak button is being held down//
 		{
 			movementMultiplier = 0.70f;
+			
+			//update movement state
+			playerData.sprinting = false;
+			playerData.sneaking = true;
+			playerData.walking = false;
 		}
 		if (Input.GetKeyUp(KeyCode.LeftControl)) //Release sneak button//
 		{
 			movementMultiplier = 1.0f;
+			
+			//update movement state
+			playerData.sprinting = false;
+			playerData.sneaking = false;
+			playerData.walking = true;
 		}
 
 		if (characterController.isGrounded) //can only adjust directional speed when player is grounded//
