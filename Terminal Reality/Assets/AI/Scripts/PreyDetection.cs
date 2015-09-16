@@ -11,6 +11,7 @@ public class PreyDetection : MonoBehaviour {
 
     //targets last sighting
     public Vector3 lastSighting;
+    public Transform rayCastPosition;
 
 
     //PRIVATE VARS
@@ -104,23 +105,34 @@ public class PreyDetection : MonoBehaviour {
     /// true/false based on above
     /// </returns>
     public bool targetInSight(float distance){
-            //calculates if we can see the target based on the fov and the distance we can see
+        //Debug.Log("targetInSight");
+        //Debug.Log(distance);
+        //Debug.Log(target);
+        //calculates if we can see the target based on the fov and the distance we can see
+        //Vector3 direction = target.transform.position - transform.position;
         Vector3 direction = target.transform.position - transform.position;
-
-            //gets the angle between the player and the unit
+        //Debug.Log(direction);
+        //gets the angle between the player and the unit
         float angle = Vector3.Angle(direction, transform.forward);
-
+        //Debug.Log(angle);
         //if the angle is smaller then we can see the target
         //now we need to check if anything is obstructing the view by raycasting
         if (angle < FOV/2){
+            Debug.LogWarning("in view");
 			RaycastHit hitObject;
-			if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hitObject, distance)){
-				if (hitObject.collider.gameObject == target){
+			if (Physics.Raycast(transform.position+transform.up, target.transform.position + target.transform.up, out hitObject, distance)){
+                Debug.LogWarning(hitObject.collider.gameObject);
+                if (hitObject.collider.gameObject == target){
 					return true;
 				}
 			}
 		}
 		return false;
 	}
+
+
+    void Update() {
+        if (target != null)Debug.DrawLine(transform.position + transform.up, target.transform.position + target.transform.up);
+    }
     
 }
