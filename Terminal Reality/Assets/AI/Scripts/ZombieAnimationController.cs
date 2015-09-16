@@ -52,7 +52,13 @@ public class ZombieAnimationController : MonoBehaviour {
 
 
 
-            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer,name);
+            
+            if (PhotonNetwork.offlineMode) {
+                pView.RPC("setTrigger", PhotonTargets.MasterClient, name);
+            }
+            else {
+                pView.RPC("setTrigger", PhotonTargets.AllViaServer, name);
+            }
             //TODO rpc conversion
             //animator.SetTrigger(name);
             if (debug)Debug.Log("random trigger  set to " + true + " at " + Time.timeSinceLevelLoad);
@@ -73,8 +79,13 @@ public class ZombieAnimationController : MonoBehaviour {
 
         //TODO rpc conversion
         //setInteger(EnemyHashScript.stateDInt,choice);
-        pView.RPC("setInteger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.stateDInt, choice);
-
+        
+        if (PhotonNetwork.offlineMode) {
+            pView.RPC("setInteger", PhotonTargets.MasterClient, EnemyHashScript.stateDInt, choice);
+        }
+        else {
+            pView.RPC("setInteger", PhotonTargets.AllViaServer, EnemyHashScript.stateDInt, choice);
+        }
 
 
 
@@ -125,8 +136,13 @@ public class ZombieAnimationController : MonoBehaviour {
 		if (choice == 0){
 			//animator.SetBool(name, true);
             //TODO rpc conversion
-            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, name, true);
-
+            
+            if (PhotonNetwork.offlineMode) {
+                pView.RPC("setBoolean", PhotonTargets.MasterClient, name, true);
+            }
+            else {
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, true);
+            }
 
 
 
@@ -136,7 +152,13 @@ public class ZombieAnimationController : MonoBehaviour {
 		else{
 			//animator.SetBool(name, false);
             //TODO rpc conversion
-            pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, name, false);
+            
+            if (PhotonNetwork.offlineMode) {
+                pView.RPC("setBoolean", PhotonTargets.MasterClient, name, false);
+            }
+            else {
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, false);
+            }
             if (debug)Debug.Log("random boolean " + name + " set to " + false+ " at " + Time.timeSinceLevelLoad);
 			return false;
 		}
@@ -159,7 +181,13 @@ public class ZombieAnimationController : MonoBehaviour {
 		int choice = getRandomInt(max);
 		//animator.SetInteger(name, choice);
         //TODO rpc conversion
-        pView.RPC("setInteger", PhotonTargets.AllBufferedViaServer, name, choice);
+        
+        if (PhotonNetwork.offlineMode) {
+            pView.RPC("setInteger", PhotonTargets.MasterClient, name, choice);
+        }
+        else {
+            pView.RPC("setInteger", PhotonTargets.AllViaServer, name, choice);
+        }
         if (debug)Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
 		return choice;
 	}
@@ -214,11 +242,18 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </summary>
     public void resetBooleans(){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-		//animator.SetBool(EnemyHashScript.wanderingBool,false);
-		//animator.SetBool(EnemyHashScript.attackingBool,false);
+        //animator.SetBool(EnemyHashScript.wanderingBool,false);
+        //animator.SetBool(EnemyHashScript.attackingBool,false);
         //TODO rpc conversion
-        pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.attackingBool, false);
-        pView.RPC("setBoolean", PhotonTargets.AllBufferedViaServer, EnemyHashScript.wanderingBool, false);
+        
+        if (PhotonNetwork.offlineMode) {
+            pView.RPC("setBoolean", PhotonTargets.MasterClient, EnemyHashScript.attackingBool, false);
+            pView.RPC("setBoolean", PhotonTargets.MasterClient, EnemyHashScript.wanderingBool, false);
+        }
+        else {
+            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
+            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
+        }
     }
 
     /// <summary>

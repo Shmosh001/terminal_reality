@@ -38,6 +38,8 @@ public class NetworkManager : MonoBehaviour {
 		PhotonNetwork.ConnectUsingSettings("v1.0");
 		if (offlineMode) {
             PhotonNetwork.offlineMode = true; //we use this for single player
+            PhotonNetwork.CreateRoom("sp");
+           
         }
 		Debug.Log("ConnectToNetwork");
 	}
@@ -140,7 +142,6 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
-		localPlayer.GetComponent<NetworkCharacter>().enabled = true;
 		hud.SetActive(true);//enable the HUD
 
         

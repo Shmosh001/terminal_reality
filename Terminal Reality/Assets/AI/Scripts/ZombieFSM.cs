@@ -85,9 +85,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.ZombieStates>();
         //fsm.enterState(StateEnums.ZombieStates.Idle);
-        Debug.LogWarning("before");
-		pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Idle);
-        Debug.LogWarning("after");
+        if (PhotonNetwork.offlineMode) {
+            enterState((byte)StateEnums.ZombieStates.Idle);
+        }
+        else {
+            pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Idle);
+        }
+        
         animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		boxCollider = gameObject.GetComponent<BoxCollider>();
@@ -112,256 +116,329 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// </summary>
     void Update () {
 
-        
-		switch(fsm.getCurrentState()){
-		
+
+       
+        switch (fsm.getCurrentState()) {
+
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
-		case StateEnums.ZombieStates.Idle:
-            
-			if (stateDebugStatements){Debug.Log("idle case: entering " + Time.timeSinceLevelLoad);}
+            case StateEnums.ZombieStates.Idle:
+
+                if (stateDebugStatements) { Debug.Log("idle case: entering " + Time.timeSinceLevelLoad); }
 
                 //increment counters with delta time
-			eventChoiceC += Time.deltaTime;
-			checkPlayerC += Time.deltaTime;
-			    //keep counting for random event trigger
+                eventChoiceC += Time.deltaTime;
+                checkPlayerC += Time.deltaTime;
+                //keep counting for random event trigger
                 //based on this trigger we have a selection of random paths that are used
                 //to traverse the animation controller to give a random flow of animations
-			if (eventChoiceC > eventChoiceD){
+                if (eventChoiceC > eventChoiceD) {
                     //we get a random value
-				bool result = animatorCont.setRandomTrigger(EnemyHashScript.changeTrigger);
-				
+                    bool result = animatorCont.setRandomTrigger(EnemyHashScript.changeTrigger);
+
                     //if we got a positive result
-                if (result){
+                    if (result) {
                         //we determine what path we take
-					int path  = animatorCont.setRandomInteger(EnemyHashScript.idleVarDInt, 4);
+                        int path = animatorCont.setRandomInteger(EnemyHashScript.idleVarDInt, 4);
 
-					switch(path){
-					//agonizing animation
-					case 0:
-                            //play the sound and assign the animator controller parameter 
-						sound.playFemaleScream(audioSource);
-						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-						break;
-					//scream animation
-					case 1:
-						    //dont need to change state
-						    //play screaming sound and assign the animator parameter
-						sound.playMaleScream(audioSource);
-						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-						break;
-					//crying/puking animation
-					case 2:
-                            //enter the new state 
-                            //set the animator  parameter
-                        animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-						//fsm.enterState(StateEnums.ZombieStates.Puking);
-						pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Puking);
-                        break;
-					//wandering animation
-					case 3:
-						animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-                        //fsm.enterState(StateEnums.ZombieStates.Wandering);
-						pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Wandering);
-                        break;
-					}
-				}
+                        switch (path) {
+                            //agonizing animation
+                            case 0:
+                                //play the sound and assign the animator controller parameter 
+                                sound.playFemaleScream(audioSource);
+                                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                                break;
+                            //scream animation
+                            case 1:
+                                //dont need to change state
+                                //play screaming sound and assign the animator parameter
+                                sound.playMaleScream(audioSource);
+                                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                                break;
+                            //crying/puking animation
+                            case 2:
+                                //enter the new state 
+                                //set the animator  parameter
+                                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                                //fsm.enterState(StateEnums.ZombieStates.Puking);
+                                
+                                if (PhotonNetwork.offlineMode) {
+                                    enterState((byte)StateEnums.ZombieStates.Puking);
+                                }
+                                else {
+                                    pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Puking);
+                                }
+                                break;
+                            //wandering animation
+                            case 3:
+                                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                                //fsm.enterState(StateEnums.ZombieStates.Wandering);
+                                
+                                if (PhotonNetwork.offlineMode) {
+                                    enterState((byte)StateEnums.ZombieStates.Wandering);
+                                }
+                                else {
+                                    pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Wandering);
+                                }
+                                break;
+                        }
+                    }
                     //reset
-				eventChoiceC = 0;
-			}
-			    //check if we can see player every 1s
-			if (soundTrigger && checkPlayerC > checkPlayerD){
+                    eventChoiceC = 0;
+                }
+                //check if we can see player every 1s
+                if (soundTrigger && checkPlayerC > checkPlayerD) {
                     //check for the player and reset the counter
-				checkForPlayer();
-				checkPlayerC = 0;
-			}
-			break;
+                    checkForPlayer();
+                    checkPlayerC = 0;
+                }
+                break;
 
-			/***********Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*/
-		case StateEnums.ZombieStates.Alerted:
+            /***********Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*/
+            case StateEnums.ZombieStates.Alerted:
                 //debug
-            if (stateDebugStatements){Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);}
-            animatorCont.resetBooleans();
+                if (stateDebugStatements) { Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad); }
+                animatorCont.resetBooleans();
 
                 //increment counter
-			alertedC += Time.deltaTime;
+                alertedC += Time.deltaTime;
 
                 //check for the player
-			checkForPlayer();
+                checkForPlayer();
 
                 //if the unit has been alerted for a certain amount if time we set it back to its old state
                 //is supposed to seem like the unit loses interest because nothing else triggered it
-			if (alertedC > alertedD){
-				if (stateDebugStatements){Debug.Log("alerted case: timer ran over " + Time.timeSinceLevelLoad);}
+                if (alertedC > alertedD) {
+                    if (stateDebugStatements) { Debug.Log("alerted case: timer ran over " + Time.timeSinceLevelLoad); }
                     //we got back to idle
-                //animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
-                //rpc conversion
-				pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.alertToIdleTrigger);
-                animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                    //animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
+                    }
+                    else {
+                        pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.alertToIdleTrigger);
+                    }
+                    animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                     //we change states
-				//fsm.enterState(StateEnums.ZombieStates.Idle);
-				pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Idle);
-                alertedC = 0;
-				alerted = false;
+                    //fsm.enterState(StateEnums.ZombieStates.Idle);
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        enterState((byte)StateEnums.ZombieStates.Idle);
+                    }
+                    else {
+                        pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Idle);
+                    }
+                    alertedC = 0;
+                    alerted = false;
                     //we revert the heightened senses again
-                lessenSenses();
-			}
-			break;
+                    lessenSenses();
+                }
+                break;
 
-			/***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
-		case StateEnums.ZombieStates.Chasing:
-			if (stateDebugStatements){Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);}
+            /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
+            case StateEnums.ZombieStates.Chasing:
+                if (stateDebugStatements) { Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); }
                 //counter
-            chasingC += Time.deltaTime;
+                chasingC += Time.deltaTime;
                 //we call the chasing method which handles the pursuit of the prey
-   			chasePlayer();
-			//update the position of the target we are chasing
-			if (chasing && chasingC > chasingD){
-				if (stateDebugStatements){Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad);}
+                chasePlayer();
+                //update the position of the target we are chasing
+                if (chasing && chasingC > chasingD) {
+                    if (stateDebugStatements) { Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad); }
 
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
-                navAgent.SetDestination(target.transform.position);
-				detection.assignLastPosition(target.transform.position);
-				detection.assignTarget(target);
-				chasingC = 0;
-			}
-			break;
+                    navAgent.SetDestination(target.transform.position);
+                    detection.assignLastPosition(target.transform.position);
+                    detection.assignTarget(target);
+                    chasingC = 0;
+                }
+                break;
 
-			/***********Searching*******Searching*******Searching*******Searching*******Searching*******Searching*******Searching*/
-		case StateEnums.ZombieStates.Searching:
+            /***********Searching*******Searching*******Searching*******Searching*******Searching*******Searching*******Searching*/
+            case StateEnums.ZombieStates.Searching:
 
-			if (stateDebugStatements){Debug.Log("searching case: entering " + Time.timeSinceLevelLoad);}
-			    //we search for the player by moving to his last known position
-			    //once we are there, we stop searching
+                if (stateDebugStatements) { Debug.Log("searching case: entering " + Time.timeSinceLevelLoad); }
+                //we search for the player by moving to his last known position
+                //once we are there, we stop searching
 
                 //check for arrival at the position or if we don't have a last known position
-			if (!detection.hasLastPosition() || checkArrival(transform.position, navAgent.destination)){
+                if (!detection.hasLastPosition() || checkArrival(transform.position, navAgent.destination)) {
                     //stop the nav agent from moving and revert to the alerted state
-                navAgent.Stop();
-                //rpc conversion
-				pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.alertedTrigger);
-                //animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
-				//fsm.enterState(StateEnums.ZombieStates.Alerted);
-                //rpc conversion
-				pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Alerted);
-            }
-			else{
+                    navAgent.Stop();
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
+                    }
+                    else {
+                        pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.alertedTrigger);
+                    }
+                    //animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
+                    //fsm.enterState(StateEnums.ZombieStates.Alerted);
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        enterState((byte)StateEnums.ZombieStates.Alerted);
+                    }
+                    else {
+                        pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Alerted);
+                    }
+                }
+                else {
                     //keep searching
-				searchForPlayer();
-			}
-			break;
+                    searchForPlayer();
+                }
+                break;
 
-			/***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
-		case StateEnums.ZombieStates.Attacking:
-			if (stateDebugStatements){Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad);}
-			attackPlayer();
-			break;
+            /***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
+            case StateEnums.ZombieStates.Attacking:
+                if (stateDebugStatements) { Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad); }
+                attackPlayer();
+                break;
 
-			/***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
-		case StateEnums.ZombieStates.Puking:
-			if (stateDebugStatements){Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);}
-			    //updating counter
-			pukeC += Time.deltaTime;
+            /***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
+            case StateEnums.ZombieStates.Puking:
+                if (stateDebugStatements) { Debug.Log("puking case: entering " + Time.timeSinceLevelLoad); }
+                //updating counter
+                pukeC += Time.deltaTime;
 
-			if (!puking){
-				puke();
-			}
-			    //if timer is over the limit
-			if (pukeC > pukeD){
-				if (debugStatements){Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad);}
-				//fsm.enterPreviousState();
-				pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
-                pukeC = 0;
-				puking = false;
-				pukeEffect.SetActive(false);
-			}
+                if (!puking) {
+                    puke();
+                }
+                //if timer is over the limit
+                if (pukeC > pukeD) {
+                    if (debugStatements) { Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); }
+                    //fsm.enterPreviousState();
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        fsm.enterPreviousState();
+                    }
+                    else {
+                        pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
+                    }
+                    pukeC = 0;
+                    puking = false;
+                    pukeEffect.SetActive(false);
+                }
 
-			break;
+                break;
 
-			/***********Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*/
-		case StateEnums.ZombieStates.Wandering:
-			if (stateDebugStatements){Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad);}
+            /***********Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*/
+            case StateEnums.ZombieStates.Wandering:
+                if (stateDebugStatements) { Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad); }
 
-            //if we have not started wandering yet
-			if (!wandering){
-				if (debugStatements){Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad);}
-				startWandering();
-				//animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
-                //rpc conversion
-				pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, true);
+                //if we have not started wandering yet
+                if (!wandering) {
+                    if (debugStatements) { Debug.Log("wandering case: !wandering = true " + Time.timeSinceLevelLoad); }
+                    startWandering();
+                    //animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setBoolean(EnemyHashScript.wanderingBool, true);
+                    }
+                    else {
+                        pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, true);
+                    }
 
                 }
 
-            //check if we have arrived at the destination
-			if (checkArrival(transform.position, wanderDest.position)){
-				if (debugStatements){Debug.Log("wandering case: at position " + Time.timeSinceLevelLoad);}
+                //check if we have arrived at the destination
+                if (checkArrival(transform.position, wanderDest.position)) {
+                    if (debugStatements) { Debug.Log("wandering case: at position " + Time.timeSinceLevelLoad); }
 
                     //if we have arrived we stop nav agent movement and assign the previous state
-                navAgent.Stop();
-				//fsm.enterPreviousState();
-				pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
-                wandering = false;
-                //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
-                //rpc conversion
-				pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
-            }
+                    navAgent.Stop();
+                    //fsm.enterPreviousState();
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        fsm.enterPreviousState();
+                    }
+                    else {
+                        pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
+                    }
+                    wandering = false;
+                    //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
+                    //rpc conversion
+                   
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
+                    }
+                    else {
+                        pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
+                    }
+                }
 
                 //lastly we always check if we can see/hear the player
-			checkForPlayer();
-			break;
+                checkForPlayer();
+                break;
 
-			/***********Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*/
-        case StateEnums.ZombieStates.Shot:
-			if (stateDebugStatements){Debug.Log("shot case: entering " + Time.timeSinceLevelLoad);}
-            
-            //if entity has been shot
-            if (!shot){
+            /***********Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*/
+            case StateEnums.ZombieStates.Shot:
+                if (stateDebugStatements) { Debug.Log("shot case: entering " + Time.timeSinceLevelLoad); }
 
-				if (stateDebugStatements){Debug.Log("shot case: setting up animation " + Time.timeSinceLevelLoad);}
+                //if entity has been shot
+                if (!shot) {
 
-				    //we set the random int value for the decision
-                animatorCont.setRandomInteger(EnemyHashScript.hitDInt,3);
-				    //we activate the shot trigger 
-				//animatorCont.setTrigger(EnemyHashScript.shotTrigger);
-                //rpc conversion
-				pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.shotTrigger);
-                shot = true;
+                    if (stateDebugStatements) { Debug.Log("shot case: setting up animation " + Time.timeSinceLevelLoad); }
+
+                    //we set the random int value for the decision
+                    animatorCont.setRandomInteger(EnemyHashScript.hitDInt, 3);
+                    //we activate the shot trigger 
+                    //animatorCont.setTrigger(EnemyHashScript.shotTrigger);
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setTrigger(EnemyHashScript.shotTrigger);
+                    }
+                    else {
+                        pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.shotTrigger);
+                    }
+                    shot = true;
                     //stop nav agent movement
-				navAgent.Stop();
-			}
+                    navAgent.Stop();
+                }
 
-            //play screaming sound
-			if (animatorCont.checkAnimationState(EnemyHashScript.shotScreamState) && trigger){
-				sound.playMaleScream(audioSource);
-				trigger = false;
-			}
+                //play screaming sound
+                if (animatorCont.checkAnimationState(EnemyHashScript.shotScreamState) && trigger) {
+                    sound.playMaleScream(audioSource);
+                    trigger = false;
+                }
 
-            //check to see if we are in the attack state
-			if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)){
-				if (stateDebugStatements){Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad);}
-				//fsm.enterState(StateEnums.ZombieStates.Chasing);
-                //rpc conversion
-				pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+                //check to see if we are in the attack state
+                if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)) {
+                    if (stateDebugStatements) { Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad); }
+                    //fsm.enterState(StateEnums.ZombieStates.Chasing);
+                    //rpc conversion
+                    
+                    if (PhotonNetwork.offlineMode) {
+                        enterState((byte)StateEnums.ZombieStates.Chasing);
+                    }
+                    else {
+                        pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+                    }
                     //resume movement
-                navAgent.Resume();
-				shot = false;
-			}
-			break;
+                    navAgent.Resume();
+                    shot = false;
+                }
+                break;
 
-			/***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
-		case StateEnums.ZombieStates.Dying:
-			if (stateDebugStatements){Debug.Log("dying case: entering " + Time.timeSinceLevelLoad);}
-			killUnit();
-			break;
+            /***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
+            case StateEnums.ZombieStates.Dying:
+                if (stateDebugStatements) { Debug.Log("dying case: entering " + Time.timeSinceLevelLoad); }
+                killUnit();
+                break;
 
-			/***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
-		case StateEnums.ZombieStates.Dead:
-			if (stateDebugStatements){Debug.Log("dead case: entering " + Time.timeSinceLevelLoad);}
+            /***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
+            case StateEnums.ZombieStates.Dead:
+                if (stateDebugStatements) { Debug.Log("dead case: entering " + Time.timeSinceLevelLoad); }
                 //we disable all non vital components
-            animatorCont.turnOffRM();
-			dead();
-			break;
-		}
-		
+                animatorCont.turnOffRM();
+                dead();
+                break;
+        }
+        
         //debugging
 		/*if (debug){
 			text.text = fsm.getCurrentState().ToString();
@@ -389,7 +466,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
 			//animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
             //rpc conversion
-			pView.RPC("forceAnimation", PhotonTargets.AllViaServer, EnemyHashScript.attackDecisionState);
+			
+            if (PhotonNetwork.offlineMode) {
+                animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
+            }
+            else {
+                pView.RPC("forceAnimation", PhotonTargets.AllViaServer, EnemyHashScript.attackDecisionState);
+            }
             //we set a new nav mesh destination
             navAgent.SetDestination(target.transform.position);
 			chasing = true;
@@ -405,11 +488,23 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
             //fsm.enterState(StateEnums.ZombieStates.Attacking);
             //rpc conversion
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Attacking);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Attacking);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Attacking);
+            }
             navAgent.Stop();
             //animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
             //rpc conversion
-			pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, true);
+			
+            if (PhotonNetwork.offlineMode) {
+                animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
+            }
+            else {
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, true);
+            }
             chasing = false;
         }
         //lost the target
@@ -418,7 +513,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 //we make appropriate changes in the fsm and the animations
             //fsm.enterState(StateEnums.ZombieStates.Searching);
             //rpc conversion
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Searching);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Searching);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Searching);
+            }
             animatorCont.resetBooleans();
             chasing = false;
         }
@@ -438,10 +539,22 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		animatorCont.resetBooleans();
 		//animatorCont.setTrigger(EnemyHashScript.deadTrigger);
         //rpc conversion
-		pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.deadTrigger);
+		
+        if (PhotonNetwork.offlineMode) {
+            animatorCont.setTrigger(EnemyHashScript.deadTrigger);
+        }
+        else {
+            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, EnemyHashScript.deadTrigger);
+        }
         animatorCont.setRandomInteger(EnemyHashScript.deathDsInt,2);
 		//fsm.enterState(StateEnums.ZombieStates.Dead);
-        pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dead);
+        
+        if (PhotonNetwork.offlineMode) {
+            enterState((byte)StateEnums.ZombieStates.Dead);
+        }
+        else {
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dead);
+        }
 
     }
 
@@ -472,7 +585,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             navAgent.speed = walkingSpeed;
 			//animatorCont.setTrigger(EnemyHashScript.searchingTrigger);
             //rpc conversion
-			pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.searchingTrigger);
+			
+            if (PhotonNetwork.offlineMode) {
+                animatorCont.setTrigger(EnemyHashScript.searchingTrigger);
+            }
+            else {
+                pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.searchingTrigger);
+            }
             heightenSenses();
 		}
 		//if the paths 
@@ -483,7 +602,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			navAgent.Stop();
 			//fsm.enterState(StateEnums.ZombieStates.Wandering);
             //rpc conversion
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Wandering);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Wandering);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Wandering);
+            }
         }
 
 	}
@@ -510,7 +635,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//stop any path navigation
 			navAgent.Stop();
 			//fsm.enterPreviousState();
-			pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
+			
+            if (PhotonNetwork.offlineMode) {
+                fsm.enterPreviousState();
+            }
+            else {
+                pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
+            }
         }
 		
 	}
@@ -539,10 +670,22 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		//add a small offset
 		if (distance > attackingDistance+5){
 			//fsm.enterState(StateEnums.ZombieStates.Chasing);
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Chasing);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+            }
             //animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
             //rpc conversion
-			pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
+            
+            if (PhotonNetwork.offlineMode) {
+                animatorCont.setBoolean(EnemyHashScript.attackingBool,false);
+            }
+            else {
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
+            }
         }
 	}
 
@@ -587,21 +730,30 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// </param>
 	void OnTriggerEnter(Collider collider){
         //if we player entered
-        if (collider.tag == Tags.PLAYER){
+        if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
 			if (debugStatements){Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
                 //assign the target
             detection.assignTarget(collider.gameObject);
 			target = collider.gameObject;
 			soundTrigger = true;
 		}
-		else if(collider is BoxCollider){
-			    //we set the awake boolean
-			//animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
+        else if(collider is BoxCollider){
+            //we set the awake boolean
+            //animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
             //rpc conversion
-			pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.wakeupTrigger);
-
+            if (pView != null) {
+                
+                if (PhotonNetwork.offlineMode) {
+                    animatorCont.setTrigger(EnemyHashScript.wakeupTrigger);
+                }
+                else {
+                    pView.RPC("setTrigger", PhotonTargets.AllViaServer, EnemyHashScript.wakeupTrigger);
+                }
+            }
             //disable collider
-            boxCollider.enabled = false;
+            if (boxCollider != null) {
+                boxCollider.enabled = false;
+            }
 		}
 
 	}
@@ -613,7 +765,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// unit colliding
     /// </param>
 	void OnTriggerExit(Collider collider){
-		if (collider.tag == Tags.PLAYER){
+		if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2){
 			if (debugStatements){Debug.Log("collider exit with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
 			soundTrigger = false;
 		}
@@ -631,7 +783,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("checkForPlayer method: player spotted " + Time.timeSinceLevelLoad);}
 			    //we need to now change into the appropriate state
 			//fsm.enterState(StateEnums.ZombieStates.Chasing);
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Chasing);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Chasing);
+            }
         }
         //if we hear the player based on his animation state
 		else if (soundTrigger){
@@ -655,7 +813,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//the position should have been set
 			//then searching method should take care of moving the npc there
 			//fsm.enterState(StateEnums.ZombieStates.Searching);
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Searching);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Searching);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Searching);
+            }
         }
 		else{
 			if (debugStatements){Debug.Log("alertUnit method else branch at" + Time.timeSinceLevelLoad);}
@@ -663,7 +827,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			//enhance viewing and listening 
 			heightenSenses();
 			//fsm.enterState(StateEnums.ZombieStates.Alerted);
-			pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Alerted);
+			
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Alerted);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Alerted);
+            }
         }
 	}
 
@@ -672,7 +842,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// </summary>
 	public void alertDead(){
 		//fsm.enterState(StateEnums.ZombieStates.Dying);
-		pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dying);
+		
+        if (PhotonNetwork.offlineMode) {
+            enterState((byte)StateEnums.ZombieStates.Dying);
+        }
+        else {
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dying);
+        }
     }
 
     /// <summary>
@@ -689,24 +865,17 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		// we only want to transition into the state if are not currently in the state
 		if (!shot){
 			//enterState(StateEnums.ZombieStates.Shot);
-            pView.RPC("enterState", PhotonTargets.AllViaServer, StateEnums.ZombieStates.Shot);
+          
+            if (PhotonNetwork.offlineMode) {
+                enterState((byte)StateEnums.ZombieStates.Shot);
+            }
+            else {
+                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Shot);
+            }
         }
 	}
 
-    /*
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            //Debug.Log("writing");
-            stream.SendNext(fsm.getCurrentState());
-        }
-        else {
-            //Debug.Log("receiving");
-            StateEnums.ZombieStates state = (StateEnums.ZombieStates)stream.ReceiveNext();
-            if (fsm.getCurrentState() != state) {
-                fsm.enterState(state);
-            }
-        }
-    }*/
+
 
 
     //for networking purposes

@@ -50,18 +50,6 @@ public class playerDataScript : MonoBehaviour {
         }
     }
 
-    /*public void receiveNetworkData(PhotonStream stream, PhotonMessageInfo info){
-		pistolEquipped = (bool)stream.ReceiveNext();
-		machineGunEquipped = (bool)stream.ReceiveNext();
-		health = (int)stream.ReceiveNext();
-	}
-
-
-	public void sendNetworkData(PhotonStream stream, PhotonMessageInfo info){
-		stream.SendNext(pistolEquipped);
-		stream.SendNext(machineGunEquipped);
-		stream.SendNext(health);
-	}*/
 
 
 
