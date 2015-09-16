@@ -1197,7 +1197,7 @@ Transform:
   m_LocalScale: {x: 1.79999995, y: 1.79999995, z: 1.79999995}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!135 &340654744
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1251,6 +1251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
+  rateOfFire: .100000001
+  singleFire: 1
+  ammo: 50
+  clipSize: 10
+  flareLight: {fileID: 141505274}
+  maxAmmo: 60
 --- !u!1 &403798405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,7 +3163,7 @@ Transform:
   - {fileID: 1931279558}
   - {fileID: 783566149}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!82 &914843748
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3240,6 +3247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b374b2f2d967248b213e8cd34e7190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIBarScript: {fileID: 0}
 --- !u!114 &914843751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,6 +3260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c3213ce99318a4da0ee5e236d6621f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponPickup: {fileID: 0}
 --- !u!114 &914843752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,6 +3273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotRange: 100
 --- !u!114 &914843753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3288,6 +3298,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c60bf913b4f9b4fbb0c441f5528aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  playerAlive: 1
+  movementSpeed: 6.5
+  mouseSpeed: 3
+  jumpSpeed: 5.5
+  pushingPower: 2.5
+  walking: 1
+  sprinting: 0
+  sneaking: 0
+  pistolPickedUp: 0
+  machineGunPickedUp: 0
+  pistolEquipped: 0
+  machineGunEquipped: 0
+  pistolGameObject: {fileID: 0}
+  machineGunGameObject: {fileID: 0}
+  torch: {fileID: 0}
+  hasKey: 0
 --- !u!143 &914843755
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3370,6 +3397,7 @@ MonoBehaviour:
   ammoAndWeaponPickupSound: {fileID: 8300000, guid: 488641ccc2df5944194eccf34a3778ad,
     type: 3}
   torchButtonSound: {fileID: 8300000, guid: af2309e28107d5a4eb2e03229ffdeceb, type: 3}
+  lowHealthHeartBeat: {fileID: 0}
   maleScreamingSound: {fileID: 0}
   femaleScreamingSound: {fileID: 0}
   sparkSound: {fileID: 0}
@@ -4126,6 +4154,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 8
+  rateOfFire: .150000006
+  singleFire: 0
+  ammo: 100
+  clipSize: 20
+  flareLight: {fileID: 1531187860}
+  maxAmmo: 160
 --- !u!1 &1275756685
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,6 +4827,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f106dccc1f133fc47bb3785d65fe1b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torchOn: 0
+  torch: {fileID: 1445461927}
+  soundController: {fileID: 0}
+  torchHUD: {fileID: 0}
+  torchOnImage: {fileID: 21300000, guid: 4f59f31234fd73e47b6e459d105464ea, type: 3}
+  torchOffImage: {fileID: 21300000, guid: 6ff95deb65c45de41a1462c1ba95ef8d, type: 3}
+  torchSlider: {fileID: 0}
 --- !u!108 &1445461927
 Light:
   m_ObjectHideFlags: 0
