@@ -3086,7 +3086,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 1
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -28668,6 +28668,10 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11480776, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: synchronization
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5380b8612228a94791360333aded419, type: 2}
   m_RootGameObject: {fileID: 33033049}
@@ -45749,15 +45753,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 776331992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d06466c03d263624786afa88b52928b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   statsWindowOn: 1
   statsOn: 1
-  healthStatsVisible: 0
-  trafficStatsOn: 0
+  healthStatsVisible: 1
+  trafficStatsOn: 1
   buttonsOn: 0
   statsRect:
     serializedVersion: 2
