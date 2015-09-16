@@ -20,12 +20,13 @@ public class NetworkManager : MonoBehaviour {
     //main stand by camera 
     public GameObject mainCam;
 
+    private bool connecting = false;
 
     /// <summary>
     /// initialization
     /// </summary>
     void Start () {
-		ConnectToNetwork();
+
 	}
 
     /// <summary>
@@ -36,15 +37,7 @@ public class NetworkManager : MonoBehaviour {
     /// </param>
 	void ConnectToNetwork(){
         Debug.Log("ConnectToNetwork");
-
-        if (offlineMode) {
-            PhotonNetwork.offlineMode = true; //we use this for single player
-            OnJoinedLobby();           
-        }
-        else {
-            PhotonNetwork.ConnectUsingSettings("v1.0");
-        }
-		
+        PhotonNetwork.ConnectUsingSettings("v1.0");
 	}
 
     /// <summary>
@@ -54,13 +47,30 @@ public class NetworkManager : MonoBehaviour {
         //shows us the connection state top right corner
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
 
-        if (!PhotonNetwork.connected) {
+        if (!PhotonNetwork.connected && !connecting) {
+            GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.BeginVertical();
+            GUILayout.FlexibleSpace();
             if (GUILayout.Button("Singleplayer Mode")) {
-
+                Debug.Log("Singleplayer Mode");
+                connecting = true;
+                PhotonNetwork.offlineMode = true; //we use this for single player
+                OnJoinedLobby();
             }
             if (GUILayout.Button("Multiplayer Mode")) {
-
+                Debug.Log("Multiplayer Mode");
+                connecting = true;
+                ConnectToNetwork();
             }
+
+            
+            GUILayout.FlexibleSpace();
+            GUILayout.EndVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            GUILayout.EndArea();
 
         }
 
