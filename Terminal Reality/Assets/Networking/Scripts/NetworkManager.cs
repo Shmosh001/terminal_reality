@@ -35,13 +35,16 @@ public class NetworkManager : MonoBehaviour {
     /// true/false
     /// </param>
 	void ConnectToNetwork(){
-		PhotonNetwork.ConnectUsingSettings("v1.0");
-		if (offlineMode) {
+        Debug.Log("ConnectToNetwork");
+
+        if (offlineMode) {
             PhotonNetwork.offlineMode = true; //we use this for single player
-            PhotonNetwork.CreateRoom("sp");
-           
+            OnJoinedLobby();           
         }
-		Debug.Log("ConnectToNetwork");
+        else {
+            PhotonNetwork.ConnectUsingSettings("v1.0");
+        }
+		
 	}
 
     /// <summary>
@@ -50,6 +53,17 @@ public class NetworkManager : MonoBehaviour {
 	void OnGUI(){
         //shows us the connection state top right corner
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+
+        if (!PhotonNetwork.connected) {
+            if (GUILayout.Button("Singleplayer Mode")) {
+
+            }
+            if (GUILayout.Button("Multiplayer Mode")) {
+
+            }
+
+        }
+
 	}
 
     /// <summary>
