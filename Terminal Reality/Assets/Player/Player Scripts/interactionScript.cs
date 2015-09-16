@@ -53,11 +53,23 @@ public class interactionScript : Photon.MonoBehaviour {
                             Debug.LogError("No PhotonView component found on " + hitObject);
                         }
                         else {
-                            pView.RPC("interaction", PhotonTargets.AllBuffered);
+                            if (PhotonNetwork.offlineMode) {
+                                DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+                                ds.interaction();
+                            }
+                            else {
+                                pView.RPC("interaction", PhotonTargets.AllBuffered);
+                            }
                         }
                     }
                     else {
-                        pView.RPC("interaction", PhotonTargets.AllBuffered);
+                        if (PhotonNetwork.offlineMode) {
+                            DoorScript ds = hitObject.GetComponent<DoorScript>();
+                            ds.interaction();
+                        }
+                        else {
+                            pView.RPC("interaction", PhotonTargets.AllBuffered);
+                        }
                     }
                     
 				}								
@@ -97,7 +109,13 @@ public class interactionScript : Photon.MonoBehaviour {
                     Debug.LogError("No PhotonView component found");
                 }
                 else {
-                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                    if (PhotonNetwork.offlineMode) {
+                        Destroy(interactingCollider.gameObject);
+                    }
+                    else {
+                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                    }
+                    
                 }
                 
 				inRangeOfAmmo = false;
@@ -150,7 +168,12 @@ public class interactionScript : Photon.MonoBehaviour {
                     Debug.LogError("No PhotonView component found");
                 }
                 else {
-                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                    if (PhotonNetwork.offlineMode) {
+                        Destroy(interactingCollider.gameObject);
+                    }
+                    else {
+                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                    }
                 }
 
 

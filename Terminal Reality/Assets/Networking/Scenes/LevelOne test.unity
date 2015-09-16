@@ -3192,6 +3192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSighting: {x: 0, y: 0, z: 0}
+  rayCastPosition: {fileID: 1204637158}
 --- !u!114 &33033057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126478,6 +126479,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11485196, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: rayCastPosition
+      value: 
+      objectReference: {fileID: 1204637158}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5380b8612228a94791360333aded419, type: 2}
   m_RootGameObject: {fileID: 33033049}
