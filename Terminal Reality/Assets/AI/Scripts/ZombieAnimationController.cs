@@ -54,7 +54,7 @@ public class ZombieAnimationController : MonoBehaviour {
 
             
             if (PhotonNetwork.offlineMode) {
-                pView.RPC("setTrigger", PhotonTargets.MasterClient, name);
+                setTrigger(name);
             }
             else {
                 pView.RPC("setTrigger", PhotonTargets.AllViaServer, name);
@@ -81,7 +81,7 @@ public class ZombieAnimationController : MonoBehaviour {
         //setInteger(EnemyHashScript.stateDInt,choice);
         
         if (PhotonNetwork.offlineMode) {
-            pView.RPC("setInteger", PhotonTargets.MasterClient, EnemyHashScript.stateDInt, choice);
+            setInteger(EnemyHashScript.stateDInt, choice);
         }
         else {
             pView.RPC("setInteger", PhotonTargets.AllViaServer, EnemyHashScript.stateDInt, choice);
@@ -138,7 +138,7 @@ public class ZombieAnimationController : MonoBehaviour {
             //TODO rpc conversion
             
             if (PhotonNetwork.offlineMode) {
-                pView.RPC("setBoolean", PhotonTargets.MasterClient, name, true);
+               setBoolean(name, true);
             }
             else {
                 pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, true);
@@ -154,7 +154,7 @@ public class ZombieAnimationController : MonoBehaviour {
             //TODO rpc conversion
             
             if (PhotonNetwork.offlineMode) {
-                pView.RPC("setBoolean", PhotonTargets.MasterClient, name, false);
+               setBoolean(name, false);
             }
             else {
                 pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, false);
@@ -183,7 +183,7 @@ public class ZombieAnimationController : MonoBehaviour {
         //TODO rpc conversion
         
         if (PhotonNetwork.offlineMode) {
-            pView.RPC("setInteger", PhotonTargets.MasterClient, name, choice);
+            setInteger(name, choice);
         }
         else {
             pView.RPC("setInteger", PhotonTargets.AllViaServer, name, choice);
@@ -247,8 +247,8 @@ public class ZombieAnimationController : MonoBehaviour {
         //TODO rpc conversion
         
         if (PhotonNetwork.offlineMode) {
-            pView.RPC("setBoolean", PhotonTargets.MasterClient, EnemyHashScript.attackingBool, false);
-            pView.RPC("setBoolean", PhotonTargets.MasterClient, EnemyHashScript.wanderingBool, false);
+            setBoolean(EnemyHashScript.attackingBool, false);
+            setBoolean(EnemyHashScript.wanderingBool, false);
         }
         else {
             pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
