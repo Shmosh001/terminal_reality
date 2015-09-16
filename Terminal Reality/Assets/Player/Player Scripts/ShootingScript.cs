@@ -31,10 +31,10 @@ public class ShootingScript : ammoHUDScript {
 		if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire)
 		{
 			coolDownTimer -= Time.deltaTime; // reduce cool down timer
-		
+			
 			if (Input.GetMouseButtonDown(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0)
 					{
@@ -42,7 +42,7 @@ public class ShootingScript : ammoHUDScript {
 						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						flareLoopCount = 0;
-	
+						
 						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
@@ -50,7 +50,7 @@ public class ShootingScript : ammoHUDScript {
 						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 						                   weapon.GetComponent<weaponDataScript>().clipSize,
 						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
-	
+						
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 					}
@@ -79,7 +79,7 @@ public class ShootingScript : ammoHUDScript {
 			
 			if (Input.GetMouseButton(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0) //can shoot
 					{
@@ -87,16 +87,16 @@ public class ShootingScript : ammoHUDScript {
 						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						
-
+						
 						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
-
+						
 						//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 						                   weapon.GetComponent<weaponDataScript>().clipSize,
 						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
-
+						
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;						
@@ -106,7 +106,7 @@ public class ShootingScript : ammoHUDScript {
 						weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
 					}
 				}
-
+				
 				else //if clip is empty
 				{
 					if (coolDownTimer <= 0)
@@ -129,7 +129,7 @@ public class ShootingScript : ammoHUDScript {
 				}
 			}
 		}
-
+		
 		//RELOAD//
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -141,11 +141,11 @@ public class ShootingScript : ammoHUDScript {
 				{
 					coolDownTimer = 1.3f; //so can't start shooting while the sound is playing
 					soundController.GetComponent<soundControllerScript>().playReload(this.GetComponent<AudioSource>()); //play reload sound
-
+					
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
-
+					
 					//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 					                   weapon.GetComponent<weaponDataScript>().clipSize,
