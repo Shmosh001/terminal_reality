@@ -61,6 +61,16 @@ public class DoorScript : MonoBehaviour {
 				pushE.enabled = true;
 			}
 		}
+
+		//ENEMY OPEN DOOR WHEN THEY ENTER COLLIDER
+		if (other.tag == "Enemy" && other.GetType() == typeof(CapsuleCollider))
+		{
+			if (!open)
+			{
+				anim.SetTrigger("Open");
+				open = true;
+			}
+		}
 	}
 	
 	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
@@ -70,6 +80,16 @@ public class DoorScript : MonoBehaviour {
 		if (other.tag == "Player")
 		{
 			pushE.enabled = false;
+		}
+
+		//ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
+		if (other.tag == "Enemy" && other.GetType() == typeof(CapsuleCollider))
+		{
+			if (open) //Only show hint if the door is closed
+			{
+				anim.SetTrigger("Close");
+				open = false;
+			}
 		}
 	}
 }
