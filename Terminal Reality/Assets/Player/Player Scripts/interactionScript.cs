@@ -45,7 +45,14 @@ public class interactionScript : MonoBehaviour {
 				{
 					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 					ds.interaction();
-				}								
+				}
+
+				//IF THE RAY HIT A DOOR//
+				if (hitObject.CompareTag("DoubleDoor"))
+				{
+					DDScript dds = hitObject.GetComponentInParent<DDScript>();
+					dds.interaction();
+				}
 				
 			}
 			

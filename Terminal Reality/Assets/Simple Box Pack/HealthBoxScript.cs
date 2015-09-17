@@ -34,7 +34,7 @@ public class HealthBoxScript : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == "Player1" && other.tag)
 		{
 			pushE.enabled = false;
 		}

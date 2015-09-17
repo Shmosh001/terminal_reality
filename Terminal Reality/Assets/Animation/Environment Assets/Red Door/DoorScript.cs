@@ -55,7 +55,7 @@ public class DoorScript : MonoBehaviour {
 		}
 	}
 	
-	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
+	//WHEN SOMETHING LEAVES THE DOOR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
