@@ -231,7 +231,14 @@ public class ShootingScript : ammoHUDScript {
                     Debug.LogError("No PhotonView component found on " + hitObject);
                 }
                 else {
-                    pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
+                    if (PhotonNetwork.offlineMode) {
+                        hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
+                    }
+                    else {
+                        pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
+                    }
+
+                    
                 }
             }
 		}
