@@ -1600,8 +1600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
   damage: 50
   rateOfFire: 12
   singleFire: 1
@@ -1609,9 +1607,6 @@ MonoBehaviour:
   clipSize: 10
   flareLight: {fileID: 0}
   maxAmmo: 60
-  shotSound: {fileID: 8300000, guid: 946334f830572c3488ef7e3d02a30d03, type: 3}
-  reloadSound: {fileID: 8300000, guid: d1998319cd7c12746afdb4fd9fce8e39, type: 3}
-  outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
 --- !u!1 &125201043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,8 +2548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoText: {fileID: 0}
-  reloadText: {fileID: 0}
   shotRange: 100
 --- !u!114 &218437676
 MonoBehaviour:
@@ -2674,7 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b374b2f2d967248b213e8cd34e7190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 0}
+  UIBarScript: {fileID: 0}
 --- !u!114 &218437685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2696,6 +2689,9 @@ MonoBehaviour:
   machineGunPickedUp: 0
   pistolEquipped: 1
   machineGunEquipped: 0
+  pistolGameObject: {fileID: 0}
+  machineGunGameObject: {fileID: 0}
+  torch: {fileID: 0}
 --- !u!1 &219260633
 GameObject:
   m_ObjectHideFlags: 0
@@ -22486,6 +22482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSighting: {x: 0, y: 0, z: 0}
+  rayCastPosition: {fileID: 0}
 --- !u!195 &998411234
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22533,12 +22530,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  arrivalDistance: 1.5
   stateDebugStatements: 1
   debugStatements: 1
-  pukeEffect: {fileID: 112328, guid: 35386c250bfcbda4ca24f5118c825f59, type: 2}
-  rayCastOffset: 1.5
   debug: 0
   animDebug: 0
+  text: {fileID: 871842190}
+  text2: {fileID: 0}
+  pukeEffect: {fileID: 112328, guid: 35386c250bfcbda4ca24f5118c825f59, type: 2}
+  rayCastOffset: 1.5
   eventChoiceD: 10
   wanderD: 0
   checkPlayerD: 0
@@ -22548,18 +22548,17 @@ MonoBehaviour:
   dyingD: 0
   chasingD: 1.5
   shotD: 0
+  attackD: 2
   viewingSenseNorm: 0
   viewingSensAlert: 0
   listeningSensNorm: 8
   listeningSensAlert: 12
   walkingSpeed: 0
   RunningSpeed: 0
+  speed: 0
   runningDistance: 0
   attackingDistance: 1.5
   losingDistance: 20
-  speed: 0
-  text: {fileID: 871842190}
-  text2: {fileID: 0}
 --- !u!114 &998411237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25380,12 +25379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a5dbe28c77f7d42ab9d73a85343078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 218437673}
-  counter: 0
-  cams:
-  - {fileID: 560105619}
-  - {fileID: 1923733358}
-  - {fileID: 1948283497}
 --- !u!4 &1166748663
 Transform:
   m_ObjectHideFlags: 0
@@ -25409,10 +25402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cbd3eb4e2194047a88e5653eea4380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 218437673}
-  enemy: {fileID: 1452960655}
-  debug: 1
-  damage: 20
 --- !u!1 &1189752203
 GameObject:
   m_ObjectHideFlags: 0
@@ -28535,7 +28524,7 @@ GameObject:
   - 114: {fileID: 1452960667}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28747,6 +28736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSighting: {x: 0, y: 0, z: 0}
+  rayCastPosition: {fileID: 0}
 --- !u!114 &1452960667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28772,12 +28762,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  stateDebugStatements: 1
-  debugStatements: 1
+  arrivalDistance: 1.5
+  stateDebugStatements: 0
+  debugStatements: 0
+  debug: 0
+  animDebug: 0
+  text: {fileID: 871842190}
+  text2: {fileID: 0}
   pukeEffect: {fileID: 1532611219}
   rayCastOffset: 1.5
-  debug: 1
-  animDebug: 0
   eventChoiceD: 10
   wanderD: 0
   checkPlayerD: 0
@@ -28787,18 +28780,17 @@ MonoBehaviour:
   dyingD: 0
   chasingD: 1.5
   shotD: 0
+  attackD: 2
   viewingSenseNorm: 30
   viewingSensAlert: 40
   listeningSensNorm: 8
   listeningSensAlert: 12
   walkingSpeed: 3
   RunningSpeed: 5
+  speed: 0
   runningDistance: 10
   attackingDistance: 2
   losingDistance: 20
-  speed: 0
-  text: {fileID: 871842190}
-  text2: {fileID: 0}
 --- !u!65 &1452960669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34679,9 +34671,10 @@ MonoBehaviour:
   outOfAmmoSound: {fileID: 8300000, guid: d685eed79a993f343986f8a869691c18, type: 3}
   ammoAndWeaponPickupSound: {fileID: 8300000, guid: 488641ccc2df5944194eccf34a3778ad,
     type: 3}
-  maleScreamingSound: {fileID: 8300000, guid: 2c0d079aafeedde40b1dc7d7b6a28871, type: 3}
-  femaleScreamingSound: {fileID: 8300000, guid: 2143425ce26967e4daff5d9fe3ed6075,
-    type: 3}
+  torchButtonSound: {fileID: 8300000, guid: af2309e28107d5a4eb2e03229ffdeceb, type: 3}
+  maleScreamingSound: {fileID: 0}
+  femaleScreamingSound: {fileID: 0}
+  sparkSound: {fileID: 0}
 --- !u!4 &1680661742
 Transform:
   m_ObjectHideFlags: 0

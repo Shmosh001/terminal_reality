@@ -117,22 +117,31 @@ public class PreyDetection : MonoBehaviour {
         //Debug.Log(angle);
         //if the angle is smaller then we can see the target
         //now we need to check if anything is obstructing the view by raycasting
-        if (angle < FOV/2){
+        if (angle < FOV / 2) {
             //Debug.LogWarning("in view");
-			RaycastHit hitObject;
-			if (Physics.Raycast(transform.position+transform.up, target.transform.position + target.transform.up, out hitObject, distance)){
-                //Debug.LogWarning(hitObject.collider.gameObject);
-                if (hitObject.collider.gameObject == target){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+            RaycastHit hitObject;
+            //Debug.Log(transform.position + transform.up);
+            //Debug.Log(direction);
+            if (Physics.Raycast(transform.position + transform.up, direction, out hitObject, distance)) {
+                Debug.LogWarning(hitObject.collider.gameObject);
+                if (hitObject.collider.gameObject == target) {
+                    return true;
+                }
+                else if (hitObject.collider.gameObject.tag == Tags.PLAYER1 || hitObject.collider.gameObject.tag == Tags.PLAYER2) {
+                    target = hitObject.collider.gameObject;
+                    return true;
+                }
+
+            }
+            
+        }
+        return false;
+
+    }
 
 
     void Update() {
-        if (target != null)Debug.DrawLine(transform.position + transform.up, target.transform.position + target.transform.up);
+        if (target != null)Debug.DrawLine(transform.position + transform.up, target.transform.position);
     }
     
 }
