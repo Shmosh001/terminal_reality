@@ -15,6 +15,7 @@ public class weaponDataScript : ammoHUDScript
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
 	private bool equipped;
+	private bool canShoot;
 
 	void Awake()
 	{
@@ -38,6 +39,7 @@ public class weaponDataScript : ammoHUDScript
 	public void reduceAmmo()
 	{
 		ammoInClip--;
+		checkCanShoot();
 	}
 
 	//RELOADING//
@@ -51,6 +53,7 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip = clipSize;
 			ammo -= clipSize;
+			checkCanShoot();
 			return true;
 		}
 		//if there is ammo, but not enough to fill the clip
@@ -59,6 +62,7 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip = ammo;
 			ammo = 0;
+			checkCanShoot();
 			return true;
 		}
 		//if there is more ammo than the size of the clip
@@ -68,6 +72,7 @@ public class weaponDataScript : ammoHUDScript
 			int diff = clipSize - ammoInClip;
 			ammoInClip = clipSize;
 			ammo -= diff;
+			checkCanShoot();
 			return true;
 		}
 		//if there is ammo, but not enough to fill the clip
@@ -76,10 +81,12 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip += ammo;
 			ammo = 0;
+			checkCanShoot();
 			return true;
 		}
 		else
 		{
+			checkCanShoot();
 			return false;
 		}
 	}
@@ -105,6 +112,15 @@ public class weaponDataScript : ammoHUDScript
 	public void gunFlare(bool state)
 	{
 		flareLight.enabled = state;
+	}
+
+	//METHOD TO CHECK IF THE GUN HAS THE AMMO TO BE ABLE TO SHOOT
+	public bool checkCanShoot()
+	{
+		if (ammoInClip > 0) canShoot = true;
+		else canShoot = false;
+		
+		return canShoot;
 	}
 
 
