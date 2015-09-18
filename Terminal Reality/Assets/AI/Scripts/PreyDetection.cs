@@ -13,6 +13,9 @@ public class PreyDetection : MonoBehaviour {
     public Vector3 lastSighting;
     public Transform rayCastPosition;
 
+    public GameObject Player2;
+    public GameObject Player1;
+
 
     //PRIVATE VARS
 
@@ -53,6 +56,45 @@ public class PreyDetection : MonoBehaviour {
 		//targetAnimator = target.GetComponent<Animator>();
 	}
 
+
+    /// <summary>
+    /// assigns a target
+    /// </summary>
+    /// <param name="entity">
+    /// new target
+    /// </param>
+    [PunRPC]
+    public void assignTarget(string tag) {
+        Debug.Log(tag + "assigned as target");
+        if (tag == Tags.PLAYER1) {
+            target = Player1;
+        }
+        else if (tag == Tags.PLAYER2) {
+            target = Player2;
+        }
+        //TODO get animator
+        //targetAnimator = target.GetComponent<Animator>();
+    }
+
+
+
+
+    /// <summary>
+    /// called once a second
+    /// </summary>
+    void Update() {
+        if (Player1 == null && !PhotonNetwork.offlineMode) {
+            Player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+        }
+
+        if (Player2 == null && !PhotonNetwork.offlineMode) {
+            Player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+        }
+
+    }
+
+
+
     /// <summary>
     /// checks to see if a last known position is available
     /// </summary>
@@ -87,7 +129,9 @@ public class PreyDetection : MonoBehaviour {
 	public bool targetHeard(){
 		//we use the players animator controller to decide this
 		//need to set up hashes for this? not actually
-
+        if (target == null) {
+            return false;
+        }
 
 		//if we find that we do hear the player, we need to set the location for the search to work
 		//still need to check if we heard the player
@@ -110,6 +154,11 @@ public class PreyDetection : MonoBehaviour {
         //Debug.Log(target);
         //calculates if we can see the target based on the fov and the distance we can see
         //Vector3 direction = target.transform.position - transform.position;
+
+        if (target == null) {
+            return false;
+        }
+
         Vector3 direction = target.transform.position - transform.position;
         //Debug.Log(direction);
         //gets the angle between the player and the unit
@@ -123,7 +172,7 @@ public class PreyDetection : MonoBehaviour {
             //Debug.Log(transform.position + transform.up);
             //Debug.Log(direction);
             if (Physics.Raycast(transform.position + transform.up, direction, out hitObject, distance)) {
-                Debug.LogWarning(hitObject.collider.gameObject);
+                //Debug.LogWarning(hitObject.collider.gameObject);
                 if (hitObject.collider.gameObject == target) {
                     return true;
                 }
@@ -140,8 +189,6 @@ public class PreyDetection : MonoBehaviour {
     }
 
 
-    void Update() {
-        if (target != null)Debug.DrawLine(transform.position + transform.up, target.transform.position);
-    }
+
     
 }

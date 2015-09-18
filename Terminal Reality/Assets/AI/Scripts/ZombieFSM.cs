@@ -27,7 +27,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public float rayCastOffset = 1.5f;
 
     //floats values which are sued for counters and durations and general values
-    public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD = 7.917f, alertedD = 10.0f, searchingD, dyingD, chasingD = 0.5f, shotD, attackD = 2;
+    public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD = 7.917f, alertedD = 10.0f, searchingD, dyingD, chasingD = 1f, shotD, attackD = 2;
     //sense values
     public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
     //speed values
@@ -242,11 +242,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 //counter
                 chasingC += Time.deltaTime;
                 //we call the chasing method which handles the pursuit of the prey
-                chasePlayer();
+                if (!chasing) {
+                    chasePlayer();
+                }
                 //update the position of the target we are chasing
                 if (chasing && chasingC > chasingD) {
                     if (stateDebugStatements) { Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad); }
-
+                    chasePlayer();
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
                     navAgent.SetDestination(target.transform.position);
                     detection.assignLastPosition(target.transform.position);
@@ -733,8 +735,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
 			if (debugStatements){Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
                 //assign the target
-            detection.assignTarget(collider.gameObject);
-			target = collider.gameObject;
+            
+            if (PhotonNetwork.offlineMode) {
+                detection.assignTarget(collider.gameObject);
+            }
+            else {
+                pView.RPC("assignTarget", PhotonTargets.AllViaServer, collider.gameObject.tag);
+            }
+            target = collider.gameObject;
 			soundTrigger = true;
 		}
         else if(collider is BoxCollider){
