@@ -12,6 +12,8 @@ GameObject:
   - 23: {fileID: 2362396}
   - 95: {fileID: 9562396}
   - 65: {fileID: 6531580}
+  - 65: {fileID: 6577448}
+  - 65: {fileID: 6577446}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 162396}
   m_LocalRotation: {x: 0, y: -.707106888, z: 0, w: .707106769}
   m_LocalPosition: {x: -2.58311129, y: .105555564, z: 1.19688857}
-  m_LocalScale: {x: 2.22222233, y: 2.36999989, z: 2.22222233}
+  m_LocalScale: {x: 2.3900001, y: 2.36999989, z: 2.22222233}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,6 +72,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .276961923, y: .0929152295, z: .118390076}
   m_Center: {x: .000617820071, y: .00579325762, z: 3.21644166e-07}
+--- !u!65 &6577446
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .00587414019, y: .0302498844, z: .118390374}
+  m_Center: {x: -.134917364, y: .0648115799, z: 3.73758212e-07}
+--- !u!65 &6577448
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .00528440066, y: .0345202759, z: .118390374}
+  m_Center: {x: .136463523, y: .0626762882, z: 3.76665696e-07}
 --- !u!95 &9562396
 Animator:
   serializedVersion: 3
