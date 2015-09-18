@@ -13,7 +13,8 @@ public class NetworkManager : MonoBehaviour {
     //boolean for offline mode
     public bool offlineMode;
     //the hud
-    public GameObject hud;
+    public GameObject P1HUD;
+    public GameObject P2HUD;
     //temp spawning location
     public GameObject temp;
     public GameObject zombieSpawn;
@@ -160,14 +161,20 @@ public class NetworkManager : MonoBehaviour {
 
 
 
-
+        localPlayer.GetComponent<CapsuleCollider>().enabled = true;
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
 		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script	
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
-		hud.SetActive(true);//enable the HUD
+        if (PhotonNetwork.isMasterClient) {
+            P1HUD.SetActive(true);//enable the HUD
+        }
+        else {
+            P2HUD.SetActive(true);//enable the HUD
+        }
 
+        //NOW NEED TO ASSIGN PARTS TO THE HUD ELEMENTS
         
 	}
 
