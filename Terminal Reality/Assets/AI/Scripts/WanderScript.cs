@@ -7,25 +7,38 @@ using System.Collections;
 /// </summary>
 public class WanderScript : MonoBehaviour {
 
+
+    
+
+
     //valid locations
-	private Transform[] locations;
+	private ArrayList unvisitedLocations;
+
+    private ArrayList visitedLocations;
+
+    private int initialSize;
+    private int visitedCount;
+    private int unvisitedCount;
 
     /// <summary>
     /// initialization
     /// </summary>
     void Start () {
 		GameObject[] locs = GameObject.FindGameObjectsWithTag(Tags.WANDERLOC);
-		locations = new Transform[locs.Length];
-		assignPositions(locs);
+        initialSize = locs.Length;
+        visitedCount = initialSize;
+        unvisitedCount = 0;
+        assignPositions(locs);
 	}
 	
     /// <summary>
     /// writes all the transforms from the locations into the array
     /// </summary>
     /// <param name="pos"></param>
-	void assignPositions(GameObject[] pos){
-		for (int i = 0; i < pos.Length; i++){
-			locations[i] = pos[i].transform;
+	void assignPositions(GameObject[] objects){
+
+        for (int i = 0; i < initialSize; i++){
+            unvisitedLocations.Add(objects[i].transform);
 		}
 	}
 
@@ -39,15 +52,27 @@ public class WanderScript : MonoBehaviour {
     /// transform of that location
     /// </returns>
 	public Transform getClosestPoint(Transform entity){
-		Transform closest = locations[0];
-		float lastDist = Vector3.Distance(locations[0].position, entity.position);
-		for (int i = 1; i < locations.Length; i++){
-			float newDist =  Vector3.Distance(locations[i].position, entity.position);
-			if (newDist < lastDist){
-				closest = locations[i];
-				lastDist = newDist;
+        //get first element
+        Transform closest = (Transform)unvisitedLocations[0];
+        //get basic distance
+
+		float lastDist = Vector3.Distance(closest.position, entity.position);
+
+
+        for (int i = 1; i < visitedCount; i++){
+            //get distance
+            Transform location = (Transform)unvisitedLocations[i];
+            float newDist =  Vector3.Distance(location.position, entity.position);
+            //check if it is shorter than current shortest distance
+            if (newDist < lastDist){
+				closest = location;
+                lastDist = newDist;
 			}
 		}
+        unvisitedLocations.Remove((object)closest);
+        visitedLocations.Add(closest);
+        visitedCount++;
+        unvisitedCount--;       
 		return closest;
 	}
 

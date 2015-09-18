@@ -252,6 +252,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
                     navAgent.SetDestination(target.transform.position);
                     detection.assignLastPosition(target.transform.position);
+                    if (target == null) {
+                        handleNoTarget();
+                        break;
+                    }
                     detection.assignTarget(target);
                     chasingC = 0;
                 }
@@ -470,12 +474,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //rpc conversion
 			
             if (PhotonNetwork.offlineMode) {
+                
                 animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
             }
             else {
                 pView.RPC("forceAnimation", PhotonTargets.AllViaServer, EnemyHashScript.attackDecisionState);
             }
             //we set a new nav mesh destination
+            if (target == null) {
+                return;
+            }
             navAgent.SetDestination(target.transform.position);
 			chasing = true;
 		}
@@ -652,9 +660,15 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// entity pukes at its positon
     /// </summary>
     void attackPlayer(){
-		if (debugStatements){Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);}
-		    //inflict damage on player
-		playerHealthScript targetH = target.GetComponent<playerHealthScript>();
+		if (debugStatements)Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);
+        //inflict damage on player
+
+        if (target == null) {
+            handleNoTarget();
+            return;
+        }
+
+        playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 
             //increment counter
         attackC += Time.deltaTime;
@@ -734,14 +748,17 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         //if we player entered
         if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
 			if (debugStatements){Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);}
-                //assign the target
-            
-            if (PhotonNetwork.offlineMode) {
-                detection.assignTarget(collider.gameObject);
+            //assign the target
+
+            //if (PhotonNetwork.offlineMode) {
+            if (collider == null) {
+                return;
             }
+            detection.assignTarget(collider.gameObject);
+            /*}
             else {
                 pView.RPC("assignTarget", PhotonTargets.AllViaServer, collider.gameObject.tag);
-            }
+            }*/
             target = collider.gameObject;
 			soundTrigger = true;
 		}
@@ -889,7 +906,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     //for networking purposes
     [PunRPC]
     public void enterState(byte state) {
-        if (fsm != null) {
+        //we only switch states if we are in a different state and fsm is not null
+        if (fsm != null && (byte)fsm.getCurrentState() != state) {
+
             fsm.enterState((StateEnums.ZombieStates)state);
         }
         
@@ -900,6 +919,32 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         fsm.enterPreviousState();
     }
 
+
+
+    [PunRPC]
+    void requestCurrentTarget() {
+        Debug.LogWarning("requestCurrentTarget called for " + PhotonNetwork.isMasterClient);
+        if (target != null) {
+            pView.RPC("receiveCurrentTarget", PhotonTargets.Others, target.tag);
+        }
+        else {
+            Debug.LogError("Also null by me :(");
+        }
+        
+    }
+
+
+    [PunRPC]
+    void receiveCurrentTarget(string tagName) {
+        Debug.LogWarning("receiveCurrentTarget called for " + PhotonNetwork.isMasterClient);
+        target = detection.assignTarget(tagName);
+    }
+
+
+    void handleNoTarget() {
+        Debug.LogWarning("handleNoTarget requested");
+        pView.RPC("requestCurrentTarget", PhotonTargets.Others);
+    }
 
 
 }
