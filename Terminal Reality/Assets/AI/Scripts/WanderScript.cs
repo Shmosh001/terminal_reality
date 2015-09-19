@@ -73,6 +73,12 @@ public class WanderScript : MonoBehaviour {
         visitedLocations.Add(closest);
         visitedCount++;
         unvisitedCount--;       
+        if (unvisitedCount == 0) {
+            unvisitedLocations = visitedLocations;
+            visitedLocations.Clear();
+            unvisitedCount = visitedCount;
+            visitedCount = 0;
+        }
 		return closest;
 	}
 
