@@ -61,7 +61,7 @@ public class WanderScript : MonoBehaviour {
 		float lastDist = Vector3.Distance(closest.position, entity.position);
 
 
-        for (int i = 1; i < visitedCount; i++){
+        for (int i = 1; i < unvisitedCount; i++){
             //get distance
             Transform location = (Transform)unvisitedLocations[i];
             float newDist =  Vector3.Distance(location.position, entity.position);

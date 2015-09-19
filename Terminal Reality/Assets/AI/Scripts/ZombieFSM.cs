@@ -916,7 +916,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
     [PunRPC]
     public void enterPrevState() {
-        fsm.enterPreviousState();
+        if (fsm != null) {
+            fsm.enterPreviousState();
+        }
+        
     }
 
 
