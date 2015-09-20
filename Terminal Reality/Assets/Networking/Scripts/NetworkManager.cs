@@ -102,8 +102,9 @@ public class NetworkManager : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
-        activateEnemies();
-                
+        if (PhotonNetwork.isMasterClient) {
+            activateEnemies();
+        }        
 	}
 
     /// <summary>
@@ -181,9 +182,11 @@ public class NetworkManager : MonoBehaviour {
 
 
     void activateEnemies() {
-        for(int i  = 0; i < enemies.Length; i++) {
+        /*for(int i  = 0; i < enemies.Length; i++) {
             enemies[i].SetActive(true);
-        }
+        }*/
+        PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
+        
     }
 
 }

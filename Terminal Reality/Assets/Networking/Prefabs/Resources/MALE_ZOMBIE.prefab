@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185168}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
   m_Name: 
@@ -3075,6 +3075,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11497850}
+  - {fileID: 11408990}
+  - {fileID: 11485190}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -3157,6 +3159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastSighting: {x: 0, y: 0, z: 0}
+  rayCastPosition: {fileID: 485066}
+  Player2: {fileID: 0}
+  Player1: {fileID: 0}
 --- !u!114 &11485198
 MonoBehaviour:
   m_ObjectHideFlags: 1

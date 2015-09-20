@@ -952,5 +952,25 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     }
 
 
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+       
+
+        
+        if (fsm == null) {
+            return;
+        }
+        if (stream.isWriting) {
+            stream.SendNext((byte)fsm.getCurrentState());
+        }
+        //receiving other players things
+        else {
+            fsm.enterState((StateEnums.ZombieStates)stream.ReceiveNext());
+        }
+        
+    }
+
+
 }
 
