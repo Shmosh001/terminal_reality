@@ -3414,6 +3414,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 33033053}
+  - {fileID: 33033051}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
   instantiationId: 1
@@ -3560,10 +3561,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   arrivalDistance: 1.5
-  stateDebugStatements: 1
-  debugStatements: 1
-  debug: 1
-  animDebug: 1
+  stateDebugStatements: 0
+  debugStatements: 0
+  debug: 0
+  animDebug: 0
   text: {fileID: 0}
   text2: {fileID: 0}
   pukeEffect: {fileID: 798701110}
@@ -88763,7 +88764,7 @@ RectTransform:
   - {fileID: 100875084}
   - {fileID: 78091981}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -89735,7 +89736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1567902443
 GameObject:
   m_ObjectHideFlags: 0
@@ -128201,6 +128202,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11480776, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 485168, guid: c5380b8612228a94791360333aded419, type: 2}
       propertyPath: m_LocalPosition.x
       value: 87.1288605
@@ -128251,19 +128256,35 @@ Prefab:
       objectReference: {fileID: 1204637158}
     - target: {fileID: 11485190, guid: c5380b8612228a94791360333aded419, type: 2}
       propertyPath: stateDebugStatements
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11485190, guid: c5380b8612228a94791360333aded419, type: 2}
       propertyPath: debugStatements
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11485190, guid: c5380b8612228a94791360333aded419, type: 2}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11485190, guid: c5380b8612228a94791360333aded419, type: 2}
       propertyPath: animDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485190, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480776, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 33033051}
+    - target: {fileID: 11408990, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: ShowParameterInspector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408990, guid: c5380b8612228a94791360333aded419, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5380b8612228a94791360333aded419, type: 2}

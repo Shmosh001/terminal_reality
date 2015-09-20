@@ -104,7 +104,7 @@ public class PhotonView : Photon.MonoBehaviour
         set { this.instantiationDataField = value; }
     }
 
-    private object[] instantiationDataField;
+    internal object[] instantiationDataField;
 
     /// <summary>
     /// For internal use only, don't use
@@ -135,12 +135,13 @@ public class PhotonView : Photon.MonoBehaviour
     public List<Component> ObservedComponents;
     Dictionary<Component, MethodInfo> m_OnSerializeMethodInfos = new Dictionary<Component, MethodInfo>();
 
-    //These fields are only used in the CustomEditor for this script and would trigger a
-    //"this variable is never used" warning, which I am suppressing here
-#pragma warning disable 0414
+#if UNITY_EDITOR
+    // Suppressing compiler warning "this variable is never used". Only used in the CustomEditor, only in Editor
+    #pragma warning disable 0414
     [SerializeField]
     bool ObservedComponentsFoldoutOpen = true;
-#pragma warning restore 0414
+    #pragma warning restore 0414
+#endif
 
     [SerializeField]
     private int viewIdField = 0;
@@ -242,6 +243,11 @@ public class PhotonView : Photon.MonoBehaviour
 
     protected internal bool destroyedByPhotonNetworkOrQuit;
 
+    internal MonoBehaviour[] RpcMonoBehaviours;
+    private MethodInfo OnSerializeMethodInfo;
+
+    private bool failedToFindOnSerialize;
+
     /// <summary>Called by Unity on start of the application and does a setup the PhotonView.</summary>
     protected internal void Awake()
     {
@@ -326,10 +332,6 @@ public class PhotonView : Photon.MonoBehaviour
             }
         }
     }
-
-    private MethodInfo OnSerializeMethodInfo;
-
-    private bool failedToFindOnSerialize;
 
     public void SerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -542,8 +544,6 @@ public class PhotonView : Photon.MonoBehaviour
     }
 
 
-    internal MonoBehaviour[] RpcMonoBehaviours;
-
     /// <summary>
     /// Can be used to refesh the list of MonoBehaviours on this GameObject while PhotonNetwork.UseRpcMonoBehaviourCache is true.
     /// </summary>
@@ -582,7 +582,7 @@ public class PhotonView : Photon.MonoBehaviour
     /// <param name="parameters">The parameters that the RPC method has (must fit this call!).</param>
     public void RPC(string methodName, PhotonTargets target, params object[] parameters)
     {
-        RpcSecure(methodName, target, false, parameters);
+        PhotonNetwork.RPC(this, methodName, target, false, parameters);
     }
 
     /// <summary>

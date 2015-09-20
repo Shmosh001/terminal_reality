@@ -31,7 +31,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="name">
     /// hash of the trigger
     /// </param>
-    [PunRPC]
+    //[PunRPC]
     public void setTrigger(int name){
 		if (debug)Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
 		animator.SetTrigger(name);
@@ -53,14 +53,14 @@ public class ZombieAnimationController : MonoBehaviour {
 
 
             
-            if (PhotonNetwork.offlineMode) {
+            /*if (PhotonNetwork.offlineMode) {
                 setTrigger(name);
             }
             else {
                 pView.RPC("setTrigger", PhotonTargets.AllViaServer, name);
-            }
+            }*/
             //TODO rpc conversion
-            //animator.SetTrigger(name);
+            animator.SetTrigger(name);
             if (debug)Debug.Log("random trigger  set to " + true + " at " + Time.timeSinceLevelLoad);
 			return true;
 		}
@@ -78,14 +78,14 @@ public class ZombieAnimationController : MonoBehaviour {
         //TODO need to handle dead body spawn if we are in biting state
 
         //TODO rpc conversion
-        //setInteger(EnemyHashScript.stateDInt,choice);
+        setInteger(EnemyHashScript.stateDInt,choice);
         
-        if (PhotonNetwork.offlineMode) {
+        /*if (PhotonNetwork.offlineMode) {
             setInteger(EnemyHashScript.stateDInt, choice);
         }
         else {
             pView.RPC("setInteger", PhotonTargets.AllViaServer, EnemyHashScript.stateDInt, choice);
-        }
+        }*/
 
 
 
@@ -101,7 +101,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value to be set
     /// </param>
-    [PunRPC]
+    //[PunRPC]
     public void setStartState(int value){
 		setInteger(EnemyHashScript.stateDInt,value);
 		if (debug)Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
@@ -116,7 +116,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+    //[PunRPC]
     public void setBoolean(int name, bool value){
 		animator.SetBool(name, value);
 		if (debug)Debug.Log("boolean " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
@@ -134,15 +134,15 @@ public class ZombieAnimationController : MonoBehaviour {
 	public bool setRandomBoolean(int name){
 		int choice = getRandomInt(2);
 		if (choice == 0){
-			//animator.SetBool(name, true);
+			animator.SetBool(name, true);
             //TODO rpc conversion
             
-            if (PhotonNetwork.offlineMode) {
+            /*if (PhotonNetwork.offlineMode) {
                setBoolean(name, true);
             }
             else {
                 pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, true);
-            }
+            }*/
 
 
 
@@ -150,15 +150,15 @@ public class ZombieAnimationController : MonoBehaviour {
 			return true;
 		}
 		else{
-			//animator.SetBool(name, false);
+			animator.SetBool(name, false);
             //TODO rpc conversion
             
-            if (PhotonNetwork.offlineMode) {
+            /*if (PhotonNetwork.offlineMode) {
                setBoolean(name, false);
             }
             else {
                 pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, false);
-            }
+            }*/
             if (debug)Debug.Log("random boolean " + name + " set to " + false+ " at " + Time.timeSinceLevelLoad);
 			return false;
 		}
@@ -179,15 +179,15 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </returns>
 	public int setRandomInteger(int name, int max){
 		int choice = getRandomInt(max);
-		//animator.SetInteger(name, choice);
+		animator.SetInteger(name, choice);
         //TODO rpc conversion
         
-        if (PhotonNetwork.offlineMode) {
+       /* if (PhotonNetwork.offlineMode) {
             setInteger(name, choice);
         }
         else {
             pView.RPC("setInteger", PhotonTargets.AllViaServer, name, choice);
-        }
+        }*/
         if (debug)Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
 		return choice;
 	}
@@ -201,7 +201,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+    //[PunRPC]
 	public void setInteger(int name, int value){
 		animator.SetInteger(name, value);
 		if (debug)Debug.Log("int " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
@@ -216,7 +216,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+    //[PunRPC]
 	public void setFloat(int name, float value){
 		animator.SetFloat(name, value);
 		if (debug)Debug.Log("float " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
@@ -242,18 +242,18 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </summary>
     public void resetBooleans(){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-        //animator.SetBool(EnemyHashScript.wanderingBool,false);
-        //animator.SetBool(EnemyHashScript.attackingBool,false);
+        animator.SetBool(EnemyHashScript.wanderingBool,false);
+        animator.SetBool(EnemyHashScript.attackingBool,false);
         //TODO rpc conversion
         
-        if (PhotonNetwork.offlineMode) {
+        /*if (PhotonNetwork.offlineMode) {
             setBoolean(EnemyHashScript.attackingBool, false);
             setBoolean(EnemyHashScript.wanderingBool, false);
         }
         else {
             pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
             pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
-        }
+        }*/
     }
 
     /// <summary>
@@ -275,7 +275,7 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <param name="animation">
     /// animation hash
     /// </param>
-    [PunRPC]
+    //[PunRPC]
 	public void forceAnimation(int animation){
 		animator.Play(animation);
 	}
