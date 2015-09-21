@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// hash script which contains all the hashes for the enemy animator controller parameters and states
+/// </summary>
 public class EnemyHashScript : MonoBehaviour {
 
-	/**
-	 * paramaters
-	 **/
+	//PARAMETERS
+
 	//booleans
 	public static int attackingBool;
 	public static int wanderingBool;
@@ -28,9 +30,8 @@ public class EnemyHashScript : MonoBehaviour {
 	public static int changeTrigger;
 	public static int searchingTrigger;
 
-	/**
-	 * states
-	 **/
+	//STATES
+
 	//base layer
 	public static int startState;
 	public static int alertedState;
@@ -80,10 +81,12 @@ public class EnemyHashScript : MonoBehaviour {
 	public static int death1IdleState;
 	public static int death2IdleState;
 
-
+    /// <summary>
+    /// assigns all the hashes
+    /// </summary>
 	void Awake(){
 
-		//params
+		//PARAMS
 		speedFloat = Animator.StringToHash("Speed");
 		searchingTrigger = Animator.StringToHash("SearchingTrigger");
 		wanderingBool = Animator.StringToHash("WanderingParam");
@@ -102,11 +105,9 @@ public class EnemyHashScript : MonoBehaviour {
 		chargeTrigger = Animator.StringToHash("ChargeParam");
 		alertToIdleTrigger = Animator.StringToHash("AlertToIdle");
 
-		//states
-
-
-
-		//base layer
+		//STATES
+        
+        //base layer
 		startState = Animator.StringToHash("Base Layer.Start");
 		alertedState = Animator.StringToHash("Base Layer.Alerted");
 		searchingState = Animator.StringToHash("Base Layer.Searching");

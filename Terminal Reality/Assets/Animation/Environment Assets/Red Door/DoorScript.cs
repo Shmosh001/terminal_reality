@@ -8,15 +8,33 @@ public class DoorScript : MonoBehaviour {
 	public bool open = false;
 	private Text pushE;
 
-	// Use this for initialization
-	void Start () {
+    private GameObject pushETextObj;
+
+    // Use this for initialization
+    void Start () {
 	
 		anim = this.GetComponent<Animator> ();
-		pushE = GameObject.FindGameObjectWithTag("PushEOpen").GetComponent<Text>();
+
+        pushETextObj = GameObject.FindGameObjectWithTag("PushEOpen");
+        if (pushETextObj != null) {
+            pushE = pushETextObj.GetComponent<Text>();
+        }
+       
 	}
 
-	//WHEN THE PLAYER INTERACTS WITH THE DOOR//
-	public void interaction()
+    // Update is called once per frame
+    void Update() {
+        if (pushETextObj == null) {
+            pushETextObj = GameObject.FindGameObjectWithTag("PushEOpen");
+            if (pushETextObj != null) {
+                pushE = pushETextObj.GetComponent<Text>();
+            }
+        }
+    }
+
+    //WHEN THE PLAYER INTERACTS WITH THE DOOR//
+    [PunRPC]
+    public void interaction()
 	{
 		//IF THE DOOR IS OPEN//
 		if (open)

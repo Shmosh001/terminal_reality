@@ -12,16 +12,26 @@ public class AmmoBoxScript : MonoBehaviour {
 	private Text pushE;
 	private bool playerInRange;
 
-	// Use this for initialization
-	void Start () {
-	
-		pushE = GameObject.FindGameObjectWithTag("PushE").GetComponent<Text>();
+    private GameObject pushETextObj;
+
+    // Use this for initialization
+    void Start () {
+        pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+        if (pushETextObj != null) {
+            pushE = pushETextObj.GetComponent<Text>();
+        }
+		
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (pushETextObj == null) {
+            pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+            if (pushETextObj != null) {
+                pushE = pushETextObj.GetComponent<Text>();
+            }
+        }
 	}
 	
 	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
@@ -50,8 +60,16 @@ public class AmmoBoxScript : MonoBehaviour {
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()
 	{
-		pushE.enabled = false;
+        if (pushE != null) {
+            pushE.enabled = false;
+        }
 	}
 	
+
+    [PunRPC]
+    public void destroyObject() {
+        turnOffText();
+        Destroy(gameObject);
+    }
 	
 }

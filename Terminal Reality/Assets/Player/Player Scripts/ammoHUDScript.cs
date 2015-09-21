@@ -9,14 +9,16 @@ public class ammoHUDScript : MonoBehaviour {
 	
 	void Awake()
 	{
-		ammoText = (Text)GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>();
-		reloadText = (Text)GameObject.FindGameObjectWithTag("reloadText").GetComponent<Text>();
+//		ammoText = (Text)GameObject.FindGameObjectWithTag("ammoText").GetComponent<Text>();
+//		reloadText = (Text)GameObject.FindGameObjectWithTag("reloadText").GetComponent<Text>();
+		//TODO uncommented
 	}
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
 	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
-		ammoText.text = totAmmo + " / " + clipAmmo;		
+		//ammoText.text = totAmmo + " / " + clipAmmo;		
+		//TODO uncommented
 		
 	}
 
@@ -24,7 +26,7 @@ public class ammoHUDScript : MonoBehaviour {
 	//if less than a third full, so reload warning
 	public void checkReloadWarning(int clipAmmo, int clipSize, int totAmmo)
 	{
-		if (totAmmo != 0 && clipAmmo != 0)
+		/*if (totAmmo != 0 && clipAmmo != 0)
 		{
 			reloadText.text = "Reload";
 
@@ -42,6 +44,7 @@ public class ammoHUDScript : MonoBehaviour {
 			reloadText.text = "Out of Ammo";
 			reloadText.enabled = true;
 		}
+*///TODO uncommented
 
 
 	}

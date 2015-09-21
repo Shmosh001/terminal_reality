@@ -11,7 +11,8 @@ public class playerHealthScript : MonoBehaviour {
 	void Start () {
 	
 		playerData = this.GetComponent<playerDataScript>();
-		updateHealthHUD();
+		//updateHealthHUD();
+		//TODO uncommented
 
 	}
 	
@@ -29,13 +30,15 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			print ("Health: " + playerData.health);
 			playerData.health -= damage;
-			updateHealthHUD();
+			//updateHealthHUD();
+			//TODO uncommented
 		}
 		//if the damage kills the player//
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
-			updateHealthHUD();
+			//updateHealthHUD();
+			//TODO uncommented
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 
@@ -53,7 +56,8 @@ public class playerHealthScript : MonoBehaviour {
 	public void fullPlayerHealth()
 	{
 		playerData.health = 100;
-		updateHealthHUD();
+		//updateHealthHUD();
+		//TODO uncommented
 	}
 
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
