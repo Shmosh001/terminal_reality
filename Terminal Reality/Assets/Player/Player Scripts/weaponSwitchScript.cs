@@ -90,16 +90,17 @@ public class weaponSwitchScript : ammoHUDScript {
 		if (playerData.pistolEquipped)
 		{
 			animator.SetTrigger(playerAnimationHash.pistolTrigger);
+			animator.SetBool(playerAnimationHash.noWeaponBool, false);
 			weaponStr = "Pistol";
 		}
 		else if (playerData.machineGunEquipped)
 		{
 			animator.SetTrigger(playerAnimationHash.machineGunTrigger);
+			animator.SetBool(playerAnimationHash.noWeaponBool, false);
 			weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
 		{
-			animator.SetTrigger (playerAnimationHash.noWeaponTrigger);
 			weaponStr = "nothing";
 		}
 		

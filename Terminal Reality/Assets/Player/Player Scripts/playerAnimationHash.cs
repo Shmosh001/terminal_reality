@@ -6,7 +6,7 @@ public class playerAnimationHash : MonoBehaviour {
 	//TRIGGERS//
 	
 	//arms//
-	public static int noWeaponTrigger;	
+	public static int noWeaponBool;	
 	public static int pistolTrigger;
 	public static int machineGunTrigger;
 	public static int reloadTrigger;
@@ -35,7 +35,7 @@ public class playerAnimationHash : MonoBehaviour {
 		//ANIMATOR PARAMETERS//
 		
 		//arms//
-		noWeaponTrigger = Animator.StringToHash("NoWep");
+		noWeaponBool = Animator.StringToHash("NoWeapon");
 		pistolTrigger = Animator.StringToHash("Pistol");
 		
 		//movement//
