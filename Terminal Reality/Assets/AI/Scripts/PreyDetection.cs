@@ -63,7 +63,7 @@ public class PreyDetection : MonoBehaviour {
     /// <param name="entity">
     /// new target
     /// </param>
-
+    [PunRPC]
     public GameObject assignTarget(string tag) {
         Debug.Log(tag + "assigned as target");
         if (tag == Tags.PLAYER1) {

@@ -44,19 +44,22 @@ public class PName : MonoBehaviour {
 
 
     void assignPlayerTags() {
-        GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
-        GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+        if (!PhotonNetwork.offlineMode) {
+            GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+            GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
 
 
-        if (player1 == null) {
-            GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
-            player.tag = Tags.PLAYER1;
+            if (player1 == null) {
+                GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
+                player.tag = Tags.PLAYER1;
 
+            }
+            if (player2 == null) {
+                GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
+                player.tag = Tags.PLAYER2;
+            }
         }
-        if (player2 == null) {
-            GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
-            player.tag = Tags.PLAYER2;
-        }
+        
     }
 
 
