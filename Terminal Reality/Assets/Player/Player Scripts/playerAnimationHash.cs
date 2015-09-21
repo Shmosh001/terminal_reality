@@ -42,6 +42,7 @@ public class playerAnimationHash : MonoBehaviour {
 		standingTrigger = Animator.StringToHash("idling");
 		sneakingTrigger = Animator.StringToHash("sneaking");
 		walkingTrigger = Animator.StringToHash("walking");
+		sprintingTrigger = Animator.StringToHash("running");
 	
 		//STATES//
 		

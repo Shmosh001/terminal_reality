@@ -164,13 +164,13 @@ public class PlayerMovementScript : MonoBehaviour {
 		if (forwardSpeed == 0 && sideSpeed == 0){ animator.SetTrigger(playerAnimationHash.standingTrigger); }
 		
 		//SNEAKING --> forward speed > 0 and <= 4.55
-		//if (forwardSpeed > 0 && forwardSpeed <= 4.55) { animator.SetTrigger(playerAnimationHash.standingTrigger); }
+		if (forwardSpeed > 0 && forwardSpeed <= 4.55) { animator.SetTrigger(playerAnimationHash.sneakingTrigger); }
 		
 		//WALKING --> forward speed > 4.55 and <=6.5 
 		if (forwardSpeed > 4.55 && forwardSpeed <= 6.5) { animator.SetTrigger(playerAnimationHash.walkingTrigger); }
 		
 		//SPRINTING --> forward speed > 6.5 
-		//if (forwardSpeed > 6.5) { animator.SetTrigger(playerAnimationHash.walkingTrigger); }
+		if (forwardSpeed > 6.5) { animator.SetTrigger(playerAnimationHash.sprintingTrigger); }
 		
 	}
 	
