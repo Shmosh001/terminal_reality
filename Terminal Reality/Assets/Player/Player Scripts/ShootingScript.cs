@@ -1,27 +1,27 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections;
 
 public class ShootingScript : ammoHUDScript {
-
+	
 	//PUBLIC VARIABLES SHOOTING//
 	public float shotRange = 100.0f;
-
+	
 	//PRIVATE VARIABLES SHOOTING//
 	private Ray ray;
 	private float coolDownTimer;
 	private GameObject weapon;
 	private GameObject soundController;
-
+	
 	//COUNTERS//
 	private int flareLoopCount = 0;
-
-
+	
+	
 	// Use this for initialization
 	void Start () {
-						
+		
 		updateAmmoText(0,0);
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
-
+		
 	}
 	
 	// Update is called once per frame
@@ -31,10 +31,10 @@ public class ShootingScript : ammoHUDScript {
 		if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire)
 		{
 			coolDownTimer -= Time.deltaTime; // reduce cool down timer
-		
+			
 			if (Input.GetMouseButtonDown(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0)
 					{
@@ -42,7 +42,7 @@ public class ShootingScript : ammoHUDScript {
 						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						flareLoopCount = 0;
-	
+						
 						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
@@ -50,7 +50,7 @@ public class ShootingScript : ammoHUDScript {
 						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 						                   weapon.GetComponent<weaponDataScript>().clipSize,
 						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
-	
+						
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 					}
@@ -79,7 +79,7 @@ public class ShootingScript : ammoHUDScript {
 			
 			if (Input.GetMouseButton(0))
 			{
-				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() > 0) //if there is a bullet in the clip
+				if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 				{
 					if (coolDownTimer <= 0) //can shoot
 					{
@@ -87,16 +87,16 @@ public class ShootingScript : ammoHUDScript {
 						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						
-
+						
 						//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 						updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 						               weapon.GetComponent<weaponDataScript>().getRemainingClip());
-
+						
 						//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 						checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 						                   weapon.GetComponent<weaponDataScript>().clipSize,
 						                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
-
+						
 						ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 						checkHit();
 						coolDownTimer = weapon.GetComponent<weaponDataScript>().rateOfFire;						
@@ -106,7 +106,7 @@ public class ShootingScript : ammoHUDScript {
 						weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
 					}
 				}
-
+				
 				else //if clip is empty
 				{
 					if (coolDownTimer <= 0)
@@ -129,7 +129,7 @@ public class ShootingScript : ammoHUDScript {
 				}
 			}
 		}
-
+		
 		//RELOAD//
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -141,11 +141,11 @@ public class ShootingScript : ammoHUDScript {
 				{
 					coolDownTimer = 1.3f; //so can't start shooting while the sound is playing
 					soundController.GetComponent<soundControllerScript>().playReload(this.GetComponent<AudioSource>()); //play reload sound
-
+					
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 					               weapon.GetComponent<weaponDataScript>().getRemainingClip());
-
+					
 					//CHECK FOR RELOAD WARNING - method in ammoHUDScript//
 					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 					                   weapon.GetComponent<weaponDataScript>().clipSize,
@@ -153,9 +153,9 @@ public class ShootingScript : ammoHUDScript {
 				}
 			}
 		}
-
+		
 		//SWITCHING WEAPONS//
-
+		
 		//pistol//
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
@@ -165,8 +165,8 @@ public class ShootingScript : ammoHUDScript {
 				loadNewWeapon("Pistol");				
 			}
 		}
-
-
+		
+		
 		//machine gun//
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
@@ -175,15 +175,15 @@ public class ShootingScript : ammoHUDScript {
 				loadNewWeapon("MachineGun");			
 			}
 		}
-
+		
 		
 		if (weapon != null)
 		{
 			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-		    	           weapon.GetComponent<weaponDataScript>().getRemainingClip());
+			               weapon.GetComponent<weaponDataScript>().getRemainingClip());
 		}
-
+		
 	}
 	
 	//LOAD A NEW WEAPON INTO THE WEAPON GAMEOBJECT
@@ -200,47 +200,40 @@ public class ShootingScript : ammoHUDScript {
 		}
 		
 	}
-
+	
 	void checkHit()
 	{
 		RaycastHit hitInfo; //to store what the ray hit
-
+		
 		if (Physics.Raycast(ray, out hitInfo, shotRange))
 		{
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
-
-
+			
+			
 			//TEST SHOOTING ON SPHERE
-/*			if (hitObject.CompareTag("Sphere"))
+			/*			if (hitObject.CompareTag("Sphere"))
 			{
 				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
 
 				hitObject.renderer.material.color = c;
 			}*/
-
+			
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY))
 			{
 				Debug.Log("Enemy shot");
 				//hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
-
-                PhotonView pView = hitObject.GetComponent<PhotonView>();
-
-                if (pView == null) {
-                    Debug.LogError("No PhotonView component found on " + hitObject);
-                }
-                else {
-                    if (PhotonNetwork.offlineMode) {
-                        hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
-                    }
-                    else {
-                        pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
-                    }
-
-                    
-                }
-            }
+				
+				PhotonView pView = hitObject.GetComponent<PhotonView>();
+				
+				if (pView == null) {
+					Debug.LogError("No PhotonView component found on " + hitObject);
+				}
+				else {
+					pView.RPC("takeDamage", PhotonTargets.AllBuffered, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
+				}
+			}
 		}
 	}
 }

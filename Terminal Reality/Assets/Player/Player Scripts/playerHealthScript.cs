@@ -1,26 +1,62 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class playerHealthScript : MonoBehaviour {
-
+	
 	playerDataScript playerData;
-	public UIBarScript UIBarScript;
-
+	public UIBarScript UIBarScript;	
+	private bool heartBeatPlaying = false;
+	private GameObject soundController;
+	
 	// Use this for initialization
 	void Start () {
-	
-		playerData = this.GetComponent<playerDataScript>();
+		
+		playerData = this.GetComponent<playerDataScript>();		
+		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		//updateHealthHUD();
 		//TODO uncommented
-
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		//////////////
+		//TEMP CODE//
+		/////////////
+		if (Input.GetKeyDown(KeyCode.KeypadMinus)) // decrease health //
+		{
+			if (playerData.health >= 5)
+			{
+				playerData.health -= 5;			
+				updateHealthHUD();
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.KeypadPlus)) // increase health //
+		{
+			if (playerData.health <= 95)
+			{
+				playerData.health += 5;
+				updateHealthHUD();
+			}
+		}
+		/////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+		
+		if (!heartBeatPlaying && playerData.health < 50)
+		{
+			soundController.GetComponent<soundControllerScript>().playLowHealthHeartBeat(this.GetComponent<AudioSource>()); //play heart beat
+			heartBeatPlaying = true;
+		}
+		if (heartBeatPlaying && playerData.health >= 50)
+		{
+			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
+			heartBeatPlaying = false;
+		}
+		
 	}
-
+	
 	//REDUCE PLAYER'S HEALTH BY DAMAGE//
 	public void reducePlayerHealth(int damage)
 	{
@@ -29,7 +65,9 @@ public class playerHealthScript : MonoBehaviour {
 		if ((playerData.health - damage) > 0)
 		{
 			print ("Health: " + playerData.health);
-			playerData.health -= damage;
+			playerData.health -= damage;			
+			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
+			heartBeatPlaying = false;
 			//updateHealthHUD();
 			//TODO uncommented
 		}
@@ -37,21 +75,22 @@ public class playerHealthScript : MonoBehaviour {
 		else if ((playerData.health - damage) <= 0)
 		{
 			playerData.health = 0;
+			playerData.playerAlive = false; //boolean to send over network
 			//updateHealthHUD();
 			//TODO uncommented
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
-
+		
 	}
-
+	
 	//INCREASE PLAYER'S HEALTH//
 	public void increasePlayerHealth(int healthPoints)
 	{
-
+		
 		//TODO: IF WE DECIDE ON DOING INCREMENTAL HEALING AND NOT ONLY FULL HEALS//
-
+		
 	}
-
+	
 	//FULL UP (MAX) PLAYER'S HEALTH//
 	public void fullPlayerHealth()
 	{
@@ -59,7 +98,7 @@ public class playerHealthScript : MonoBehaviour {
 		//updateHealthHUD();
 		//TODO uncommented
 	}
-
+	
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
