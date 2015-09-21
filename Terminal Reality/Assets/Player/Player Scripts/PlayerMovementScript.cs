@@ -112,6 +112,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		{
 			forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
 			sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
+			
 		}
 		else //if player is in the air, slow down speed//
 		{
