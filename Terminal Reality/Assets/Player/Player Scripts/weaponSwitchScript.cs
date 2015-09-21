@@ -4,6 +4,9 @@ using System.Collections;
 public class weaponSwitchScript : ammoHUDScript {
 
 	playerDataScript playerData;
+	
+	//the animator
+	private Animator animator;
 
 	void Start()
 	{
