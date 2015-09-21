@@ -56,7 +56,9 @@ public class PName : MonoBehaviour {
             }
             if (player2 == null) {
                 GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
-                player.tag = Tags.PLAYER2;
+                if (player != null) {
+                    player.tag = Tags.PLAYER2;
+                }
             }
         }
         

@@ -32,9 +32,10 @@ public class playerDataScript : MonoBehaviour {
 	
 	//TORCH//
 	public Light torch;
-	
-	//PLAYER HAS KEY
-	public bool hasKey = false;
+    public GameObject torchObj;
+
+    //PLAYER HAS KEY
+    public bool hasKey = false;
 	
 	
 	//AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
@@ -42,10 +43,28 @@ public class playerDataScript : MonoBehaviour {
 	{
 		pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
 		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
-		torch = GameObject.FindGameObjectWithTag(Tags.TORCH).light;
+		torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
 	}
 	
 	
+    void Update() {
+        if (pistolGameObject == null) {
+            pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
+        }
+        if (machineGunGameObject == null) {
+            machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
+        }
+
+        if (torchObj == null) {
+            torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
+        }
+        else {
+            torch = torchObj.light;
+        }
+
+    }
+
+
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			//Debug.Log("writing");
