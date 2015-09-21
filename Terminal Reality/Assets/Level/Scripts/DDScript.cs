@@ -4,16 +4,18 @@ using System.Collections;
 
 public class DDScript : MonoBehaviour {
 
-	private Animator anim;
+    private GameObject soundController;
+    private Animator anim;
 	private bool open;
 	private Text pushE;
 
 	// Use this for initialization
 	void Start () 
 	{
-		anim = gameObject.GetComponent<Animator>();
+        soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+        anim = gameObject.GetComponent<Animator>();
 		open = false;
-		pushE = GameObject.FindGameObjectWithTag("PushEOpen").GetComponent<Text>();
+		pushE = GameObject.FindGameObjectWithTag(Tags.PUSHE).GetComponent<Text>();
 	}
 
 
@@ -23,7 +25,9 @@ public class DDScript : MonoBehaviour {
 		//IF THE DOOR IS CLOSED//
 		if(!open)
 		{
-			anim.SetTrigger("OpenFWD");
+            //play sound of this component
+            soundController.GetComponent<soundControllerScript>().playDoorCreek(this.GetComponent<AudioSource>());
+            anim.SetTrigger("OpenFWD");
 			open = true;
 		}
 	}
@@ -32,7 +36,7 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			if (!open) //Only show hint if the door is closed
 			{
@@ -46,7 +50,7 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			pushE.enabled = false;
 		}

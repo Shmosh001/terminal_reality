@@ -15,7 +15,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 /// <summary>
 /// Internal Monobehaviour that allows Photon to run an Update loop.
 /// </summary>
-internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
+internal class PhotonHandler : Photon.MonoBehaviour
 {
     public static PhotonHandler SP;
 
@@ -163,44 +163,7 @@ internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
 
         return sendThreadShouldRun;
     }
-
-    #region Implementation of IPhotonPeerListener
-
-    public void DebugReturn(DebugLevel level, string message)
-    {
-        if (level == DebugLevel.ERROR)
-        {
-            Debug.LogError(message);
-        }
-        else if (level == DebugLevel.WARNING)
-        {
-            Debug.LogWarning(message);
-        }
-        else if (level == DebugLevel.INFO && PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
-        {
-            Debug.Log(message);
-        }
-        else if (level == DebugLevel.ALL && PhotonNetwork.logLevel == PhotonLogLevel.Full)
-        {
-            Debug.Log(message);
-        }
-    }
-
-    public void OnOperationResponse(OperationResponse operationResponse)
-    {
-    }
-
-    public void OnStatusChanged(StatusCode statusCode)
-    {
-    }
-
-    public void OnEvent(EventData photonEvent)
-    {
-    }
-
-    #endregion
-
-
+    
 
     #region Photon Cloud Ping Evaluation
 
@@ -235,7 +198,6 @@ internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
     }
 
 
-
     internal protected static void PingAvailableRegionsAndConnectToBest()
     {
         SP.StartCoroutine(SP.PingAvailableRegionsCoroutine(true));
@@ -262,19 +224,6 @@ internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
             Debug.LogError("No regions available. Are you sure your appid is valid and setup?");
             yield break; // break if we don't get regions at all
         }
-
-        //#if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IPHONE)
-        //#pragma warning disable 0162    // the library variant defines if we should use PUN's SocketUdp variant (at all)
-        //if (PhotonPeer.NoSocket)
-        //{
-        //    if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
-        //    {
-        //        Debug.Log("PUN disconnects to re-use native sockets for pining servers and to find the best.");
-        //    }
-        //    PhotonNetwork.Disconnect();
-        //}
-        //#pragma warning restore 0162
-        //#endif
 
         PhotonPingManager pingManager = new PhotonPingManager();
         foreach (Region region in PhotonNetwork.networkingPeer.AvailableRegions)
