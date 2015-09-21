@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections;
 
 public class weaponDataScript : ammoHUDScript
@@ -11,35 +11,37 @@ public class weaponDataScript : ammoHUDScript
 	public int clipSize;	
 	public Light flareLight;
 	public int maxAmmo;
-
+	
 	//PRIVATE VARIABLES FOR THE WEAPON//
 	private int ammoInClip;
 	private bool equipped;
-
+	private bool canShoot;
+	
 	void Awake()
 	{
 		ammoInClip = clipSize;
 		//soundSource = this.GetComponent<AudioSource>();
 	}
-
+	
 	//GET REMAINING AMMO//
 	public int getRemainingAmmo()
 	{
 		return ammo;
 	}
-
+	
 	//GET AMOUNT LEFT IN CLIP//
 	public int getRemainingClip()
 	{
 		return ammoInClip;
 	}
-
+	
 	//REDUCE AMMO AFTER SHOT TAKEN//
 	public void reduceAmmo()
 	{
 		ammoInClip--;
+		checkCanShoot();
 	}
-
+	
 	//RELOADING//
 	//return bool if reload successful
 	public bool reload()
@@ -51,6 +53,7 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip = clipSize;
 			ammo -= clipSize;
+			checkCanShoot();
 			return true;
 		}
 		//if there is ammo, but not enough to fill the clip
@@ -59,6 +62,7 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip = ammo;
 			ammo = 0;
+			checkCanShoot();
 			return true;
 		}
 		//if there is more ammo than the size of the clip
@@ -68,6 +72,7 @@ public class weaponDataScript : ammoHUDScript
 			int diff = clipSize - ammoInClip;
 			ammoInClip = clipSize;
 			ammo -= diff;
+			checkCanShoot();
 			return true;
 		}
 		//if there is ammo, but not enough to fill the clip
@@ -76,10 +81,12 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammoInClip += ammo;
 			ammo = 0;
+			checkCanShoot();
 			return true;
 		}
 		else
 		{
+			checkCanShoot();
 			return false;
 		}
 	}
@@ -92,21 +99,30 @@ public class weaponDataScript : ammoHUDScript
 		{
 			ammo = maxAmmo; //set ammo to max ammo
 		}
-
+		
 		//if there is less ammo in the ammo box than there is needed to full max ammo
 		if (pickupAmount < (maxAmmo - ammo))
 		{
 			ammo += pickupAmount;
 		}		
 	}
-
-
+	
+	
 	//METHOD TO ENABLE AND DISABLE GUN FLARE//
 	public void gunFlare(bool state)
 	{
 		flareLight.enabled = state;
 	}
-
-
-
+	
+	//METHOD TO CHECK IF THE GUN HAS THE AMMO TO BE ABLE TO SHOOT
+	public bool checkCanShoot()
+	{
+		if (ammoInClip > 0) canShoot = true;
+		else canShoot = false;
+		
+		return canShoot;
+	}
+	
+	
+	
 }
