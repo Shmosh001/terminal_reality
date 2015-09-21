@@ -351,30 +351,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 }
 
                 //check if we have arrived at the destination
-                if (checkArrival(transform.position, wanderDest.position)) {
-                    if (debugStatements) { Debug.Log("wandering case: at position " + Time.timeSinceLevelLoad); }
-
-                    //if we have arrived we stop nav agent movement and assign the previous state
-                    navAgent.Stop();
-                    //fsm.enterPreviousState();
-                    
-                    if (PhotonNetwork.offlineMode) {
-                        fsm.enterPreviousState();
-                    }
-                    else {
-                        pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
-                    }
-                    wandering = false;
-                    //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
-                    //rpc conversion
-                   
-                    if (PhotonNetwork.offlineMode) {
-                        animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
-                    }
-                    else {
-                        pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
-                    }
-                }
+                //this is now done by the actaul wander point that has its own colldier whcih stops the ai unit fromreaching the cerntre but stops a them a bit more randomly
 
                 //lastly we always check if we can see/hear the player
                 checkForPlayer();
@@ -455,6 +432,33 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			text2.text = "";
 		}*/
 	}
+
+
+
+
+    public void stopWandering() {
+        //if we have arrived we stop nav agent movement and assign the previous state
+        navAgent.Stop();
+        //fsm.enterPreviousState();
+
+        if (PhotonNetwork.offlineMode) {
+            fsm.enterPreviousState();
+        }
+        else {
+            pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
+        }
+        wandering = false;
+        //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
+        //rpc conversion
+
+        if (PhotonNetwork.offlineMode) {
+            animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
+        }
+        else {
+            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
+        }
+
+    }
 
 
     /// <summary>
