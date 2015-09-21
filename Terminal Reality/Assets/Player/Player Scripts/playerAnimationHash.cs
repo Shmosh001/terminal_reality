@@ -37,11 +37,19 @@ public class playerAnimationHash : MonoBehaviour {
 		//arms//
 		noWeaponTrigger = Animator.StringToHash("NoWep");
 		pistolTrigger = Animator.StringToHash("Pistol");
+		
+		//movement//
+		standingTrigger = Animator.StringToHash("idling");
+		walkingTrigger = Animator.StringToHash("walking");
 	
 		//STATES//
 		
 		//arms - top//
 		noWeaponState = Animator.StringToHash("Top.No weapon");
 		pistolState = Animator.StringToHash("Top.Pistol Aim");
+		
+		//movement//
+		standingState = Animator.StringToHash("Base Layer.stand_idle");
+		walkingState = Animator.StringToHash("Base Layer.walk");
 	}
 }

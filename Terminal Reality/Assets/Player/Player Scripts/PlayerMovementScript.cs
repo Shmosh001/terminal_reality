@@ -5,6 +5,9 @@ public class PlayerMovementScript : MonoBehaviour {
 	
 	private CharacterController characterController;
 	
+	//the animator
+	private Animator animator;
+	
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
 	private float verticalVelocity = -1;
@@ -21,6 +24,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		Screen.lockCursor = true; //take the mouse off the screen.
 		playerData = this.GetComponent<playerDataScript>();
 		characterController = this.GetComponent<CharacterController>();
+		animator = this.gameObject.GetComponent<Animator>();
 		
 	}
 	
@@ -145,6 +149,28 @@ public class PlayerMovementScript : MonoBehaviour {
 		Vector3 speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed); //set speed vector in which player is moving in xyz		
 		speed = transform.rotation * speed;		
 		characterController.Move(speed * Time.deltaTime);
+		
+		//run method to update the movement animations//
+		updateAnimationTriggers();
+		
+	}
+	
+	/*
+		Update animation movement triggers
+	*/
+	void updateAnimationTriggers()
+	{
+		//IDLE --> forward speed and side speed is 0
+		if (forwardSpeed == 0 && sideSpeed == 0){ animator.SetTrigger(playerAnimationHash.standingTrigger); }
+		
+		//SNEAKING --> forward speed > 0 and <= 4.55
+		//if (forwardSpeed > 0 && forwardSpeed <= 4.55) { animator.SetTrigger(playerAnimationHash.standingTrigger); }
+		
+		//WALKING --> forward speed > 4.55 and <=6.5 
+		if (forwardSpeed > 4.55 && forwardSpeed <= 6.5) { animator.SetTrigger(playerAnimationHash.walkingTrigger); }
+		
+		//SPRINTING --> forward speed > 6.5 
+		//if (forwardSpeed > 6.5) { animator.SetTrigger(playerAnimationHash.walkingTrigger); }
 		
 	}
 	
