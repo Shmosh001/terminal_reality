@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class soundControllerScript : MonoBehaviour {
@@ -45,6 +45,7 @@ public class soundControllerScript : MonoBehaviour {
 	public void playPistolShot(AudioSource soundSource)
 	{
 		//play sound
+		print ("PISTOL SHOT!!!");
 		soundSource.PlayOneShot(pistolShotSound);
 	}
 	
