@@ -13,9 +13,8 @@ public class playerAnimationHash : MonoBehaviour {
 	
 	//movement//
 	public static int standingTrigger;
-	public static int walkingTrigger;
-	public static int sprintingTrigger;
-	public static int sneakingTrigger;
+	public static int isMovingBool;
+	public static int forwardSpeedFloat;
 	
 	//STATES//
 	//arms//
@@ -40,9 +39,8 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//movement//
 		standingTrigger = Animator.StringToHash("idling");
-		sneakingTrigger = Animator.StringToHash("sneaking");
-		walkingTrigger = Animator.StringToHash("walking");
-		sprintingTrigger = Animator.StringToHash("running");
+		isMovingBool = Animator.StringToHash("isMoving");
+		forwardSpeedFloat = Animator.StringToHash("Speed");
 	
 		//STATES//
 		
