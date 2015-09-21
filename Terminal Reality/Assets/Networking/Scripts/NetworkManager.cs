@@ -168,6 +168,7 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
+        
         if (PhotonNetwork.isMasterClient) {
             P1HUD.SetActive(true);//enable the HUD
         }
