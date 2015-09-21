@@ -20,6 +20,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: idling
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: walking
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -43,22 +55,42 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110103714
+--- !u!1101 &110119232
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110215456}
-  m_DstState: {fileID: 110219694}
-  m_TransitionDuration: 24.9999981
+  m_SrcState: {fileID: 110275300}
+  m_DstState: {fileID: 110229452}
+  m_TransitionDuration: .125
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: NoWep
+    m_ConditionEvent: walking
     m_EventTreshold: 0
-    m_ExitTime: 0
+    m_ExitTime: .875
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110179026
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110229452}
+  m_DstState: {fileID: 110275300}
+  m_TransitionDuration: .227272719
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: idling
+    m_EventTreshold: 0
+    m_ExitTime: .772727251
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -128,18 +160,33 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110229452
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: walk
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 31af4ac63270daa4aa6464cd12408942, type: 2}
+  m_ParentStateMachine: {fileID: 110717622}
+  m_Position: {x: 288, y: 12, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110275300
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MIL2_M3_W1_Stand_Relaxed_Idle 0
+  m_Name: stand_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 1ab1598cd4f980b40a57ae3aeb079020, type: 2}
   m_ParentStateMachine: {fileID: 110717622}
-  m_Position: {x: 324, y: 0, z: 0}
+  m_Position: {x: 288, y: -132, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -153,12 +200,18 @@ StateMachine:
   m_DefaultState: {fileID: 110275300}
   m_States:
   - {fileID: 110275300}
+  - {fileID: 110229452}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 110229452}
+      second:
+      - {fileID: 110179026}
+    data:
       first: {fileID: 110275300}
-      second: []
+      second:
+      - {fileID: 110119232}
     data:
       first: {fileID: 0}
       second: []
@@ -185,8 +238,7 @@ StateMachine:
       - {fileID: 110183458}
     data:
       first: {fileID: 110215456}
-      second:
-      - {fileID: 110103714}
+      second: []
     data:
       first: {fileID: 0}
       second: []

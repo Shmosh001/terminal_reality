@@ -11,6 +11,7 @@ public class weaponSwitchScript : ammoHUDScript {
 	void Start()
 	{
 		playerData = this.GetComponent<playerDataScript>();
+		animator = this.gameObject.GetComponent<Animator>();
 		enableWeapon();
 	}
 
@@ -88,14 +89,17 @@ public class weaponSwitchScript : ammoHUDScript {
 		
 		if (playerData.pistolEquipped)
 		{
+			animator.SetTrigger(playerAnimationHash.pistolTrigger);
 			weaponStr = "Pistol";
 		}
 		else if (playerData.machineGunEquipped)
 		{
+			animator.SetTrigger(playerAnimationHash.machineGunTrigger);
 			weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
 		{
+			animator.SetTrigger (playerAnimationHash.noWeaponTrigger);
 			weaponStr = "nothing";
 		}
 		
