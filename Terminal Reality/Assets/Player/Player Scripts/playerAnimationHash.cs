@@ -12,8 +12,6 @@ public class playerAnimationHash : MonoBehaviour {
 	public static int reloadTrigger;
 	
 	//movement//
-	public static int standingTrigger;
-	public static int isMovingBool;
 	public static int forwardSpeedFloat;
 	
 	//STATES//
@@ -38,8 +36,6 @@ public class playerAnimationHash : MonoBehaviour {
 		pistolTrigger = Animator.StringToHash("Pistol");
 		
 		//movement//
-		standingTrigger = Animator.StringToHash("idling");
-		isMovingBool = Animator.StringToHash("isMoving");
 		forwardSpeedFloat = Animator.StringToHash("Speed");
 	
 		//STATES//

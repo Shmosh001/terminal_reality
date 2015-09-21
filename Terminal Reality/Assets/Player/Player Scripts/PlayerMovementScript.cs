@@ -150,33 +150,12 @@ public class PlayerMovementScript : MonoBehaviour {
 		speed = transform.rotation * speed;		
 		characterController.Move(speed * Time.deltaTime);
 		
-		//run method to update the movement animations//
-		updateAnimationTriggers();
-		
-	}
-	
-	/*
-		Update animation movement triggers
-	*/
-	void updateAnimationTriggers()
-	{
-		//IDLE --> forward speed and side speed is 0
-		if (forwardSpeed == 0 && sideSpeed == 0)
-		{ 
-			animator.SetTrigger(playerAnimationHash.standingTrigger); 
-			animator.SetBool(playerAnimationHash.isMovingBool, false);
-		}
-		
-		//isMoving --> if forward speed is greater than 0
-		if (forwardSpeed > 0)
-		{
-			animator.SetBool(playerAnimationHash.isMovingBool, true);
-		}
-		
 		//Set speed in animator controller
 		animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+		
 	}
 	
+		
 	void OnControllerColliderHit(ControllerColliderHit hit) 
 	{
 		Rigidbody body = hit.collider.attachedRigidbody;
