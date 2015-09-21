@@ -823,9 +823,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         //if we hear the player based on his animation state
 		else if (soundTrigger){
             //TODO set up
-			if (debugStatements){Debug.Log("checkForPlayer method: soundTrigger = true at" + Time.timeSinceLevelLoad);}
+			if (debugStatements)Debug.Log("checkForPlayer method: soundTrigger = true at" + Time.timeSinceLevelLoad);
 			if (detection.targetHeard()){
-				if (debugStatements){Debug.Log("checkForPlayer method: target heard at" + Time.timeSinceLevelLoad);}
+				if (debugStatements)Debug.Log("checkForPlayer method: target heard at" + Time.timeSinceLevelLoad);
 				alertUnit();
 			}
 		}
@@ -835,10 +835,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// we alert this unit that a sound trigger has gone off
     /// </summary>
     void alertUnit(){
-		if (debugStatements){Debug.Log("alertUnit method at" + Time.timeSinceLevelLoad);}
+		if (debugStatements)Debug.Log("alertUnit method at" + Time.timeSinceLevelLoad);
 		//if this is the >second  sound alert
 		if (soundAlert){
-			if (debugStatements){Debug.Log("alertUnit method: sound alert = true at" + Time.timeSinceLevelLoad);}
+			if (debugStatements)Debug.Log("alertUnit method: sound alert = true at" + Time.timeSinceLevelLoad);
 			//the position should have been set
 			//then searching method should take care of moving the npc there
 			//fsm.enterState(StateEnums.ZombieStates.Searching);

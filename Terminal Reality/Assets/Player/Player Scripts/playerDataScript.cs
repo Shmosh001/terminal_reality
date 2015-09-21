@@ -18,6 +18,7 @@ public class playerDataScript : MonoBehaviour {
 	public bool walking = true;
 	public bool sprinting = false;
 	public bool sneaking = false;
+    public bool canHear = false;
 	
 	//PUBLIC WEAPON RELATED VARIABLES//	
 	public bool pistolPickedUp = false;
