@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-
+using System;
 
 /// <summary>
 /// joins a single client into the server and spawns their player character as well as enabling all the local methods
@@ -84,8 +83,21 @@ public class NetworkManager : MonoBehaviour {
     /// </summary>
 	void OnJoinedLobby(){
 		Debug.Log("OnJoinedLobby");
-		PhotonNetwork.JoinRandomRoom();
-	}
+
+        RoomInfo[] roomstuff  = PhotonNetwork.GetRoomList();
+
+        if (PhotonNetwork.isMasterClient) {
+            PhotonNetwork.CreateRoom(null);
+        }
+        else {
+            PhotonNetwork.JoinRandomRoom();
+        }
+        
+        
+        //PhotonNetwork.JoinRandomRoom();
+
+
+    }
 
     /// <summary>
     /// if random joining fails
