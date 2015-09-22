@@ -38,6 +38,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: jump
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -236,7 +242,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: jump
     m_EventTreshold: 0
     m_ExitTime: .931034505
   m_Atomic: 1
@@ -285,6 +291,21 @@ State:
   - {fileID: 7400000, guid: f58586c04f531cd4c8d593423fae7f71, type: 2}
   m_ParentStateMachine: {fileID: 110732654}
   m_Position: {x: 300, y: -24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110218744
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Jump
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f4153cd47b3c56c479961afe083680a4, type: 2}
+  m_ParentStateMachine: {fileID: 110717622}
+  m_Position: {x: 132, y: 72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -360,9 +381,13 @@ StateMachine:
   - {fileID: 110233384}
   - {fileID: 110219136}
   - {fileID: 110241924}
+  - {fileID: 110218744}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110218744}
+      second: []
     data:
       first: {fileID: 110241924}
       second:

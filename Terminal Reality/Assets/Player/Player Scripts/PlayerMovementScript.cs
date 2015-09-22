@@ -142,6 +142,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		//JUMPING//
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
 		{
+			animator.SetTrigger(playerAnimationHash.jumpTrigger);
 			verticalVelocity = playerData.jumpSpeed;
 		}
 		verticalVelocity += -10.0f * Time.deltaTime; //increase falling velocity as you are falling OR decrease velocity as you're going up.

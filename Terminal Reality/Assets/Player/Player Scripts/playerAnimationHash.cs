@@ -13,6 +13,7 @@ public class playerAnimationHash : MonoBehaviour {
 	
 	//movement//
 	public static int forwardSpeedFloat;
+	public static int jumpTrigger;
 	
 	//pickup//
 	public static int pickupTrigger;
@@ -28,6 +29,7 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//movement//
 		forwardSpeedFloat = Animator.StringToHash("Speed");
+		jumpTrigger = Animator.StringToHash("jump");
 		
 		//pickup//
 		pickupTrigger = Animator.StringToHash("pickup");
