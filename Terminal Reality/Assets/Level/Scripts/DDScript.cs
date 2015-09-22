@@ -16,7 +16,7 @@ public class DDScript : MonoBehaviour {
         soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
         anim = gameObject.GetComponent<Animator>();
 		open = false;
-		pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
+		pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
 	}
 
 
@@ -62,7 +62,7 @@ public class DDScript : MonoBehaviour {
 
     void Update() {
         if (pushEObj == null) {
-            pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
+            pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
             if (pushEObj != null) {
                 pushE = pushEObj.GetComponent<Text>();
             }

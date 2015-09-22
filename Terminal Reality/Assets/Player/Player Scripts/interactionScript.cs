@@ -181,18 +181,34 @@ public class interactionScript : Photon.MonoBehaviour {
 			}
 	
 			
-				
+			if (inRangeOfHealth) {
+                if (playerData.health < 100) {
+                    animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                    this.GetComponent<playerHealthScript>().fullPlayerHealth();
+
+                    //Destroy health box after picking it up//
+                    interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
+
+                    PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                    if (pView == null) {
+                        Debug.LogError("No PhotonView component found");
+                    }
+                    else {
+                        if (PhotonNetwork.offlineMode) {
+                            Destroy(interactingCollider.gameObject);
+                        }
+                        else {
+                            pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                        }
+
+                    }
+
+                    //Destroy(interactingCollider.gameObject);
+                    inRangeOfHealth = false;
+                }
+            }
 			//can only pick up health if player's health is not full
-			if (playerData.health < 100)
-			{
-				animator.SetTrigger(playerAnimationHash.pickupTrigger);
-				this.GetComponent<playerHealthScript>().fullPlayerHealth();
-				
-				//Destroy health box after picking it up//
-				interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
-				Destroy(interactingCollider.gameObject);
-				inRangeOfAmmo = false;
-			}
+			
 	
 			//IF THE PLAYER IS IN RANGE OF PISTOL - PICK IT UP
 			if (inRangeOfPistol)

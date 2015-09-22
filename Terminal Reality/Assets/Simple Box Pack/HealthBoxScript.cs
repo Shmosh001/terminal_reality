@@ -29,7 +29,7 @@ public class HealthBoxScript : MonoBehaviour {
     void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			
 			pushE.enabled = true;
@@ -40,9 +40,8 @@ public class HealthBoxScript : MonoBehaviour {
 	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
-		{
+        //IF A PLAYER LEAVES THE DOOR'S TRIGGER//
+        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
 			pushE.enabled = false;
 		}
 	}
@@ -50,6 +49,15 @@ public class HealthBoxScript : MonoBehaviour {
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()
 	{
-		pushE.enabled = false;
+        if (pushE != null) {
+            pushE.enabled = false;
+        }
 	}
+
+    [PunRPC]
+    public void destroyObject() {
+        turnOffText();
+        Destroy(gameObject);
+    }
+
 }

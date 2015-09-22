@@ -4,8 +4,8 @@ using System.Collections;
 
 public class playerHealthScript : MonoBehaviour {
 	
-	playerDataScript playerData;
-	public UIBarScript UIBarScript;	
+	private playerDataScript playerData;
+	public UIBarScript uiBarScript;	
 	private bool heartBeatPlaying = false;
 	private GameObject soundController;
 	
@@ -14,12 +14,12 @@ public class playerHealthScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
-		playerData = this.GetComponent<playerDataScript>();		
+        uiBarScript = GameObject.FindGameObjectWithTag(Tags.UIBAROBJ).GetComponent<UIBarScript>();
+        playerData = this.GetComponent<playerDataScript>();		
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		animator = this.gameObject.GetComponent<Animator>();
-		//updateHealthHUD();
-		//TODO uncommented
+		updateHealthHUD();
+
 		
 	}
 	
@@ -72,8 +72,7 @@ public class playerHealthScript : MonoBehaviour {
 			playerData.health -= damage;			
 			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
 			heartBeatPlaying = false;
-			//updateHealthHUD();
-			//TODO uncommented
+			updateHealthHUD();
 		}
 		//if the damage kills the player//
 		else if ((playerData.health - damage) <= 0)
@@ -81,8 +80,7 @@ public class playerHealthScript : MonoBehaviour {
 			playerData.health = 0;
 			playerData.playerAlive = false; //boolean to send over network
 			animator.SetTrigger(playerAnimationHash.dieTrigger);
-			//updateHealthHUD();
-			//TODO uncommented
+			updateHealthHUD();
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 		
@@ -100,13 +98,12 @@ public class playerHealthScript : MonoBehaviour {
 	public void fullPlayerHealth()
 	{
 		playerData.health = 100;
-		//updateHealthHUD();
-		//TODO uncommented
+		updateHealthHUD();
 	}
 	
 	//UPDATE THE HEALTH DISPLAYED ON THE HUD//
 	private void updateHealthHUD()
 	{
-		UIBarScript.UpdateValue(playerData.health, 100);
+        uiBarScript.UpdateValue(playerData.health, 100);
 	}
 }

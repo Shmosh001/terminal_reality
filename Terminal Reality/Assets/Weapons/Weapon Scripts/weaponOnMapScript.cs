@@ -10,7 +10,7 @@ public class weaponOnMapScript : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+        pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
         if (pushETextObj != null) {
             pushE = pushETextObj.GetComponent<Text>();
         }
@@ -21,7 +21,7 @@ public class weaponOnMapScript : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (pushETextObj == null) {
-            pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+            pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
             if (pushETextObj != null) {
                 pushE = pushETextObj.GetComponent<Text>();
             }
@@ -31,9 +31,8 @@ public class weaponOnMapScript : MonoBehaviour {
     //WALKING INTO THE TRIGGER SURROUNDING WEAPON//
     void OnTriggerEnter(Collider other)
 	{
-		//If player walks into trigger...
-		if (other.tag == "Player")
-		{
+        //If player walks into trigger...
+        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
 			pushE.enabled = true;
 
 		}
@@ -42,9 +41,8 @@ public class weaponOnMapScript : MonoBehaviour {
 	//WALKING OUT OF THE TRIGGER SURROUNDING WEAPON//
 	void OnTriggerExit(Collider other)
 	{
-		//If player walks into trigger...
-		if (other.tag == "Player")
-		{
+        //If player walks into trigger...
+        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
 			pushE.enabled = false;
 		}
 	}

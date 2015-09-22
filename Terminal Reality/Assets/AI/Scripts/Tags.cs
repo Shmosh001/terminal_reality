@@ -18,11 +18,13 @@ public class Tags : MonoBehaviour {
 	public const string MACHINEGUN = "MachineGun";
 	public const string TORCH = "Torch";
     public const string BOSSENEMY = "BossEnemy";
-	public const string PUSHE = "PushEOpen";
+	public const string PUSHEOPEN = "PushEOpen";
+    public const string PUSHE = "PushE";
     public const string DOUBLEDOOR = "DoubleDoor";
     public const string DOOR = "Door";
     public const string AMMOTEXT = "ammoText";
     public const string RELOADTEXT = "reloadText";
+    public const string UIBAROBJ = "UIBarObj";
     
 
 

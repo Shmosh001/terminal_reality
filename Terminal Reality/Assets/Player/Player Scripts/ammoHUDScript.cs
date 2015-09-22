@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ammoHUDScript : MonoBehaviour {
 
-	//private Text ammoText;
-	//private Text reloadText;
+	private Text ammoText;
+	private Text reloadText;
 
     private GameObject ammoTextObj;
     private GameObject reloadTextObj;
@@ -41,7 +41,7 @@ public class ammoHUDScript : MonoBehaviour {
 	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
         if (ammoText == null) {
-            Debug.LogError("Ammotext is null");
+            //Debug.LogError("Ammotext is null");
             return;
         }
 		ammoText.text = totAmmo + " / " + clipAmmo;		
@@ -55,11 +55,11 @@ public class ammoHUDScript : MonoBehaviour {
 	{
 
         if (reloadText == null) {
-            Debug.LogError("reloadText is null");
+            //Debug.LogError("reloadText is null");
             return;
         }
         if (ammoText == null ) {
-            Debug.LogError("Ammotext is null");
+            //Debug.LogError("Ammotext is null");
             return;
         }
 

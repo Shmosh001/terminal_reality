@@ -37,9 +37,8 @@ public class AmmoBoxScript : MonoBehaviour {
 	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
-		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
-		{
+        //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
 			playerInRange = true;
 			pushE.enabled = true;
 			
@@ -49,9 +48,8 @@ public class AmmoBoxScript : MonoBehaviour {
 	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
-		{
+        //IF A PLAYER LEAVES THE DOOR'S TRIGGER//
+        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
 			playerInRange = false;
 			pushE.enabled = false;
 		}

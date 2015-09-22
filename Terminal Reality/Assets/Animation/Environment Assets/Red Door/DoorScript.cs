@@ -16,7 +16,7 @@ public class DoorScript : MonoBehaviour {
 		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		anim = this.GetComponent<Animator> ();
 
-        pushETextObj = GameObject.FindGameObjectWithTag("PushEOpen");
+        pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
         if (pushETextObj != null) {
             pushE = pushETextObj.GetComponent<Text>();
         }
@@ -26,7 +26,7 @@ public class DoorScript : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (pushETextObj == null) {
-            pushETextObj = GameObject.FindGameObjectWithTag("PushEOpen");
+            pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
             if (pushETextObj != null) {
                 pushE = pushETextObj.GetComponent<Text>();
             }
