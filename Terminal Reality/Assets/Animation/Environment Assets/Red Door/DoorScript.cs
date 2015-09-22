@@ -68,7 +68,7 @@ public class DoorScript : MonoBehaviour {
 		}
 
 		//ENEMY OPEN DOOR WHEN THEY ENTER COLLIDER
-		if (other.tag == Tags.ENEMY && other.GetType() == typeof(CapsuleCollider))
+		if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
 		{
 			if (!open)
 			{
@@ -90,7 +90,7 @@ public class DoorScript : MonoBehaviour {
 		}
 
 		//ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
-		if (other.tag == Tags.ENEMY && other.GetType() == typeof(CapsuleCollider))
+		if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
 		{
 			if (open) //Only show hint if the door is closed
 			{
