@@ -26,6 +26,7 @@ public class playerAnimationHash : MonoBehaviour {
 		//arms//
 		noWeaponBool = Animator.StringToHash("NoWeapon");
 		pistolTrigger = Animator.StringToHash("Pistol");
+		machineGunTrigger = Animator.StringToHash("MachineGun");
 		
 		//movement//
 		forwardSpeedFloat = Animator.StringToHash("Speed");

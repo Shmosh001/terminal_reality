@@ -44,6 +44,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: MachineGun
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -153,6 +159,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110118458
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110237650}
+  m_DstState: {fileID: 110215456}
+  m_TransitionDuration: .227272719
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Pistol
+    m_EventTreshold: 0
+    m_ExitTime: .772727251
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110123688
 Transition:
   serializedVersion: 2
@@ -177,6 +203,46 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110128380
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110215456}
+  m_DstState: {fileID: 110237650}
+  m_TransitionDuration: 24.9999981
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: MachineGun
+    m_EventTreshold: 0
+    m_ExitTime: 0
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110134756
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110219694}
+  m_DstState: {fileID: 110237650}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: MachineGun
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110137892
 Transition:
   serializedVersion: 2
@@ -190,7 +256,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: MachineGun
     m_EventTreshold: 0
     m_ExitTime: .53125
   m_Atomic: 1
@@ -270,7 +336,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: MachineGun
     m_EventTreshold: 0
     m_ExitTime: .758064508
   m_Atomic: 1
@@ -422,7 +488,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: f58586c04f531cd4c8d593423fae7f71, type: 2}
   m_ParentStateMachine: {fileID: 110732654}
-  m_Position: {x: 300, y: -24, z: 0}
+  m_Position: {x: 528, y: -36, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -498,6 +564,21 @@ State:
   - {fileID: 20633384}
   m_ParentStateMachine: {fileID: 110717622}
   m_Position: {x: 132, y: -48, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110237650
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MachineGun
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f81a7d99827f19e43a46cf850b9998cd, type: 2}
+  m_ParentStateMachine: {fileID: 110732654}
+  m_Position: {x: 144, y: -36, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -587,9 +668,14 @@ StateMachine:
   m_States:
   - {fileID: 110215456}
   - {fileID: 110219694}
+  - {fileID: 110237650}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110237650}
+      second:
+      - {fileID: 110118458}
     data:
       first: {fileID: 0}
       second: []
@@ -597,9 +683,11 @@ StateMachine:
       first: {fileID: 110219694}
       second:
       - {fileID: 110183458}
+      - {fileID: 110134756}
     data:
       first: {fileID: 110215456}
-      second: []
+      second:
+      - {fileID: 110128380}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -60, y: -96, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
