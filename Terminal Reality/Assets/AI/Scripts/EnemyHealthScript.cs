@@ -32,7 +32,9 @@ public class EnemyHealthScript : MonoBehaviour {
         if (isBoss) {
             bfsm = gameObject.GetComponent<BossZombieFSM>();
         }
+        else {
             fsm = gameObject.GetComponent<ZombieFSM>();
+        }
 	}
 
     /// <summary>
@@ -42,8 +44,13 @@ public class EnemyHealthScript : MonoBehaviour {
         //we check to see if health is smaller than 0 and that the entity has not registered being dead yet
 		if (health <= 0 && !dead){
             //we alert the fsm which will handle animations etc
-            fsm.alertDead();
-			dead = true;
+            if (isBoss) {
+                bfsm.alertDead();
+            }
+            else {
+                fsm.alertDead();
+            }
+            dead = true;
 		}
 	}
 
@@ -83,11 +90,22 @@ public class EnemyHealthScript : MonoBehaviour {
 
         if (health > 0){
 			health -= value;
-			fsm.alertShot(entity);
-		}
+			
+            if (isBoss) {
+                bfsm.alertShot(entity);
+            }
+            else {
+                fsm.alertShot(entity);
+            }
+        }
         //if the entity is dead and has not registered being dead, we alert the fsm
 		if (health <= 0 && !dead){
-			fsm.alertDead();
+            if (isBoss) {
+                bfsm.alertDead();
+            }
+            else {
+                fsm.alertDead();
+            }
 			dead = true;
 		}
 

@@ -220,7 +220,7 @@ public class ShootingScript : ammoHUDScript {
 			}*/
 			
 			//SHOOTING ENEMY//
-			if (hitObject.CompareTag(Tags.ENEMY))
+			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
 			{
 				Debug.Log("Enemy shot");
 				//hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
@@ -241,6 +241,7 @@ public class ShootingScript : ammoHUDScript {
                 }
                 
 			}
+            
 		}
 	}
 }
