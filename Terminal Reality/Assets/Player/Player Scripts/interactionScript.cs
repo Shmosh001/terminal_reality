@@ -98,6 +98,7 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
 			{	
+				//player can only pick up ammo if they have a weapon.
 				if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
 				{
 					animator.SetTrigger(playerAnimationHash.pickupTrigger);
