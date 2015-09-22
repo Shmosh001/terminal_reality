@@ -17,5 +17,6 @@ public class Tags : MonoBehaviour {
 	public const string PISTOL = "Pistol";
 	public const string MACHINEGUN = "MachineGun";
 	public const string TORCH = "Torch";
+    public const string BOSSENEMY = "BossEnemy";
 
 }

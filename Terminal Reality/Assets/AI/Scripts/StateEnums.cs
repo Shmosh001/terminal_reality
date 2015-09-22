@@ -20,6 +20,15 @@ public class StateEnums : MonoBehaviour {
 		Shot
 	};
 
+
+    public enum BossZombieStates : byte {
+        Idle = 0,
+        Chasing,
+        Attacking,
+        Dying,
+        Dead
+    }
+
 	public enum HumanStates : byte{
 		Running = 0, 
 		Screaming, 

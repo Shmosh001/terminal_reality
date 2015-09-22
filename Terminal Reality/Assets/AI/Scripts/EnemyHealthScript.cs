@@ -11,7 +11,9 @@ public class EnemyHealthScript : MonoBehaviour {
     //the entities health
 	public int health;
     //enemy identifier
-	public bool isEnemy;
+    public bool isBoss;
+
+
 
     //PRIVATE VARS
 
@@ -19,6 +21,7 @@ public class EnemyHealthScript : MonoBehaviour {
     private bool dead;
     //the finite state machine
 	private ZombieFSM fsm;
+    private BossZombieFSM bfsm;
 
 
 
@@ -26,7 +29,10 @@ public class EnemyHealthScript : MonoBehaviour {
     /// initialization
     /// </summary>
     void Start () {
-		fsm = gameObject.GetComponent<ZombieFSM>();
+        if (isBoss) {
+            bfsm = gameObject.GetComponent<BossZombieFSM>();
+        }
+            fsm = gameObject.GetComponent<ZombieFSM>();
 	}
 
     /// <summary>
