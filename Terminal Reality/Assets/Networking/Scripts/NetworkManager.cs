@@ -105,7 +105,7 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
         //if (PhotonNetwork.isMasterClient) {
-        activateObjects();
+        //activateObjects();
 
        // }    
 
@@ -160,10 +160,12 @@ public class NetworkManager : MonoBehaviour {
         pData.enabled = true;//enable the data script
 
         //assign pistol
-        pData.pistolGameObject = mainCam.transform.FindChild("Pistol05").gameObject;
+        //pData.pistolGameObject = localPlayer.transform.FindChild("Pistol05").gameObject;
+       // Transform obj = localPlayer.transform.FindChild("Pistol05");
+        
 
         //assign machine gun 
-        pData.machineGunGameObject = mainCam.transform.FindChild("UMP-45").gameObject;
+       // pData.machineGunGameObject = localPlayer.transform.FindChild("UMP-45").gameObject;
         
         //check jtbs
         if (pData.pistolGameObject == null || pData.machineGunGameObject == null) {
@@ -172,7 +174,7 @@ public class NetworkManager : MonoBehaviour {
 
 
 
-        localPlayer.GetComponent<CapsuleCollider>().enabled = true;
+        //localPlayer.GetComponent<CapsuleCollider>().enabled = true;
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
 		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script	
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script

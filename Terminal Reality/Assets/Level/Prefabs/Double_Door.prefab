@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11436838}
   - 135: {fileID: 13529296}
   - 82: {fileID: 8229294}
+  - 114: {fileID: 11488270}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: DoubleDoor
@@ -37,6 +38,7 @@ GameObject:
   - 114: {fileID: 11436840}
   - 135: {fileID: 13529294}
   - 82: {fileID: 8229296}
+  - 114: {fileID: 11433920}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: DoubleDoor
@@ -89,9 +91,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
+  m_LocalPosition: {x: 84.9800034, y: 0, z: -20.3649979}
+  m_LocalScale: {x: 1.24000001, y: 1, z: 1}
   m_Children:
   - {fileID: 436838}
   - {fileID: 436840}
@@ -323,6 +325,31 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11433920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11436838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +372,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46640ba673553684681aad282c62623a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11488270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!135 &13529294
 SphereCollider:
   m_ObjectHideFlags: 1

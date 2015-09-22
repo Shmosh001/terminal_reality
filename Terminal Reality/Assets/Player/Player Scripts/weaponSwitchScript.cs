@@ -130,7 +130,28 @@ public class weaponSwitchScript : ammoHUDScript {
 			playerData.pistolGameObject.SetActive(true);
 			
 			//After switch, update ammo HUD
-			updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+            if (playerData.pistolGameObject == null) {
+                Debug.LogError("Pistol gameobject is null");
+                return;
+            }
+
+            if (playerData.pistolGameObject.GetComponent<weaponDataScript>() == null) {
+                Debug.LogError("Pistol gameobject.weapondatascript is null");
+                return;
+            }
+
+            if (playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo() == null) {
+                Debug.LogError("Pistol gameobject.weapondatascript.getRemainingAmmo is null");
+                return;
+            }
+
+            if (playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip() == null) {
+                Debug.LogError("Pistol gameobject.weapondatascript.getRemainingClip is null");
+                return;
+            }
+
+
+            updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 
 			//check reload warnings

@@ -47,32 +47,34 @@ public class interactionScript : Photon.MonoBehaviour {
 
 
 				//IF THE RAY HIT A DOOR//
-				if (hitObject.CompareTag("Door"))
+				if (hitObject.CompareTag(Tags.DOOR))
 				{
 
-					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-					ds.interaction();
-				}
+					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+					//ds.interaction();
 
-				//IF THE RAY HIT A DOOR//
-				if (hitObject.CompareTag("DoubleDoor"))
-				{
-					DDScript dds = hitObject.GetComponentInParent<DDScript>();
-					dds.interaction();
-				}
 
-				//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 
-                PhotonView pView = hitObject.GetComponent<PhotonView>();
-                    
-                if (pView == null) {
-                    pView = hitObject.GetComponentInParent<PhotonView>();
+                    PhotonView pView = hitObject.GetComponent<PhotonView>();
+
                     if (pView == null) {
-                        Debug.LogError("No PhotonView component found on " + hitObject);
+                        pView = hitObject.GetComponentInParent<PhotonView>();
+                        if (pView == null) {
+                            Debug.LogError("No PhotonView component found on " + hitObject);
+                        }
+                        else {
+                            if (PhotonNetwork.offlineMode) {
+                                DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+                                ds.interaction();
+                            }
+                            else {
+                                pView.RPC("interaction", PhotonTargets.AllBuffered);
+                            }
+                        }
                     }
                     else {
                         if (PhotonNetwork.offlineMode) {
-                            DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+                            DoorScript ds = hitObject.GetComponent<DoorScript>();
                             ds.interaction();
                         }
                         else {
@@ -80,15 +82,47 @@ public class interactionScript : Photon.MonoBehaviour {
                         }
                     }
                 }
-                else {
-                    if (PhotonNetwork.offlineMode) {
-                        DoorScript ds = hitObject.GetComponent<DoorScript>();
-                        ds.interaction();
+
+				//IF THE RAY HIT A DOOR//
+				if (hitObject.CompareTag(Tags.DOUBLEDOOR))
+				{
+					//DDScript dds = hitObject.GetComponentInParent<DDScript>();
+					//dds.interaction();
+
+
+                    PhotonView pView = hitObject.GetComponent<PhotonView>();
+
+                    if (pView == null) {
+                        pView = hitObject.GetComponentInParent<PhotonView>();
+                        if (pView == null) {
+                            Debug.LogError("No PhotonView component found on " + hitObject);
+                        }
+                        else {
+                            if (PhotonNetwork.offlineMode) {
+                                DDScript dds = hitObject.GetComponentInParent<DDScript>();
+                                dds.interaction();
+                            }
+                            else {
+                                pView.RPC("interaction", PhotonTargets.AllBuffered);
+                            }
+                        }
                     }
                     else {
-                        pView.RPC("interaction", PhotonTargets.AllBuffered);
+                        if (PhotonNetwork.offlineMode) {
+                            DDScript dds = hitObject.GetComponentInParent<DDScript>();
+                            dds.interaction();
+                        }
+                        else {
+                            pView.RPC("interaction", PhotonTargets.AllBuffered);
+                        }
                     }
+
+
                 }
+
+				//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+
+                
                     
 			}								
 
