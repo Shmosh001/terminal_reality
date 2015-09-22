@@ -10,7 +10,7 @@ public class SparkSound : MonoBehaviour {
 	void Start ()
 	{
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
-		InvokeRepeating("Spark",0.01f,3.9f);
+		InvokeRepeating("Spark",0.01f,4.0f);
 	}
 	
 	//called every 4 seconds
