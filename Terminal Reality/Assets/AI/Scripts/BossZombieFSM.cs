@@ -22,7 +22,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     public float rayCastOffset = 1.5f;
 
     //floats values which are sued for counters and durations and general values
-    public float  dyingD, chasingD = 1f, attackD = 2;
+    public float  dyingD, chasingD = 1f, attackD = 2, soundD = 5;
     //sense values
     //speed values
     public float walkingSpeed, RunningSpeed, speed;
@@ -39,10 +39,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     private BoxCollider boxCollider;
 
     //booleans to ascertain certain state specifics
-    private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot;
+    private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot, deadBool;
 
     //counters
-    private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC;
+    private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC, soundC;
 
     //sensitivity of the AI unit
     private float viewingSens, listeningSens;
@@ -102,7 +102,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     /// </summary>
     void Update() {
 
+        soundC += Time.deltaTime;
 
+        if (!deadBool && soundC > soundD) {
+            sound.playBossScreamSound(audio);
+            soundC = 0;
+        }
 
         switch (fsm.getCurrentState()) {
 
@@ -121,12 +126,17 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
                 if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); 
                 //counter
                 chasingC += Time.deltaTime;
+
+                
+
+
                 //we call the chasing method which handles the pursuit of the prey
                 if (!chasing) {
                     chasePlayer();
                 }
                 //update the position of the target we are chasing
                 if (chasing && chasingC > chasingD) {
+                    soundD = 2;
                     if (stateDebugStatements)  Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad); 
                     chasePlayer();
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
@@ -242,9 +252,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         if (debugStatements) { Debug.Log("killUnit method at" + Time.timeSinceLevelLoad); }
         //stop moving on the nav mesh
         navAgent.Stop();
- 
+        deadBool = true;
+        sound.playBossDeathSound(audio);
         //rpc conversion
-
+        
         if (PhotonNetwork.offlineMode) {
             animatorCont.setTrigger(BossHashScript.deadTrigger);
         }
