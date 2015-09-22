@@ -63,7 +63,7 @@ public class PreyDetection : MonoBehaviour {
     /// <param name="entity">
     /// new target
     /// </param>
-
+    [PunRPC]
     public GameObject assignTarget(string tag) {
         Debug.Log(tag + "assigned as target");
         if (tag == Tags.PLAYER1) {
@@ -134,10 +134,17 @@ public class PreyDetection : MonoBehaviour {
             return false;
         }
 
+        if (target.GetComponent<playerDataScript>().canHear) {
+            lastSighting = target.transform.position;
+            return true;
+        }
+
+        else {
+            return false;
+        }
+        
 		//if we find that we do hear the player, we need to set the location for the search to work
 		//still need to check if we heard the player
-		lastSighting = target.transform.position;
-		return false;
 	}
 
     /// <summary>

@@ -107,7 +107,7 @@ GameObject:
   - 114: {fileID: 11407892}
   m_Layer: 0
   m_Name: NEWPLAYER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +586,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101234}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -882,10 +882,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  playerAlive: 1
   movementSpeed: 6.5
   mouseSpeed: 3
   jumpSpeed: 5.5
   pushingPower: 2.5
+  walking: 1
+  sprinting: 0
+  sneaking: 0
+  canHear: 0
   pistolPickedUp: 0
   machineGunPickedUp: 0
   pistolEquipped: 0
@@ -893,6 +898,7 @@ MonoBehaviour:
   pistolGameObject: {fileID: 101240}
   machineGunGameObject: {fileID: 101226}
   torch: {fileID: 10801228}
+  hasKey: 0
 --- !u!114 &11401232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,7 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e654cef3ec5db4243bf78b36c0ae0d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 101234}
 --- !u!114 &11475568
 MonoBehaviour:
   m_ObjectHideFlags: 1

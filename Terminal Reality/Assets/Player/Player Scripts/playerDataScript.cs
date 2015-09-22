@@ -18,6 +18,7 @@ public class playerDataScript : MonoBehaviour {
 	public bool walking = true;
 	public bool sprinting = false;
 	public bool sneaking = false;
+    public bool canHear = false;
 	
 	//PUBLIC WEAPON RELATED VARIABLES//	
 	public bool pistolPickedUp = false;
@@ -31,9 +32,10 @@ public class playerDataScript : MonoBehaviour {
 	
 	//TORCH//
 	public Light torch;
-	
-	//PLAYER HAS KEY
-	public bool hasKey = false;
+    public GameObject torchObj;
+
+    //PLAYER HAS KEY
+    public bool hasKey = false;
 	
 	
 	//AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
@@ -42,11 +44,32 @@ public class playerDataScript : MonoBehaviour {
 		pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
 		pistolGameObject.SetActive(false);
 		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
+
+		torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
+
 		machineGunGameObject.SetActive(false);
-		torch = GameObject.FindGameObjectWithTag(Tags.TORCH).light;
+
 	}
 	
 	
+    void Update() {
+        if (pistolGameObject == null) {
+            pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
+        }
+        if (machineGunGameObject == null) {
+            machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
+        }
+
+        if (torchObj == null) {
+            torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
+        }
+        else {
+            torch = torchObj.light;
+        }
+
+    }
+
+
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			//Debug.Log("writing");

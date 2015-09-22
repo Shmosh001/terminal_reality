@@ -11,17 +11,20 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip outOfAmmoSound;
 	public AudioClip ammoAndWeaponPickupSound;
 	public AudioClip torchButtonSound;
+
 	public AudioClip lowHealthHeartBeat;
 	
 	
 	//PUBLIC ZOMBIE SOUND VARIABLES//
 	public AudioClip maleScreamingSound;
 	public AudioClip femaleScreamingSound;
-	
+
 	//PUBLIC LEVEL SOUNND VARIABLES
 	public AudioClip sparkSound;
-	
-	
+	public AudioClip doorCreekSound;
+	public AudioClip glassBreakingSound;
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -83,4 +86,17 @@ public class soundControllerScript : MonoBehaviour {
 	public void playSparkSound(AudioSource soundSource){
 		soundSource.PlayOneShot(sparkSound);
 	}
+
+
+	public void playDoorCreek(AudioSource soundSource)
+	{
+		soundSource.PlayOneShot (doorCreekSound);
+	}
+
+	public void playGlassBreaking(AudioSource soundSource)
+	{
+		soundSource.PlayOneShot (glassBreakingSound);
+	}
+
 }
+

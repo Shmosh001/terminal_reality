@@ -13,8 +13,23 @@ public class PName : MonoBehaviour {
 
     void Start() {
         characterObject = this.gameObject;
-        print("start:" + gameObject.tag);
-        if (gameObject.tag != Tags.PLAYER1) {
+        Debug.LogWarning("start:" + gameObject.tag);
+        assignPlayerTags();
+        
+
+
+        /*if (player1 == null ) {
+            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER2);
+            gameObject.tag = Tags.PLAYER2;
+        }
+        else if (player2 == null) {
+            gameObject.tag = Tags.PLAYER1;
+            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER1);
+        }*/
+
+
+
+       /* if (gameObject.tag != Tags.PLAYER1) {
             Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER2);
             this.gameObject.tag = Tags.PLAYER2;
         }
@@ -23,9 +38,39 @@ public class PName : MonoBehaviour {
             Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER1);
             this.gameObject.tag = Tags.PLAYER1;
         }
-        
+        */
         
     }
+
+
+    void assignPlayerTags() {
+        if (!PhotonNetwork.offlineMode) {
+            GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+            GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+
+
+            if (player1 == null) {
+                GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
+                player.tag = Tags.PLAYER1;
+
+            }
+            if (player2 == null) {
+                GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
+                if (player != null) {
+                    player.tag = Tags.PLAYER2;
+                }
+            }
+        }
+        
+    }
+
+
+    void Update() {
+        if (!PhotonNetwork.offlineMode) {
+
+        }
+    }
+
 
     void OnGUI() {
         if (characterObject != null) {

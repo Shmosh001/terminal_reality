@@ -102,10 +102,11 @@ public class NetworkManager : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
-        if (PhotonNetwork.isMasterClient) {
-            activateEnemies();
-        }        
-	}
+        //if (PhotonNetwork.isMasterClient) {
+        activateEnemies();
+       // }    
+
+    }
 
     /// <summary>
     /// spawns a player into the game world using photons instantiate
@@ -168,6 +169,7 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
+        
         if (PhotonNetwork.isMasterClient) {
             P1HUD.SetActive(true);//enable the HUD
         }
@@ -177,15 +179,15 @@ public class NetworkManager : MonoBehaviour {
         //P1HUD.SetActive(true);
 
         //NOW NEED TO ASSIGN PARTS TO THE HUD ELEMENTS
-        
-	}
+
+    }
 
 
     void activateEnemies() {
-        /*for(int i  = 0; i < enemies.Length; i++) {
+        for(int i  = 0; i < enemies.Length; i++) {
             enemies[i].SetActive(true);
-        }*/
-        PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
+        }
+        //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
         
     }
 

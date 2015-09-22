@@ -1311,14 +1311,13 @@ GameObject:
   - 114: {fileID: 11485200}
   - 114: {fileID: 11497850}
   - 114: {fileID: 11480776}
-  - 114: {fileID: 11408990}
   m_Layer: 0
   m_Name: MALE_ZOMBIE
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &185170
 GameObject:
   m_ObjectHideFlags: 1
@@ -2896,8 +2895,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2986,74 +2985,6 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11408990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 2
-    Name: Speed
-  - Type: 4
-    SynchronizeType: 2
-    Name: WanderingParam
-  - Type: 4
-    SynchronizeType: 2
-    Name: AttackingParam
-  - Type: 3
-    SynchronizeType: 2
-    Name: DeathD
-  - Type: 3
-    SynchronizeType: 2
-    Name: IdleVarD
-  - Type: 3
-    SynchronizeType: 2
-    Name: AttD
-  - Type: 3
-    SynchronizeType: 2
-    Name: HitD
-  - Type: 3
-    SynchronizeType: 2
-    Name: IdleD
-  - Type: 3
-    SynchronizeType: 2
-    Name: StateD
-  - Type: 9
-    SynchronizeType: 2
-    Name: ShotParam
-  - Type: 9
-    SynchronizeType: 2
-    Name: AlertedParam
-  - Type: 9
-    SynchronizeType: 2
-    Name: AlertToIdle
-  - Type: 9
-    SynchronizeType: 2
-    Name: DeadParam
-  - Type: 9
-    SynchronizeType: 2
-    Name: WakeupParam
-  - Type: 9
-    SynchronizeType: 2
-    Name: ChargeParam
-  - Type: 9
-    SynchronizeType: 2
-    Name: ChangeTrigger
-  - Type: 9
-    SynchronizeType: 2
-    Name: SearchingTrigger
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
 --- !u!114 &11480776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3075,8 +3006,6 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 11497850}
-  - {fileID: 11408990}
-  - {fileID: 11485190}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -3146,7 +3075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  isEnemy: 1
+  isEnemy: 0
 --- !u!114 &11485196
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour {
 
+	private GameObject soundController;
 	private Animator anim;
 	public bool open = false;
 	private Text pushE;
@@ -12,7 +13,7 @@ public class DoorScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		anim = this.GetComponent<Animator> ();
 
         pushETextObj = GameObject.FindGameObjectWithTag("PushEOpen");
@@ -39,12 +40,16 @@ public class DoorScript : MonoBehaviour {
 		//IF THE DOOR IS OPEN//
 		if (open)
 		{
+			//play sound of this component
+			soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
 			anim.SetTrigger("Close");
 			open = false;
 		}
 		//IF THE DOOR IS CLOSED//
 		else
-		{
+		{	
+			//play sound of this component
+			soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
 			anim.SetTrigger("Open");
 			open = true;
 		}
@@ -54,7 +59,7 @@ public class DoorScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			if (!open) //Only show hint if the door is closed
 			{
@@ -63,30 +68,34 @@ public class DoorScript : MonoBehaviour {
 		}
 
 		//ENEMY OPEN DOOR WHEN THEY ENTER COLLIDER
-		if (other.tag == "Enemy" && other.GetType() == typeof(CapsuleCollider))
+		if (other.tag == Tags.ENEMY && other.GetType() == typeof(CapsuleCollider))
 		{
 			if (!open)
 			{
+				//play sound of this component
+				soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
 				anim.SetTrigger("Open");
 				open = true;
 			}
 		}
 	}
 	
-	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
+	//WHEN SOMETHING LEAVES THE DOOR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == "Player")
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			pushE.enabled = false;
 		}
 
 		//ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
-		if (other.tag == "Enemy" && other.GetType() == typeof(CapsuleCollider))
+		if (other.tag == Tags.ENEMY && other.GetType() == typeof(CapsuleCollider))
 		{
 			if (open) //Only show hint if the door is closed
 			{
+				//play sound of this component
+				soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
 				anim.SetTrigger("Close");
 				open = false;
 			}

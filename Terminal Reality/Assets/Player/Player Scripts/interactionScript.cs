@@ -21,14 +21,16 @@ public class interactionScript : Photon.MonoBehaviour {
 	public AudioClip weaponPickup;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		playerData = this.GetComponent<playerDataScript>();
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		animator = this.gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
 		if (Input.GetKeyDown(KeyCode.E))
@@ -47,6 +49,18 @@ public class interactionScript : Photon.MonoBehaviour {
 				//IF THE RAY HIT A DOOR//
 				if (hitObject.CompareTag("Door"))
 				{
+
+					DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+					ds.interaction();
+				}
+
+				//IF THE RAY HIT A DOOR//
+				if (hitObject.CompareTag("DoubleDoor"))
+				{
+					DDScript dds = hitObject.GetComponentInParent<DDScript>();
+					dds.interaction();
+				}
+
 					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 
                     PhotonView pView = hitObject.GetComponent<PhotonView>();
@@ -77,6 +91,7 @@ public class interactionScript : Photon.MonoBehaviour {
                     }
                     
 				}								
+
 				
 			}
 			
@@ -224,8 +239,6 @@ public class interactionScript : Photon.MonoBehaviour {
 				inRangeOfMachineGun = false;
 			}
 		}
-	
-	}
 	
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
