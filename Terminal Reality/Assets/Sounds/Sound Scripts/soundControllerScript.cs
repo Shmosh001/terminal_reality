@@ -45,7 +45,6 @@ public class soundControllerScript : MonoBehaviour {
 	public void playPistolShot(AudioSource soundSource)
 	{
 		//play sound
-		print ("PISTOL SHOT!!!");
 		soundSource.PlayOneShot(pistolShotSound);
 	}
 	

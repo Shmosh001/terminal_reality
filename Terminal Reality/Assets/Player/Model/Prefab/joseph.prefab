@@ -218,6 +218,8 @@ GameObject:
   - 114: {fileID: 11463078}
   - 114: {fileID: 11463080}
   - 114: {fileID: 11463082}
+  - 82: {fileID: 8293360}
+  - 114: {fileID: 11493360}
   m_Layer: 0
   m_Name: joseph
   m_TagString: Player1
@@ -1229,20 +1231,20 @@ Transform:
   - {fileID: 462940}
   - {fileID: 462934}
   m_Father: {fileID: 22463082}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &462938
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162938}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: .252000004, y: -.273000002, z: .509000003}
-  m_LocalScale: {x: 1.79999995, y: 1.79999995, z: 1.79999995}
+  m_LocalRotation: {x: -.5, y: .5, z: -.5, w: -.5}
+  m_LocalPosition: {x: -.0549999997, y: .0350000001, z: -.0299999993}
+  m_LocalScale: {x: 1.20000017, y: 1.19999969, z: 1.20000005}
   m_Children:
   - {fileID: 462942}
-  m_Father: {fileID: 22463082}
-  m_RootOrder: 0
+  m_Father: {fileID: 463022}
+  m_RootOrder: 1
 --- !u!4 &462940
 Transform:
   m_ObjectHideFlags: 1
@@ -1318,7 +1320,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22463082}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &462952
 Transform:
   m_ObjectHideFlags: 1
@@ -1795,6 +1797,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 463026}
+  - {fileID: 462938}
   m_Father: {fileID: 463016}
   m_RootOrder: 2
 --- !u!4 &463024
@@ -2424,6 +2427,64 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8293360
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162954}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 63
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9263082
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2440,10 +2501,10 @@ Animator:
   m_GameObject: {fileID: 162954}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d062bbd7e6c74545a16b03f72ddb0ad, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &10863078
@@ -2689,6 +2750,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11493360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77d734c681c1d7459113a98b90d160d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!124 &12463082
@@ -2981,14 +3053,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: .100000001}
   m_LocalScale: {x: .666666687, y: .666666687, z: .666666687}
   m_Children:
-  - {fileID: 462938}
   - {fileID: 462936}
   - {fileID: 462950}
   m_Father: {fileID: 462954}
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 1.79999995}
+  m_AnchoredPosition: {x: -.150000006, y: 1.70000005}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000

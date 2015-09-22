@@ -42,8 +42,13 @@ public class playerDataScript : MonoBehaviour {
 	void Awake()
 	{
 		pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
+		pistolGameObject.SetActive(false);
 		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
+
 		torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
+
+		machineGunGameObject.SetActive(false);
+
 	}
 	
 	

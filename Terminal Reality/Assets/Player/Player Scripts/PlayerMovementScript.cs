@@ -5,6 +5,9 @@ public class PlayerMovementScript : MonoBehaviour {
 	
 	private CharacterController characterController;
 	
+	//the animator
+	private Animator animator;
+	
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
 	private float verticalVelocity = -1;
@@ -21,6 +24,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		Screen.lockCursor = true; //take the mouse off the screen.
 		playerData = this.GetComponent<playerDataScript>();
 		characterController = this.GetComponent<CharacterController>();
+		animator = this.gameObject.GetComponent<Animator>();
 		
 	}
 	
@@ -112,6 +116,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		{
 			forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
 			sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
+			
 		}
 		else //if player is in the air, slow down speed//
 		{
@@ -145,8 +150,13 @@ public class PlayerMovementScript : MonoBehaviour {
 		speed = transform.rotation * speed;		
 		characterController.Move(speed * Time.deltaTime);
 		
+		//Set speed in animator controller
+		animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+		print ("Forward speed --> " + forwardSpeed);
+		
 	}
 	
+		
 	void OnControllerColliderHit(ControllerColliderHit hit) 
 	{
 		Rigidbody body = hit.collider.attachedRigidbody;

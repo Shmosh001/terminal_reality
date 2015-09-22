@@ -4,10 +4,14 @@ using System.Collections;
 public class weaponSwitchScript : ammoHUDScript {
 
 	playerDataScript playerData;
+	
+	//the animator
+	private Animator animator;
 
 	void Start()
 	{
 		playerData = this.GetComponent<playerDataScript>();
+		animator = this.gameObject.GetComponent<Animator>();
 		enableWeapon();
 	}
 
@@ -85,10 +89,14 @@ public class weaponSwitchScript : ammoHUDScript {
 		
 		if (playerData.pistolEquipped)
 		{
+			animator.SetTrigger(playerAnimationHash.pistolTrigger);
+			animator.SetBool(playerAnimationHash.noWeaponBool, false);
 			weaponStr = "Pistol";
 		}
 		else if (playerData.machineGunEquipped)
 		{
+			animator.SetTrigger(playerAnimationHash.machineGunTrigger);
+			animator.SetBool(playerAnimationHash.noWeaponBool, false);
 			weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
