@@ -17,7 +17,8 @@ public class NetworkManager : MonoBehaviour {
     public GameObject P1HUD;
     public GameObject P2HUD;
     //temp spawning location
-    public GameObject temp;
+    public GameObject spawn1;
+    public GameObject spawn2;
     public GameObject zombieSpawn;
     //main stand by camera 
     public GameObject mainCam;
@@ -116,9 +117,15 @@ public class NetworkManager : MonoBehaviour {
     void SpawnPlayer(){
 		Debug.Log("SpawnPlayer");
 		mainCam.SetActive(false);
-		//PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for separating things
+        //PhotonNetwork.Instantiate("Player", spawn.position, spawn.rotation, 0);//group id is for separating things
+        Transform location;
+        if (PhotonNetwork.isMasterClient) {
+            location = spawn1.transform;
+        }
+        else {
+            location = spawn2.transform;
+        }
 
-		Transform location = temp.transform;
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
 		GameObject localPlayer = PhotonNetwork.Instantiate("joseph", location.position, location.rotation, 0);
         if (PhotonNetwork.isMasterClient) {
