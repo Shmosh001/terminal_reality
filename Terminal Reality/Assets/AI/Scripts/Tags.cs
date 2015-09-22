@@ -21,6 +21,10 @@ public class Tags : MonoBehaviour {
 	public const string PUSHE = "PushEOpen";
     public const string DOUBLEDOOR = "DoubleDoor";
     public const string DOOR = "Door";
+    public const string AMMOTEXT = "ammoText";
+    public const string RELOADTEXT = "reloadText";
+    
+
 
 
 }

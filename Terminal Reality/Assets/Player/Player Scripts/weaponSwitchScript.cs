@@ -140,16 +140,10 @@ public class weaponSwitchScript : ammoHUDScript {
                 return;
             }
 
-            if (playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo() == null) {
-                Debug.LogError("Pistol gameobject.weapondatascript.getRemainingAmmo is null");
-                return;
-            }
+            
 
-            if (playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip() == null) {
-                Debug.LogError("Pistol gameobject.weapondatascript.getRemainingClip is null");
-                return;
-            }
-
+            print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+            print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
 
             updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());

@@ -172,7 +172,12 @@ public class NetworkManager : MonoBehaviour {
             Debug.LogWarning("Gun objects have not been assigned successfully");
         }
 
-
+        if (PhotonNetwork.isMasterClient) {
+            P1HUD.SetActive(true);//enable the HUD
+        }
+        else {
+            P2HUD.SetActive(true);//enable the HUD
+        }
 
         //localPlayer.GetComponent<CapsuleCollider>().enabled = true;
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
@@ -181,12 +186,7 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
 		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
         
-        if (PhotonNetwork.isMasterClient) {
-            P1HUD.SetActive(true);//enable the HUD
-        }
-        else {
-            P2HUD.SetActive(true);//enable the HUD
-        }
+        
         //P1HUD.SetActive(true);
 
         //NOW NEED TO ASSIGN PARTS TO THE HUD ELEMENTS
