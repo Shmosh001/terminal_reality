@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -9,11 +9,15 @@ public class playerHealthScript : MonoBehaviour {
 	private bool heartBeatPlaying = false;
 	private GameObject soundController;
 	
+	//the animator
+	private Animator animator;
+	
 	// Use this for initialization
 	void Start () {
 		
 		playerData = this.GetComponent<playerDataScript>();		
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		animator = this.gameObject.GetComponent<Animator>();
 		//updateHealthHUD();
 		//TODO uncommented
 		
@@ -76,6 +80,7 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			playerData.health = 0;
 			playerData.playerAlive = false; //boolean to send over network
+			animator.SetTrigger(playerAnimationHash.dieTrigger);
 			//updateHealthHUD();
 			//TODO uncommented
 			print ("PLAYER IS DEAD!!!"); //temp print out

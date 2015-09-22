@@ -11,7 +11,7 @@ public class playerDataScript : MonoBehaviour {
 	//PUBLIC MOVEMENT VARIABLES//
 	public float movementSpeed = 6.5f;
 	public float mouseSpeed = 3.0f;
-	public float jumpSpeed = 5.5f;
+	public float jumpSpeed = 5.0f;
 	public float pushingPower = 2.5f;
 	
 	//PLAYER MOVEMENT STATES//

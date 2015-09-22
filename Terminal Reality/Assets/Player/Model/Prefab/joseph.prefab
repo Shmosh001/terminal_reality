@@ -1223,15 +1223,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .238999993, y: -.549000025, z: .398999989}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .707106829, y: -.707106829, z: -3.09086232e-08, w: 3.09086232e-08}
+  m_LocalPosition: {x: .00999999978, y: .0399999991, z: -.0199999996}
+  m_LocalScale: {x: .400000006, y: .400000006, z: .400000006}
   m_Children:
   - {fileID: 462952}
   - {fileID: 462940}
   - {fileID: 462934}
-  m_Father: {fileID: 22463082}
-  m_RootOrder: 0
+  m_Father: {fileID: 463022}
+  m_RootOrder: 2
 --- !u!4 &462938
 Transform:
   m_ObjectHideFlags: 1
@@ -1320,7 +1320,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22463082}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &462952
 Transform:
   m_ObjectHideFlags: 1
@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.39269161, y: 2.47083902, z: .356172085}
+  m_LocalPosition: {x: 95.5242462, y: 1.00785512e-16, z: 4.61023712}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 462956}
@@ -1355,7 +1355,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162956}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .54400003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 462960}
@@ -1798,6 +1798,7 @@ Transform:
   m_Children:
   - {fileID: 463026}
   - {fileID: 462938}
+  - {fileID: 462936}
   m_Father: {fileID: 463016}
   m_RootOrder: 2
 --- !u!4 &463024
@@ -2195,7 +2196,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .200000003
+  near clip plane: .379999995
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -2500,7 +2501,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162954}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Controller: {fileID: 9100000, guid: 1d062bbd7e6c74545a16b03f72ddb0ad, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -2721,6 +2722,7 @@ MonoBehaviour:
   walking: 1
   sprinting: 0
   sneaking: 0
+  canHear: 0
   pistolPickedUp: 0
   machineGunPickedUp: 0
   pistolEquipped: 0
@@ -2728,6 +2730,7 @@ MonoBehaviour:
   pistolGameObject: {fileID: 0}
   machineGunGameObject: {fileID: 0}
   torch: {fileID: 0}
+  torchObj: {fileID: 0}
   hasKey: 0
 --- !u!114 &11463080
 MonoBehaviour:
@@ -2782,7 +2785,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: a4d05fb07c942e445897047547449720, type: 2}
+  - {fileID: 2100000, guid: cb352e8aa8dcb4742989dee2475c8718, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2793,7 +2796,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Bones:
   - {fileID: 462972}
   - {fileID: 462974}
@@ -2856,7 +2859,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: bf25ebd18ae5cd44f941663f4f34a391, type: 2}
+  - {fileID: 2100000, guid: d165db2862ff142459287414eb89cfc4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2867,7 +2870,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300002, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Bones:
   - {fileID: 463050}
   - {fileID: 463042}
@@ -2931,7 +2934,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: a4d05fb07c942e445897047547449720, type: 2}
+  - {fileID: 2100000, guid: ab5a17bef0849364c956e868b7b95ad1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2942,7 +2945,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300006, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Mesh: {fileID: 4300006, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Bones:
   - {fileID: 463008}
   m_BlendShapeWeights: []
@@ -2963,7 +2966,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 08e142575225a8a4f8bc2513ba25df83, type: 2}
+  - {fileID: 2100000, guid: b954350a06c4064478946c134e0f8b93, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2974,7 +2977,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300008, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Mesh: {fileID: 4300008, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Bones:
   - {fileID: 463008}
   - {fileID: 463006}
@@ -2996,7 +2999,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7bb7a0f591c09b94da525ed57185e0ba, type: 2}
+  - {fileID: 2100000, guid: 1b5ea193155e61249a092f6e26d42370, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3007,7 +3010,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300010, guid: af3969dce9fcfde4393c920f531642dc, type: 3}
+  m_Mesh: {fileID: 4300010, guid: 1595278050d86664b818ee52bf745fb8, type: 3}
   m_Bones:
   - {fileID: 462980}
   - {fileID: 463006}
@@ -3036,7 +3039,7 @@ CharacterController:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162954}
   serializedVersion: 2
-  m_Height: 1.70000005
+  m_Height: 2
   m_Radius: .300000012
   m_SlopeLimit: 45
   m_StepOffset: .300000012
@@ -3050,10 +3053,9 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .100000001}
+  m_LocalPosition: {x: 0, y: 0, z: .219999999}
   m_LocalScale: {x: .666666687, y: .666666687, z: .666666687}
   m_Children:
-  - {fileID: 462936}
   - {fileID: 462950}
   m_Father: {fileID: 462954}
   m_RootOrder: 2

@@ -20,6 +20,7 @@ public class torchScript : MonoBehaviour {
 	void Start () {
 	
 		batteryLife = 100.0f;
+		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		//torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
 		//torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
 		//TODO uncommented
@@ -55,7 +56,7 @@ public class torchScript : MonoBehaviour {
 		}
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
-		//updateTorchActivity();
+		updateTorchActivity();
 		//updateTorchHUD();
 
 	}
@@ -64,18 +65,17 @@ public class torchScript : MonoBehaviour {
 	//AND THEN TURN THE LIGHT ON OR OFF.
 	private void updateTorchActivity()
 	{
-		//TODO uncommented
-		/*
+		
 		if (torchOn)
 		{
 			torch.enabled = true;
-			torchHUD.sprite = torchOnImage;
+			//torchHUD.sprite = torchOnImage;
 		}
 		else
 		{
 			torch.enabled = false;
-			torchHUD.sprite = torchOffImage;
-		}*/
+			//torchHUD.sprite = torchOffImage;
+		}
 	}
 
 	//UPDATE THE TORCH DISPLAYED ON THE HUD//
