@@ -5,21 +5,28 @@ using System.Collections;
 public class HealthBoxScript : MonoBehaviour {
 
 	private Text pushE;
+    private GameObject pushEObj;
 
 	// Use this for initialization
 	void Start () {
-	
-		pushE = GameObject.FindGameObjectWithTag("PushE").GetComponent<Text>();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
 	
 	}
 	
-	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
-	void OnTriggerEnter (Collider other)
+
+
+    void Update() {
+        if (pushEObj == null) {
+            pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
+            if (pushEObj != null) {
+                pushE = pushEObj.GetComponent<Text>();
+            }
+        }
+    }
+
+    //WHEN SOMETHING ENTERS THE DOORS TRIGGER//
+    void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == "Player")

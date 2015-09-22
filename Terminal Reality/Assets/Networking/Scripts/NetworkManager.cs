@@ -9,8 +9,8 @@ public class NetworkManager : MonoBehaviour {
 
     //PUBLIC VARS
     //array of enemies
-    public GameObject[] enemies;
-    public GameObject[] deadBodies;
+    public GameObject[] parts;
+    
     //boolean for offline mode
     public bool offlineMode;
     //the hud
@@ -104,8 +104,8 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
         //if (PhotonNetwork.isMasterClient) {
-        activateEnemies();
-        activateDeadBodies();
+        activateObjects();
+
        // }    
 
     }
@@ -120,7 +120,7 @@ public class NetworkManager : MonoBehaviour {
 
 		Transform location = temp.transform;
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
-		GameObject localPlayer = PhotonNetwork.Instantiate("NEWPLAYER", location.position, location.rotation, 0);
+		GameObject localPlayer = PhotonNetwork.Instantiate("joseph", location.position, location.rotation, 0);
         if (PhotonNetwork.isMasterClient) {
             localPlayer.tag = Tags.PLAYER1;
         }
@@ -185,20 +185,14 @@ public class NetworkManager : MonoBehaviour {
     }
 
 
-    void activateEnemies() {
-        for(int i  = 0; i < enemies.Length; i++) {
-            enemies[i].SetActive(true);
+    void activateObjects() {
+        for(int i  = 0; i < parts.Length; i++) {
+            parts[i].SetActive(true);
         }
         //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
         
     }
-    void activateDeadBodies() {
-        for (int i = 0; i < deadBodies.Length; i++) {
-            deadBodies[i].SetActive(true);
-        }
-        //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
 
-    }
 
 
 }
