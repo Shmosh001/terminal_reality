@@ -229,6 +229,7 @@ public class ShootingScript : ammoHUDScript {
 
 
                 if (PhotonNetwork.offlineMode) {
+                    //Debug.LogWarning((int)weapon.GetComponent<weaponDataScript>().damage);
                     hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
                 }
                 else {

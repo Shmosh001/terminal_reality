@@ -43,7 +43,7 @@ public class BossHashScript : MonoBehaviour {
 
         //STATES
 
-        idleState = Animator.StringToHash("Base Layer.zombie_idle3");
+        idleState = Animator.StringToHash("Base Layer.zombie_idle4");
 		
 		//Attack SSM
 		attackDecisionState = Animator.StringToHash("Attack.Decision");

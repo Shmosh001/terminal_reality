@@ -49696,6 +49696,7 @@ GameObject:
   - 4: {fileID: 776331994}
   - 114: {fileID: 776331993}
   - 114: {fileID: 776331995}
+  - 114: {fileID: 776331996}
   m_Layer: 0
   m_Name: _SCRIPTS
   m_TagString: Untagged
@@ -49718,7 +49719,7 @@ MonoBehaviour:
   - {fileID: 1129276726}
   offlineMode: 0
   P1HUD: {fileID: 1706845889}
-  P2HUD: {fileID: 0}
+  P2HUD: {fileID: 1639519549}
   temp: {fileID: 1565037441}
   zombieSpawn: {fileID: 688864132}
   mainCam: {fileID: 626149266}
@@ -49757,6 +49758,18 @@ MonoBehaviour:
     width: 200
     height: 50
   WindowId: 100
+--- !u!114 &776331996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776331992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9422f012b7b2db49bf0fbcfa5555ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 2143920568}
 --- !u!1 &776682525
 GameObject:
   m_ObjectHideFlags: 0
@@ -69173,7 +69186,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1129276726}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -69203,9 +69216,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -69215,11 +69228,11 @@ AudioSource:
     - time: 0
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.05263162
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: .634920657
+      inSlope: -1.05263162
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -69255,8 +69268,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -69380,7 +69393,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -69402,21 +69415,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f944c897def719a42ac51c8cde49dca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 30
   arrivalDistance: 1.5
-  stateDebugStatements: 1
-  debugStatements: 1
-  debug: 1
-  animDebug: 1
+  stateDebugStatements: 0
+  debugStatements: 0
+  debug: 0
+  animDebug: 0
   rayCastOffset: 1.5
   dyingD: 0
   chasingD: 1
   attackD: 2
+  soundD: 5
   walkingSpeed: 0
   RunningSpeed: 0
   speed: 0
   runningDistance: 0
-  attackingDistance: 1.5
+  attackingDistance: 2
 --- !u!114 &1129276738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88642,6 +88656,14 @@ Prefab:
       propertyPath: m_Name
       value: _Sound Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
+      propertyPath: bossZombieScream
+      value: 
+      objectReference: {fileID: 8300000, guid: c7b8d41b4b1fc6d42ad4b7c1861c2675, type: 3}
+    - target: {fileID: 11425504, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
+      propertyPath: bossZombieDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: acec2d724914a9f4286a12b88a307f93, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 609efb85c9988814293c1f9364c8331f, type: 2}
   m_RootGameObject: {fileID: 1567492243}
@@ -90300,6 +90322,78 @@ Prefab:
     - target: {fileID: 11498056, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
       propertyPath: instantiationId
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 198178, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19598046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: m_Speed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: stateDebugStatements
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: debugStatements
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: animDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: attackingDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498050, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498056, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
+      value: -1.05263162
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
+      value: -1.05263162
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298046, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: .634920657
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0015dec8d2277174d843216ebd7136eb, type: 2}
@@ -97686,6 +97780,8 @@ MonoBehaviour:
   maleScreamingSound: {fileID: 8300000, guid: 2c0d079aafeedde40b1dc7d7b6a28871, type: 3}
   femaleScreamingSound: {fileID: 8300000, guid: 2143425ce26967e4daff5d9fe3ed6075,
     type: 3}
+  bossZombieScream: {fileID: 8300000, guid: c7b8d41b4b1fc6d42ad4b7c1861c2675, type: 3}
+  bossZombieDeath: {fileID: 8300000, guid: acec2d724914a9f4286a12b88a307f93, type: 3}
   sparkSound: {fileID: 8300000, guid: de5a48d6fbd0ef949a20b3c92725c0b1, type: 3}
 --- !u!4 &1567492245
 Transform:

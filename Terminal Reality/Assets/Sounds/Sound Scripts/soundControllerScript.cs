@@ -19,6 +19,10 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip maleScreamingSound;
 	public AudioClip femaleScreamingSound;
 
+    	public AudioClip bossZombieScream;
+    	public AudioClip bossZombieDeath;
+	
+
 	//PUBLIC LEVEL SOUNND VARIABLES
 	public AudioClip sparkSound;
 	public AudioClip doorCreekSound;
@@ -88,6 +92,7 @@ public class soundControllerScript : MonoBehaviour {
 	}
 
 
+
 	public void playDoorCreek(AudioSource soundSource)
 	{
 		soundSource.PlayOneShot (doorCreekSound);
@@ -98,5 +103,17 @@ public class soundControllerScript : MonoBehaviour {
 		soundSource.PlayOneShot (glassBreakingSound);
 	}
 
+
+
+
+    //PLAY SCREAM FOR BOSS ZOMBIE//
+    public void playBossScreamSound(AudioSource soundSource) {
+        soundSource.PlayOneShot(bossZombieScream);
+    }
+
+    //PLAY DEATH CLIP FOR BOSS ZOMBIE//
+    public void playBossDeathSound(AudioSource soundSource) {
+        soundSource.PlayOneShot(bossZombieDeath);
+    }
 }
 

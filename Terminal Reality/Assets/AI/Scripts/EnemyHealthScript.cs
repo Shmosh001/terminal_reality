@@ -90,8 +90,9 @@ public class EnemyHealthScript : MonoBehaviour {
 
         if (health > 0){
 			health -= value;
-			
+            Debug.LogWarning("h:" + health);
             if (isBoss) {
+                Debug.LogWarning("Boss shot");
                 bfsm.alertShot(entity);
             }
             else {
