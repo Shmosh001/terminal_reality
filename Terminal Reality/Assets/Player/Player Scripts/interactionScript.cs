@@ -95,108 +95,65 @@ public class interactionScript : Photon.MonoBehaviour {
 				
 		}
 			
-<<<<<<< HEAD
-			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
-			if (inRangeOfAmmo)
-			{	
-				//player can only pick up ammo if they have a weapon.
-				if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
-				{
-					animator.SetTrigger(playerAnimationHash.pickupTrigger);
-					//If the player has a pistol//
-					if (playerData.pistolPickedUp)
-					{
-						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-						GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
-	
-						//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
-						playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
-	
-					}
-	
-					//If the player has a machine gun//
-					if (playerData.machineGunPickedUp)
-					{
-						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-						//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
-						playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
-					}
-	
-	
-					//After picking up ammo destroy the ammobox game object//
-					//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-					//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
-	                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
-	
-	                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
-	                if (pView == null) {
-	                    Debug.LogError("No PhotonView component found");
-	                }
-	                else {
-	                    if (PhotonNetwork.offlineMode) {
-	                        Destroy(interactingCollider.gameObject);
-	                    }
-	                    else {
-	                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
-	                    }
-	                    
-	                }
-	                
-					inRangeOfAmmo = false;
-				}
-			}
-=======
+
 		//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 		if (inRangeOfAmmo)
 		{	
-			//If the player has a pistol//
-			if (playerData.pistolPickedUp)
+			//player can only pick up ammo if they have a weapon.
+			if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
 			{
-				soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-				GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+				animator.SetTrigger(playerAnimationHash.pickupTrigger);
+				//If the player has a pistol//
+				if (playerData.pistolPickedUp)
+				{
+					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+					GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 
-				//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
-				playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
+					//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
+					playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
 
-			}
+				}
 
-			//If the player has a machine gun//
-			if (playerData.machineGunPickedUp)
-			{
-				soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-				//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
-				playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
-			}
+				//If the player has a machine gun//
+				if (playerData.machineGunPickedUp)
+				{
+					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
+					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
+				}
 
 
-			//After picking up ammo destroy the ammobox game object//
-			//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-			//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
-            //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
+				//After picking up ammo destroy the ammobox game object//
+				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+				//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
+                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
 
-            PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
-            if (pView == null) {
-                Debug.LogError("No PhotonView component found");
-            }
-            else {
-                if (PhotonNetwork.offlineMode) {
-                    Destroy(interactingCollider.gameObject);
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+                if (pView == null) {
+                    Debug.LogError("No PhotonView component found");
                 }
                 else {
-                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
-                }
+                    if (PhotonNetwork.offlineMode) {
+                        Destroy(interactingCollider.gameObject);
+                    }
+                    else {
+                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                    }
                     
-            }
+                }
                 
-			inRangeOfAmmo = false;
+				inRangeOfAmmo = false;
+			}
 		}
->>>>>>> 3776445500d9c8bcb8d5bd2f0396d620eebfe948
-			
-		//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
-		if (inRangeOfHealth)
-		{
-			this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
+		
+			
+		//can only pick up health if player's health is not full
+		if (playerData.health < 100)
+		{
+			animator.SetTrigger(playerAnimationHash.pickupTrigger);
+			this.GetComponent<playerHealthScript>().fullPlayerHealth();
+			
 			//Destroy health box after picking it up//
 			interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
 			Destroy(interactingCollider.gameObject);
@@ -209,26 +166,12 @@ public class interactionScript : Photon.MonoBehaviour {
 			//If the player already has a pistol, just pickup pistol ammo.
 			if (playerData.pistolPickedUp)
 			{
-<<<<<<< HEAD
-				//can only pick up health if player's health is not full
-				if (playerData.health < 100)
-				{
-					animator.SetTrigger(playerAnimationHash.pickupTrigger);
-					this.GetComponent<playerHealthScript>().fullPlayerHealth();
-	
-					//Destroy health box after picking it up//
-					interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
-					Destroy(interactingCollider.gameObject);
-					inRangeOfAmmo = false;
-				}
-=======
 				soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
 				GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 
 				//pickup ammo for the pistol
 				//amount randomly generate - from 10 - 30 bullets picked up
 				playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(Random.Range(10, 30)); 
->>>>>>> 3776445500d9c8bcb8d5bd2f0396d620eebfe948
 			}
 			else 
 			{
