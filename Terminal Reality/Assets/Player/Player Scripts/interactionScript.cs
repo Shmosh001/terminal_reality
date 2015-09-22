@@ -98,47 +98,50 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
 			{	
-				animator.SetTrigger(playerAnimationHash.pickupTrigger);
-				//If the player has a pistol//
-				if (playerData.pistolPickedUp)
+				if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
 				{
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-					GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
-
-					//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
-					playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
-
+					animator.SetTrigger(playerAnimationHash.pickupTrigger);
+					//If the player has a pistol//
+					if (playerData.pistolPickedUp)
+					{
+						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+						GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+	
+						//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
+						playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
+	
+					}
+	
+					//If the player has a machine gun//
+					if (playerData.machineGunPickedUp)
+					{
+						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+						//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
+						playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
+					}
+	
+	
+					//After picking up ammo destroy the ammobox game object//
+					//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+					//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
+	                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
+	
+	                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+	                if (pView == null) {
+	                    Debug.LogError("No PhotonView component found");
+	                }
+	                else {
+	                    if (PhotonNetwork.offlineMode) {
+	                        Destroy(interactingCollider.gameObject);
+	                    }
+	                    else {
+	                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+	                    }
+	                    
+	                }
+	                
+					inRangeOfAmmo = false;
 				}
-
-				//If the player has a machine gun//
-				if (playerData.machineGunPickedUp)
-				{
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
-					//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
-					playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
-				}
-
-
-				//After picking up ammo destroy the ammobox game object//
-				//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-				//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
-                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
-
-                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
-                if (pView == null) {
-                    Debug.LogError("No PhotonView component found");
-                }
-                else {
-                    if (PhotonNetwork.offlineMode) {
-                        Destroy(interactingCollider.gameObject);
-                    }
-                    else {
-                        pView.RPC("destroyObject", PhotonTargets.AllBuffered);
-                    }
-                    
-                }
-                
-				inRangeOfAmmo = false;
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
