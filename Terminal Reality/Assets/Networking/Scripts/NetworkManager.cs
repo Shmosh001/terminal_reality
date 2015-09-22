@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviour {
     //PUBLIC VARS
     //array of enemies
     public GameObject[] enemies;
+    public GameObject[] deadBodies;
     //boolean for offline mode
     public bool offlineMode;
     //the hud
@@ -104,6 +105,7 @@ public class NetworkManager : MonoBehaviour {
 		SpawnPlayer();
         //if (PhotonNetwork.isMasterClient) {
         activateEnemies();
+        activateDeadBodies();
        // }    
 
     }
@@ -190,5 +192,13 @@ public class NetworkManager : MonoBehaviour {
         //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
         
     }
+    void activateDeadBodies() {
+        for (int i = 0; i < deadBodies.Length; i++) {
+            deadBodies[i].SetActive(true);
+        }
+        //PhotonNetwork.InstantiateSceneObject("MALE_ZOMBIE", zombieSpawn.transform.position, zombieSpawn.transform.rotation, 0, null);
+
+    }
+
 
 }
