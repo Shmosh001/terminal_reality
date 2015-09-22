@@ -1,65 +1,63 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DDScript : MonoBehaviour {
 
-
+    private GameObject soundController;
+    private Animator anim;
 	private bool open;
-	private Animator aniamtor;
+	private Text pushE;
 
 	// Use this for initialization
-	void Start () {
-		aniamtor = gameObject.GetComponent<Animator>();
+	void Start () 
+	{
+        soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+        anim = gameObject.GetComponent<Animator>();
 		open = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Alpha6)){
-			openDoorForwards();
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha7)){
-			closeDoorForwards();
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha8)){
-			openDoorBackwards();
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha9)){
-			closeDoorBackwards();
-		}
-
+		pushE = GameObject.FindGameObjectWithTag(Tags.PUSHE).GetComponent<Text>();
 	}
 
-	public void openDoorForwards(){
-		if (!open){
-			aniamtor.SetTrigger("OpenFWD");
+
+	//WHEN THE PLAYER INTERACTS WITH THE DOOR//
+	public void interaction()
+	{
+		//IF THE DOOR IS CLOSED//
+		if(!open)
+		{
+            //play sound of this component
+            soundController.GetComponent<soundControllerScript>().playDoorCreek(this.GetComponent<AudioSource>());
+            anim.SetTrigger("OpenFWD");
 			open = true;
 		}
 	}
 
-
-	public void closeDoorForwards(){
-		if (open){
-			aniamtor.SetTrigger("CloseFWD");
-			open = false;
+	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
+	void OnTriggerEnter (Collider other)
+	{
+		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
+		{
+			if (!open) //Only show hint if the door is closed
+			{
+				pushE.enabled = true;
+			}
 		}
-	}
 
-
-	public void openDoorBackwards(){
-		if (!open){
-			aniamtor.SetTrigger("OpenBCK");
-			open = true;
-		}
 	}
 	
-	
-	public void closeDoorBackwards(){
-		if (open){
-			aniamtor.SetTrigger("CloseBCK");
-			open = false;
+	//WHEN SOMETHING LEAVES THE DOOR'S TRIGGER//
+	void OnTriggerExit (Collider other)
+	{
+		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
+		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
+		{
+			pushE.enabled = false;
 		}
+
 	}
+
+
 
 
 
