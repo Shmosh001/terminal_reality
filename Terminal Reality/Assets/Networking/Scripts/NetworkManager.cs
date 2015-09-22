@@ -86,15 +86,15 @@ public class NetworkManager : MonoBehaviour {
 
         RoomInfo[] roomstuff  = PhotonNetwork.GetRoomList();
 
-        if (PhotonNetwork.isMasterClient) {
+        /*if (PhotonNetwork.isMasterClient) {
             PhotonNetwork.CreateRoom(null);
         }
         else {
             PhotonNetwork.JoinRandomRoom();
-        }
+        }*/
         
         
-        //PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRandomRoom();
 
 
     }
@@ -192,6 +192,7 @@ public class NetworkManager : MonoBehaviour {
         }
 
         //localPlayer.GetComponent<CapsuleCollider>().enabled = true;
+        localPlayer.GetComponent<CharacterController>().enabled = true;
         localPlayer.GetComponent<ShootingScript>().enabled = true;//enable the shooting script
 		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script	
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
