@@ -14,18 +14,9 @@ public class playerAnimationHash : MonoBehaviour {
 	//movement//
 	public static int forwardSpeedFloat;
 	
-	//STATES//
-	//arms//
-	public static int noWeaponState;	
-	public static int pistolState;
-	public static int machineGunState;
-	public static int reloadState;
+	//pickup//
+	public static int pickupTrigger;
 	
-	//movement//
-	public static int standingState;
-	public static int walkingState;
-	public static int sprintingState;
-	public static int sneakingState;
 
 	void Awake()
 	{
@@ -37,15 +28,9 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//movement//
 		forwardSpeedFloat = Animator.StringToHash("Speed");
+		
+		//pickup//
+		pickupTrigger = Animator.StringToHash("pickup");
 	
-		//STATES//
-		
-		//arms - top//
-		noWeaponState = Animator.StringToHash("Top.No weapon");
-		pistolState = Animator.StringToHash("Top.Pistol Aim");
-		
-		//movement//
-		standingState = Animator.StringToHash("Base Layer.stand_idle");
-		walkingState = Animator.StringToHash("Base Layer.walk");
 	}
 }

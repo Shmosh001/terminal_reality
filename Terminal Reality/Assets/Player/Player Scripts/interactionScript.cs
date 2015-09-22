@@ -4,6 +4,9 @@ using System.Collections;
 public class interactionScript : Photon.MonoBehaviour {
 
 	private playerDataScript playerData;
+	
+	//the animator
+	private Animator animator;
 
 	//PRIVATE VARIABLES INTERACTION//
 	private Ray ray;
@@ -21,6 +24,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	void Start () {
 		playerData = this.GetComponent<playerDataScript>();
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		animator = this.gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -79,6 +83,7 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
 			{	
+				animator.SetTrigger(playerAnimationHash.pickupTrigger);
 				//If the player has a pistol//
 				if (playerData.pistolPickedUp)
 				{
@@ -124,6 +129,7 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF THE PLAYER IS IN RANGE OF HEALTH - PICK IT UP
 			if (inRangeOfHealth)
 			{
+				animator.SetTrigger(playerAnimationHash.pickupTrigger);
 				this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
 				//Destroy health box after picking it up//

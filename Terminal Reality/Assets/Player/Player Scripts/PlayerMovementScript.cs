@@ -152,7 +152,6 @@ public class PlayerMovementScript : MonoBehaviour {
 		
 		//Set speed in animator controller
 		animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
-		print ("Forward speed --> " + forwardSpeed);
 		
 	}
 	
