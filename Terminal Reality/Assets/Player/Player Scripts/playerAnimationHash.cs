@@ -18,6 +18,9 @@ public class playerAnimationHash : MonoBehaviour {
 	//pickup//
 	public static int pickupTrigger;
 	
+	//dying//
+	public static int dieTrigger;
+	
 
 	void Awake()
 	{
@@ -34,6 +37,9 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//pickup//
 		pickupTrigger = Animator.StringToHash("pickup");
+		
+		//dying//
+		dieTrigger = Animator.StringToHash("died");
 	
 	}
 }

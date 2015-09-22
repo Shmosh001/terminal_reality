@@ -50,6 +50,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: died
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -219,6 +225,26 @@ Transition:
     m_ConditionEvent: MachineGun
     m_EventTreshold: 0
     m_ExitTime: 0
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110134330
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110233384}
+  m_DstState: {fileID: 110205426}
+  m_TransitionDuration: .224358976
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: died
+    m_EventTreshold: 0
+    m_ExitTime: .775641024
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -477,6 +503,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110205426
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: death
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c9e91b26481cee74fa30edda444af037, type: 2}
+  m_ParentStateMachine: {fileID: 110717622}
+  m_Position: {x: -168, y: -180, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110215456
 State:
   m_ObjectHideFlags: 3
@@ -626,6 +667,7 @@ StateMachine:
   - {fileID: 110241924}
   - {fileID: 110218744}
   - {fileID: 110231826}
+  - {fileID: 110205426}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
@@ -642,6 +684,7 @@ StateMachine:
       - {fileID: 110174736}
       - {fileID: 110111994}
       - {fileID: 110123688}
+      - {fileID: 110134330}
     data:
       first: {fileID: 110241924}
       second:
