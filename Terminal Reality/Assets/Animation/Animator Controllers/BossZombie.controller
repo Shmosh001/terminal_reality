@@ -302,6 +302,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110219940
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: zombie_idle4
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 44b703dc8965d2e48b519de668fe3a38, type: 2}
+  m_ParentStateMachine: {fileID: 110763276}
+  m_Position: {x: 168, y: -264, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110226756
 State:
   m_ObjectHideFlags: 3
@@ -314,7 +329,7 @@ State:
   - {fileID: 7400002, guid: 187767740cdb60644a80172f2db24967, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110776236}
-  m_Position: {x: 456, y: 0, z: 0}
+  m_Position: {x: 456, y: 12, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -330,7 +345,7 @@ State:
   - {fileID: 7400000, guid: bcccb2af8e008364f80cd1476c9dc8d6, type: 2}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110776236}
-  m_Position: {x: 444, y: -60, z: 0}
+  m_Position: {x: 456, y: -60, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -366,21 +381,6 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110244396
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: zombie_idle3
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: 4a4e05c6bcfc48e49a2ed811a52ef4c2, type: 2}
-  m_ParentStateMachine: {fileID: 110763276}
-  m_Position: {x: 180, y: -276, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
 --- !u!1102 &110278736
 State:
   m_ObjectHideFlags: 3
@@ -404,9 +404,9 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: State
-  m_DefaultState: {fileID: 110244396}
+  m_DefaultState: {fileID: 110219940}
   m_States:
-  - {fileID: 110244396}
+  - {fileID: 110219940}
   m_ChildStateMachine:
   - {fileID: 110793994}
   - {fileID: 110776236}
@@ -414,9 +414,6 @@ StateMachine:
   - {x: 60, y: -372, z: 0}
   - {x: 288, y: -372, z: 0}
   m_OrderedTransitions:
-    data:
-      first: {fileID: 110244396}
-      second: []
     data:
       first: {fileID: 0}
       second:

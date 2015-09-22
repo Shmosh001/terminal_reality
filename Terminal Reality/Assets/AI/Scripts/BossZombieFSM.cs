@@ -266,8 +266,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     /// disables all parts to the unit to only leave dead body
     /// </summary>
     void dead() {
-        if (debugStatements) { Debug.Log("dead method at" + Time.timeSinceLevelLoad); }
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        if (debugStatements) Debug.Log("dead method at" + Time.timeSinceLevelLoad); 
         gameObject.GetComponent<SphereCollider>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
     }
@@ -393,10 +392,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //fsm.enterState(StateEnums.ZombieStates.Dying);
 
         if (PhotonNetwork.offlineMode) {
-            enterState((byte)StateEnums.ZombieStates.Dying);
+            enterState((byte)StateEnums.BossZombieStates.Dying);
         }
         else {
-            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dying);
+            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.BossZombieStates.Dying);
         }
     }
 
