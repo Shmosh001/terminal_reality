@@ -117,7 +117,7 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("OnJoinedRoom");
 		SpawnPlayer();
         //if (PhotonNetwork.isMasterClient) {
-        //activateObjects();
+        activateObjects();
 
        // }    
 
