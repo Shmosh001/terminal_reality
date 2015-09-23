@@ -33,7 +33,7 @@ public class torchScript : MonoBehaviour {
 		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			soundController.GetComponent<soundControllerScript>().playTorchSound(this.GetComponent<AudioSource>()); //play torch on/off sound
+			soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
 			torchOn = !torchOn;
 		}
 

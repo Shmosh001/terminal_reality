@@ -41,7 +41,7 @@ public class DoorScript : MonoBehaviour {
 		if (open)
 		{
 			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
+			soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
 			anim.SetTrigger("Close");
 			open = false;
 		}
@@ -49,7 +49,7 @@ public class DoorScript : MonoBehaviour {
 		else
 		{	
 			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
+			soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
 			anim.SetTrigger("Open");
 			open = true;
 		}
@@ -73,7 +73,7 @@ public class DoorScript : MonoBehaviour {
 			if (!open)
 			{
 				//play sound of this component
-				soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
+				soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
 				anim.SetTrigger("Open");
 				open = true;
 			}
@@ -84,18 +84,22 @@ public class DoorScript : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
+		if (other.tag == Tags.PLAYER1)
 		{
 			pushE.enabled = false;
 		}
+        if (other.tag == Tags.PLAYER2) {
+            pushE.enabled = false;
+        }
 
-		//ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
-		if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
+
+        //ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
+        if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
 		{
 			if (open) //Only show hint if the door is closed
 			{
 				//play sound of this component
-				soundController.GetComponent<soundControllerScript> ().playDoorCreek (this.GetComponent<AudioSource>());
+				soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
 				anim.SetTrigger("Close");
 				open = false;
 			}

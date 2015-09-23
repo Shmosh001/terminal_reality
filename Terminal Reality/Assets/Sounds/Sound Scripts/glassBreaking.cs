@@ -18,7 +18,7 @@ public class glassBreaking : MonoBehaviour {
 		{
 			Debug.Log("PLAY FUCKING SOUND!!!!!!!!!!");
 			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playGlassBreaking (this.GetComponent<AudioSource>());
+			soundController.GetComponent<soundControllerScript> ().playGlassBreaking (transform.position);
 			//Destroy(this.gameObject, 3.0f)
 		}
 	}

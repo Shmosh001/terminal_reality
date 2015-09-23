@@ -110,7 +110,7 @@ public class interactionScript : Photon.MonoBehaviour {
                             else {
 								DDScript dds = hitObject.GetComponentInParent<DDScript>();
 								dds.interaction();
-                                pView.RPC("interaction", PhotonTargets.AllBuffered);
+                                pView.RPC("interaction", PhotonTargets.AllBufferedViaServer);
                             }
                         }
                     }
@@ -122,7 +122,7 @@ public class interactionScript : Photon.MonoBehaviour {
                         else {
 							DDScript dds = hitObject.GetComponentInParent<DDScript>();
 							dds.interaction();
-                            pView.RPC("interaction", PhotonTargets.AllBuffered);
+                            pView.RPC("interaction", PhotonTargets.AllBufferedViaServer);
                         }
                     }
 
@@ -155,7 +155,7 @@ public class interactionScript : Photon.MonoBehaviour {
                     //If the player has a pistol//
                     if (playerData.pistolPickedUp)
 					{
-						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+						soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
 						GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 	
 						//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
@@ -166,7 +166,7 @@ public class interactionScript : Photon.MonoBehaviour {
 					//If the player has a machine gun//
 					if (playerData.machineGunPickedUp)
 					{
-						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+						soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
 						//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 						playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 					}
@@ -240,7 +240,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				//If the player already has a pistol, just pickup pistol ammo.
 				if (playerData.pistolPickedUp)
 				{
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
 					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 	
 					//pickup ammo for the pistol
@@ -250,7 +250,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				else 
 				{
 					playerData.pistolPickedUp = true;	
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());				
+					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);				
 	
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.machineGunPickedUp)
@@ -308,7 +308,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				if (playerData.machineGunPickedUp)
 				{
 	
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
 					GameObject machineGun = GameObject.FindGameObjectWithTag("MachineGun"); //find the pistol object					
 	
 					//pickup ammo for the machine gun
@@ -318,7 +318,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				else
 				{
 					playerData.machineGunPickedUp = true;
-					soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
+					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
 						
 					//if this is the only gun that the player now has - enable it
 					if (!playerData.pistolPickedUp)

@@ -39,7 +39,7 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0)
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
-						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
+						soundController.GetComponent<soundControllerScript>().playPistolShot(transform.position); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						flareLoopCount = 0;
 						
@@ -57,7 +57,7 @@ public class ShootingScript : ammoHUDScript {
 				}
 				else //if clip is empty
 				{
-					soundController.GetComponent<soundControllerScript>().playEmptyClip(this.GetComponent<AudioSource>()); //play empty clip sound
+					soundController.GetComponent<soundControllerScript>().playEmptyClip(transform.position); //play empty clip sound
 				}
 			}
 			else
@@ -84,7 +84,7 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0) //can shoot
 					{
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
-						soundController.GetComponent<soundControllerScript>().playPistolShot(this.GetComponent<AudioSource>()); //play sound of a pistol shot
+						soundController.GetComponent<soundControllerScript>().playPistolShot(transform.position); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						
 						
@@ -111,7 +111,7 @@ public class ShootingScript : ammoHUDScript {
 				{
 					if (coolDownTimer <= 0)
 					{
-						soundController.GetComponent<soundControllerScript>().playEmptyClip(this.GetComponent<AudioSource>()); //play empty clip sound
+						soundController.GetComponent<soundControllerScript>().playEmptyClip(transform.position); //play empty clip sound
 						coolDownTimer = 0.8f; //so sound doesn't play too fast.
 					}
 					weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
@@ -140,7 +140,7 @@ public class ShootingScript : ammoHUDScript {
 				if (weapon.GetComponent<weaponDataScript>().reload()) 
 				{
 					coolDownTimer = 1.3f; //so can't start shooting while the sound is playing
-					soundController.GetComponent<soundControllerScript>().playReload(this.GetComponent<AudioSource>()); //play reload sound
+					soundController.GetComponent<soundControllerScript>().playReload(transform.position); //play reload sound
 					
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 					updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 

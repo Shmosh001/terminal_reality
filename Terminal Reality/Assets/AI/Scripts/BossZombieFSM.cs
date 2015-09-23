@@ -105,7 +105,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         soundC += Time.deltaTime;
 
         if (!deadBool && soundC > soundD) {
-            sound.playBossScreamSound(audio);
+            sound.playBossScreamSound(transform.position);
             soundC = 0;
         }
 
@@ -253,7 +253,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //stop moving on the nav mesh
         navAgent.Stop();
         deadBool = true;
-        sound.playBossDeathSound(audio);
+        sound.playBossDeathSound(transform.position);
         //rpc conversion
         
         if (PhotonNetwork.offlineMode) {

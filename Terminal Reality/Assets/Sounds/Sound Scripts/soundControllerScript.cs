@@ -19,8 +19,8 @@ public class soundControllerScript : MonoBehaviour {
 	public AudioClip maleScreamingSound;
 	public AudioClip femaleScreamingSound;
 
-    	public AudioClip bossZombieScream;
-    	public AudioClip bossZombieDeath;
+    public AudioClip bossZombieScream;
+    public AudioClip bossZombieDeath;
 	
 
 	//PUBLIC LEVEL SOUNND VARIABLES
@@ -35,85 +35,98 @@ public class soundControllerScript : MonoBehaviour {
 	}
 	
 	//PLAY LOW HEALTH HEART BEAT//
-	public void playLowHealthHeartBeat(AudioSource soundSource)
+	public void playLowHealthHeartBeat(Vector3 position)
 	{
-		//play sound
-		//soundSource.PlayOneShot(lowHealthHeartBeat);
-	}
+        //play sound
+        //soundSource.PlayOneShot(lowHealthHeartBeat);
+        AudioSource.PlayClipAtPoint(lowHealthHeartBeat, position);
+    }
 	
 	//PLAY EMPTY CLIP SOUND//
-	public void playEmptyClip(AudioSource soundSource)
+	public void playEmptyClip(Vector3 position)
 	{
         //play sound
         //soundSource.PlayOneShot(outOfAmmoSound);
+        AudioSource.PlayClipAtPoint(outOfAmmoSound, position);
     }
 
     //PLAY PISTOL SHOOTING SOUND//
-    public void playPistolShot(AudioSource soundSource)
+    public void playPistolShot(Vector3 position)
 	{
         //play sound
         //soundSource.PlayOneShot(pistolShotSound);
+        AudioSource.PlayClipAtPoint(pistolShotSound, position);
     }
 
     //PLAY RELOAD SOUND//
-    public void playReload(AudioSource soundSource)
+    public void playReload(Vector3 position)
 	{
         //play sound
         //soundSource.PlayOneShot(reloadSound);
+        AudioSource.PlayClipAtPoint(reloadSound, position);
     }
 
     //PLAY AMMO AND WEAPON PICKUP SOUND//
-    public void playPickupSound(AudioSource soundSource)
+    public void playPickupSound(Vector3 position)
 	{
         //play sound
         //soundSource.PlayOneShot(ammoAndWeaponPickupSound);
+        AudioSource.PlayClipAtPoint(ammoAndWeaponPickupSound, position);
     }
 
     //PLAY TORCH ON/OFF SOUND//
-    public void playTorchSound(AudioSource soundSource)
+    public void playTorchSound(Vector3 position)
 	{
         //play sound
         //soundSource.PlayOneShot(torchButtonSound);
+        AudioSource.PlayClipAtPoint(torchButtonSound, position);
     }
 
     //PLAY SCREAM FOR MALE ZOMBIE//
-    public void playMaleScream(AudioSource soundSource){
+    public void playMaleScream(Vector3 position){
         //soundSource.PlayOneShot(maleScreamingSound);
+        AudioSource.PlayClipAtPoint(maleScreamingSound, position);
     }
 
     //PLAY SCREAM FOR FEMALE ZOMBIE//
-    public void playFemaleScream(AudioSource soundSource){
+    public void playFemaleScream(Vector3 position){
         //soundSource.PlayOneShot(femaleScreamingSound);
+        AudioSource.PlayClipAtPoint(femaleScreamingSound, position);
     }
 
     //PLAY SCREAM FOR FEMALE ZOMBIE//
-    public void playSparkSound(AudioSource soundSource){
+    public void playSparkSound(Vector3 position){
         //soundSource.PlayOneShot(sparkSound);
+        AudioSource.PlayClipAtPoint(sparkSound, position);
     }
 
 
 
-    public void playDoorCreek(AudioSource soundSource)
+    public void playDoorCreek(Vector3 position)
 	{
         //soundSource.PlayOneShot(doorCreekSound);
+        AudioSource.PlayClipAtPoint(doorCreekSound, position);
     }
 
-    public void playGlassBreaking(AudioSource soundSource)
+    public void playGlassBreaking(Vector3 position)
 	{
         //soundSource.PlayOneShot(glassBreakingSound);
+        AudioSource.PlayClipAtPoint(glassBreakingSound, position);
     }
 
 
 
 
     //PLAY SCREAM FOR BOSS ZOMBIE//
-    public void playBossScreamSound(AudioSource soundSource) {
-        //soundSource.PlayOneShot(bossZombieScream);
+    public void playBossScreamSound(Vector3 position) {
+        
+        AudioSource.PlayClipAtPoint(bossZombieScream, position);
     }
 
     //PLAY DEATH CLIP FOR BOSS ZOMBIE//
-    public void playBossDeathSound(AudioSource soundSource) {
+    public void playBossDeathSound(Vector3 position) {
         //soundSource.PlayOneShot(bossZombieDeath);
+        AudioSource.PlayClipAtPoint(bossZombieDeath, position);
     }
 }
 

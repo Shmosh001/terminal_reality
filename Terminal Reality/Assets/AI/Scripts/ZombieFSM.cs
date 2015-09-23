@@ -144,14 +144,14 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                             //agonizing animation
                             case 0:
                                 //play the sound and assign the animator controller parameter 
-                                sound.playFemaleScream(audioSource);
+                                sound.playFemaleScream(transform.position);
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                                 break;
                             //scream animation
                             case 1:
                                 //dont need to change state
                                 //play screaming sound and assign the animator parameter
-                                sound.playMaleScream(audioSource);
+                                sound.playMaleScream(transform.position);
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                                 break;
                             //crying/puking animation
@@ -385,7 +385,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
                 //play screaming sound
                 if (animatorCont.checkAnimationState(EnemyHashScript.shotScreamState) && trigger) {
-                    sound.playMaleScream(audioSource);
+                    sound.playMaleScream(transform.position);
                     trigger = false;
                 }
 

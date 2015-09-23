@@ -54,7 +54,7 @@ public class playerHealthScript : MonoBehaviour {
 		
 		if (!heartBeatPlaying && playerData.health < 50)
 		{
-			soundController.GetComponent<soundControllerScript>().playLowHealthHeartBeat(this.GetComponent<AudioSource>()); //play heart beat
+			soundController.GetComponent<soundControllerScript>().playLowHealthHeartBeat(transform.position); //play heart beat
 			heartBeatPlaying = true;
 		}
 		if (heartBeatPlaying && playerData.health >= 50)
@@ -91,11 +91,20 @@ public class playerHealthScript : MonoBehaviour {
                 pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.dieTrigger);
             }
 			updateHealthHUD();
+            Application.LoadLevel("Credits");
+            pView.RPC("endGame", PhotonTargets.OthersBuffered);
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 		
 	}
 	
+
+
+    [PunRPC]
+    public void endGame() {
+        Application.LoadLevel("Credits");
+    }
+
 	//INCREASE PLAYER'S HEALTH//
 	public void increasePlayerHealth(int healthPoints)
 	{

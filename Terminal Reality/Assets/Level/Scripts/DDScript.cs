@@ -27,9 +27,11 @@ public class DDScript : MonoBehaviour {
 		if(!open)
 		{
             //play sound of this component
-            soundController.GetComponent<soundControllerScript>().playDoorCreek(this.GetComponent<AudioSource>());
+            soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
             anim.SetTrigger("OpenFWD");
 			open = true;
+
+
 		}
 	}
 
@@ -37,7 +39,7 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
+		if (other.tag == Tags.PLAYER1)
 		{
 			if (!open) //Only show hint if the door is closed
 			{
@@ -45,7 +47,14 @@ public class DDScript : MonoBehaviour {
 			}
 		}
 
-	}
+        if (other.tag == Tags.PLAYER2) {
+            if (!open) //Only show hint if the door is closed
+            {
+                pushE.enabled = true;
+            }
+        }
+
+    }
 	
 	//WHEN SOMETHING LEAVES THE DOOR'S TRIGGER//
 	void OnTriggerExit (Collider other)

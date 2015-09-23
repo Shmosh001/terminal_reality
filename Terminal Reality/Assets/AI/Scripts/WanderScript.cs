@@ -26,10 +26,10 @@ public class WanderScript : MonoBehaviour {
     void Start () {
 		GameObject[] locs = GameObject.FindGameObjectsWithTag(Tags.WANDERLOC);
         initialSize = locs.Length;
-        visitedCount = initialSize;
+        unvisitedCount = initialSize;
         unvisitedLocations = new ArrayList(initialSize);
         visitedLocations = new ArrayList(initialSize);
-        unvisitedCount = 0;
+        visitedCount = 0;
         assignPositions(locs);
 	}
 	

@@ -17,6 +17,6 @@ public class SparkSound : MonoBehaviour {
 	void Spark ()
 	{
 		//play sound of this component
-		soundController.GetComponent<soundControllerScript> ().playSparkSound (this.GetComponent<AudioSource>());
+		soundController.GetComponent<soundControllerScript> ().playSparkSound (transform.position);
 	}
 }

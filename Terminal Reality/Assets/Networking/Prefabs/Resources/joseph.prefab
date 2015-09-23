@@ -2672,7 +2672,11 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: died
-  m_SynchronizeLayers: []
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
 --- !u!114 &11439608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2684,7 +2688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 25
   rateOfFire: .100000001
   singleFire: 1
   ammo: 50
@@ -3222,7 +3226,7 @@ CharacterController:
   m_GameObject: {fileID: 139552}
   serializedVersion: 2
   m_Height: 2
-  m_Radius: .449999988
+  m_Radius: .5
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
