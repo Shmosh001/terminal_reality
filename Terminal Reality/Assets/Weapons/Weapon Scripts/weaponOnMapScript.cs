@@ -32,20 +32,28 @@ public class weaponOnMapScript : MonoBehaviour {
     void OnTriggerEnter(Collider other)
 	{
         //If player walks into trigger...
-        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
+        if (other.tag == Tags.PLAYER1) {
 			pushE.enabled = true;
 
 		}
-	}
+        if (other.tag == Tags.PLAYER2) {
+            pushE.enabled = true;
+
+        }
+    }
 
 	//WALKING OUT OF THE TRIGGER SURROUNDING WEAPON//
 	void OnTriggerExit(Collider other)
 	{
         //If player walks into trigger...
-        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
+        if (other.tag == Tags.PLAYER1) {
 			pushE.enabled = false;
 		}
-	}
+
+        if (other.tag == Tags.PLAYER2) {
+            pushE.enabled = false;
+        }
+    }
 
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()

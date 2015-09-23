@@ -28,23 +28,28 @@ public class HealthBoxScript : MonoBehaviour {
     //WHEN SOMETHING ENTERS THE DOORS TRIGGER//
     void OnTriggerEnter (Collider other)
 	{
-		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
-		{
-			
-			pushE.enabled = true;
-			
-		}
-	}
+        //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+        if (other.tag == Tags.PLAYER1) {
+            pushE.enabled = true;
+        }
+
+        if (other.tag == Tags.PLAYER2) {
+            pushE.enabled = true;
+        }
+    }
 	
 	//WHEN SOMETHING LEAVES THE DORR'S TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
         //IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-        if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2) {
+        if (other.tag == Tags.PLAYER1) { 
 			pushE.enabled = false;
 		}
-	}
+
+        if (other.tag == Tags.PLAYER2) {
+            pushE.enabled = false;
+        }
+    }
 
 	//METHOD TO TURN OFF TEXT JUST BEFORE OBJECT IS DESTROYED
 	public void turnOffText()
