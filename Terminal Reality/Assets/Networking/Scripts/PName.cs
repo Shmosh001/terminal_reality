@@ -13,36 +13,15 @@ public class PName : MonoBehaviour {
 
     void Start() {
         characterObject = this.gameObject;
-        Debug.LogWarning("start:" + gameObject.tag);
+       // Debug.LogWarning("start:" + gameObject.tag);
         assignPlayerTags();
-        
-
-
-        /*if (player1 == null ) {
-            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER2);
-            gameObject.tag = Tags.PLAYER2;
-        }
-        else if (player2 == null) {
-            gameObject.tag = Tags.PLAYER1;
-            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER1);
-        }*/
-
-
-
-       /* if (gameObject.tag != Tags.PLAYER1) {
-            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER2);
-            this.gameObject.tag = Tags.PLAYER2;
-        }
        
-        if (gameObject.tag != Tags.PLAYER2) {
-            Debug.LogWarning("chnanging tag from " + gameObject.tag + " to " + Tags.PLAYER1);
-            this.gameObject.tag = Tags.PLAYER1;
-        }
-        */
         
     }
 
-
+    /// <summary>
+    /// we set the tags to be properly set on each local machine so that the AI can properly identify between players
+    /// </summary>
     void assignPlayerTags() {
         if (!PhotonNetwork.offlineMode) {
             GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
@@ -65,13 +44,11 @@ public class PName : MonoBehaviour {
     }
 
 
-    void Update() {
-        if (!PhotonNetwork.offlineMode) {
-
-        }
-    }
 
 
+    /// <summary>
+    /// this method draws the characters tag above his head
+    /// </summary>
     void OnGUI() {
         if (characterObject != null) {
 

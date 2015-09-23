@@ -6,7 +6,10 @@ public class PlayerMovementScript : MonoBehaviour {
 	private CharacterController characterController;
 	
 	//the animator
-	private Animator animator;
+	//private Animator animator;
+
+    private playerAnimatorSync animSync;
+    private PhotonView pView;
 	
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
@@ -24,9 +27,10 @@ public class PlayerMovementScript : MonoBehaviour {
 		Screen.lockCursor = true; //take the mouse off the screen.
 		playerData = this.GetComponent<playerDataScript>();
 		characterController = this.GetComponent<CharacterController>();
-		animator = this.gameObject.GetComponent<Animator>();
-		
-	}
+		//animator = this.gameObject.GetComponent<Animator>();
+        animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+        pView = this.gameObject.GetComponent<PhotonView>();
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -142,7 +146,16 @@ public class PlayerMovementScript : MonoBehaviour {
 		//JUMPING//
 		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
 		{
-			animator.SetTrigger(playerAnimationHash.jumpTrigger);
+			//animator.SetTrigger(playerAnimationHash.jumpTrigger);
+
+            if (PhotonNetwork.offlineMode) {
+                animSync.setTriggerP(playerAnimationHash.jumpTrigger);
+            }
+            else {
+                pView.RPC("setTriggerP", PhotonTargets.Others, playerAnimationHash.jumpTrigger);
+            }
+
+
 			verticalVelocity = playerData.jumpSpeed;
 		}
 		verticalVelocity += -10.0f * Time.deltaTime; //increase falling velocity as you are falling OR decrease velocity as you're going up.
@@ -152,9 +165,15 @@ public class PlayerMovementScript : MonoBehaviour {
 		characterController.Move(speed * Time.deltaTime);
 		
 		//Set speed in animator controller
-		animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
-		
-	}
+		//animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+        if (PhotonNetwork.offlineMode) {
+            animSync.setFloatP(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+        }
+        else {
+            pView.RPC("setFloatP", PhotonTargets.Others, playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+        }
+
+    }
 	
 		
 	void OnControllerColliderHit(ControllerColliderHit hit) 

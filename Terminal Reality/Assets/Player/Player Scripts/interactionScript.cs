@@ -7,6 +7,8 @@ public class interactionScript : Photon.MonoBehaviour {
 	
 	//the animator
 	private Animator animator;
+    private PhotonView playerPView;
+    private playerAnimatorSync animSync;
 
 	//PRIVATE VARIABLES INTERACTION//
 	private Ray ray;
@@ -26,7 +28,9 @@ public class interactionScript : Photon.MonoBehaviour {
 		playerData = this.GetComponent<playerDataScript>();
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		animator = this.gameObject.GetComponent<Animator>();
-	}
+        playerPView = this.gameObject.GetComponent<PhotonView>();
+        animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -136,9 +140,19 @@ public class interactionScript : Photon.MonoBehaviour {
 				//player can only pick up ammo if they have a weapon.
 				if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
 				{
-					animator.SetTrigger(playerAnimationHash.pickupTrigger);
-					//If the player has a pistol//
-					if (playerData.pistolPickedUp)
+					//animator.SetTrigger(playerAnimationHash.pickupTrigger);
+
+
+                    if (PhotonNetwork.offlineMode) {
+                        animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                    }
+                    else {
+                        playerPView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pickupTrigger);
+                    }
+
+
+                    //If the player has a pistol//
+                    if (playerData.pistolPickedUp)
 					{
 						soundController.GetComponent<soundControllerScript>().playPickupSound(this.GetComponent<AudioSource>());
 						GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
@@ -183,7 +197,16 @@ public class interactionScript : Photon.MonoBehaviour {
 			
 			if (inRangeOfHealth) {
                 if (playerData.health < 100) {
-                    animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                    //animator.SetTrigger(playerAnimationHash.pickupTrigger);
+
+                    if (PhotonNetwork.offlineMode) {
+                        animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                    }
+                    else {
+                        playerPView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pickupTrigger);
+                    }
+
+
                     this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
                     //Destroy health box after picking it up//
@@ -236,26 +259,45 @@ public class interactionScript : Photon.MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
-	
-				//Destroy the pistol game object//				
-				//interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
-				//Destroy(interactingCollider.gameObject);
-	
-	            PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+
+                //Destroy the pistol game object//				
+                //interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
+                //Destroy(interactingCollider.gameObject);
+               
+
+
+                PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
 	            if (pView == null) {
 	                Debug.LogError("No PhotonView component found");
 	            }
 	            else {
 	                if (PhotonNetwork.offlineMode) {
 	                    Destroy(interactingCollider.gameObject);
+
 	                }
 	                else {
 	                    pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+                        
 	                }
 	            }
-	
-	
-	            inRangeOfPistol = false;
+
+                //this calls the fx rpc for the other client
+                if (gameObject.tag == Tags.PLAYER1) {
+                    GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+                    if (player2 != null) {
+                        player2.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.Others);
+                    }
+                }
+                else if (gameObject.tag == Tags.PLAYER2) {
+                    GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+                    if (player1 != null) {
+                        player1.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.Others);
+                    }
+                }
+
+
+
+                inRangeOfPistol = false;
 			}
 	
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP

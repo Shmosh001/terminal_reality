@@ -72,15 +72,9 @@ public class playerDataScript : MonoBehaviour {
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
-			//Debug.Log("writing");
-			stream.SendNext(pistolEquipped);
-			stream.SendNext(machineGunEquipped);
 			stream.SendNext(playerAlive);
 		}
 		else {
-			//Debug.Log("receiving");
-			pistolEquipped = (bool)stream.ReceiveNext();
-			machineGunEquipped = (bool)stream.ReceiveNext();
 			playerAlive = (bool)stream.ReceiveNext();
 		}
 	}

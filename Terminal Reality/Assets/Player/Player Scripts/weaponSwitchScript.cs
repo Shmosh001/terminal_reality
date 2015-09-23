@@ -7,12 +7,16 @@ public class weaponSwitchScript : ammoHUDScript {
 	
 	//the animator
 	private Animator animator;
+    private PhotonView pView;
+    private playerAnimatorSync animSync;
 
 	void Start()
 	{
 		playerData = this.GetComponent<playerDataScript>();
-		animator = this.gameObject.GetComponent<Animator>();
-		enableWeapon();
+	    animator = this.gameObject.GetComponent<Animator>();
+        animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+        pView = this.gameObject.GetComponent<PhotonView>();
+        enableWeapon();
 	}
 
 	//1 PRESSED - SWITCH TO PISTOL//
@@ -89,15 +93,47 @@ public class weaponSwitchScript : ammoHUDScript {
 		
 		if (playerData.pistolEquipped)
 		{
-			animator.SetTrigger(playerAnimationHash.pistolTrigger);
-			animator.SetBool(playerAnimationHash.noWeaponBool, false);
-			weaponStr = "Pistol";
+			//animator.SetTrigger(playerAnimationHash.pistolTrigger);
+			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
+            if (PhotonNetwork.offlineMode) {
+                animator.SetTrigger(playerAnimationHash.pistolTrigger);
+            }
+            else {
+                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pistolTrigger);
+            }
+
+            if (PhotonNetwork.offlineMode) {
+                animator.SetBool(playerAnimationHash.noWeaponBool, false);
+            }
+            else {
+                pView.RPC("setBooleanP", PhotonTargets.AllViaServer, playerAnimationHash.noWeaponBool, false);
+            }
+
+            weaponStr = "Pistol";
 		}
 		else if (playerData.machineGunEquipped)
 		{
-			animator.SetTrigger(playerAnimationHash.machineGunTrigger);
-			animator.SetBool(playerAnimationHash.noWeaponBool, false);
-			weaponStr = "MachineGun";
+			//animator.SetTrigger(playerAnimationHash.machineGunTrigger);
+			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
+
+            if (PhotonNetwork.offlineMode) {
+                animator.SetTrigger(playerAnimationHash.machineGunTrigger);
+            }
+            else {
+                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.machineGunTrigger);
+            }
+
+            if (PhotonNetwork.offlineMode) {
+                animator.SetBool(playerAnimationHash.noWeaponBool, false);
+            }
+            else {
+                pView.RPC("setBooleanP", PhotonTargets.AllViaServer, playerAnimationHash.noWeaponBool, false);
+            }
+
+
+
+
+            weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
 		{

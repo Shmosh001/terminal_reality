@@ -11,6 +11,8 @@ public class playerHealthScript : MonoBehaviour {
 	
 	//the animator
 	private Animator animator;
+    private PhotonView pView;
+    private playerAnimatorSync animSync;
 	
 	// Use this for initialization
 	void Start () {
@@ -19,9 +21,11 @@ public class playerHealthScript : MonoBehaviour {
 		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		animator = this.gameObject.GetComponent<Animator>();
 		updateHealthHUD();
+        animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+        pView = this.gameObject.GetComponent<PhotonView>();
 
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -79,7 +83,13 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			playerData.health = 0;
 			playerData.playerAlive = false; //boolean to send over network
-			animator.SetTrigger(playerAnimationHash.dieTrigger);
+			//animator.SetTrigger(playerAnimationHash.dieTrigger);
+            if (PhotonNetwork.offlineMode) {
+                animSync.setTriggerP(playerAnimationHash.dieTrigger);
+            }
+            else {
+                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.dieTrigger);
+            }
 			updateHealthHUD();
 			print ("PLAYER IS DEAD!!!"); //temp print out
 		}
