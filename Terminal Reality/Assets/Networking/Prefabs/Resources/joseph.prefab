@@ -621,6 +621,9 @@ GameObject:
   - 114: {fileID: 11492774}
   - 114: {fileID: 11494768}
   - 136: {fileID: 13652732}
+  - 114: {fileID: 11434358}
+  - 114: {fileID: 11463810}
+  - 114: {fileID: 11404602}
   m_Layer: 0
   m_Name: joseph
   m_TagString: Player
@@ -2616,6 +2619,56 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11404602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6ec417dbbcd554eb627934e3314b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11434358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db9642e876838f419b4d7e33946954d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 2
+    Name: Pistol
+  - Type: 4
+    SynchronizeType: 2
+    Name: noWeapon
+  - Type: 1
+    SynchronizeType: 2
+    Name: Speed
+  - Type: 4
+    SynchronizeType: 2
+    Name: isMoving
+  - Type: 9
+    SynchronizeType: 2
+    Name: pickup
+  - Type: 9
+    SynchronizeType: 2
+    Name: jump
+  - Type: 9
+    SynchronizeType: 2
+    Name: MachineGun
+  - Type: 9
+    SynchronizeType: 2
+    Name: died
+  m_SynchronizeLayers: []
 --- !u!114 &11439608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2769,6 +2822,17 @@ MonoBehaviour:
   clipSize: 20
   flareLight: {fileID: 10839626}
   maxAmmo: 160
+--- !u!114 &11463810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e654cef3ec5db4243bf78b36c0ae0d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11492774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2791,6 +2855,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 11494768}
   - {fileID: 11439618}
+  - {fileID: 11434358}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
