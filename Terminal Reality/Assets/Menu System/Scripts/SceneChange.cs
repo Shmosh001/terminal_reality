@@ -59,6 +59,7 @@ public class SceneChange : MonoBehaviour {
     }
 
     public void multiPlayer() {
+        Screen.showCursor = false;
         Application.LoadLevel("LevelOne with AI");
     }
 
