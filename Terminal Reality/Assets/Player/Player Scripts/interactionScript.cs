@@ -16,6 +16,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	private bool inRangeOfHealth;
 	private bool inRangeOfPistol;
 	private bool inRangeOfMachineGun;
+	private bool inRangeOfKeys;
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
 
@@ -87,8 +88,8 @@ public class interactionScript : Photon.MonoBehaviour {
                     }
                 }
 
-				//IF THE RAY HIT A DOOR//
-				if (hitObject.CompareTag(Tags.DOUBLEDOOR))
+				//IF THE RAY HIT A DOOR//				
+				if (hitObject.CompareTag(Tags.DOUBLEDOOR) && playerData.hasKey)
 				{
 					//DDScript dds = hitObject.GetComponentInParent<DDScript>();
 					//dds.interaction();
@@ -107,6 +108,8 @@ public class interactionScript : Photon.MonoBehaviour {
                                 dds.interaction();
                             }
                             else {
+								DDScript dds = hitObject.GetComponentInParent<DDScript>();
+								dds.interaction();
                                 pView.RPC("interaction", PhotonTargets.AllBuffered);
                             }
                         }
@@ -117,6 +120,8 @@ public class interactionScript : Photon.MonoBehaviour {
                             dds.interaction();
                         }
                         else {
+							DDScript dds = hitObject.GetComponentInParent<DDScript>();
+							dds.interaction();
                             pView.RPC("interaction", PhotonTargets.AllBuffered);
                         }
                     }
@@ -128,11 +133,7 @@ public class interactionScript : Photon.MonoBehaviour {
 
                 
                     
-			}								
-
-				
-		
-			
+			}	
 
 			//IF THE PLAYER IS IN RANGE OF AMMO - PICK IT UP
 			if (inRangeOfAmmo)
@@ -333,6 +334,12 @@ public class interactionScript : Photon.MonoBehaviour {
 				Destroy(interactingCollider.gameObject);
 				inRangeOfMachineGun = false;
 			}
+			
+			//IF THE PLAYER IS IN RANGE OF THE KEYS - PICK THEM UP
+			if (inRangeOfKeys)
+			{
+				playerData.hasKey = true;
+			}
 		}
 	}
 	
@@ -366,6 +373,13 @@ public class interactionScript : Photon.MonoBehaviour {
 			inRangeOfMachineGun = true;
 			interactingCollider = other;
 		}
+		
+		//IF PLAYER IN RANGE OF KEYS
+		if (other.tag == "Keys")
+		{
+			inRangeOfKeys = true;
+			interactingCollider = other;
+		}
 	}
 	
 	//PLAYER EXITS AN OBJECTS TRIGGER//
@@ -393,6 +407,12 @@ public class interactionScript : Photon.MonoBehaviour {
 		if (other.tag == "machineGunPickup")
 		{
 			inRangeOfMachineGun = false;
+		}
+		
+		//IF PLAYER NOT IN RANGE OF KEYS
+		if (other.tag == "Keys")
+		{
+			inRangeOfKeys = false;
 		}
 	}
 
