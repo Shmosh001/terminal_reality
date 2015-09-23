@@ -7,15 +7,19 @@ public class loadLevel2 : MonoBehaviour {
 	{
 		if (col.gameObject.tag == Tags.PLAYER1 || col.gameObject.tag == Tags.PLAYER2) 
 		{
-            col.gameObject.GetComponent<PhotonView>().RPC("transitionToNext", PhotonTargets.AllBufferedViaServer);
-		}
+            PhotonNetwork.Destroy(col.gameObject);
+            Application.LoadLevel("Credits");
+            //col.gameObject.GetComponent<PhotonView>().RPC("transitionToNext", PhotonTargets.Others);
+            //transitionToNext();
+            
+        }
 
 	}
 
 
     [PunRPC]
     public void transitionToNext() {
-        Application.LoadLevel("Credits");
+        
     }
 
 }
