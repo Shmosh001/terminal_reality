@@ -81,7 +81,10 @@ public class SceneChange : MonoBehaviour {
     }
 
 
+    void Update() {
+        Screen.showCursor = true;
 
+    }
 
 
 
