@@ -55,13 +55,11 @@ public class SceneChange : MonoBehaviour {
     }
 
     public void singlePlayer() {
-        /*mmGO.SetActive(true);
-        current.SetActive(false);
-        current = mmGO;*/
+        Application.LoadLevel("LevelOne with AI");
     }
 
     public void multiPlayer() {
-
+        Application.LoadLevel("LevelOne with AI");
     }
 
     public void instructionsScene() {

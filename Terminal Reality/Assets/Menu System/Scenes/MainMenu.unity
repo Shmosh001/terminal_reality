@@ -663,20 +663,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 790812632}
-        m_MethodName: 
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 790812632}
-        m_MethodName: 
+      - m_Target: {fileID: 790812633}
+        m_MethodName: multiPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15407,11 +15395,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1219901578}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 512, y: 146}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: .5, y: 1}
 --- !u!114 &729179569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15425,7 +15413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 545bbff1ab1cc2449aedb76506854d59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecbe029a10fb3984fa89a5ac35e465be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20717,11 +20705,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1630675072}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 512, y: 146}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: .5, y: 1}
 --- !u!114 &1059364489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20735,7 +20723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: df9617421ba34e0488bc91a77c3adc18, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21209,20 +21197,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: setNext
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: nextScene
+      - m_Target: {fileID: 790812633}
+        m_MethodName: singlePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

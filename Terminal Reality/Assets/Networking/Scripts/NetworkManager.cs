@@ -55,13 +55,13 @@ public class NetworkManager : MonoBehaviour {
             GUILayout.FlexibleSpace();
             GUILayout.BeginVertical();
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Singleplayer Mode")) {
+            /*if (GUILayout.Button("Singleplayer Mode")) {
                 Debug.Log("Singleplayer Mode");
                 connecting = true;
                 PhotonNetwork.offlineMode = true; //we use this for single player
                 OnJoinedLobby();
-            }
-            if (GUILayout.Button("Multiplayer Mode")) {
+            }*/
+            if (GUILayout.Button("Start Game")) {
                 Debug.Log("Multiplayer Mode");
                 connecting = true;
                 ConnectToNetwork();

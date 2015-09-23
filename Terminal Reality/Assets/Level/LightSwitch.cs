@@ -13,7 +13,7 @@ public class LightSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    if(Input.GetKeyDown(KeyCode.L))
+	    /*if(Input.GetKeyDown(KeyCode.L))
         {
             if(directionalLight.enabled == true)
             {
@@ -24,6 +24,10 @@ public class LightSwitch : MonoBehaviour {
             {
                 directionalLight.enabled = true;
             }
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.LoadLevel("MainMenu");
         }
-	}
+    }
 }
