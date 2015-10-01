@@ -8,11 +8,14 @@ public class MainMenuWander : MonoBehaviour {
     private NavMeshAgent navAgent;
     private int index = 0;
     private int max;
+    private Animator animator;
+    
 
 
 	// Use this for initialization
 	void Start () {
         navAgent = this.gameObject.GetComponent<NavMeshAgent>();
+        animator = gameObject.GetComponent<Animator>();
         max = locations.Length-1;
         nextLocation();
     }
@@ -21,6 +24,7 @@ public class MainMenuWander : MonoBehaviour {
 	void Update () {
 	    if (checkArrival()) {
             navAgent.Stop();
+          
             nextLocation();
         }
 	}
@@ -40,7 +44,9 @@ public class MainMenuWander : MonoBehaviour {
             if (navAgent.remainingDistance <= navAgent.stoppingDistance) {
                 //check if we have no path and that our velocity is 0
                 if (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f) {
+                    animator.SetBool("Walking", false);
                     return true;
+                    
                 }
             }
         }
@@ -54,7 +60,7 @@ public class MainMenuWander : MonoBehaviour {
 
         navAgent.SetDestination(locations[index].position);
         index++;
-
+        animator.SetBool("Walking", true);
     }
 
     

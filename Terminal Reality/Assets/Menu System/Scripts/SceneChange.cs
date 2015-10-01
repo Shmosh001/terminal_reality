@@ -26,7 +26,6 @@ public class SceneChange : MonoBehaviour {
         controlsGO.SetActive(false);
         htpGO.SetActive(false);
 
-
     }
 
 
@@ -80,6 +79,8 @@ public class SceneChange : MonoBehaviour {
         current.SetActive(false);
         current = creditsGO;
     }
+
+
 
 
     void Update() {
