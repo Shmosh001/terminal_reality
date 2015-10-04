@@ -1,25 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EscKeyListener : MonoBehaviour {
+public class EscKeyListener : Photon.MonoBehaviour {
 
-    public GameObject light;
+    private Light directionalLight;
+    private GameObject light_;
 
-
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit();
-		}
-
-        if (Input.GetKeyDown(KeyCode.L)) {
-            if (light.active) {
-                light.SetActive(false);
-            }
-            else {
-                light.SetActive(true);
-            }
-
+    // Use this for initialization
+    void Start() {
+        light_ = GameObject.FindGameObjectWithTag(Tags.DEBUGLIGHT);
+        if (light_ != null) {
+            directionalLight = light_.light;
         }
-	}
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            if(directionalLight.enabled == true)
+            {
+                directionalLight.enabled = false;
+            }
+
+            else if (directionalLight.enabled == false)
+            {
+                directionalLight.enabled = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+
+            //Application.LoadLevel("MainMenu");
+            //PhotonNetwork.Destroy(gameObject);
+        }
+
+
+
+
+    }
 }

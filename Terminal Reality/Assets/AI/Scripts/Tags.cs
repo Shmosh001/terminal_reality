@@ -25,7 +25,12 @@ public class Tags : MonoBehaviour {
     public const string AMMOTEXT = "ammoText";
     public const string RELOADTEXT = "reloadText";
     public const string UIBAROBJ = "UIBarObj";
-    
+    public const string FLASHLIGHTICON = "FlashLightIcon";
+    public const string FLASHLIGHTSLIDER = "FlashLightSlider";
+    public const string P2TORCH = "P2Torch";
+    public const string DEBUGLIGHT = "DebugLight";
+
+
 
 
 

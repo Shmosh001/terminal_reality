@@ -9,7 +9,7 @@ public class SparkSound : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		InvokeRepeating("Spark",0.01f,4.0f);
 	}
 	

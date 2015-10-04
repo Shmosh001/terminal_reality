@@ -4,32 +4,87 @@ using System.Collections;
 
 public class torchScript : MonoBehaviour {
 
-	//PUBLIC TORCH VARIABLES//
-	public bool torchOn = false;
-	public Light torch;
-	public GameObject soundController;
-	public Image torchHUD;
-	public Sprite torchOnImage;
-	public Sprite torchOffImage;
-	public Slider torchSlider;
-	
-	//PRIVATE TORCH VARIABLES//
-	private float batteryLife;
+    //PUBLIC TORCH VARIABLES//
+    public bool torchOn = false;
+    public Light torch;
+    public GameObject soundController;
+    public Image torchHUD;
+    public Sprite torchOnImage;
+    public Sprite torchOffImage;
+    public Slider torchSlider;
 
-	// Use this for initialization
-	void Start () {
-	
-		batteryLife = 100.0f;
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
-		//torchHUD = GameObject.FindGameObjectWithTag("FlashLightIcon").GetComponent<Image>() as Image;
-		//torchSlider = GameObject.FindGameObjectWithTag("FlashLightSlider").GetComponent<Slider>() as Slider;
-		//TODO uncommented
 
-	
-	}
-	
-	void Update()
-	{
+    private GameObject torchObj;
+    private GameObject sliderObj;
+    //PRIVATE TORCH VARIABLES//
+    private float batteryLife;
+
+    // Use this for initialization
+    void Start() {
+
+        batteryLife = 100.0f;
+        soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+
+
+        torchObj = GameObject.FindGameObjectWithTag(Tags.FLASHLIGHTICON);
+        if (torchObj != null) {
+            torchHUD = torchObj.GetComponent<Image>() as Image;
+        }
+
+        sliderObj = GameObject.FindGameObjectWithTag(Tags.FLASHLIGHTSLIDER);
+        if (sliderObj != null) {
+            torchSlider = sliderObj.GetComponent<Slider>() as Slider;
+        }
+
+
+
+
+    }
+
+    /*
+    [PunRPC]
+    void switchOnTorch() {
+        soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
+        torchOn = !torchOn;
+    }*/
+
+
+
+    void Update() {
+
+
+       
+        //check for missing game objects
+
+        if (sliderObj == null) {
+            sliderObj = GameObject.FindGameObjectWithTag(Tags.FLASHLIGHTSLIDER);
+            if (sliderObj != null) {
+                torchSlider = sliderObj.GetComponent<Slider>() as Slider;
+            }
+            else {
+                return;
+            }
+        }
+
+
+        if (torchObj == null) {
+            torchObj = GameObject.FindGameObjectWithTag(Tags.FLASHLIGHTICON);
+            if (torchObj != null) {
+                torchHUD = torchObj.GetComponent<Image>() as Image;
+            }
+            else {
+                return;
+            }
+        }
+
+            
+
+   
+        
+
+
+
+
 		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
 		if (Input.GetKeyDown(KeyCode.F))
 		{
@@ -57,7 +112,7 @@ public class torchScript : MonoBehaviour {
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
 		updateTorchActivity();
-		//updateTorchHUD();
+		updateTorchHUD();
 
 	}
 
@@ -69,12 +124,12 @@ public class torchScript : MonoBehaviour {
 		if (torchOn)
 		{
 			torch.enabled = true;
-			//torchHUD.sprite = torchOnImage;
+			torchHUD.sprite = torchOnImage;
 		}
 		else
 		{
 			torch.enabled = false;
-			//torchHUD.sprite = torchOffImage;
+			torchHUD.sprite = torchOffImage;
 		}
 	}
 
@@ -82,15 +137,15 @@ public class torchScript : MonoBehaviour {
 	private void updateTorchHUD()
 	{		
 		//TODO uncommented
-		//torchSlider.value = batteryLife;
+		torchSlider.value = batteryLife;
 	}
 
-	public void receiveNetworkData(PhotonStream stream, PhotonMessageInfo info){
-		torchOn = (bool)stream.ReceiveNext();
-	}
-	
-	
-	public void sendNetworkData(PhotonStream stream, PhotonMessageInfo info){
-		stream.SendNext(torchOn);
-	}
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.isWriting) {
+            stream.SendNext(torchOn);
+        }
+        else {
+            torchOn = (bool)stream.ReceiveNext();
+        }
+    }
 }

@@ -625,6 +625,7 @@ GameObject:
   - 114: {fileID: 11463810}
   - 114: {fileID: 11409424}
   - 114: {fileID: 11482056}
+  - 114: {fileID: 11442112}
   m_Layer: 0
   m_Name: joseph
   m_TagString: Player
@@ -2830,6 +2831,18 @@ MonoBehaviour:
   clipSize: 20
   flareLight: {fileID: 10839626}
   maxAmmo: 160
+--- !u!114 &11442112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139552}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9422f012b7b2db49bf0fbcfa5555ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionalLight: {fileID: 0}
 --- !u!114 &11463810
 MonoBehaviour:
   m_ObjectHideFlags: 1
