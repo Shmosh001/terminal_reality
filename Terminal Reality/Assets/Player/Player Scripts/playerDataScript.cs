@@ -29,6 +29,7 @@ public class playerDataScript : MonoBehaviour {
 	//WEAPONS GAME OBJECTS//
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
+    public GameObject torch2GameObject;
 	
 	//TORCH//
 	public Light torch;
@@ -45,7 +46,11 @@ public class playerDataScript : MonoBehaviour {
 		pistolGameObject.SetActive(false);
 		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
 
-		torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
+        //fx torch
+        torch2GameObject = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
+
+        //main torch
+        torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
 
 		machineGunGameObject.SetActive(false);
 
@@ -59,7 +64,11 @@ public class playerDataScript : MonoBehaviour {
         if (machineGunGameObject == null) {
             machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
         }
+        if (torch2GameObject == null) {
+            torch2GameObject = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
+        }
 
+        //main torch
         if (torchObj == null) {
             torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
         }

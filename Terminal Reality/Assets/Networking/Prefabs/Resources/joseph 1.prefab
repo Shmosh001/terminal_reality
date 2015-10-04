@@ -1201,6 +1201,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &178712
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 478712}
+  - 108: {fileID: 10878712}
+  - 114: {fileID: 11478712}
+  m_Layer: 0
+  m_Name: Torch
+  m_TagString: P2Torch
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &439476
 Transform:
   m_ObjectHideFlags: 1
@@ -1696,6 +1713,7 @@ Transform:
   m_LocalPosition: {x: -0, y: .160386011, z: -1.53075747e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 478712}
   - {fileID: 439562}
   - {fileID: 439586}
   - {fileID: 439576}
@@ -1765,7 +1783,7 @@ Transform:
   m_Children:
   - {fileID: 439550}
   m_Father: {fileID: 439552}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &439564
 Transform:
   m_ObjectHideFlags: 1
@@ -1855,7 +1873,7 @@ Transform:
   m_Children:
   - {fileID: 439510}
   m_Father: {fileID: 439552}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &439578
 Transform:
   m_ObjectHideFlags: 1
@@ -1919,7 +1937,7 @@ Transform:
   m_Children:
   - {fileID: 439508}
   m_Father: {fileID: 439552}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &439588
 Transform:
   m_ObjectHideFlags: 1
@@ -2188,6 +2206,18 @@ Transform:
   - {fileID: 439528}
   m_Father: {fileID: 439600}
   m_RootOrder: 1
+--- !u!4 &478712
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178712}
+  m_LocalRotation: {x: .0517221019, y: 0, z: 0, w: .998661518}
+  m_LocalPosition: {x: 0, y: 0, z: .111000001}
+  m_LocalScale: {x: .666666746, y: .666666687, z: .666666746}
+  m_Children: []
+  m_Father: {fileID: 439552}
+  m_RootOrder: 0
 --- !u!20 &2039626
 Camera:
   m_ObjectHideFlags: 1
@@ -2621,6 +2651,41 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10878712
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178712}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Type: 0
+  m_Color: {r: 1, g: .992089272, b: .713235259, a: 1}
+  m_Intensity: 1
+  m_Range: 20
+  m_SpotAngle: 40
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11406742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2787,6 +2852,7 @@ MonoBehaviour:
   machineGunEquipped: 0
   pistolGameObject: {fileID: 0}
   machineGunGameObject: {fileID: 0}
+  torch2GameObject: {fileID: 0}
   torch: {fileID: 0}
   torchObj: {fileID: 0}
   hasKey: 0
@@ -2853,6 +2919,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e654cef3ec5db4243bf78b36c0ae0d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11478712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178712}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f106dccc1f133fc47bb3785d65fe1b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchOn: 0
+  torch: {fileID: 10878712}
+  soundController: {fileID: 0}
+  torchHUD: {fileID: 0}
+  torchOnImage: {fileID: 21300000, guid: 4f59f31234fd73e47b6e459d105464ea, type: 3}
+  torchOffImage: {fileID: 21300000, guid: 6ff95deb65c45de41a1462c1ba95ef8d, type: 3}
+  torchSlider: {fileID: 0}
 --- !u!114 &11482056
 MonoBehaviour:
   m_ObjectHideFlags: 1

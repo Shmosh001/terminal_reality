@@ -90,7 +90,9 @@ public class torchScript : MonoBehaviour {
 		{
 			soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
 			torchOn = !torchOn;
-		}
+            updateTorchActivity();
+
+        }
 
 		//if the torch is on, reduce the battery life.
 		if (torchOn && batteryLife >= 0.0f)
@@ -108,29 +110,52 @@ public class torchScript : MonoBehaviour {
 		if (batteryLife <= 0.0f)
 		{
 			torchOn = false;
-		}
+            updateTorchActivity();
+        }
 
 		//at the end of each update cycle, check whether the torch needs to be turned on or off.
-		updateTorchActivity();
+		
 		updateTorchHUD();
 
 	}
+
+
+
+    void handleNetwork(int mode) {
+        PhotonView pView = transform.parent.gameObject.GetComponentInParent<PhotonView>();
+
+
+
+
+        if (pView == null) {
+            Debug.LogError("No PhotonView component found on " + gameObject);
+        }
+        else {
+            pView.RPC("torchOn", PhotonTargets.Others, mode);
+        }
+        
+    }
+
 
 	//CHECK WHETHER THE TORCH IS ON OR OFF, 
 	//AND THEN TURN THE LIGHT ON OR OFF.
 	private void updateTorchActivity()
 	{
-		
-		if (torchOn)
-		{
-			torch.enabled = true;
-			torchHUD.sprite = torchOnImage;
-		}
-		else
-		{
-			torch.enabled = false;
-			torchHUD.sprite = torchOffImage;
-		}
+
+        if (torchOn) {
+            torch.enabled = true;
+            torchHUD.sprite = torchOnImage;
+            if (!PhotonNetwork.offlineMode) {
+                handleNetwork(1);
+            }
+        }
+        else {
+            torch.enabled = false;
+            torchHUD.sprite = torchOffImage;
+            if (!PhotonNetwork.offlineMode) {
+                handleNetwork(0);
+            }
+        }
 	}
 
 	//UPDATE THE TORCH DISPLAYED ON THE HUD//
@@ -140,12 +165,5 @@ public class torchScript : MonoBehaviour {
 		torchSlider.value = batteryLife;
 	}
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            stream.SendNext(torchOn);
-        }
-        else {
-            torchOn = (bool)stream.ReceiveNext();
-        }
-    }
+
 }
