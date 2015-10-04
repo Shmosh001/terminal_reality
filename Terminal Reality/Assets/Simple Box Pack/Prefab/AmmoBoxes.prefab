@@ -47,6 +47,7 @@ GameObject:
   - 135: {fileID: 13556612}
   - 114: {fileID: 11451730}
   - 82: {fileID: 8278186}
+  - 114: {fileID: 11435094}
   m_Layer: 0
   m_Name: AmmoBoxes
   m_TagString: AmmoBox
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.4099998, y: 2.6099999, z: 16.8400002}
+  m_LocalPosition: {x: 17.8500004, y: .200000003, z: 37.1800003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 483952}
@@ -232,6 +233,31 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11435094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &11451730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb9a753b281def489c9bc0b6ee3f59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolAmmo: 22
-  machineGunAmmo: 40
+  pistolAmmo: 40
+  machineGunAmmo: 80
 --- !u!135 &13556612
 SphereCollider:
   m_ObjectHideFlags: 1

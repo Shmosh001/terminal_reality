@@ -20,8 +20,9 @@ public class DDScript : MonoBehaviour {
 	}
 
 
-	//WHEN THE PLAYER INTERACTS WITH THE DOOR//
-	public void interaction()
+    //WHEN THE PLAYER INTERACTS WITH THE DOOR//
+    [PunRPC]
+    public void interaction()
 	{
 		//IF THE DOOR IS CLOSED//
 		if(!open)
