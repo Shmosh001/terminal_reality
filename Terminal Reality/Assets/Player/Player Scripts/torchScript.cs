@@ -130,13 +130,13 @@ public class torchScript : MonoBehaviour {
         if (mainObj.tag == Tags.PLAYER1) {
             GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
             if (player2 != null) {
-                player2.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.AllViaServer, mode);
+                player2.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode);
             }
         }
         else if (mainObj.tag == Tags.PLAYER2) {
             GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
             if (player1 != null) {
-                player1.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.AllViaServer, mode );
+                player1.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode );
             }
         }
         
