@@ -30,6 +30,7 @@ public class Tags : MonoBehaviour {
     public const string P2TORCH = "P2Torch";
     public const string DEBUGLIGHT = "DebugLight";
     public const string RAGDOLL = "Ragdoll";
+   
 
 
 
