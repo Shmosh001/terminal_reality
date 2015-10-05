@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class interactionScript : Photon.MonoBehaviour {
@@ -19,6 +20,8 @@ public class interactionScript : Photon.MonoBehaviour {
 	private bool inRangeOfKeys;
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
+	private GameObject pushEObj;
+	private Text pushE;
 
 	//PUBLIC VARIABLES FOR INTERACTION//
 	public AudioClip weaponPickup;
@@ -36,6 +39,12 @@ public class interactionScript : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (pushEObj == null) {
+			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
+			if (pushEObj != null) {
+				pushE = pushEObj.GetComponent<Text>();
+			}
+		}
 
 		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
 		if (Input.GetKeyDown(KeyCode.E))
@@ -377,6 +386,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF KEYS
 		if (other.tag == "Keys")
 		{
+			pushE.enabled = true;
 			inRangeOfKeys = true;
 			interactingCollider = other;
 		}
@@ -412,6 +422,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER NOT IN RANGE OF KEYS
 		if (other.tag == "Keys")
 		{
+			pushE.enabled = false;
 			inRangeOfKeys = false;
 		}
 	}
