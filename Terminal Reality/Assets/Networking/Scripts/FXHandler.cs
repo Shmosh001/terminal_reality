@@ -21,8 +21,12 @@ public class FXHandler : MonoBehaviour {
 
     [PunRPC]
     public void torchOn(int mode) {
+        
+
+
         //off
         if (mode == 0) {
+
             if (this.gameObject.tag == Tags.PLAYER1) {
                 GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
                 if (obj != null) {

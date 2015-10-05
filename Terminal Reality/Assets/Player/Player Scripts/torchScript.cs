@@ -122,18 +122,23 @@ public class torchScript : MonoBehaviour {
 
 
     void handleNetwork(int mode) {
-        PhotonView pView = transform.parent.gameObject.GetComponentInParent<PhotonView>();
+        //PhotonView pView = transform.parent.gameObject.GetComponentInParent<PhotonView>();
 
 
-
-
-        if (pView == null) {
-            Debug.LogError("No PhotonView component found on " + gameObject);
+       
+        if (gameObject.tag == Tags.PLAYER1) {
+            GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+            if (player2 != null) {
+                player2.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode);
+            }
         }
-        else {
-            pView.RPC("torchOn", PhotonTargets.Others, mode);
+        else if (gameObject.tag == Tags.PLAYER2) {
+            GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+            if (player1 != null) {
+                player1.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode);
+            }
         }
-        
+
     }
 
 
@@ -161,7 +166,6 @@ public class torchScript : MonoBehaviour {
 	//UPDATE THE TORCH DISPLAYED ON THE HUD//
 	private void updateTorchHUD()
 	{		
-		//TODO uncommented
 		torchSlider.value = batteryLife;
 	}
 
