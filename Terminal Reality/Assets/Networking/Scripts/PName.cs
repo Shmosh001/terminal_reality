@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PName : MonoBehaviour {
 
-
+    private GameObject player1;
+    private GameObject player2;
     private GameObject characterObject;
     private float windowWidth = 60;
     private float windowHeight = 40;
@@ -11,12 +12,15 @@ public class PName : MonoBehaviour {
     private float offsetY = 20;
 
 
+   
+
     void Start() {
         characterObject = this.gameObject;
        // Debug.LogWarning("start:" + gameObject.tag);
         assignPlayerTags();
-       
-        
+        player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+        player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+
     }
 
 
@@ -27,8 +31,8 @@ public class PName : MonoBehaviour {
     /// </summary>
     void assignPlayerTags() {
         if (!PhotonNetwork.offlineMode) {
-            GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
-            GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
+            player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
+            player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
 
 
             if (player1 == null) {
@@ -48,7 +52,6 @@ public class PName : MonoBehaviour {
 
 
 
-
     /// <summary>
     /// this method draws the characters tag above his head
     /// </summary>
@@ -63,16 +66,19 @@ public class PName : MonoBehaviour {
             else if (!PhotonNetwork.isMasterClient && this.gameObject.tag == Tags.PLAYER2) {
                 //do nothing
             }
-            else {
-                Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
-                characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
-                                                   Mathf.Clamp(characterPos.y, 50, Screen.height),
-                                                   characterPos.z);
-                GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
-                // GUI CODE GOES HERE
-                GUILayout.Label(gameObject.tag);
+            else{
+                    Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
+                    
+                    characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
+                                                    Mathf.Clamp(characterPos.y, 50, Screen.height),
+                                                    characterPos.z);
 
-                GUILayout.EndArea();
+                    GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
+
+                    GUILayout.Label(gameObject.tag);
+
+                    GUILayout.EndArea();
+ 
             }
 
             
