@@ -20,8 +20,8 @@ public class interactionScript : Photon.MonoBehaviour {
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
 
-	//PUBLIC VARIABLES FOR INTERACTION//
-	public AudioClip weaponPickup;
+
+
 
 	// Use this for initialization
 	void Start () 

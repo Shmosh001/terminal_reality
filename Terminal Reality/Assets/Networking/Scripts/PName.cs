@@ -19,6 +19,9 @@ public class PName : MonoBehaviour {
         
     }
 
+
+ 
+
     /// <summary>
     /// we set the tags to be properly set on each local machine so that the AI can properly identify between players
     /// </summary>
@@ -52,15 +55,27 @@ public class PName : MonoBehaviour {
     void OnGUI() {
         if (characterObject != null) {
 
-            Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0,1.5f,0));
-            characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
-                                               Mathf.Clamp(characterPos.y, 50, Screen.height),
-                                               characterPos.z);
-            GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
-            // GUI CODE GOES HERE
-            GUILayout.Label(gameObject.tag);
 
-            GUILayout.EndArea();
+
+            if (PhotonNetwork.isMasterClient && this.gameObject.tag == Tags.PLAYER1) {
+                //do nothing
+            }
+            else if (!PhotonNetwork.isMasterClient && this.gameObject.tag == Tags.PLAYER2) {
+                //do nothing
+            }
+            else {
+                Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
+                characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
+                                                   Mathf.Clamp(characterPos.y, 50, Screen.height),
+                                                   characterPos.z);
+                GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
+                // GUI CODE GOES HERE
+                GUILayout.Label(gameObject.tag);
+
+                GUILayout.EndArea();
+            }
+
+            
         }
         
     }

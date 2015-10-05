@@ -120,10 +120,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
 
        
-        switch (fsm.getCurrentState()) {
+        switch ((byte)fsm.getCurrentState()) {
 
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
-            case StateEnums.ZombieStates.Idle:
+            case (byte)StateEnums.ZombieStates.Idle:
 
                 if (stateDebugStatements) { Debug.Log("idle case: entering " + Time.timeSinceLevelLoad); }
 
@@ -196,7 +196,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*/
-            case StateEnums.ZombieStates.Alerted:
+            case (byte)StateEnums.ZombieStates.Alerted:
                 //debug
                 if (stateDebugStatements) { Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad); }
                 animatorCont.resetBooleans();
@@ -239,7 +239,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
-            case StateEnums.ZombieStates.Chasing:
+            case (byte)StateEnums.ZombieStates.Chasing:
                 if (stateDebugStatements) { Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); }
                 //counter
                 chasingC += Time.deltaTime;
@@ -264,7 +264,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Searching*******Searching*******Searching*******Searching*******Searching*******Searching*******Searching*/
-            case StateEnums.ZombieStates.Searching:
+            case (byte)StateEnums.ZombieStates.Searching:
 
                 if (stateDebugStatements) { Debug.Log("searching case: entering " + Time.timeSinceLevelLoad); }
                 //we search for the player by moving to his last known position
@@ -300,13 +300,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
-            case StateEnums.ZombieStates.Attacking:
+            case (byte)StateEnums.ZombieStates.Attacking:
                 if (stateDebugStatements) { Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad); }
                 attackPlayer();
                 break;
 
             /***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
-            case StateEnums.ZombieStates.Puking:
+            case (byte)StateEnums.ZombieStates.Puking:
                 if (stateDebugStatements) { Debug.Log("puking case: entering " + Time.timeSinceLevelLoad); }
                 //updating counter
                 pukeC += Time.deltaTime;
@@ -333,7 +333,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*******Wandering*/
-            case StateEnums.ZombieStates.Wandering:
+            case (byte)StateEnums.ZombieStates.Wandering:
                 if (stateDebugStatements) { Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad); }
 
                 //if we have not started wandering yet
@@ -360,7 +360,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*******Shot*/
-            case StateEnums.ZombieStates.Shot:
+            case (byte)StateEnums.ZombieStates.Shot:
                 if (stateDebugStatements) { Debug.Log("shot case: entering " + Time.timeSinceLevelLoad); }
 
                 //if entity has been shot
@@ -410,13 +410,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 break;
 
             /***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
-            case StateEnums.ZombieStates.Dying:
+            case (byte)StateEnums.ZombieStates.Dying:
                 if (stateDebugStatements) { Debug.Log("dying case: entering " + Time.timeSinceLevelLoad); }
                 killUnit();
                 break;
 
             /***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
-            case StateEnums.ZombieStates.Dead:
+            case (byte)StateEnums.ZombieStates.Dead:
                 if (stateDebugStatements) { Debug.Log("dead case: entering " + Time.timeSinceLevelLoad); }
                 //we disable all non vital components
                 if (!deadBool) {
