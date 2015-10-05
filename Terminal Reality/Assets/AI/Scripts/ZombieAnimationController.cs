@@ -34,7 +34,9 @@ public class ZombieAnimationController : MonoBehaviour {
     [PunRPC]
     public void setTrigger(int name){
 		if (debug)Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
-		animator.SetTrigger(name);
+        if (animator.isActiveAndEnabled) {
+            animator.SetTrigger(name);
+        }
 	}
 
     /// <summary>
@@ -103,7 +105,9 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </param>
     [PunRPC]
     public void setStartState(int value){
-		setInteger(EnemyHashScript.stateDInt,value);
+        if (animator.isActiveAndEnabled) {
+            setInteger(EnemyHashScript.stateDInt, value);
+        }
 		if (debug)Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -118,7 +122,9 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </param>
     [PunRPC]
     public void setBoolean(int name, bool value){
-		animator.SetBool(name, value);
+        if (animator.isActiveAndEnabled) {
+            animator.SetBool(name, value);
+        }
 		if (debug)Debug.Log("boolean " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -203,7 +209,9 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </param>
     [PunRPC]
 	public void setInteger(int name, int value){
-		animator.SetInteger(name, value);
+        if (animator.isActiveAndEnabled) {
+            animator.SetInteger(name, value);
+        }
 		if (debug)Debug.Log("int " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -218,7 +226,9 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </param>
     [PunRPC]
 	public void setFloat(int name, float value){
-		animator.SetFloat(name, value);
+        if (animator.isActiveAndEnabled) {
+            animator.SetFloat(name, value);
+        }
 		if (debug)Debug.Log("float " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 
 	}
@@ -277,7 +287,9 @@ public class ZombieAnimationController : MonoBehaviour {
     /// </param>
     [PunRPC]
 	public void forceAnimation(int animation){
-		animator.Play(animation);
+        if (animator.isActiveAndEnabled) {
+            animator.Play(animation);
+        }
 	}
 
     /// <summary>

@@ -594,8 +594,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         gameObject.GetComponent<PreyDetection>().enabled = false;
         gameObject.GetComponent<WanderScript>().enabled = false;
 
-        Instantiate(ragdoll, transform.position, transform.rotation);
-        Destroy(gameObject);
+        ///Instantiate(ragdoll, transform.position, transform.rotation);
+        /// 
+       // GameObject.FindGameObjectWithTag(Tags.PLAYER1).GetComponent<PhotonView>().RPC("spawnEnemy", PhotonTargets.AllBuffered, transform.position.x, transform.position.y, transform.position.z, transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        transform.parent.gameObject.GetComponent<RagdollFollow>().enableRagdoll();
+        
+
+        //Destroy(gameObject);
         //
         // gameObject.GetComponent<ZombieFSM>().enabled = false;
 
