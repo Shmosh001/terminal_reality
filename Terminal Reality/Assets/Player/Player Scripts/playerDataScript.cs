@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class playerDataScript : MonoBehaviour {
+public class playerDataScript : Photon.MonoBehaviour {
 	
 	//PLAYER HEALTH//
 	public int health = 100;
@@ -29,7 +29,8 @@ public class playerDataScript : MonoBehaviour {
 	//WEAPONS GAME OBJECTS//
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
-    public GameObject torch2GameObject;
+    public GameObject torch2;
+    
 	
 	//TORCH//
 	public Light torch;
@@ -37,17 +38,17 @@ public class playerDataScript : MonoBehaviour {
 
     //PLAYER HAS KEY
     public bool hasKey = false;
-	
-	
-	//AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
-	void Awake()
+
+
+    //AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
+    void Awake()
 	{
 		pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
 		pistolGameObject.SetActive(false);
 		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
 
         //fx torch
-        torch2GameObject = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
+        torch2 = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
 
         //main torch
         torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
@@ -64,8 +65,8 @@ public class playerDataScript : MonoBehaviour {
         if (machineGunGameObject == null) {
             machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
         }
-        if (torch2GameObject == null) {
-            torch2GameObject = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
+        if (torch2 == null) {
+            torch2 = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
         }
 
         //main torch
@@ -76,15 +77,18 @@ public class playerDataScript : MonoBehaviour {
             torch = torchObj.light;
         }
 
+
     }
 
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 		if (stream.isWriting) {
 			stream.SendNext(playerAlive);
+            //stream.SendNext(torchON);
 		}
 		else {
 			playerAlive = (bool)stream.ReceiveNext();
+           // torchON = (int)stream.ReceiveNext();
 		}
 	}
 }

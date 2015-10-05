@@ -12,48 +12,70 @@ public class FXHandler : MonoBehaviour {
     void Start() {
         pistol = this.gameObject.GetComponent<playerDataScript>().pistolGameObject;
         mg = this.gameObject.GetComponent<playerDataScript>().machineGunGameObject;
-        torch = this.gameObject.GetComponent<playerDataScript>().torch2GameObject;
+        torch = this.gameObject.GetComponent<playerDataScript>().torch2;
 
 
 
     }
 
 
+
+    [PunRPC]
+    public void turnOnTorch2() {
+        GameObject.FindGameObjectWithTag(Tags.P2TORCH).SetActive(true);
+    }
+
+    [PunRPC]
+    public void turnOffTorch2() {
+        GameObject.FindGameObjectWithTag(Tags.P2TORCH).SetActive(false);
+    }
+
     [PunRPC]
     public void torchOn(int mode) {
-        
 
 
+        Debug.LogWarning("Torch rpc called on " + gameObject.tag + " with mode " + mode);
         //off
         if (mode == 0) {
-
-            if (this.gameObject.tag == Tags.PLAYER1) {
+            Debug.LogWarning("mode 0 start: " + torch.light.enabled);
+            /*if (torch == null) {
+                Debug.LogWarning("torch obj is null");
+            }*/
+            GameObject.FindGameObjectWithTag(Tags.P2TORCH).GetComponent<Light>().enabled = false;
+            //Debug.LogWarning("mode 0 done: " + torch.light.enabled);
+            /*if (this.gameObject.tag == Tags.PLAYER1) {
                 GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
                 if (obj != null) {
-                    obj.GetComponent<FXHandler>().torch.light.enabled = false;
+                    obj.GetComponent<FXHandler>().torch.SetActive(false);
                 }
             }
             else if (this.gameObject.tag == Tags.PLAYER2) {
                 GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
                 if (obj != null) {
-                    obj.GetComponent<FXHandler>().torch.light.enabled = false;
+                    obj.GetComponent<FXHandler>().torch.SetActive(false);
                 }
-            }
+            }*/
         }
         //on
         else{
-            if (this.gameObject.tag == Tags.PLAYER1) {
+            Debug.LogWarning("mode 1 start: " + torch.light.enabled);
+            /*if (torch == null) {
+                Debug.LogWarning("torch obj is null");
+            }*/
+            GameObject.FindGameObjectWithTag(Tags.P2TORCH).GetComponent<Light>().enabled = true;
+            //Debug.LogWarning("mode 1 done: " + torch.light.enabled);
+            /*if (this.gameObject.tag == Tags.PLAYER1) {
                 GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
                 if (obj != null) {
-                    obj.GetComponent<FXHandler>().torch.light.enabled = true;
+                    obj.GetComponent<FXHandler>().torch.SetActive(true);
                 }
             }
             else if (this.gameObject.tag == Tags.PLAYER2) {
                 GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
                 if (obj != null) {
-                    obj.GetComponent<FXHandler>().torch.light.enabled = true;
+                    obj.GetComponent<FXHandler>().torch.SetActive(true);
                 }
-            }
+            }*/
         }
         
     }

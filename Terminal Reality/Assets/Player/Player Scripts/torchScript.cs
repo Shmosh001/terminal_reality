@@ -123,21 +123,26 @@ public class torchScript : MonoBehaviour {
 
     void handleNetwork(int mode) {
         //PhotonView pView = transform.parent.gameObject.GetComponentInParent<PhotonView>();
-
+        GameObject mainObj = this.gameObject.transform.parent.transform.parent.gameObject;
 
        
-        if (gameObject.tag == Tags.PLAYER1) {
+       
+        if (mainObj.tag == Tags.PLAYER1) {
             GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
             if (player2 != null) {
-                player2.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode);
+                player2.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.AllViaServer, mode);
             }
         }
-        else if (gameObject.tag == Tags.PLAYER2) {
+        else if (mainObj.tag == Tags.PLAYER2) {
             GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
             if (player1 != null) {
-                player1.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.OthersBuffered, mode);
+                player1.GetComponent<PhotonView>().RPC("torchOn", PhotonTargets.AllViaServer, mode );
             }
         }
+        
+        
+
+        
 
     }
 
@@ -168,6 +173,9 @@ public class torchScript : MonoBehaviour {
 	{		
 		torchSlider.value = batteryLife;
 	}
+
+
+
 
 
 }
