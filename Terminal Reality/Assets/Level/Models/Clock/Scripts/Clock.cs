@@ -14,8 +14,8 @@ public class Clock : MonoBehaviour {
     //-----------------------------------------------------------------------------------------------------------------------------------------
 
     //-- set start time 00:00
-    string systemTime = DateTime.Now.ToString("h:mm:ss tt");
-    public int minutes = System.DateTime.;
+    
+    public int minutes = 0;
     public int hour = 0;
     
     //-- time speed factor
@@ -35,7 +35,9 @@ void Start()
     pointerSeconds = transform.Find("rotation_axis_pointer_seconds").gameObject;
     pointerMinutes = transform.Find("rotation_axis_pointer_minutes").gameObject;
     pointerHours   = transform.Find("rotation_axis_pointer_hour").gameObject;
-
+    System.DateTime moment = System.DateTime.Now;
+    minutes = moment.Minute;
+    hour = moment.Hour;
     msecs = 0.0f;
     seconds = 0;
 }
