@@ -20,7 +20,7 @@ public class ShootingScript : ammoHUDScript {
 	void Start () {
 		
 		updateAmmoText(0,0);
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		
 	}
 	

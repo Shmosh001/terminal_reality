@@ -139,7 +139,7 @@ public class NetworkManager : MonoBehaviour {
         }
 
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
-		GameObject localPlayer = PhotonNetwork.Instantiate("joseph", location.position, location.rotation, 0);
+		GameObject localPlayer = PhotonNetwork.Instantiate("joseph 1", location.position, location.rotation, 0);
         if (PhotonNetwork.isMasterClient) {
             localPlayer.tag = Tags.PLAYER1;
         }
@@ -197,7 +197,8 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<interactionScript>().enabled = true;//enable the interaction script	
 		localPlayer.GetComponent<playerHealthScript>().enabled = true;//enable the health script
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
-		localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
+        localPlayer.GetComponent<EscKeyListener>().enabled = true;//enable the weapon script
+        localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
         
         
         //P1HUD.SetActive(true);

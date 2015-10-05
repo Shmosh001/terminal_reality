@@ -16,6 +16,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public bool debug;
     public bool animDebug;
 
+    public GameObject ragdoll;
+
     //debug text for states
     public Text text;
     public Text text2;
@@ -45,7 +47,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private BoxCollider boxCollider;
 
 	//booleans to ascertain certain state specifics
-	private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot;
+	private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot, deadBool;
 	
     //counters
 	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC;
@@ -417,8 +419,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             case StateEnums.ZombieStates.Dead:
                 if (stateDebugStatements) { Debug.Log("dead case: entering " + Time.timeSinceLevelLoad); }
                 //we disable all non vital components
-                animatorCont.turnOffRM();
-                dead();
+                if (!deadBool) {
+                    animatorCont.turnOffRM();
+                    dead();
+                    deadBool = true;
+                }
+                
                 break;
         }
         
@@ -579,8 +585,21 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		if (debugStatements){Debug.Log("dead method at" + Time.timeSinceLevelLoad);}
 		gameObject.GetComponent<BoxCollider>().enabled = false;
 		gameObject.GetComponent<SphereCollider>().enabled = false;
-		gameObject.GetComponent<CapsuleCollider>().enabled = false;
-	}
+        navAgent.Stop();
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //gameObject.GetComponent<Animator>().enabled = false;
+        //gameObject.GetComponent<Rigidbody>() = false;
+        gameObject.GetComponent<EnemyHealthScript>().enabled = false;
+        gameObject.GetComponent<PreyDetection>().enabled = false;
+        gameObject.GetComponent<WanderScript>().enabled = false;
+
+        Instantiate(ragdoll, transform.position, transform.rotation);
+        Destroy(gameObject);
+        //
+        // gameObject.GetComponent<ZombieFSM>().enabled = false;
+
+    }
 
 
 
