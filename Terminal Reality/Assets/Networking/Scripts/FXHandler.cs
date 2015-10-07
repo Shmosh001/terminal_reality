@@ -54,7 +54,7 @@ public class FXHandler : MonoBehaviour {
         Debug.Log("pistol rpc called");
         //we need to set that the player has picked up the pistol
         //actually that he has it equipped
-        if (this.gameObject.tag == Tags.PLAYER1) {
+        /*if (this.gameObject.tag == Tags.PLAYER1) {
             GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
             if (obj != null) {
                 obj.GetComponent<FXHandler>().pistol.SetActive(true);
@@ -63,10 +63,10 @@ public class FXHandler : MonoBehaviour {
         else if (this.gameObject.tag == Tags.PLAYER2) {
             GameObject obj = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
             if (obj != null) {
-                obj.GetComponent<FXHandler>().pistol.SetActive(true);
+                
             }
-        }
-
+        }*/
+        gameObject.GetComponent<FXHandler>().pistol.SetActive(true);
         //pistol.SetActive(true);
     }
 

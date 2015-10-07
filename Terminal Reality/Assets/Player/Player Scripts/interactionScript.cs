@@ -241,7 +241,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				if (playerData.pistolPickedUp)
 				{
 					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
-					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+					GameObject pistol = GameObject.FindGameObjectWithTag(Tags.PISTOL); //find the pistol object
 	
 					//pickup ammo for the pistol
 					//amount randomly generate - from 10 - 30 bullets picked up
@@ -283,7 +283,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	            }
 
                 //this calls the fx rpc for the other client
-                if (gameObject.tag == Tags.PLAYER1) {
+                /*if (gameObject.tag == Tags.PLAYER1) {
                     GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
                     if (player2 != null) {
                         player2.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
@@ -294,9 +294,11 @@ public class interactionScript : Photon.MonoBehaviour {
                     if (player1 != null) {
                         player1.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
                     }
-                }
+                }*/
 
-
+                
+                gameObject.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
+                    
 
                 inRangeOfPistol = false;
 			}
