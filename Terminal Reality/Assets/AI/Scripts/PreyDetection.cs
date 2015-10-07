@@ -131,7 +131,7 @@ public class PreyDetection : MonoBehaviour {
 		//we use the players animator controller to decide this
 		//need to set up hashes for this? not actually
         if (target == null) {
-            Debug.LogError("target is null");
+            Debug.LogWarning("target is null");
             return false;
         }
 

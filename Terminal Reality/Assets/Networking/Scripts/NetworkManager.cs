@@ -139,7 +139,7 @@ public class NetworkManager : MonoBehaviour {
         }
 
 		//GameObject localPlayer = PhotonNetwork.Instantiate("First Person Controller", location.position, location.rotation, 0);//group id is for separating things
-		GameObject localPlayer = PhotonNetwork.Instantiate("joseph", location.position, location.rotation, 0);
+		GameObject localPlayer = PhotonNetwork.Instantiate("joseph 1", location.position, location.rotation, 0);
         if (PhotonNetwork.isMasterClient) {
             localPlayer.tag = Tags.PLAYER1;
         }
