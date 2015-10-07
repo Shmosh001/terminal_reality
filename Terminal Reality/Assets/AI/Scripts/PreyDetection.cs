@@ -131,15 +131,18 @@ public class PreyDetection : MonoBehaviour {
 		//we use the players animator controller to decide this
 		//need to set up hashes for this? not actually
         if (target == null) {
+            Debug.LogError("target is null");
             return false;
         }
 
         if (target.GetComponent<playerDataScript>().canHear) {
+            //Debug.LogWarning("player heard");
             lastSighting = target.transform.position;
             return true;
         }
 
         else {
+            //Debug.LogWarning("player heard can hear false");
             return false;
         }
         
