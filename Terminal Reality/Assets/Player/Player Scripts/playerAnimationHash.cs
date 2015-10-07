@@ -7,12 +7,13 @@ public class playerAnimationHash : MonoBehaviour {
 	
 	//arms//
 	public static int noWeaponBool;	
-	public static int pistolTrigger;
+	public static int pistolBoolean;
 	public static int machineGunTrigger;
 	public static int reloadTrigger;
-	
-	//movement//
-	public static int forwardSpeedFloat;
+    public static int shootTrigger;
+
+    //movement//
+    public static int forwardSpeedFloat;
 	public static int jumpTrigger;
 	
 	//pickup//
@@ -28,7 +29,7 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//arms//
 		noWeaponBool = Animator.StringToHash("noWeapon");
-		pistolTrigger = Animator.StringToHash("Pistol");
+		pistolBoolean = Animator.StringToHash("Pistol");
 		machineGunTrigger = Animator.StringToHash("MachineGun");
 		
 		//movement//
@@ -40,6 +41,10 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//dying//
 		dieTrigger = Animator.StringToHash("died");
-	
-	}
+
+        reloadTrigger = Animator.StringToHash("Reload");
+
+        shootTrigger = Animator.StringToHash("Shoot");
+
+    }
 }
