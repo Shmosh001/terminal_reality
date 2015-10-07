@@ -96,17 +96,19 @@ public class weaponSwitchScript : ammoHUDScript {
 			//animator.SetTrigger(playerAnimationHash.pistolTrigger);
 			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
             if (PhotonNetwork.offlineMode) {
-                animator.SetTrigger(playerAnimationHash.pistolTrigger);
+                animator.SetBool(playerAnimationHash.pistolBoolean, true);
             }
             else {
-                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pistolTrigger);
+                animator.SetBool(playerAnimationHash.pistolBoolean, true);
+                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.pistolBoolean, true);
             }
 
             if (PhotonNetwork.offlineMode) {
                 animator.SetBool(playerAnimationHash.noWeaponBool, false);
             }
             else {
-                pView.RPC("setBooleanP", PhotonTargets.AllViaServer, playerAnimationHash.noWeaponBool, false);
+                animator.SetBool(playerAnimationHash.noWeaponBool, false);
+                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.noWeaponBool, false);
             }
 
             weaponStr = "Pistol";
