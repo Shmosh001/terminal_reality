@@ -29,8 +29,8 @@ public class Tags : MonoBehaviour {
     public const string FLASHLIGHTSLIDER = "FlashLightSlider";
     public const string P2TORCH = "P2Torch";
     public const string DEBUGLIGHT = "DebugLight";
+	public const string KEYTOOPEN = "keyToOpen";
     public const string RAGDOLL = "Ragdoll";
-   
 
 
 
