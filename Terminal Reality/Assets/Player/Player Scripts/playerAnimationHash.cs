@@ -40,6 +40,8 @@ public class playerAnimationHash : MonoBehaviour {
 		
 		//dying//
 		dieTrigger = Animator.StringToHash("died");
+
+        reloadTrigger = Animator.StringToHash("Reload");
 	
 	}
 }

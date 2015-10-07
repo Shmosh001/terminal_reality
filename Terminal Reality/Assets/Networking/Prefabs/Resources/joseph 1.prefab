@@ -2749,6 +2749,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: died
+  - Type: 9
+    SynchronizeType: 0
+    Name: Reload
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -2824,7 +2827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c3213ce99318a4da0ee5e236d6621f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPickup: {fileID: 0}
 --- !u!114 &11439618
 MonoBehaviour:
   m_ObjectHideFlags: 1

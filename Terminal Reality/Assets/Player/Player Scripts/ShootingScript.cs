@@ -11,6 +11,7 @@ public class ShootingScript : ammoHUDScript {
 	private float coolDownTimer;
 	private GameObject weapon;
 	private GameObject soundController;
+    private playerAnimatorSync animSync;
 	
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -18,8 +19,8 @@ public class ShootingScript : ammoHUDScript {
 	
 	// Use this for initialization
 	void Start () {
-		
-		updateAmmoText(0,0);
+        animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+        updateAmmoText(0,0);
 		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		
 	}
@@ -150,7 +151,19 @@ public class ShootingScript : ammoHUDScript {
 					checkReloadWarning(weapon.GetComponent<weaponDataScript>().getRemainingClip(),
 					                   weapon.GetComponent<weaponDataScript>().clipSize,
 					                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
-				}
+
+                    PhotonView pView = this.gameObject.GetComponent<PhotonView>();
+                    if (PhotonNetwork.offlineMode) {
+                        animSync.setTriggerP(playerAnimationHash.reloadTrigger);
+                    }
+                    else {
+                        animSync.setTriggerP(playerAnimationHash.reloadTrigger);
+                        pView.RPC("setTriggerP", PhotonTargets.Others, playerAnimationHash.reloadTrigger);
+                    }
+
+
+                }
+
 			}
 		}
 		
@@ -190,11 +203,11 @@ public class ShootingScript : ammoHUDScript {
 	//ALSO UPDATE ALL THE STATS TO THOSE OF THE WEAPON
 	public void loadNewWeapon(string weaponTag)
 	{
-		if (weaponTag == "Pistol")
+		if (weaponTag == Tags.PISTOL)
 		{
 			weapon = this.GetComponent<playerDataScript>().pistolGameObject;
 		}
-		else if (weaponTag == "MachineGun")
+		else if (weaponTag == Tags.MACHINEGUN)
 		{
 			weapon = this.GetComponent<playerDataScript>().machineGunGameObject;
 		}

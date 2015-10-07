@@ -27,7 +27,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	void Start () 
 	{
 		playerData = this.GetComponent<playerDataScript>();
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		animator = this.gameObject.GetComponent<Animator>();
         playerPView = this.gameObject.GetComponent<PhotonView>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();

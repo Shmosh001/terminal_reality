@@ -54,6 +54,7 @@ public class playerDataScript : Photon.MonoBehaviour {
         torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
 
 		machineGunGameObject.SetActive(false);
+       // Debug.LogWarning("Set to false");
 
 	}
 	
@@ -61,9 +62,12 @@ public class playerDataScript : Photon.MonoBehaviour {
     void Update() {
         if (pistolGameObject == null) {
             pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
+            pistolGameObject.SetActive(false);
         }
         if (machineGunGameObject == null) {
             machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
+            machineGunGameObject.SetActive(false);
+            //Debug.LogWarning("Set to false");
         }
         if (torch2 == null) {
             torch2 = GameObject.FindGameObjectWithTag(Tags.P2TORCH);

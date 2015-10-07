@@ -30,11 +30,13 @@ public class PName : MonoBehaviour {
     /// we set the tags to be properly set on each local machine so that the AI can properly identify between players
     /// </summary>
     void assignPlayerTags() {
+        //we only assign tags if we are playing online
         if (!PhotonNetwork.offlineMode) {
+            //get game objects
             player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
             player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
 
-
+            //assign tags
             if (player1 == null) {
                 GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER);
                 player.tag = Tags.PLAYER1;
