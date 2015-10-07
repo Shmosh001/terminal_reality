@@ -16,7 +16,7 @@ public class AmmoBoxScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+        pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
         if (pushETextObj != null) {
             pushE = pushETextObj.GetComponent<Text>();
         }
@@ -27,7 +27,7 @@ public class AmmoBoxScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    if (pushETextObj == null) {
-            pushETextObj = GameObject.FindGameObjectWithTag("PushE");
+            pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
             if (pushETextObj != null) {
                 pushE = pushETextObj.GetComponent<Text>();
             }

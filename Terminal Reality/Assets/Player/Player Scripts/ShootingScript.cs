@@ -12,6 +12,7 @@ public class ShootingScript : ammoHUDScript {
 	private GameObject weapon;
 	private GameObject soundController;
     private playerAnimatorSync animSync;
+    private PhotonView pView;
 	
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -22,8 +23,8 @@ public class ShootingScript : ammoHUDScript {
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
         updateAmmoText(0,0);
 		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
-		
-	}
+        pView = gameObject.GetComponent<PhotonView>();
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -39,6 +40,12 @@ public class ShootingScript : ammoHUDScript {
 				{
 					if (coolDownTimer <= 0)
 					{
+
+                        if (!PhotonNetwork.offlineMode) {
+                            pView.RPC("gunShot", PhotonTargets.Others);
+                        }
+
+
 						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
 						soundController.GetComponent<soundControllerScript>().playPistolShot(transform.position); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
