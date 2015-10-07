@@ -10,6 +10,7 @@ public class FXHandler : MonoBehaviour {
     private soundControllerScript soundController;
     private float timerD = 0.1f, timerC;
     private bool check;
+    private Quaternion receivedRotation;
     
 
 
@@ -53,7 +54,7 @@ public class FXHandler : MonoBehaviour {
 
     [PunRPC]
     public void pistolEquipped() {
-        Debug.Log("pistol rpc called");
+        //Debug.Log("pistol rpc called");
         //we need to set that the player has picked up the pistol
         //actually that he has it equipped
         /*if (this.gameObject.tag == Tags.PLAYER1) {
@@ -84,10 +85,10 @@ public class FXHandler : MonoBehaviour {
 
     [PunRPC]
     public void gunShot() {
-        Debug.LogWarning("gunshot rpc received " + gameObject.tag);
+        //Debug.LogWarning("gunshot rpc received " + gameObject.tag);
         playerDataScript pdata = gameObject.GetComponent<playerDataScript>();
         if (pdata.pistolEquipped) {
-            Debug.LogWarning("gun equiped "  + gameObject.tag);
+           // Debug.LogWarning("gun equiped "  + gameObject.tag);
             pdata.pistolGameObject.GetComponent<weaponDataScript>().gunFlare(true);
             timerC = 0;
             check = true;
@@ -107,7 +108,28 @@ public class FXHandler : MonoBehaviour {
             playerDataScript pdata = gameObject.GetComponent<playerDataScript>();
             pdata.pistolGameObject.GetComponent<weaponDataScript>().gunFlare(false);
         }
+
+
+        torch.transform.localRotation = Quaternion.Lerp(torch.transform.localRotation, receivedRotation, Time.deltaTime * 1);
     }
 
+
+   
+
+
+    void angleFlashlight(Quaternion rotation) {
+        torch.transform.localRotation = rotation;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.isWriting) {
+            stream.SendNext(Camera.main.transform.localRotation);
+            //stream.SendNext(torchON);
+        }
+        else {
+            receivedRotation = (Quaternion)stream.ReceiveNext();
+            // torchON = (int)stream.ReceiveNext();
+        }
+    }
 
 }
