@@ -45,8 +45,9 @@ public class ShootingScript : ammoHUDScript {
                             pView.RPC("gunShot", PhotonTargets.Others);
                         }
 
+                        animSync.setTriggerP(playerAnimationHash.shootTrigger);
 
-						weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
+                        weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
 						soundController.GetComponent<soundControllerScript>().playPistolShot(transform.position); //play sound of a pistol shot
 						weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 						flareLoopCount = 0;

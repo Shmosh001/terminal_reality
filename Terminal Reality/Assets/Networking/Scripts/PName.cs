@@ -69,17 +69,20 @@ public class PName : MonoBehaviour {
                 //do nothing
             }
             else{
-                    Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
+                if (characterObject == null) {
+                    return;
+                }
+                Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
                     
-                    characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
-                                                    Mathf.Clamp(characterPos.y, 50, Screen.height),
-                                                    characterPos.z);
+                characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
+                                                Mathf.Clamp(characterPos.y, 50, Screen.height),
+                                                characterPos.z);
 
-                    GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
+                GUILayout.BeginArea(new Rect((characterPos.x + offsetX) - (windowWidth / 2), (Screen.height - characterPos.y) + offsetY, windowWidth, windowHeight));
 
-                    GUILayout.Label(gameObject.tag);
+                GUILayout.Label(gameObject.tag);
 
-                    GUILayout.EndArea();
+                GUILayout.EndArea();
  
             }
 

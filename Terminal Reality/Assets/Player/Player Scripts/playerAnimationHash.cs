@@ -10,9 +10,10 @@ public class playerAnimationHash : MonoBehaviour {
 	public static int pistolBoolean;
 	public static int machineGunTrigger;
 	public static int reloadTrigger;
-	
-	//movement//
-	public static int forwardSpeedFloat;
+    public static int shootTrigger;
+
+    //movement//
+    public static int forwardSpeedFloat;
 	public static int jumpTrigger;
 	
 	//pickup//
@@ -42,6 +43,8 @@ public class playerAnimationHash : MonoBehaviour {
 		dieTrigger = Animator.StringToHash("died");
 
         reloadTrigger = Animator.StringToHash("Reload");
-	
-	}
+
+        shootTrigger = Animator.StringToHash("Shoot");
+
+    }
 }
