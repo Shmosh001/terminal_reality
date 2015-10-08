@@ -55,8 +55,8 @@ public class WanderScript : MonoBehaviour {
     /// </returns>
 	public Transform getClosestPoint(Transform entity){
         //get first element
-        Debug.Log(unvisitedLocations.Count);
-        Debug.Log(unvisitedCount);
+        //Debug.Log(unvisitedLocations.Count);
+        //Debug.Log(unvisitedCount);
         //Debug.Log(unvisitedLocations.Capacity);
        
 

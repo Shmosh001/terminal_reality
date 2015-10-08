@@ -118,16 +118,14 @@ public class EnemyHealthScript : MonoBehaviour {
 
 
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+   /* public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting) {
             stream.SendNext(health);
-            //stream.SendNext(torchON);
         }
         else {
             health = (int)stream.ReceiveNext();
-            // torchON = (int)stream.ReceiveNext();
         }
-    }
+    }*/
 
 
 

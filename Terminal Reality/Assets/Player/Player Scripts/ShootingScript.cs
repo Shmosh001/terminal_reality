@@ -243,12 +243,12 @@ public class ShootingScript : ammoHUDScript {
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
 			{
-				//Debug.Log("Enemy shot");
-				//hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
-				
-				//PhotonView pView = hitObject.GetComponent<PhotonView>();
+                //Debug.Log("Enemy shot");
+                //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 
+                //PhotonView pView = hitObject.GetComponent<PhotonView>();
 
+                //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
                 if (PhotonNetwork.offlineMode) {
                     //Debug.LogWarning((int)weapon.GetComponent<weaponDataScript>().damage);
                     hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);

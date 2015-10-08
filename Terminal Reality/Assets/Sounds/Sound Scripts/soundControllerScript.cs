@@ -40,7 +40,7 @@ public class soundControllerScript : MonoBehaviour {
 	{
         //play sound
         //soundSource.PlayOneShot(lowHealthHeartBeat);
-        AudioSource.PlayClipAtPoint(lowHealthHeartBeat, position);
+//        AudioSource.PlayClipAtPoint(lowHealthHeartBeat, position);
     }
 	
 	//PLAY EMPTY CLIP SOUND//

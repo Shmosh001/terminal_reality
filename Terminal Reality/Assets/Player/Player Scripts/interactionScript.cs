@@ -352,7 +352,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				playerData.hasKey = true;
 				//Destroy keys game object//				
 				pushE.enabled = false;
-				Destroy(interactingCollider.gameObject);
+				//Destroy(interactingCollider.gameObject);
 				inRangeOfKeys = false;
 				
 				PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
