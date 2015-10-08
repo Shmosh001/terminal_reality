@@ -109,10 +109,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             soundC = 0;
         }
 
-        switch (fsm.getCurrentState()) {
+        switch ((byte)fsm.getCurrentState()) {
 
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
-            case StateEnums.BossZombieStates.Idle:
+            case (byte)StateEnums.BossZombieStates.Idle:
 
                 if (stateDebugStatements)  Debug.Log("idle case: entering " + Time.timeSinceLevelLoad); 
 
@@ -122,7 +122,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             
 
             /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
-            case StateEnums.BossZombieStates.Chasing:
+            case (byte)StateEnums.BossZombieStates.Chasing:
                 if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); 
                 //counter
                 chasingC += Time.deltaTime;
@@ -153,20 +153,20 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
            
             /***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
-            case StateEnums.BossZombieStates.Attacking:
+            case (byte)StateEnums.BossZombieStates.Attacking:
                 if (stateDebugStatements)  Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad); 
                 attackPlayer();
                 break;
 
            
             /***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
-            case StateEnums.BossZombieStates.Dying:
+            case (byte)StateEnums.BossZombieStates.Dying:
                 if (stateDebugStatements)  Debug.Log("dying case: entering " + Time.timeSinceLevelLoad); 
                 killUnit();
                 break;
 
             /***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
-            case StateEnums.BossZombieStates.Dead:
+            case (byte)StateEnums.BossZombieStates.Dead:
                 if (stateDebugStatements)  Debug.Log("dead case: entering " + Time.timeSinceLevelLoad); 
                 //we disable all non vital components
                 animatorCont.turnOffRM();
