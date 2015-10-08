@@ -251,7 +251,7 @@ public class ShootingScript : ammoHUDScript {
                 //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
                 if (PhotonNetwork.offlineMode) {
                     //Debug.LogWarning((int)weapon.GetComponent<weaponDataScript>().damage);
-                    hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
+                    hitObject.GetComponent<EnemyHealthScript>().takeDamageN((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag, hitPoint, hitObject.GetComponent<PhotonView>().viewID);
                 }
                 else {
                     if (enemypView == null) {
@@ -259,7 +259,7 @@ public class ShootingScript : ammoHUDScript {
                     }
                     else {
                         //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
-                        enemypView.RPC("takeDamageN", PhotonTargets.AllViaServer, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag, hitObject.GetComponent<PhotonView>().viewID);
+                        enemypView.RPC("takeDamageN", PhotonTargets.AllViaServer, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag, hitPoint,hitObject.GetComponent<PhotonView>().viewID);
                     }
                 }
                 

@@ -48,7 +48,7 @@ public class EnemyHealthScript : MonoBehaviour {
                 bfsm.alertDead();
             }
             else {
-                fsm.alertDead();
+                fsm.alertDead(transform.up);
             }
             dead = true;
 		}
@@ -78,7 +78,7 @@ public class EnemyHealthScript : MonoBehaviour {
     /// entity
     /// </param>
     [PunRPC]
-	public void takeDamageN(int value, string tag, int id){
+	public void takeDamageN(int value, string tag, Vector3 hitPoint, int id){
         //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
 
         if (this.gameObject.GetComponent<PhotonView>().viewID != id) {
@@ -109,7 +109,7 @@ public class EnemyHealthScript : MonoBehaviour {
                 bfsm.alertDead();
             }
             else {
-                fsm.alertDead();
+                fsm.alertDead(hitPoint);
             }
 			dead = true;
 		}
@@ -130,7 +130,7 @@ public class EnemyHealthScript : MonoBehaviour {
 
 
 
-    public void takeDamage(int value, string tag) {
+    /*public void takeDamage(int value, string tag) {
         //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
 
         GameObject entity = GameObject.FindGameObjectWithTag(tag);
@@ -162,5 +162,5 @@ public class EnemyHealthScript : MonoBehaviour {
             dead = true;
         }
 
-    }
+    }*/
 }

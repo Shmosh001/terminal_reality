@@ -21,9 +21,10 @@ public class RagdollFollow : MonoBehaviour {
     }
 
 
-    public void enableRagdoll() {
+    public void enableRagdoll(Vector3 impact) {
         zombie.SetActive(false);
         ragdoll.SetActive(true);
+        ragdoll.transform.GetChild(0).gameObject.rigidbody.AddForceAtPosition(Vector3.forward, impact);
     }
 
     public void enableZombie() {

@@ -37,7 +37,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     //distance values
     public float runningDistance, attackingDistance = 1.5f, losingDistance = 20.0f;
 
-    
+
+    private Vector3 shotPosition;
+
     //PRIVATE VARS
 
     //the entities audio source
@@ -601,8 +603,9 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         ///Instantiate(ragdoll, transform.position, transform.rotation);
         /// 
        // GameObject.FindGameObjectWithTag(Tags.PLAYER1).GetComponent<PhotonView>().RPC("spawnEnemy", PhotonTargets.AllBuffered, transform.position.x, transform.position.y, transform.position.z, transform.rotation.x, transform.rotation.y, transform.rotation.z);
-        transform.parent.gameObject.GetComponent<RagdollFollow>().enableRagdoll();
+        transform.parent.gameObject.GetComponent<RagdollFollow>().enableRagdoll(shotPosition);
         
+
 
         //Destroy(gameObject);
         //
@@ -898,15 +901,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// <summary>
     /// alerts the unit that is has died, basically just a state change
     /// </summary>
-	public void alertDead(){
-		//fsm.enterState(StateEnums.ZombieStates.Dying);
-		
+	public void alertDead(Vector3 position){
+        //fsm.enterState(StateEnums.ZombieStates.Dying);
+
         /*if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.ZombieStates.Dying);
         }
         else {
             pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.ZombieStates.Dying);
         }*/
+        shotPosition = position;
         enterState((byte)StateEnums.ZombieStates.Dying);
     }
 
