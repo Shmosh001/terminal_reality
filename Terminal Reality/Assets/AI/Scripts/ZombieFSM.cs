@@ -885,7 +885,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 enterState((byte)StateEnums.ZombieStates.Alerted);
             }
             else {
-                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Alerted);
+                pView.RPC("enterState", /*PhotonTargets.AllViaServer*/photonView.GetInstanceID(), (byte)StateEnums.ZombieStates.Alerted);
             }
         }
 	}

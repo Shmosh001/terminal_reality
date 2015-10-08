@@ -55,12 +55,20 @@ public class WanderScript : MonoBehaviour {
     /// </returns>
 	public Transform getClosestPoint(Transform entity){
         //get first element
+        Debug.Log(unvisitedLocations.Count);
+        Debug.Log(unvisitedCount);
+        //Debug.Log(unvisitedLocations.Capacity);
+       
+
+        //get random location
+
+
         Transform closest = (Transform)unvisitedLocations[0];
         //get basic distance
 
 		float lastDist = Vector3.Distance(closest.position, entity.position);
 
-
+        
         for (int i = 1; i < unvisitedCount; i++){
             //get distance
             Transform location = (Transform)unvisitedLocations[i];
