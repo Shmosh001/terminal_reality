@@ -202,8 +202,18 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             /***********Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*******Alerted*/
             case (byte)StateEnums.ZombieStates.Alerted:
                 //debug
-                if (stateDebugStatements) { Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad); }
-                animatorCont.resetBooleans(pView.viewID);
+                if (stateDebugStatements) Debug.Log("alerted case: entering " + Time.timeSinceLevelLoad);
+
+
+
+                if (PhotonNetwork.offlineMode) {
+                    animatorCont.resetBooleans(pView.viewID);
+                }
+                else {
+                    pView.RPC("resetBooleans", PhotonTargets.AllViaServer, pView.viewID);
+                }
+
+                
 
                 //increment counter
                 alertedC += Time.deltaTime;

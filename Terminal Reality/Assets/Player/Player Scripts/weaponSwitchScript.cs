@@ -154,7 +154,7 @@ public class weaponSwitchScript : ammoHUDScript {
 		{
            
             playerData.machineGunGameObject.gameObject.SetActive(false);
-            Debug.LogWarning("Set to false");
+            //Debug.LogWarning("Set to false");
 
             playerData.pistolGameObject.gameObject.SetActive(false);
 			
