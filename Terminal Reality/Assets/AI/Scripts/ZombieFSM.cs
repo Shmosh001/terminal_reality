@@ -255,8 +255,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     if (stateDebugStatements) { Debug.Log("chasing case: if statement " + Time.timeSinceLevelLoad); }
                     chasePlayer();
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
-                    navAgent.SetDestination(target.transform.position);
-                    detection.assignLastPosition(target.transform.position);
+                    
                     if (target == null) {
                         handleNoTarget();
                         break;
@@ -264,6 +263,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     detection.assignTarget(target);
                     chasingC = 0;
                 }
+                navAgent.SetDestination(target.transform.position);
+                detection.assignLastPosition(target.transform.position);
                 break;
 
             /***********Searching*******Searching*******Searching*******Searching*******Searching*******Searching*******Searching*/
@@ -663,7 +664,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 		lessenSenses();
 		wandering = true;
 		//we get a location to move to from the wandering script
-		wanderDest = wanderScript.getClosestPoint(transform);
+		wanderDest = wanderScript.getPoint();
 
         //we check if the path settings works
         if (navAgent.SetDestination(wanderDest.position)){

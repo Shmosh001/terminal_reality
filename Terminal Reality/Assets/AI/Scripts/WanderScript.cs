@@ -48,7 +48,7 @@ public class WanderScript : MonoBehaviour {
     /// <returns>
     /// transform of that location
     /// </returns>
-	public Transform getClosestPoint(Transform entity){
+	public Transform getPoint(){
 
 
 
