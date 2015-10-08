@@ -350,6 +350,25 @@ public class interactionScript : Photon.MonoBehaviour {
 			if (inRangeOfKeys)
 			{
 				playerData.hasKey = true;
+				//Destroy keys game object//				
+				pushE.enabled = false;
+				Destroy(interactingCollider.gameObject);
+				inRangeOfKeys = false;
+				
+				PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+				if (pView == null) {
+					Debug.LogError("No PhotonView component found");
+				}
+				else {
+					if (PhotonNetwork.offlineMode) {
+						Destroy(interactingCollider.gameObject);
+						
+					}
+					else {
+						pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+						
+					}
+				}			
 			}
 		}
 	}
