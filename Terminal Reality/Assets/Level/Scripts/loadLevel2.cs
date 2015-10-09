@@ -8,9 +8,8 @@ public class loadLevel2 : MonoBehaviour {
 		if (col.gameObject.tag == Tags.PLAYER1 || col.gameObject.tag == Tags.PLAYER2) 
 		{
             PhotonNetwork.Destroy(col.gameObject);
-            Application.LoadLevel("Credits");
-            //col.gameObject.GetComponent<PhotonView>().RPC("transitionToNext", PhotonTargets.Others);
-            //transitionToNext();
+            Application.LoadLevel("LevelTwo");
+            
             
         }
 
