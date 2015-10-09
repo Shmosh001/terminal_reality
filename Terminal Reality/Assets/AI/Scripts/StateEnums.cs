@@ -21,6 +21,15 @@ public class StateEnums : MonoBehaviour {
 	};
 
 
+    public enum WheelZombieStates : byte {
+        Idle = 0,
+        Chasing,
+        Attacking,
+        Patrolling,
+        Dying,
+        Dead
+    }
+
     public enum BossZombieStates : byte {
         Idle = 0,
         Chasing,

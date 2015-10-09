@@ -11,8 +11,8 @@ public class WheelchairAnimationController : MonoBehaviour {
     private Animator backWheelR;
     private Animator frontWheelL;
     private Animator frontWheelR;
-
-    public static int movingParam;
+    private PhotonView pView;
+    
 
 
     private bool moving;
@@ -20,7 +20,7 @@ public class WheelchairAnimationController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        movingParam = Animator.StringToHash("Moving");
+        pView = this.gameObject.GetComponent<PhotonView>();
         main = gameObject.GetComponent<Animator>();
         frontWheelL = gameObject.transform.GetChild(0).GetChild(2).GetComponentInChildren<Animator>();
         frontWheelR = gameObject.transform.GetChild(0).GetChild(3).GetComponentInChildren<Animator>();
@@ -31,57 +31,71 @@ public class WheelchairAnimationController : MonoBehaviour {
     }
 
 
-
-
-    void enableAnimation() {
-        main.SetBool(movingParam, true);
-        frontWheelL.SetBool(movingParam, true);
-        frontWheelR.SetBool(movingParam, true);
-        backWheelL.SetBool(movingParam, true);
-        backWheelR.SetBool(movingParam, true);
+    public void enableMotion() {
+        frontWheelL.SetBool(WheelchairHash.movingBool, true);
+        frontWheelR.SetBool(WheelchairHash.movingBool, true);
+        backWheelL.SetBool(WheelchairHash.movingBool, true);
+        backWheelR.SetBool(WheelchairHash.movingBool, true);
     }
 
-    void stopAnimation() {
-        main.SetBool(movingParam, false);
-        frontWheelL.SetBool(movingParam, false);
-        frontWheelR.SetBool(movingParam, false);
-        backWheelL.SetBool(movingParam, false);
-        backWheelR.SetBool(movingParam, false);
+    public void disableMotion() {
+        frontWheelL.SetBool(WheelchairHash.movingBool, false);
+        frontWheelR.SetBool(WheelchairHash.movingBool, false);
+        backWheelL.SetBool(WheelchairHash.movingBool, false);
+        backWheelR.SetBool(WheelchairHash.movingBool, false);
     }
 
 
-    // Update is called once per frame
-    void Update() {
-        if (!reset && moving) {
-            enableAnimation();
-            reset = true;
+    /// <summary>
+    /// sets a trigger 
+    /// </summary>
+    /// <param name="name">
+    /// hash of the trigger
+    /// </param>
+    [PunRPC]
+    public void setTriggerWC(int name, int viewID) {
+
+        if (viewID != pView.viewID) {
+            return;
         }
-        else if (!reset && !moving) {
-            reset = true;
-            stopAnimation();
-        }
-    }
+        if (main.isActiveAndEnabled) {
+            main.SetTrigger(name);
 
-
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-
-
-
-
-        if (stream.isWriting) {
-            stream.SendNext(moving);
-        }
-        //receiving other players things
-        else {
-            bool temp = (bool)stream.ReceiveNext();
-            if (temp != moving) {
-                reset = false;
-                
+            if (name == WheelchairHash.patrolingTrigger || name == WheelchairHash.chasingTrigger) {
+                enableMotion();
             }
-            moving = temp;
+            else {
+                disableMotion();
+            }
         }
 
+
+
     }
+
+
+
+
+
+    /// <summary>
+    /// sets a boolean to true/false
+    /// </summary>
+    /// <param name="name">
+    /// hash of boolean
+    /// </param>
+    /// <param name="value">
+    /// value
+    /// </param>
+    [PunRPC]
+    public void setBooleanWC(int name, bool value, int viewID) {
+
+        if (viewID != pView.viewID) {
+            return;
+        }
+        if (main.isActiveAndEnabled) {
+            main.SetBool(name, value);
+        }
+    }
+
 
 }
