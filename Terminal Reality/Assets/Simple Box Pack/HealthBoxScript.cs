@@ -30,11 +30,11 @@ public class HealthBoxScript : MonoBehaviour {
 	{
         //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
         if (other.tag == Tags.PLAYER1) {
-            pushE.enabled = true;
+            //pushE.enabled = true;
         }
 
         if (other.tag == Tags.PLAYER2) {
-            pushE.enabled = true;
+            //pushE.enabled = true;
         }
     }
 	
@@ -43,11 +43,11 @@ public class HealthBoxScript : MonoBehaviour {
 	{
         //IF A PLAYER LEAVES THE DOOR'S TRIGGER//
         if (other.tag == Tags.PLAYER1) { 
-			pushE.enabled = false;
+			//pushE.enabled = false;
 		}
 
         if (other.tag == Tags.PLAYER2) {
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
     }
 

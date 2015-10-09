@@ -66,9 +66,6 @@ public class interactionScript : Photon.MonoBehaviour {
 
 					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
 					//ds.interaction();
-
-
-
                     PhotonView pView = hitObject.GetComponent<PhotonView>();
 
                     if (pView == null) {
@@ -102,7 +99,6 @@ public class interactionScript : Photon.MonoBehaviour {
 				{
 					//DDScript dds = hitObject.GetComponentInParent<DDScript>();
 					//dds.interaction();
-
 
                     PhotonView pView = hitObject.GetComponent<PhotonView>();
 
@@ -138,9 +134,7 @@ public class interactionScript : Photon.MonoBehaviour {
 
                 }
 
-				//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-
-                
+				//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();                
                     
 			}	
 
@@ -201,6 +195,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	                }
 	                
 					inRangeOfAmmo = false;
+					pushE.enabled = false;
 				}
 			}
 	
@@ -238,6 +233,7 @@ public class interactionScript : Photon.MonoBehaviour {
 
                     //Destroy(interactingCollider.gameObject);
                     inRangeOfHealth = false;
+					pushE.enabled = false;
                 }
             }
 			//can only pick up health if player's health is not full
@@ -310,6 +306,7 @@ public class interactionScript : Photon.MonoBehaviour {
                     
 
                 inRangeOfPistol = false;
+				pushE.enabled = false;
 			}
 	
 			//IF THE PLAYER IS IN RANGE OF MACHINE GUN - PICK IT UP
@@ -344,6 +341,8 @@ public class interactionScript : Photon.MonoBehaviour {
 				interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
 				Destroy(interactingCollider.gameObject);
 				inRangeOfMachineGun = false;
+				pushE.enabled = false;
+				
 			}
 			
 			//IF THE PLAYER IS IN RANGE OF THE KEYS - PICK THEM UP
@@ -379,6 +378,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
+			pushE.enabled = true;
 			inRangeOfAmmo = true;
 			interactingCollider = other;
 		}
@@ -386,6 +386,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF AN HEALTH BOX
 		if (other.tag == "HealthBox")
 		{
+			pushE.enabled = true;
 			inRangeOfHealth = true;
 			interactingCollider = other;
 		}
@@ -393,6 +394,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF PISTOL
 		if (other.tag == "pistolPickup")
 		{
+			pushE.enabled = true;
 			inRangeOfPistol = true;
 			interactingCollider = other;
 		}
@@ -400,6 +402,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF MACHINE GUN
 		if (other.tag == "machineGunPickup")
 		{
+			pushE.enabled = true;
 			inRangeOfMachineGun = true;
 			interactingCollider = other;
 		}
@@ -419,24 +422,28 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER NOT IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
+			pushE.enabled = false;
 			inRangeOfAmmo = false;
 		}
 		
 		//IF PLAYER NOT IN RANGE OF AN HEALTH BOX
 		if (other.tag == "HealthBox")
 		{
+			pushE.enabled = false;
 			inRangeOfHealth = false;
 		}
 
 		//IF PLAYER NOT IN RANGE OF PISTOL
 		if (other.tag == "pistolPickup")
 		{
+			pushE.enabled = false;
 			inRangeOfPistol = false;
 		}
 		
 		//IF PLAYER NOT IN RANGE OF MACHINE GUN
 		if (other.tag == "machineGunPickup")
 		{
+			pushE.enabled = false;
 			inRangeOfMachineGun = false;
 		}
 		

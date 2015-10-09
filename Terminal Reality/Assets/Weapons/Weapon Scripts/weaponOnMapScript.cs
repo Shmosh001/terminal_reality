@@ -33,11 +33,11 @@ public class weaponOnMapScript : MonoBehaviour {
 	{
         //If player walks into trigger...
         if (other.tag == Tags.PLAYER1) {
-			pushE.enabled = true;
+			//pushE.enabled = true;
 
 		}
         if (other.tag == Tags.PLAYER2) {
-            pushE.enabled = true;
+            //pushE.enabled = true;
 
         }
     }
@@ -47,11 +47,11 @@ public class weaponOnMapScript : MonoBehaviour {
 	{
         //If player walks into trigger...
         if (other.tag == Tags.PLAYER1) {
-			pushE.enabled = false;
+			//pushE.enabled = false;
 		}
 
         if (other.tag == Tags.PLAYER2) {
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
     }
 
@@ -59,7 +59,7 @@ public class weaponOnMapScript : MonoBehaviour {
 	public void turnOffText()
 	{
         if (pushE != null) {
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
         
 	}

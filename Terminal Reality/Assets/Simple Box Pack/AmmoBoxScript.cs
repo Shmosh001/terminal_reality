@@ -40,12 +40,12 @@ public class AmmoBoxScript : MonoBehaviour {
         //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
         if (other.tag == Tags.PLAYER1) {
 			playerInRange = true;
-			pushE.enabled = true;
+			//pushE.enabled = true;
 			
 		}
         if (other.tag == Tags.PLAYER2) {
             playerInRange = true;
-            pushE.enabled = true;
+           //pushE.enabled = true;
 
         }
     }
@@ -56,12 +56,12 @@ public class AmmoBoxScript : MonoBehaviour {
         //IF A PLAYER LEAVES THE DOOR'S TRIGGER//
         if (other.tag == Tags.PLAYER1) {
 			playerInRange = false;
-			pushE.enabled = false;
+			//pushE.enabled = false;
 		}
 
         if (other.tag == Tags.PLAYER2) {
             playerInRange = false;
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
     }
 
@@ -69,7 +69,7 @@ public class AmmoBoxScript : MonoBehaviour {
 	public void turnOffText()
 	{
         if (pushE != null) {
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
 	}
 	
