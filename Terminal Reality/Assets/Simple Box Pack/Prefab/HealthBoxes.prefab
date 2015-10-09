@@ -45,8 +45,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 425948}
   - 135: {fileID: 13525944}
-  - 114: {fileID: 11425944}
   - 82: {fileID: 8239924}
+  - 114: {fileID: 11497548}
+  - 114: {fileID: 11497546}
   m_Layer: 0
   m_Name: HealthBoxes
   m_TagString: HealthBox
@@ -85,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.0559998, y: 2.66899991, z: 12.1470003}
+  m_LocalPosition: {x: 59.2999992, y: .200000003, z: 27.3999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425946}
@@ -232,7 +233,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11425944
+--- !u!114 &11497546
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -240,9 +241,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 125948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8d587e396d9fb4ab3c15359da0ebb6, type: 3}
+  m_Script: {fileID: 11500000, guid: fe2f0b14c3b9b81498c068679c184fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11497548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!135 &13525944
 SphereCollider:
   m_ObjectHideFlags: 1
