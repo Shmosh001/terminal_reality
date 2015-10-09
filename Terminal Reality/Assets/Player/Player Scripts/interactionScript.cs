@@ -21,7 +21,9 @@ public class interactionScript : Photon.MonoBehaviour {
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
 	private GameObject pushEObj;
+	private GameObject pushEOpenObj;
 	private Text pushE;
+	private Text pushEOpen;
 
 
 
@@ -43,6 +45,12 @@ public class interactionScript : Photon.MonoBehaviour {
 			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
 			if (pushEObj != null) {
 				pushE = pushEObj.GetComponent<Text>();
+			}
+		}
+		if (pushEOpenObj == null) {
+			pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
+			if (pushEOpenObj != null) {
+				pushEOpen = pushEOpenObj.GetComponent<Text>();
 			}
 		}
 
@@ -345,6 +353,16 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
+		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+		if (other.tag == "Door")
+		{
+			if (pushEOpenObj == null) {
+				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
+				pushEOpen = pushEOpenObj.GetComponent<Text>();				
+			}
+			pushEOpen.enabled = true;
+		}
+		
 		//IF PLAYER IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
@@ -389,6 +407,16 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
+		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+		if (other.tag == "Door")
+		{
+			if (pushEOpenObj == null) {
+				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
+				pushEOpen = pushEOpenObj.GetComponent<Text>();				
+			}
+			pushEOpen.enabled = false;
+		}
+		
 		//IF PLAYER NOT IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
