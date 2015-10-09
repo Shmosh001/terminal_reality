@@ -14,6 +14,10 @@ public class PatrolScript : MonoBehaviour {
 	}
 	
 
+    public Vector3 getCurrentWayPoint() {
+        return route[index].position;
+    }
+
     public Vector3 getNextWayPoint() {
         index++;
         if (index >= route.Length) {

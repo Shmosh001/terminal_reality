@@ -135,7 +135,7 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110152374
+--- !u!1101 &110145968
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
@@ -143,7 +143,7 @@ Transition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_SrcState: {fileID: 0}
-  m_DstState: {fileID: 110245904}
+  m_DstState: {fileID: 110242462}
   m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
@@ -215,18 +215,18 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1102 &110245904
+--- !u!1102 &110242462
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: zombie_attack
+  m_Name: zombie_attack 1
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: aa3a127d04f8c4f4b9730ea2f25b861f, type: 2}
+  - {fileID: 7400000, guid: 8b226f11d8fb02f4ea65f80f46b01247, type: 2}
   m_ParentStateMachine: {fileID: 110780660}
-  m_Position: {x: 36, y: 36, z: 0}
+  m_Position: {x: -12, y: 48, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -281,7 +281,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Chasing
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 4878795e54dcfe440896e51c72efcbb6, type: 2}
@@ -296,7 +296,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Patrolling
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 4878795e54dcfe440896e51c72efcbb6, type: 2}
@@ -345,31 +345,28 @@ StateMachine:
   m_DefaultState: {fileID: 110266710}
   m_States:
   - {fileID: 110280032}
-  - {fileID: 110245904}
   - {fileID: 110266710}
   - {fileID: 110293740}
+  - {fileID: 110242462}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
-    data:
-      first: {fileID: 110293740}
-      second: []
-    data:
-      first: {fileID: 110266710}
-      second: []
-    data:
-      first: {fileID: 110245904}
-      second: []
-    data:
-      first: {fileID: 110280032}
-      second: []
     data:
       first: {fileID: 0}
       second:
       - {fileID: 110106838}
       - {fileID: 110145338}
       - {fileID: 110124556}
-      - {fileID: 110152374}
+      - {fileID: 110145968}
+    data:
+      first: {fileID: 110266710}
+      second: []
+    data:
+      first: {fileID: 110280032}
+      second: []
+    data:
+      first: {fileID: 110293740}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -108, y: -60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

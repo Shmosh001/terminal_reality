@@ -3,21 +3,13 @@ using System.Collections;
 
 public class PVIewID : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 
 
 
     void OnGUI() {
-
+        
         Vector3 characterPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
 
         characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (60 / 2), Screen.width - (60 / 2)),

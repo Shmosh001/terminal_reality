@@ -178,6 +178,7 @@ public class PreyDetection : MonoBehaviour {
         //if the angle is smaller then we can see the target
         //now we need to check if anything is obstructing the view by raycasting
         if (angle < FOV / 2) {
+            
             //Debug.LogWarning("in view");
             RaycastHit hitObject;
             //Debug.Log(transform.position + transform.up);

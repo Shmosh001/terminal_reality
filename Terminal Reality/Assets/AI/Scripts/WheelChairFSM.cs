@@ -35,7 +35,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
     //speed values
     public float walkingSpeed, RunningSpeed, speed;
     //distance values
-    public float runningDistance, attackingDistance = 1.5f, lineOfSight = 30;
+    public float runningDistance, attackingDistance = 3.0f, lineOfSight = 30;
 
 
     private Vector3 shotPosition;
@@ -46,10 +46,10 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
     //booleans to ascertain certain state specifics
     //private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot, deadBool;
-    private bool patroling;
+    private bool patroling, chasing;
     //counters
     //private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC;
-    private float idleC, idleD = 1.0f, attackC;
+    private float idleC, idleD = 2.0f, attackC, chaseSpeed = 6, patrolSpeed = 3;
 
 	//animation controller
 	private WheelchairAnimationController animatorCont;
@@ -107,6 +107,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                 idleC += Time.deltaTime;
 
                 if (idleC > idleD) {
+                    Debug.Log("Entered patrol mode from idle");
                     fsm.enterState(StateEnums.WheelZombieStates.Patrolling);
                     
                 }
@@ -118,10 +119,24 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             
             /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
             case (byte)StateEnums.WheelZombieStates.Chasing:
-                if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); 
+                if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);
 
-                navAgent.SetDestination(target.transform.position);
-                detection.assignLastPosition(target.transform.position);
+                if (!chasing) {
+                    if (PhotonNetwork.offlineMode) {
+                        animatorCont.setTriggerWC(WheelchairHash.chasingTrigger, pView.viewID);
+                    }
+                    else {
+                        pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.chasingTrigger, pView.viewID);
+                    }
+                    chasing = true;
+                    navAgent.speed = chaseSpeed;
+                }
+
+
+                chasePlayer();
+
+                
+
                 break;
 
            
@@ -135,15 +150,17 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
             /***********Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*/
             case (byte)StateEnums.WheelZombieStates.Patrolling:
-                if (stateDebugStatements)  Debug.Log("wandering case: entering " + Time.timeSinceLevelLoad);
+                if (stateDebugStatements)  Debug.Log("patroling case: entering " + Time.timeSinceLevelLoad);
                 if (!patroling) {
                     patroling = true;
-
+                    Debug.Log("started patroling");
                     startPatroling();
+                    navAgent.speed = patrolSpeed;
                 }
-
-                if (navAgent.remainingDistance < navAgent.stoppingDistance) {
+                float distance = Vector3.Distance(transform.position, patrol.getCurrentWayPoint());
+                if (distance < 1) {
                     //we arrived at target
+                    Debug.Log("arrived");
                     stopPatrolling();
                 }
                 
@@ -183,7 +200,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         fsm.enterState(StateEnums.WheelZombieStates.Idle);
         idleC = 0;
 
-
+        patroling = false;
 
         if (PhotonNetwork.offlineMode) {
             animatorCont.setTriggerWC(WheelchairHash.idleTrigger, pView.viewID);
@@ -240,16 +257,24 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
 
         navAgent.SetDestination(target.transform.position);
-        
+        detection.assignLastPosition(target.transform.position);
 
-		
 
-            //we check if we are close enough to attack the target
-            //or if we are far away enough to have lost the target
+
+
+        float distance = getDistanceT(transform, target.transform);
+
+
+        Debug.LogWarning(distance);
+
+        //we check if we are close enough to attack the target
+        //or if we are far away enough to have lost the target
         //if (navAgent.remainingDistance < navAgent.stoppingDistance)
-        if (navAgent.remainingDistance < navAgent.stoppingDistance) {
-            if (debugStatements)  Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad); 
+        if (distance <= attackingDistance) {
+            if (debugStatements)  Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
+
+            Debug.LogWarning("ATTACKING");
             fsm.enterState(StateEnums.WheelZombieStates.Attacking);
             
             navAgent.Stop();
@@ -309,7 +334,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             //if we are too far away we start chasing the player again
 		float distance = getDistanceT(transform, target.transform);
 		//add a small offset
-		if (distance > attackingDistance+5){
+		if (distance > attackingDistance+3){
 			fsm.enterState(StateEnums.WheelZombieStates.Chasing);
 			
             
@@ -337,6 +362,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
 			if (debugStatements)Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad);
             //assign the target
+ 
             detection.assignTarget(collider.gameObject);
             target = collider.gameObject;
 		}
@@ -375,7 +401,8 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         enterState((byte)StateEnums.WheelZombieStates.Dying);
     }
 
-   
+
+    
 
 
 
