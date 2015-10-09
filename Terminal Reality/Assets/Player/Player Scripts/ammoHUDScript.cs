@@ -19,7 +19,8 @@ public class ammoHUDScript : MonoBehaviour {
 
 
     void Update() {
-        /*if (ammoTextObj == null) {
+        
+        if (ammoTextObj == null) {
             ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
             if (ammoTextObj != null) {
                 Debug.LogWarning("ammotext assigned");
@@ -33,16 +34,16 @@ public class ammoHUDScript : MonoBehaviour {
                 Debug.LogWarning("reload assigned");
                 reloadText = reloadTextObj.GetComponent<Text>();
             }
-        }*/
+        }
     }
 
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
 	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
-        if (ammoText == null) {
-            //Debug.LogError("Ammotext is null");
-            return;
+        if (ammoText == null) {            
+			ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
+			ammoText = ammoTextObj.GetComponent<Text>();
         }
 		ammoText.text = totAmmo + " / " + clipAmmo;		
 		//TODO uncommented
@@ -55,13 +56,14 @@ public class ammoHUDScript : MonoBehaviour {
 	{
 
         if (reloadText == null) {
-            //Debug.LogError("reloadText is null");
-            return;
+			reloadTextObj = GameObject.FindGameObjectWithTag(Tags.RELOADTEXT);
+			reloadText = reloadTextObj.GetComponent<Text>();
         }
+        /*
         if (ammoText == null ) {
             //Debug.LogError("Ammotext is null");
             return;
-        }
+        }*/
 
         if (totAmmo != 0 && clipAmmo != 0)
 		{
@@ -80,6 +82,10 @@ public class ammoHUDScript : MonoBehaviour {
 		{
 			reloadText.text = "Out of Ammo";
 			reloadText.enabled = true;
+		}
+		else if (clipAmmo/(clipSize * 1.0f) >= 0.3)
+		{
+			reloadText.enabled = false;
 		}
 
 
