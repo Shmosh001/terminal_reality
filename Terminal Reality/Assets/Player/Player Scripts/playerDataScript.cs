@@ -18,7 +18,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 	public bool walking = true;
 	public bool sprinting = false;
 	public bool sneaking = false;
-    public bool canHear = false;
+    public bool canHear = true;
 	
 	//PUBLIC WEAPON RELATED VARIABLES//	
 	public bool pistolPickedUp = false;
@@ -29,8 +29,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 	//WEAPONS GAME OBJECTS//
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
-    public GameObject torch2;
-    
+    public GameObject torch2;    
 	
 	//TORCH//
 	public Light torch;

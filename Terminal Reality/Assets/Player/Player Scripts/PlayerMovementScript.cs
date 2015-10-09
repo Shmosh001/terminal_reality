@@ -65,6 +65,7 @@ public class PlayerMovementScript : MonoBehaviour {
 				playerData.sprinting = true;
 				playerData.sneaking = false;
 				playerData.walking = false;
+				playerData.canHear = true;
 			}
 		}
 		if (Input.GetKeyUp(KeyCode.LeftShift)) //Release sprint button//
@@ -105,6 +106,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			playerData.sprinting = false;
 			playerData.sneaking = true;
 			playerData.walking = false;
+			playerData.canHear = false;
 		}
 		if (Input.GetKeyUp(KeyCode.LeftControl)) //Release sneak button//
 		{
@@ -114,6 +116,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			playerData.sprinting = false;
 			playerData.sneaking = false;
 			playerData.walking = true;
+			playerData.canHear = true;
 		}
 		
 		if (characterController.isGrounded) //can only adjust directional speed when player is grounded//
