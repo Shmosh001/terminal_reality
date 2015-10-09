@@ -56,13 +56,14 @@ public class ammoHUDScript : MonoBehaviour {
 	{
 
         if (reloadText == null) {
-            //Debug.LogError("reloadText is null");
-            return;
+			reloadTextObj = GameObject.FindGameObjectWithTag(Tags.RELOADTEXT);
+			reloadText = reloadTextObj.GetComponent<Text>();
         }
+        /*
         if (ammoText == null ) {
             //Debug.LogError("Ammotext is null");
             return;
-        }
+        }*/
 
         if (totAmmo != 0 && clipAmmo != 0)
 		{
@@ -81,6 +82,10 @@ public class ammoHUDScript : MonoBehaviour {
 		{
 			reloadText.text = "Out of Ammo";
 			reloadText.enabled = true;
+		}
+		else if (clipAmmo/(clipSize * 1.0f) >= 0.3)
+		{
+			reloadText.enabled = false;
 		}
 
 
