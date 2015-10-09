@@ -262,10 +262,11 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
 
 
-        float distance = getDistanceT(transform, target.transform);
+        float distance = getDistanceT(this.gameObject.transform, target.transform);
 
 
-        Debug.LogWarning(distance);
+        //Debug.LogWarning(distance);
+        //Debug.LogWarning("*"+attackingDistance);
 
         //we check if we are close enough to attack the target
         //or if we are far away enough to have lost the target
@@ -274,7 +275,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             if (debugStatements)  Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
 
-            Debug.LogWarning("ATTACKING");
+            //Debug.LogWarning("ATTACKING");
             fsm.enterState(StateEnums.WheelZombieStates.Attacking);
             
             navAgent.Stop();

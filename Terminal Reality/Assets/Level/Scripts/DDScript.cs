@@ -32,7 +32,7 @@ public class DDScript : MonoBehaviour {
 		if(!open)
 		{
             //play sound of this component
-            soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
+            //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
             anim.SetTrigger("OpenFWD");
 			open = true;
 
