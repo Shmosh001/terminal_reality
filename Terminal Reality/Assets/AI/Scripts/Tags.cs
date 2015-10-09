@@ -31,6 +31,8 @@ public class Tags : MonoBehaviour {
     public const string DEBUGLIGHT = "DebugLight";
 	public const string KEYTOOPEN = "keyToOpen";
     public const string RAGDOLL = "Ragdoll";
+    public const string PATROLPOINT = "PatrolPoint";
+    
 
 
 
