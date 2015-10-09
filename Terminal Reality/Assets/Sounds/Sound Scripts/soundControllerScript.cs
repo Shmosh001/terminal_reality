@@ -24,10 +24,7 @@ public class soundControllerScript : MonoBehaviour {
 	
 
 	//PUBLIC LEVEL SOUNND VARIABLES
-	public AudioClip sparkSound;
-	public AudioClip doorCreekSound;
-	public AudioClip glassBreakingSound;
-    public AudioClip windSound;
+	public AudioClip sparkSound;	
 
 
 	// Use this for initialization
@@ -100,29 +97,6 @@ public class soundControllerScript : MonoBehaviour {
         //soundSource.PlayOneShot(sparkSound);
         AudioSource.PlayClipAtPoint(sparkSound, position);
     }
-
-
-    //DOOR CREEK SOUND
-    public void playDoorCreek(Vector3 position)
-	{
-        //soundSource.PlayOneShot(doorCreekSound);
-        AudioSource.PlayClipAtPoint(doorCreekSound, position);
-    }
-
-    //GLASS BREAKING SOUND
-    public void playGlassBreaking(Vector3 position)
-	{
-        //soundSource.PlayOneShot(glassBreakingSound);
-        AudioSource.PlayClipAtPoint(glassBreakingSound, position);
-    }
-
-    //WIND SOUND
-    public void playWindSound(Vector3 position)
-    {
-        AudioSource.PlayClipAtPoint(windSound, position);
-    }
-
-
 
     //PLAY SCREAM FOR BOSS ZOMBIE//
     public void playBossScreamSound(Vector3 position) {

@@ -121,14 +121,12 @@ public class DoorScript : MonoBehaviour {
                 //now we need to check if anything is obstructing the view by raycasting
                 if (angle < FOV / 2)
                 {
-                    Debug.Log("IN FOV");
                     playerFWD = true;
                 }
 
                 //player entering room
                 else
                 {
-                    Debug.Log("NOT IN FOV");
                     playerFWD = false;
                 }
             }

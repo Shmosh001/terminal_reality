@@ -3,21 +3,23 @@ using System.Collections;
 
 public class glassBreaking : MonoBehaviour {
 
-	private GameObject soundController;
+	private AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () 
 	{
-		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+		
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == Tags.PLAYER1 || other.gameObject.tag == Tags.PLAYER2)
 		{
-			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playGlassBreaking (transform.position);
-			//Destroy(this.gameObject, 3.0f)
+            //play sound of this component
+            audioSource.Play();
+            //Destroy Component
+			Destroy(this.gameObject, 3.0f)
 		}
 	}
 }
