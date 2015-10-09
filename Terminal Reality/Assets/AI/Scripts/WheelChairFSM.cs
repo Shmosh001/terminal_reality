@@ -291,9 +291,24 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         
 	}
 
-    
 
 
+    /// <summary>
+    /// alerts the unit that it has been shot
+    /// changes state 
+    /// </summary>
+    /// <param name="entity">
+    /// which entity shot it
+    /// </param>
+    public void alertShot(GameObject entity) {
+        target = entity.gameObject;
+        // we only want to transition into the state if are not currently in the state
+
+        enterState((byte)StateEnums.BossZombieStates.Chasing);
+
+
+
+    }
 
 
     /// <summary>

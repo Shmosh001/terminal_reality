@@ -236,8 +236,8 @@ public class ShootingScript : ammoHUDScript {
 		{
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
-			
-			
+
+            Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
 			//TEST SHOOTING ON SPHERE
 			/*			if (hitObject.CompareTag("Sphere"))
 			{
@@ -249,7 +249,7 @@ public class ShootingScript : ammoHUDScript {
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
 			{
-                //Debug.Log("Enemy shot");
+                Debug.Log("Enemy shot: " + hitObject.name );
                 //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 
                 PhotonView enemypView = hitObject.GetComponent<PhotonView>();
