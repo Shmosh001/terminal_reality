@@ -4,12 +4,14 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour {
 
-	private GameObject soundController;
-    private AudioSource audioSource;
+	private AudioSource audioSource;
 	private Animator anim;
-	public bool open = false;
+    private bool playerFWD = false; 
+    public bool open = false;
     public bool openFWD = false;
+    public bool openBCK = false;
     private Text pushE;
+
     //field of view for detecting zombie
     private float FOV = 160f;
 
@@ -18,22 +20,25 @@ public class DoorScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
         audioSource = GetComponent<AudioSource>();
 		anim = this.GetComponent<Animator> ();
 
         pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-        if (pushETextObj != null) {
+        if (pushETextObj != null)
+        {
             pushE = pushETextObj.GetComponent<Text>();
         }
        
 	}
 
     // Update is called once per frame
-    void Update() {
-        if (pushETextObj == null) {
+    void Update()
+    {
+        if (pushETextObj == null)
+        {
             pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-            if (pushETextObj != null) {
+            if (pushETextObj != null)
+            {
                 pushE = pushETextObj.GetComponent<Text>();
             }
         }
@@ -43,24 +48,57 @@ public class DoorScript : MonoBehaviour {
     [PunRPC]
     public void interaction()
 	{
-		//IF THE DOOR IS OPEN//
-		if (open)
-		{
-			//play sound of this component
-			//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
-            audioSource.Play();
-            anim.SetTrigger("Close");
-			open = false;
-		}
-		//IF THE DOOR IS CLOSED//
-		else
-		{	
-			//play sound of this component
-			//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
-            audioSource.Play();
-            anim.SetTrigger("Open");
-			open = true;
-		}
+        //IF THE DOOR IS OPEN//
+        if (open)
+        {
+            open = false;
+            //IF THE DOOR IS OPEN forwards//
+            if (openFWD)
+            {
+                //play sound of this component
+                audioSource.Play();
+                anim.SetTrigger("CloseFWD");
+                openFWD = false;
+            }
+
+            //IF THE DOOR IS OPEN Backwards//
+            else if (openBCK)
+            {
+                //play sound of this component
+                audioSource.Play();
+                anim.SetTrigger("CloseBCK");
+                openBCK = false;
+            }
+        }
+
+        //IF THE DOOR IS CLOSED//
+        else
+        {
+            open = true;
+
+            //IF PLAYER INSIDE ROOM//
+            if (playerFWD) 
+            {
+                
+                //play sound of this component
+                audioSource.Play();
+                anim.SetTrigger("OpenFWD");
+                openFWD = true;
+            }
+
+
+            //IF PLAYER OUTSIDE ROOM//
+            else
+            {
+                //play sound of this component
+                audioSource.Play();
+                anim.SetTrigger("OpenBCK");
+                openBCK = true;
+            }
+            
+        }
+
+        
 	}
 
 	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
@@ -69,39 +107,60 @@ public class DoorScript : MonoBehaviour {
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
-			if (!open) //Only show hint if the door is closed
-			{
-				pushE.enabled = true;
-			}
-		}
+            
 
-		//ENEMY OPEN DOOR WHEN THEY ENTER COLLIDER
-		if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
-		{
-			if (!open)
+            if (!open) //Only show hint if the door is closed
 			{
-
-                Vector3 direction = other.gameObject.transform.position - transform.position;
+                pushE.enabled = true;
+                //this checks which side of the door the player is. If the player is in a room or not
+                Vector3 direction = other.transform.position - transform.position;
                 //gets the angle between the player and the unit
-                float angle = Vector3.Angle(direction, transform.forward);
+                float angle = Vector3.Angle(direction, transform.up);
                 //Debug.Log(angle);
                 //if the angle is smaller then we can see the target
                 //now we need to check if anything is obstructing the view by raycasting
                 if (angle < FOV / 2)
                 {
-                    Debug.LogWarning("inview");
-
+                    Debug.Log("IN FOV");
+                    playerFWD = true;
                 }
 
-                //zombie leaving room
+                //player entering room
                 else
                 {
-                    Debug.LogWarning("not inview");
+                    Debug.Log("NOT IN FOV");
+                    playerFWD = false;
+                }
+            }
+		}
+
+		//ENEMY OPEN DOOR WHEN THEY ENTER COLLIDER
+		if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
+		{
+			if (!openFWD)
+			{
+
+                Vector3 direction = other.gameObject.transform.position - transform.position;
+                //gets the angle between the player and the unit
+                float angle = Vector3.Angle(direction, transform.up);
+                //Debug.Log(angle);
+                //if the angle is smaller then we can see the target
+                //now we need to check if anything is obstructing the view by raycasting
+                if (angle < FOV / 2)
+                {
                     //play sound of this component
-                    //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
                     audioSource.Play();
-                    anim.SetTrigger("Open");
-                    open = true;
+                    anim.SetTrigger("OpenFWD");
+                    openFWD = true;
+                }
+
+                //zombie entering room
+                else
+                {
+                    //play sound of this component
+                    audioSource.Play();
+                    anim.SetTrigger("OpenBCK");
+                    openBCK = true;
                 }
                 
 			}
@@ -124,22 +183,20 @@ public class DoorScript : MonoBehaviour {
         //ENEMY CLOSE DOOR WHEN THEY EXIT THE COLLIDER
         if ((other.tag == Tags.ENEMY || other.tag == Tags.BOSSENEMY) && other.GetType() == typeof(CapsuleCollider))
 		{
-			if (open) //Only show hint if the door is closed
+			if (openFWD) //Only show hint if the door is closed
 			{
 				//play sound of this component
-				//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
                 audioSource.Play();
-				anim.SetTrigger("Close");
-				open = false;
+				anim.SetTrigger("CloseFWD");
+                openFWD = false;
 			}
 
-            else if (openFWD)
+            else if (openBCK)
             {
                 //play sound of this component
-                //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
                 audioSource.Play();
-                anim.SetTrigger("Close");
-                openFWD = false;
+                anim.SetTrigger("CloseBCK");
+                openBCK = false;
             }
 		}
 	}
