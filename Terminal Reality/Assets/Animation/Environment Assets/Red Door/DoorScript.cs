@@ -5,15 +5,21 @@ using System.Collections;
 public class DoorScript : MonoBehaviour {
 
 	private GameObject soundController;
+    private AudioSource audioSource;
 	private Animator anim;
 	public bool open = false;
-	private Text pushE;
+    public bool openFWD = false;
+    private Text pushE;
+    //field of view for detecting zombie
+    private float FOV = 160f;
 
     private GameObject pushETextObj;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
 		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+        audioSource = GetComponent<AudioSource>();
 		anim = this.GetComponent<Animator> ();
 
         pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
@@ -41,16 +47,18 @@ public class DoorScript : MonoBehaviour {
 		if (open)
 		{
 			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
-			anim.SetTrigger("Close");
+			//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
+            audioSource.Play();
+            anim.SetTrigger("Close");
 			open = false;
 		}
 		//IF THE DOOR IS CLOSED//
 		else
 		{	
 			//play sound of this component
-			soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
-			anim.SetTrigger("Open");
+			//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
+            audioSource.Play();
+            anim.SetTrigger("Open");
 			open = true;
 		}
 	}
@@ -72,10 +80,30 @@ public class DoorScript : MonoBehaviour {
 		{
 			if (!open)
 			{
-				//play sound of this component
-				soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
-				anim.SetTrigger("Open");
-				open = true;
+
+                Vector3 direction = other.gameObject.transform.position - transform.position;
+                //gets the angle between the player and the unit
+                float angle = Vector3.Angle(direction, transform.forward);
+                //Debug.Log(angle);
+                //if the angle is smaller then we can see the target
+                //now we need to check if anything is obstructing the view by raycasting
+                if (angle < FOV / 2)
+                {
+                    Debug.LogWarning("inview");
+
+                }
+
+                //zombie leaving room
+                else
+                {
+                    Debug.LogWarning("not inview");
+                    //play sound of this component
+                    //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
+                    audioSource.Play();
+                    anim.SetTrigger("Open");
+                    open = true;
+                }
+                
 			}
 		}
 	}
@@ -99,10 +127,20 @@ public class DoorScript : MonoBehaviour {
 			if (open) //Only show hint if the door is closed
 			{
 				//play sound of this component
-				soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
+				//soundController.GetComponent<soundControllerScript> ().playDoorCreek (transform.position);
+                audioSource.Play();
 				anim.SetTrigger("Close");
 				open = false;
 			}
+
+            else if (openFWD)
+            {
+                //play sound of this component
+                //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
+                audioSource.Play();
+                anim.SetTrigger("Close");
+                openFWD = false;
+            }
 		}
 	}
 }
