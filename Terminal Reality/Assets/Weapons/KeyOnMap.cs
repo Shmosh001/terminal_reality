@@ -9,7 +9,6 @@ public class KeyOnMap : MonoBehaviour {
 
     [PunRPC]
     public void destroyObject() {
-        //turnOffText();
         Destroy(gameObject);
     }
 }
