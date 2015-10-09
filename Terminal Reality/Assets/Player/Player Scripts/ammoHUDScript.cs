@@ -41,10 +41,7 @@ public class ammoHUDScript : MonoBehaviour {
 	//Update the text on the HUD which shows total ammo and ammo in clip
 	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
-        if (ammoText == null) {
-            //Debug.LogError("Ammotext is null");
-            //return;
-            print ("HERE!!!");
+        if (ammoText == null) {            
 			ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
 			ammoText = ammoTextObj.GetComponent<Text>();
         }

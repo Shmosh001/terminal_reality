@@ -146,7 +146,7 @@ public class ShootingScript : ammoHUDScript {
 		}
 		
 		//RELOAD//
-		if (Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKeyDown(KeyCode.R) && weapon != null)
 		{
 			//Can only reload if the clip is NOT full//
 			if (weapon.GetComponent<weaponDataScript>().getRemainingClip() != weapon.GetComponent<weaponDataScript>().clipSize)
