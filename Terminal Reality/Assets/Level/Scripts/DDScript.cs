@@ -8,7 +8,9 @@ public class DDScript : MonoBehaviour {
     private Animator anim;
 	private bool open;
 	private Text pushE;
+	private Text needKey;
     private GameObject pushEObj;
+	private GameObject needKeyObj;
 
 	// Use this for initialization
 	void Start () 
@@ -17,6 +19,8 @@ public class DDScript : MonoBehaviour {
         anim = gameObject.GetComponent<Animator>();
 		open = false;
 		pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
+		needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
+		
 	}
 
 
@@ -44,14 +48,30 @@ public class DDScript : MonoBehaviour {
 		{
 			if (!open) //Only show hint if the door is closed
 			{
-				pushE.enabled = true;
+				//if the player has a key - show "Push E"
+				if (other.GetComponentInParent<playerDataScript>().hasKey)
+				{
+					pushE.enabled = true;
+				}
+				//if the player does not have a key - show "Need Key"
+				else{
+					needKey.enabled = true;
+				}
 			}
 		}
 
         if (other.tag == Tags.PLAYER2) {
             if (!open) //Only show hint if the door is closed
             {
-                pushE.enabled = true;
+				//if the player has a key - show "Push E"
+				if (other.GetComponentInParent<playerDataScript>().hasKey)
+				{
+					pushE.enabled = true;
+				}
+				//if the player does not have a key - show "Need Key"
+				else{
+					needKey.enabled = true;
+				}
             }
         }
 
@@ -64,6 +84,7 @@ public class DDScript : MonoBehaviour {
 		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
 			pushE.enabled = false;
+			needKey.enabled = false;
 		}
 
 	}
@@ -77,6 +98,12 @@ public class DDScript : MonoBehaviour {
                 pushE = pushEObj.GetComponent<Text>();
             }
         }
+		if (needKeyObj == null) {
+			needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
+			if (needKeyObj != null) {
+				needKey = needKeyObj.GetComponent<Text>();
+			}
+		}
     }
 
 }

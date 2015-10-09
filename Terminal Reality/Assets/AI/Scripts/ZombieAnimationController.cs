@@ -32,9 +32,15 @@ public class ZombieAnimationController : MonoBehaviour {
     /// hash of the trigger
     /// </param>
     [PunRPC]
-    public void setTrigger(int name){
-		if (debug)Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
-		animator.SetTrigger(name);
+    public void setTrigger(int name, int viewID){
+
+        if (viewID != pView.viewID) {
+            return;
+        }
+        if (debug)Debug.Log("trigger " + name + " activated at " + Time.timeSinceLevelLoad);
+        if (animator.isActiveAndEnabled) {
+            animator.SetTrigger(name);
+        }
 	}
 
     /// <summary>
@@ -54,10 +60,10 @@ public class ZombieAnimationController : MonoBehaviour {
 
             
             if (PhotonNetwork.offlineMode) {
-                setTrigger(name);
+                setTrigger(name, pView.viewID);
             }
             else {
-                pView.RPC("setTrigger", PhotonTargets.AllViaServer, name);
+                pView.RPC("setTrigger", PhotonTargets.AllViaServer, name, pView.viewID);
             }
             //TODO rpc conversion
             //animator.SetTrigger(name);
@@ -81,10 +87,10 @@ public class ZombieAnimationController : MonoBehaviour {
         //setInteger(EnemyHashScript.stateDInt,choice);
         
         if (PhotonNetwork.offlineMode) {
-            setInteger(EnemyHashScript.stateDInt, choice);
+            setInteger(EnemyHashScript.stateDInt, choice, pView.viewID);
         }
         else {
-            pView.RPC("setInteger", PhotonTargets.AllViaServer, EnemyHashScript.stateDInt, choice);
+            pView.RPC("setInteger", PhotonTargets.AllViaServer, EnemyHashScript.stateDInt, choice, pView.viewID);
         }
 
 
@@ -102,8 +108,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// value to be set
     /// </param>
     [PunRPC]
-    public void setStartState(int value){
-		setInteger(EnemyHashScript.stateDInt,value);
+    public void setStartState(int value, int viewID){
+        if (viewID != pView.viewID) {
+            return;
+        }
+
+        if (animator.isActiveAndEnabled) {
+            setInteger(EnemyHashScript.stateDInt, value, pView.viewID);
+        }
 		if (debug)Debug.Log("starting state set to" + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -117,8 +129,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// value
     /// </param>
     [PunRPC]
-    public void setBoolean(int name, bool value){
-		animator.SetBool(name, value);
+    public void setBoolean(int name, bool value, int viewID){
+
+        if (viewID != pView.viewID) {
+            return;
+        }
+        if (animator.isActiveAndEnabled) {
+            animator.SetBool(name, value);
+        }
 		if (debug)Debug.Log("boolean " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -138,10 +156,10 @@ public class ZombieAnimationController : MonoBehaviour {
             //TODO rpc conversion
             
             if (PhotonNetwork.offlineMode) {
-               setBoolean(name, true);
+               setBoolean(name, true, pView.viewID);
             }
             else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, true);
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, true, pView.viewID);
             }
 
 
@@ -154,10 +172,10 @@ public class ZombieAnimationController : MonoBehaviour {
             //TODO rpc conversion
           
             if (PhotonNetwork.offlineMode) {
-               setBoolean(name, false);
+               setBoolean(name, false, pView.viewID);
             }
             else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, false);
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, name, false, pView.viewID);
             }
             if (debug)Debug.Log("random boolean " + name + " set to " + false+ " at " + Time.timeSinceLevelLoad);
 			return false;
@@ -183,10 +201,10 @@ public class ZombieAnimationController : MonoBehaviour {
         //TODO rpc conversion
         
         if (PhotonNetwork.offlineMode) {
-            setInteger(name, choice);
+            setInteger(name, choice, pView.viewID);
         }
         else {
-            pView.RPC("setInteger", PhotonTargets.AllViaServer, name, choice);
+            pView.RPC("setInteger", PhotonTargets.AllViaServer, name, choice, pView.viewID);
         }
         if (debug)Debug.Log("random int " + name + " set to " + choice+ " at " + Time.timeSinceLevelLoad);
 		return choice;
@@ -202,8 +220,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// value
     /// </param>
     [PunRPC]
-	public void setInteger(int name, int value){
-		animator.SetInteger(name, value);
+	public void setInteger(int name, int value, int viewID){
+
+        if (viewID != pView.viewID) {
+            return;
+        }
+        if (animator.isActiveAndEnabled) {
+            animator.SetInteger(name, value);
+        }
 		if (debug)Debug.Log("int " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 	}
 
@@ -217,8 +241,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// value
     /// </param>
     [PunRPC]
-	public void setFloat(int name, float value){
-		animator.SetFloat(name, value);
+	public void setFloat(int name, float value, int viewID){
+        if (viewID != pView.viewID) {
+            return;
+        }
+
+        if (animator.isActiveAndEnabled) {
+            animator.SetFloat(name, value);
+        }
 		if (debug)Debug.Log("float " + name + " set to " + value+ " at " + Time.timeSinceLevelLoad);
 
 	}
@@ -240,19 +270,24 @@ public class ZombieAnimationController : MonoBehaviour {
     /// <summary>
     /// resets all booleans to false
     /// </summary>
-    public void resetBooleans(){
+    [PunRPC]
+    public void resetBooleans(int viewID){
 		if (debug)Debug.Log("booleans reset"+" at " + Time.timeSinceLevelLoad);
-        //animator.SetBool(EnemyHashScript.wanderingBool,false);
-        //animator.SetBool(EnemyHashScript.attackingBool,false);
+
+        if (viewID != pView.viewID) {
+            return;
+        }
+        animator.SetBool(EnemyHashScript.wanderingBool,false);
+        animator.SetBool(EnemyHashScript.attackingBool,false);
         //TODO rpc conversion
         
         if (PhotonNetwork.offlineMode) {
-            setBoolean(EnemyHashScript.attackingBool, false);
-            setBoolean(EnemyHashScript.wanderingBool, false);
+            setBoolean(EnemyHashScript.attackingBool, false, pView.viewID);
+            setBoolean(EnemyHashScript.wanderingBool, false, pView.viewID);
         }
         else {
-            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false);
-            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false);
+            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.attackingBool, false, pView.viewID);
+            pView.RPC("setBoolean", PhotonTargets.AllViaServer, EnemyHashScript.wanderingBool, false, pView.viewID);
         }
     }
 
@@ -276,8 +311,14 @@ public class ZombieAnimationController : MonoBehaviour {
     /// animation hash
     /// </param>
     [PunRPC]
-	public void forceAnimation(int animation){
-		animator.Play(animation);
+	public void forceAnimation(int animation, int viewID){
+        if (viewID != pView.viewID) {
+            return;
+        }
+
+        if (animator.isActiveAndEnabled) {
+            animator.Play(animation);
+        }
 	}
 
     /// <summary>
@@ -286,5 +327,12 @@ public class ZombieAnimationController : MonoBehaviour {
 	public void turnOffRM(){
 		animator.applyRootMotion = false;
 	}
+
+
+    
+
+    
+
+
 
 }

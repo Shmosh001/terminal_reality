@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class interactionScript : Photon.MonoBehaviour {
@@ -19,15 +20,17 @@ public class interactionScript : Photon.MonoBehaviour {
 	private bool inRangeOfKeys;
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
+	private GameObject pushEObj;
+	private Text pushE;
 
-	//PUBLIC VARIABLES FOR INTERACTION//
-	public AudioClip weaponPickup;
+
+
 
 	// Use this for initialization
 	void Start () 
 	{
 		playerData = this.GetComponent<playerDataScript>();
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
+		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		animator = this.gameObject.GetComponent<Animator>();
         playerPView = this.gameObject.GetComponent<PhotonView>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
@@ -36,6 +39,12 @@ public class interactionScript : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (pushEObj == null) {
+			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
+			if (pushEObj != null) {
+				pushE = pushEObj.GetComponent<Text>();
+			}
+		}
 
 		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
 		if (Input.GetKeyDown(KeyCode.E))
@@ -241,7 +250,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				if (playerData.pistolPickedUp)
 				{
 					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
-					GameObject pistol = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
+					GameObject pistol = GameObject.FindGameObjectWithTag(Tags.PISTOL); //find the pistol object
 	
 					//pickup ammo for the pistol
 					//amount randomly generate - from 10 - 30 bullets picked up
@@ -283,7 +292,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	            }
 
                 //this calls the fx rpc for the other client
-                if (gameObject.tag == Tags.PLAYER1) {
+                /*if (gameObject.tag == Tags.PLAYER1) {
                     GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
                     if (player2 != null) {
                         player2.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
@@ -294,9 +303,11 @@ public class interactionScript : Photon.MonoBehaviour {
                     if (player1 != null) {
                         player1.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
                     }
-                }
+                }*/
 
-
+                
+                gameObject.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
+                    
 
                 inRangeOfPistol = false;
 			}
@@ -339,6 +350,25 @@ public class interactionScript : Photon.MonoBehaviour {
 			if (inRangeOfKeys)
 			{
 				playerData.hasKey = true;
+				//Destroy keys game object//				
+				pushE.enabled = false;
+				//Destroy(interactingCollider.gameObject);
+				inRangeOfKeys = false;
+				
+				PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
+				if (pView == null) {
+					Debug.LogError("No PhotonView component found");
+				}
+				else {
+					if (PhotonNetwork.offlineMode) {
+						Destroy(interactingCollider.gameObject);
+						
+					}
+					else {
+						pView.RPC("destroyObject", PhotonTargets.AllBuffered);
+						
+					}
+				}			
 			}
 		}
 	}
@@ -377,6 +407,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER IN RANGE OF KEYS
 		if (other.tag == "Keys")
 		{
+			pushE.enabled = true;
 			inRangeOfKeys = true;
 			interactingCollider = other;
 		}
@@ -412,6 +443,7 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER NOT IN RANGE OF KEYS
 		if (other.tag == "Keys")
 		{
+			pushE.enabled = false;
 			inRangeOfKeys = false;
 		}
 	}

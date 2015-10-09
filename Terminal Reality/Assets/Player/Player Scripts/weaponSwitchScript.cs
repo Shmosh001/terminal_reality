@@ -96,17 +96,19 @@ public class weaponSwitchScript : ammoHUDScript {
 			//animator.SetTrigger(playerAnimationHash.pistolTrigger);
 			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
             if (PhotonNetwork.offlineMode) {
-                animator.SetTrigger(playerAnimationHash.pistolTrigger);
+                animator.SetBool(playerAnimationHash.pistolBoolean, true);
             }
             else {
-                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pistolTrigger);
+                animator.SetBool(playerAnimationHash.pistolBoolean, true);
+                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.pistolBoolean, true);
             }
 
             if (PhotonNetwork.offlineMode) {
                 animator.SetBool(playerAnimationHash.noWeaponBool, false);
             }
             else {
-                pView.RPC("setBooleanP", PhotonTargets.AllViaServer, playerAnimationHash.noWeaponBool, false);
+                animator.SetBool(playerAnimationHash.noWeaponBool, false);
+                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.noWeaponBool, false);
             }
 
             weaponStr = "Pistol";
@@ -152,7 +154,8 @@ public class weaponSwitchScript : ammoHUDScript {
 		{
            
             playerData.machineGunGameObject.gameObject.SetActive(false);
-            
+            //Debug.LogWarning("Set to false");
+
             playerData.pistolGameObject.gameObject.SetActive(false);
 			
 			//After switch, update ammo HUD
@@ -163,7 +166,8 @@ public class weaponSwitchScript : ammoHUDScript {
 		else if (currentWeapon() == "Pistol")
 		{
 			playerData.machineGunGameObject.SetActive(false);
-			playerData.pistolGameObject.SetActive(true);
+            //Debug.LogWarning("Set to false");
+            playerData.pistolGameObject.SetActive(true);
 			
 			//After switch, update ammo HUD
             if (playerData.pistolGameObject == null) {
@@ -178,8 +182,8 @@ public class weaponSwitchScript : ammoHUDScript {
 
             
 
-            print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
-            print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
+           // print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
+          //  print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
 
             updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
@@ -195,9 +199,10 @@ public class weaponSwitchScript : ammoHUDScript {
 		{
 			playerData.pistolGameObject.SetActive(false);
 			playerData.machineGunGameObject.SetActive(true);
-			
-			//After switch, update ammo HUD
-			updateAmmoText(playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
+            //Debug.LogWarning("Set to true");
+
+            //After switch, update ammo HUD
+            updateAmmoText(playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.machineGunGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 
 			//check reload warnings

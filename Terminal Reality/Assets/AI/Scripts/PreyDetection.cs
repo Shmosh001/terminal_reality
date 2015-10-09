@@ -63,7 +63,7 @@ public class PreyDetection : MonoBehaviour {
     /// <param name="entity">
     /// new target
     /// </param>
-    [PunRPC]
+
     public GameObject assignTarget(string tag) {
         Debug.Log(tag + "assigned as target");
         if (tag == Tags.PLAYER1) {
@@ -131,15 +131,18 @@ public class PreyDetection : MonoBehaviour {
 		//we use the players animator controller to decide this
 		//need to set up hashes for this? not actually
         if (target == null) {
+            Debug.LogWarning("target is null");
             return false;
         }
 
         if (target.GetComponent<playerDataScript>().canHear) {
+            //Debug.LogWarning("player heard");
             lastSighting = target.transform.position;
             return true;
         }
 
         else {
+            //Debug.LogWarning("player heard can hear false");
             return false;
         }
         
@@ -196,7 +199,31 @@ public class PreyDetection : MonoBehaviour {
 
     }
 
-    
-    
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+
+
+
+
+        if (stream.isWriting) {
+            if (target != null) {
+                stream.SendNext(target.tag);
+            }
+            else {
+                stream.SendNext("nothing");
+            }
+            stream.SendNext(lastSighting);
+        }
+        //receiving other players things
+        else {
+            assignTarget((string)stream.ReceiveNext());
+            lastSighting = (Vector3)stream.ReceiveNext();
+            
+        }
+
+    }
+
+
+
 
 }

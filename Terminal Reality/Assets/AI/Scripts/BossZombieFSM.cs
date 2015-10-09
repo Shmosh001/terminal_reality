@@ -75,13 +75,13 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         audioSource = gameObject.GetComponent<AudioSource>();
         detection = gameObject.GetComponent<PreyDetection>();
         fsm = new StateMachineClass<StateEnums.BossZombieStates>();
-        //fsm.enterState(StateEnums.ZombieStates.Idle);
-        if (PhotonNetwork.offlineMode) {
+        fsm.enterState(StateEnums.BossZombieStates.Idle);
+        /*if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.BossZombieStates.Idle);
         }
         else {
             pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Idle);
-        }
+        }*/
 
         animatorCont = gameObject.GetComponent<ZombieAnimationController>();
         soundCollider = gameObject.GetComponent<SphereCollider>();
@@ -109,10 +109,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             soundC = 0;
         }
 
-        switch (fsm.getCurrentState()) {
+        switch ((byte)fsm.getCurrentState()) {
 
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
-            case StateEnums.BossZombieStates.Idle:
+            case (byte)StateEnums.BossZombieStates.Idle:
 
                 if (stateDebugStatements)  Debug.Log("idle case: entering " + Time.timeSinceLevelLoad); 
 
@@ -122,7 +122,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             
 
             /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
-            case StateEnums.BossZombieStates.Chasing:
+            case (byte)StateEnums.BossZombieStates.Chasing:
                 if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad); 
                 //counter
                 chasingC += Time.deltaTime;
@@ -153,20 +153,20 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
            
             /***********Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*******Attacking*/
-            case StateEnums.BossZombieStates.Attacking:
+            case (byte)StateEnums.BossZombieStates.Attacking:
                 if (stateDebugStatements)  Debug.Log("attacking case: entering " + Time.timeSinceLevelLoad); 
                 attackPlayer();
                 break;
 
            
             /***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
-            case StateEnums.BossZombieStates.Dying:
+            case (byte)StateEnums.BossZombieStates.Dying:
                 if (stateDebugStatements)  Debug.Log("dying case: entering " + Time.timeSinceLevelLoad); 
                 killUnit();
                 break;
 
             /***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
-            case StateEnums.BossZombieStates.Dead:
+            case (byte)StateEnums.BossZombieStates.Dead:
                 if (stateDebugStatements)  Debug.Log("dead case: entering " + Time.timeSinceLevelLoad); 
                 //we disable all non vital components
                 animatorCont.turnOffRM();
@@ -197,10 +197,10 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
             if (PhotonNetwork.offlineMode) {
 
-                animatorCont.setTrigger(BossHashScript.chargeTrigger);
+                animatorCont.setTrigger(BossHashScript.chargeTrigger, pView.viewID);
             }
             else {
-                pView.RPC("setTrigger", PhotonTargets.AllViaServer, BossHashScript.chargeTrigger);
+                pView.RPC("setTrigger", PhotonTargets.AllViaServer, BossHashScript.chargeTrigger, pView.viewID);
             }
             //we set a new nav mesh destination
             if (target == null) {
@@ -220,22 +220,22 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
             //fsm.enterState(StateEnums.ZombieStates.Attacking);
             //rpc conversion
-
-            if (PhotonNetwork.offlineMode) {
-                enterState((byte)StateEnums.BossZombieStates.Attacking);
+            enterState((byte)StateEnums.BossZombieStates.Attacking);
+            /*if (PhotonNetwork.offlineMode) {
+                
             }
             else {
                 pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Attacking);
-            }
+            }*/
             navAgent.Stop();
             //animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
             //rpc conversion
 
             if (PhotonNetwork.offlineMode) {
-                animatorCont.setBoolean(BossHashScript.attackingBool, true);
+                animatorCont.setBoolean(BossHashScript.attackingBool, true, pView.viewID);
             }
             else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, true);
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, true, pView.viewID);
             }
             chasing = false;
         }
@@ -257,19 +257,19 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //rpc conversion
         
         if (PhotonNetwork.offlineMode) {
-            animatorCont.setTrigger(BossHashScript.deadTrigger);
+            animatorCont.setTrigger(BossHashScript.deadTrigger, pView.viewID);
         }
         else {
-            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, BossHashScript.deadTrigger);
+            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, BossHashScript.deadTrigger, pView.viewID);
         }
 
 
-        if (PhotonNetwork.offlineMode) {
-            enterState((byte)StateEnums.BossZombieStates.Dead);
-        }
+        //if (PhotonNetwork.offlineMode) {
+        enterState((byte)StateEnums.BossZombieStates.Dead);
+        /*}
         else {
             pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.BossZombieStates.Dead);
-        }
+        }*/
 
     }
 
@@ -319,19 +319,19 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //add a small offset
         if (distance > attackingDistance + 5) {
 
-            if (PhotonNetwork.offlineMode) {
-                enterState((byte)StateEnums.BossZombieStates.Chasing);
-            }
+            //if (PhotonNetwork.offlineMode) {
+            enterState((byte)StateEnums.BossZombieStates.Chasing);
+            /*}
             else {
                 pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-            }
+            }*/
             //rpc conversion
 
             if (PhotonNetwork.offlineMode) {
-                animatorCont.setBoolean(BossHashScript.attackingBool, false);
+                animatorCont.setBoolean(BossHashScript.attackingBool, false, pView.viewID);
             }
             else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, false);
+                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, false, pView.viewID);
             }
         }
     }
@@ -349,23 +349,23 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
             if (debugStatements) { Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad); }
             //assign the target
-
-            if (PhotonNetwork.offlineMode) {
+            detection.assignTarget(collider.gameObject);
+            /*if (PhotonNetwork.offlineMode) {
                 if (collider == null) {
                     return;
                 }
-                detection.assignTarget(collider.gameObject);
+                
             }
             else {
                 pView.RPC("assignTarget", PhotonTargets.AllViaServer, collider.gameObject.tag);
-            }
+            }*/
             target = collider.gameObject;
-            if (PhotonNetwork.offlineMode) {
+            //if (PhotonNetwork.offlineMode) {
                 enterState((byte)StateEnums.BossZombieStates.Chasing);
-            }
+           /* }
             else {
                 pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-            }
+            }*/
         }
 
     }
@@ -386,12 +386,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         // we only want to transition into the state if are not currently in the state
         
 
-        if (PhotonNetwork.offlineMode) {
+        //if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.BossZombieStates.Chasing);
-        }
+       /* }
         else {
             pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-        }
+        }*/
 
         
     }
@@ -402,12 +402,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 	public void alertDead() {
         //fsm.enterState(StateEnums.ZombieStates.Dying);
 
-        if (PhotonNetwork.offlineMode) {
+       // if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.BossZombieStates.Dying);
-        }
+       /* }
         else {
             pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.BossZombieStates.Dying);
-        }
+        }*/
     }
 
     
@@ -462,9 +462,24 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     }
 
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 
 
-    
+
+        if (fsm == null) {
+            return;
+        }
+        if (stream.isWriting) {
+            stream.SendNext((byte)fsm.getCurrentState());
+        }
+        //receiving other players things
+        else {
+            fsm.enterState((StateEnums.BossZombieStates)stream.ReceiveNext());
+        }
+
+    }
+
+
 
 
 }

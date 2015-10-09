@@ -1154,7 +1154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &158250
 GameObject:
   m_ObjectHideFlags: 1
@@ -2517,8 +2517,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158248}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -8.42936956e-08}
-  m_LocalPosition: {x: 87.1288605, y: 0, z: 39.3396301}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 87.7541351, y: 0, z: 39.5102005}
+  m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1.20000005}
   m_Children:
   - {fileID: 458204}
   - {fileID: 458104}
@@ -3118,7 +3118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cc7a8fcdac6204aad6140104a0bd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 60
   isBoss: 0
 --- !u!114 &11458112
 MonoBehaviour:
@@ -3149,6 +3149,7 @@ MonoBehaviour:
   debugStatements: 0
   debug: 0
   animDebug: 0
+  ragdoll: {fileID: 105178, guid: 21d86c0d106fb874b90407971b83693f, type: 2}
   text: {fileID: 0}
   text2: {fileID: 0}
   pukeEffect: {fileID: 158124}

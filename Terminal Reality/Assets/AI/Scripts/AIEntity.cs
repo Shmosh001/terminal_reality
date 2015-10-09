@@ -7,7 +7,7 @@ using System.Collections;
 /// <typeparam name="T">
 /// this is the type of ai this entity is 
 /// </typeparam>
-public class AIEntity <T>: MonoBehaviour{
+public class AIEntity <T>: Photon.MonoBehaviour{
 
 	//PUBLIC VARS
 
