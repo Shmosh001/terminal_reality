@@ -1881,9 +1881,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198178}
-  m_LocalRotation: {x: 0, y: .99619472, z: 0, w: -.0871557668}
-  m_LocalPosition: {x: 86.7399979, y: .25, z: 38.0800018}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: 58.5200005, y: .25, z: 20.8099995}
+  m_LocalScale: {x: 1.49999988, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 498176}
   - {fileID: 498174}
@@ -1898,9 +1898,9 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1921,9 +1921,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1933,11 +1933,11 @@ AudioSource:
     - time: 0
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.05263162
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: .634920657
+      inSlope: -1.05263162
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cc7a8fcdac6204aad6140104a0bd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 240
   isBoss: 1
 --- !u!114 &11498050
 MonoBehaviour:
@@ -2028,21 +2028,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f944c897def719a42ac51c8cde49dca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 30
   arrivalDistance: 1.5
-  stateDebugStatements: 1
-  debugStatements: 1
-  debug: 1
-  animDebug: 1
+  stateDebugStatements: 0
+  debugStatements: 0
+  debug: 0
+  animDebug: 0
   rayCastOffset: 1.5
   dyingD: 0
   chasingD: 1
   attackD: 2
+  soundD: 5
   walkingSpeed: 0
   RunningSpeed: 0
   speed: 0
   runningDistance: 0
-  attackingDistance: 1.5
+  attackingDistance: 2
 --- !u!114 &11498052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2129,7 +2130,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
@@ -2149,7 +2150,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13698046
 CapsuleCollider:
@@ -2268,7 +2269,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 198178}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
