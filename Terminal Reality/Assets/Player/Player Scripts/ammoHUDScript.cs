@@ -19,7 +19,8 @@ public class ammoHUDScript : MonoBehaviour {
 
 
     void Update() {
-        /*if (ammoTextObj == null) {
+        
+        if (ammoTextObj == null) {
             ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
             if (ammoTextObj != null) {
                 Debug.LogWarning("ammotext assigned");
@@ -33,7 +34,7 @@ public class ammoHUDScript : MonoBehaviour {
                 Debug.LogWarning("reload assigned");
                 reloadText = reloadTextObj.GetComponent<Text>();
             }
-        }*/
+        }
     }
 
 
@@ -42,7 +43,10 @@ public class ammoHUDScript : MonoBehaviour {
 	{
         if (ammoText == null) {
             //Debug.LogError("Ammotext is null");
-            return;
+            //return;
+            print ("HERE!!!");
+			ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
+			ammoText = ammoTextObj.GetComponent<Text>();
         }
 		ammoText.text = totAmmo + " / " + clipAmmo;		
 		//TODO uncommented
