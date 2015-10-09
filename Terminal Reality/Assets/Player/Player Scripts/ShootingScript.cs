@@ -154,7 +154,7 @@ public class ShootingScript : ammoHUDScript {
 				//if the gun reloads successfully...
 				if (weapon.GetComponent<weaponDataScript>().reload()) 
 				{
-					coolDownTimer = 1.3f; //so can't start shooting while the sound is playing
+					coolDownTimer = 3.1f; //so can't start shooting while the sound is playing
 					soundController.GetComponent<soundControllerScript>().playReload(transform.position); //play reload sound
 					
 					//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
