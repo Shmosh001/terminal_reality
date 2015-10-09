@@ -8,14 +8,18 @@ public class WheelChairChase : MonoBehaviour {
     private Animator main;
     private Animator fw;
     private Animator bw;
+    private Animator fw2;
+    private Animator bw2;
     private bool chasing;
 
     // Use this for initialization
     void Start () {
         agent = gameObject.GetComponent<NavMeshAgent>();
         main = gameObject.GetComponent<Animator>();
-        fw = gameObject.GetComponentInChildren<Animator>();
-        bw = gameObject.GetComponentInChildren<Animator>();
+        fw = gameObject.transform.GetChild(0).GetChild(2).GetComponentInChildren<Animator>();
+        fw2 = gameObject.transform.GetChild(0).GetChild(3).GetComponentInChildren<Animator>();
+        bw = gameObject.transform.GetChild(0).GetChild(4).GetComponentInChildren<Animator>();
+        bw2 = gameObject.transform.GetChild(0).GetChild(5).GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -26,6 +30,8 @@ public class WheelChairChase : MonoBehaviour {
             main.SetBool("Moving", true);
             fw.SetBool("Moving", true);
             bw.SetBool("Moving", true);
+            fw2.SetBool("Moving", true);
+            bw2.SetBool("Moving", true);
             chasing = true;
 
         }
@@ -43,6 +49,8 @@ public class WheelChairChase : MonoBehaviour {
             main.SetBool("Moving", false);
             fw.SetBool("Moving", false);
             bw.SetBool("Moving", false);
+            fw2.SetBool("Moving", false);
+            bw2.SetBool("Moving", false);
         }
     }
 }
