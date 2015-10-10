@@ -1279,7 +1279,7 @@ GameObject:
   - 114: {fileID: 11440018}
   m_Layer: 0
   m_Name: female_nurse_zomb_1_ragdoll
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1295,7 +1295,7 @@ GameObject:
   - 114: {fileID: 11439998}
   m_Layer: 0
   m_Name: Female Zombie 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1325,7 +1325,7 @@ GameObject:
   - 114: {fileID: 11440000}
   m_Layer: 0
   m_Name: fmale_Zombie_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3439,15 +3439,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140156}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: .00132306409, y: .948153675, z: .0166076329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .00132242846, y: .948153675, z: .0166066494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440142}
   - {fileID: 440050}
   - {fileID: 440044}
   m_Father: {fileID: 440160}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &440158
 Transform:
   m_ObjectHideFlags: 1
@@ -3465,7 +3465,7 @@ Transform:
   - {fileID: 440146}
   - {fileID: 440144}
   m_Father: {fileID: 440160}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &440160
 Transform:
   m_ObjectHideFlags: 1
@@ -3476,8 +3476,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
-  - {fileID: 440158}
   - {fileID: 440156}
+  - {fileID: 440158}
   m_Father: {fileID: 440162}
   m_RootOrder: 1
 --- !u!4 &440162
@@ -3487,7 +3487,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.13999999, y: 0, z: 0}
+  m_LocalPosition: {x: 87.3407669, y: 0, z: 38.4302788}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440164}
