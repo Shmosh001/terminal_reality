@@ -40,39 +40,39 @@ public class DDScript : MonoBehaviour {
 		}
 	}
 
-	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
-	void OnTriggerEnter (Collider other)
-	{
-		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
-		if (other.tag == Tags.PLAYER1)
-		{
-			if (!open) //Only show hint if the door is closed
-			{
-				//if the player has a key - show "Push E"
-				if (other.GetComponentInParent<playerDataScript>().hasKey)
-				{
-					pushE.enabled = true;
-				}
-				//if the player does not have a key - show "Need Key"
-				else{
-					needKey.enabled = true;
-				}
-			}
-		}
+    //WHEN SOMETHING ENTERS THE DOORS TRIGGER//
+    void OnTriggerEnter(Collider other) {
+        //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+        if (other.tag == Tags.PLAYER1) {
+            if (!open) //Only show hint if the door is closed
+            {
+                //if the player has a key - show "Push E"
+                if (other.GetComponentInParent<playerDataScript>().hasKey) {
+                    pushE.enabled = true;
+                }
+                //if the player does not have a key - show "Need Key"
+                else {
+                    needKey.enabled = true;
+                }
+            }
+        }
 
         if (other.tag == Tags.PLAYER2) {
             if (!open) //Only show hint if the door is closed
             {
-				//if the player has a key - show "Push E"
-				if (other.GetComponentInParent<playerDataScript>().hasKey)
-				{
-					pushE.enabled = true;
-				}
-				//if the player does not have a key - show "Need Key"
-				else{
-					needKey.enabled = true;
-				}
+                //if the player has a key - show "Push E"
+                if (other.GetComponentInParent<playerDataScript>().hasKey) {
+                    pushE.enabled = true;
+                }
+                //if the player does not have a key - show "Need Key"
+                else {
+                    needKey.enabled = true;
+                }
             }
+        }
+        if (!open && other.tag == Tags.ENEMY ) {
+            other.GetComponent<ZombieFSM>().stopWandering();
+
         }
 
     }

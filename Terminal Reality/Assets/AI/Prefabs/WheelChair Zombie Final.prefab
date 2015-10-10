@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &111292
 GameObject:
   m_ObjectHideFlags: 1
@@ -2079,6 +2079,8 @@ GameObject:
   - 114: {fileID: 11491666}
   - 114: {fileID: 11491648}
   - 135: {fileID: 13591664}
+  - 82: {fileID: 8275446}
+  - 82: {fileID: 8275444}
   m_Layer: 0
   m_Name: wheelchair_cripple
   m_TagString: Enemy
@@ -4760,6 +4762,127 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .189999998, y: .200000003, z: .0189999994}
   m_Center: {x: 0, y: .25999999, z: -.209000006}
+--- !u!82 &8275444
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 1d6a31cec36b52e44962f8a025089809, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 10
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .5
+      value: 1
+      inSlope: -2.00079846
+      outSlope: -2.00079846
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: -.500199616
+      outSlope: -.500199616
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8275446
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 9d34f7ec9e20eef42bc4ecb9ee1e792d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 6
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .300000012
+      value: 1
+      inSlope: -3.33467388
+      outSlope: -3.33467388
+      tangentMode: 0
+    - time: .600000024
+      value: .5
+      inSlope: -.83366847
+      outSlope: -.83366847
+      tangentMode: 0
+    - time: .99622643
+      value: 0
+      inSlope: -.300119787
+      outSlope: -.300119787
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9511506
 Animator:
   serializedVersion: 3
@@ -5009,6 +5132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   arrivalDistance: 1.5
+  gruntSound: {fileID: 8275446}
+  screamSound: {fileID: 8275444}
   stateDebugStatements: 0
   debugStatements: 0
   debug: 0
@@ -5028,6 +5153,10 @@ MonoBehaviour:
   chasingD: 1
   shotD: 0
   attackD: 2
+  gruntSoundD: 2
+  screamSoundD: 1.5
+  screamSoundC: 0
+  gruntSoundC: 0
   viewingSenseNorm: 0
   viewingSensAlert: 0
   listeningSensNorm: 8
