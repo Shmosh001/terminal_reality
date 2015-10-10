@@ -24,8 +24,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 453940}
-  - 95: {fileID: 9553942}
   - 64: {fileID: 6414286}
+  - 65: {fileID: 6578514}
   m_Layer: 0
   m_Name: MedicalLights
   m_TagString: Untagged
@@ -68,8 +68,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153940}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.9199982, y: -1.92999995, z: 16.1000004}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalPosition: {x: 51.3699989, y: 5, z: 75}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 453942}
@@ -123,26 +123,23 @@ MeshCollider:
   m_GameObject: {fileID: 153940}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 88358bfcce3731b4b98413207886346d, type: 3}
---- !u!95 &9553942
-Animator:
-  serializedVersion: 3
+--- !u!65 &6578514
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 88358bfcce3731b4b98413207886346d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Size: {x: 1.69849944, y: .766607881, z: .798555255}
+  m_Center: {x: -.0905100554, y: -.39467144, z: .100723267}
 --- !u!108 &10834440
 Light:
   m_ObjectHideFlags: 1

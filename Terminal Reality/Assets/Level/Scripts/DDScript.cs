@@ -4,7 +4,7 @@ using System.Collections;
 
 public class DDScript : MonoBehaviour {
 
-    private GameObject soundController;
+    private AudioSource audioSource;
     private Animator anim;
 	private bool open;
 	//private Text pushE;
@@ -15,7 +15,7 @@ public class DDScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+        audioSource = GetComponent<AudioSource>();
         anim = gameObject.GetComponent<Animator>();
 		open = false;
 		//pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
@@ -32,7 +32,9 @@ public class DDScript : MonoBehaviour {
 		if(!open)
 		{
             //play sound of this component
-            //soundController.GetComponent<soundControllerScript>().playDoorCreek(transform.position);
+
+            audioSource.Play();
+
             anim.SetTrigger("OpenFWD");
 			open = true;
 
@@ -99,19 +101,6 @@ public class DDScript : MonoBehaviour {
 
 
 
-    void Update() {
-        /*if (pushEObj == null) {
-            pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-            if (pushEObj != null) {
-                pushE = pushEObj.GetComponent<Text>();
-            }
-        }*/
-		if (needKeyObj == null) {
-			needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
-			if (needKeyObj != null) {
-				needKey = needKeyObj.GetComponent<Text>();
-			}
-		}
-    }
+
 
 }
