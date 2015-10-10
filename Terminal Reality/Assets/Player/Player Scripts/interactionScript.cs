@@ -211,8 +211,6 @@ public class interactionScript : Photon.MonoBehaviour {
                     this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
                     //Destroy health box after picking it up//
-                    //interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
-
 					destroyObjectOverNetwork();
 
                     //Destroy(interactingCollider.gameObject);
@@ -249,29 +247,10 @@ public class interactionScript : Photon.MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
-
-                //Destroy the pistol game object//				
-                //interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
-                //Destroy(interactingCollider.gameObject);
                
 
 
 				destroyObjectOverNetwork();
-
-                //this calls the fx rpc for the other client
-                /*if (gameObject.tag == Tags.PLAYER1) {
-                    GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
-                    if (player2 != null) {
-                        player2.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
-                    }
-                }
-                else if (gameObject.tag == Tags.PLAYER2) {
-                    GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
-                    if (player1 != null) {
-                        player1.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
-                    }
-                }*/
-
                 
                 gameObject.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
                     
