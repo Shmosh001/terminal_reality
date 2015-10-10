@@ -279,9 +279,8 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     /// disables all parts to the unit to only leave dead body
     /// </summary>
     void dead() {
-        if (debugStatements) Debug.Log("dead method at" + Time.timeSinceLevelLoad); 
-        gameObject.GetComponent<SphereCollider>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        if (debugStatements) Debug.Log("dead method at" + Time.timeSinceLevelLoad);
+        transform.parent.gameObject.GetComponent<RagdollFollow>().enableRagdoll(Vector3.forward);
     }
 
 
