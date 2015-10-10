@@ -119,7 +119,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			playerData.canHear = true;
 		}
 		
-		if (characterController.isGrounded) //can only adjust directional speed when player is grounded//
+		if (characterController.isGrounded && playerData.playerAlive) //can only adjust directional speed when player is grounded//
 		{
 			forwardSpeed = Input.GetAxis("Vertical") * playerData.movementSpeed * movementMultiplier;
 			sideSpeed = Input.GetAxis ("Horizontal") * playerData.movementSpeed * movementMultiplier;
@@ -147,7 +147,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 		
 		//JUMPING//
-		if (characterController.isGrounded && Input.GetButtonDown ("Jump"))
+		if (characterController.isGrounded && Input.GetButtonDown ("Jump") && playerData.playerAlive)
 		{
 			//animator.SetTrigger(playerAnimationHash.jumpTrigger);
 
