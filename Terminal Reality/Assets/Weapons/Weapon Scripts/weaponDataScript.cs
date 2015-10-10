@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class weaponDataScript : ammoHUDScript
@@ -98,12 +98,14 @@ public class weaponDataScript : ammoHUDScript
 		if (pickupAmount > (maxAmmo - ammo))
 		{
 			ammo = maxAmmo; //set ammo to max ammo
+			updateAmmoText(ammo, ammoInClip);
 		}
 		
 		//if there is less ammo in the ammo box than there is needed to full max ammo
 		if (pickupAmount < (maxAmmo - ammo))
 		{
 			ammo += pickupAmount;
+			updateAmmoText(ammo, ammoInClip);
 		}		
 	}
 	

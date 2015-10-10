@@ -353,13 +353,18 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
+		/*if (pushEObj == null) {
+			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);				
+			pushE = pushEObj.GetComponent<Text>();				
+		}*/
+		
 		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 		if (other.tag == "Door")
 		{
-			if (pushEOpenObj == null) {
+			/*if (pushEOpenObj == null) {
 				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
 				pushEOpen = pushEOpenObj.GetComponent<Text>();				
-			}
+			}*/
 			pushEOpen.enabled = true;
 		}
 		
@@ -410,10 +415,10 @@ public class interactionScript : Photon.MonoBehaviour {
 		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 		if (other.tag == "Door")
 		{
-			if (pushEOpenObj == null) {
+			/*if (pushEOpenObj == null) {
 				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
 				pushEOpen = pushEOpenObj.GetComponent<Text>();				
-			}
+			}*/
 			pushEOpen.enabled = false;
 		}
 		
