@@ -4,7 +4,7 @@ using System.Collections;
 
 public class playerHealthScript : MonoBehaviour {
 	
-	private playerDataScript playerData;
+	public playerDataScript playerData;
 	public UIBarScript uiBarScript;	
 	private bool heartBeatPlaying = false;
 	private GameObject soundController;

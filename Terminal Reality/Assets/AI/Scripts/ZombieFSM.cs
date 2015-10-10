@@ -323,10 +323,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
             /***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
             case (byte)StateEnums.ZombieStates.Puking:
-                Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);
+               // Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);
                 //updating counter
 
-                Debug.Log(pukeC);
+                //Debug.Log(pukeC);
                 pukeC += Time.deltaTime;
 
                 if (!puking) {
@@ -334,10 +334,10 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     puke();
                 }
 
-                Debug.Log(pukeC);
+               // Debug.Log(pukeC);
                 //if timer is over the limit
                 if (pukeC > pukeD) {
-                    Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
+                    //Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
                     fsm.enterPreviousState();
                     
                    /* if (PhotonNetwork.offlineMode) {
@@ -726,7 +726,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //if we are able to attack
         if (targetH != null && attackC > attackD){
                 //reduce health
-            targetH.reducePlayerHealth(damage);
+            
+            if (targetH.playerData.playerAlive) {
+                targetH.reducePlayerHealth(damage);
+            }
+            else {
+                fsm.enterState(StateEnums.ZombieStates.Alerted);
+            }
             attackC = 0;
 		}
 
