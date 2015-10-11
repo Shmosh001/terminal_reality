@@ -80,7 +80,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         }
 		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.WheelZombieStates>();
-        fsm.enterState(StateEnums.WheelZombieStates.Idle);
+        fsm.enterState(StateEnums.WheelZombieStates.Patrolling);
         
         
         animatorCont = gameObject.GetComponent<WheelchairAnimationController>();
@@ -100,7 +100,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         screamSoundC += Time.deltaTime;
 
 
-        if (patroling && gruntSoundC > gruntSoundD) {
+        if (patroling && gruntSoundC > gruntSoundD && !chasing) {
             gruntSound.Play();
             gruntSoundC = 0;
         }
@@ -133,6 +133,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             
             /***********Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*******Chasing*/
             case (byte)StateEnums.WheelZombieStates.Chasing:
+                //patroling = false;
                 if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);
 
                 if (!chasing) {
@@ -164,6 +165,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
             /***********Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*******Patrolling*/
             case (byte)StateEnums.WheelZombieStates.Patrolling:
+                
                 if (stateDebugStatements)  Debug.Log("patroling case: entering " + Time.timeSinceLevelLoad);
                 if (!patroling) {
                     patroling = true;
@@ -176,6 +178,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                     //we arrived at target
                     Debug.Log("arrived");
                     stopPatrolling();
+                   
                 }
                 
 
@@ -184,17 +187,13 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                 break;
 
             
-            /***********Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*******Dying*/
-            case (byte)StateEnums.WheelZombieStates.Dying:
-                if (stateDebugStatements)  Debug.Log("dying case: entering " + Time.timeSinceLevelLoad);
-                navAgent.Stop();
-                fsm.enterState(StateEnums.WheelZombieStates.Dead);
-                break;
+          
 
             /***********Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*******Dead*/
             case (byte)StateEnums.WheelZombieStates.Dead:
                 if (stateDebugStatements)  Debug.Log("dead case: entering " + Time.timeSinceLevelLoad);
                 //we disable all non vital components
+                navAgent.Stop();
                 dead();
                 
                 break;
@@ -232,11 +231,11 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
     /// starts wandering in a random direction
     /// </summary>
     void startPatroling() {
-        if (debugStatements)  Debug.Log("startWandering method at" + Time.timeSinceLevelLoad); 
-        
+        if (debugStatements)  Debug.Log("startWandering method at" + Time.timeSinceLevelLoad);
+
         //we get a location to move to from the patrol script
-        
-        
+
+        patroling = true;
 
         //we check if the path settings works
         if (navAgent.SetDestination(patrol.getNextWayPoint())) {
@@ -356,6 +355,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             //if we are able to attack
         if (targetH != null && attackC > attackD){
                 //reduce health
+
+            
+
             targetH.reducePlayerHealth(damage);
             attackC = 0;
 		}
@@ -364,7 +366,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             //if we are too far away we start chasing the player again
 		float distance = getDistanceT(transform, target.transform);
 		//add a small offset
-		if (distance > attackingDistance+3){
+		if (distance > attackingDistance){
 			fsm.enterState(StateEnums.WheelZombieStates.Chasing);
 			
             
@@ -428,7 +430,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 	public void alertDead(Vector3 position){
 
         shotPosition = position;
-        enterState((byte)StateEnums.WheelZombieStates.Dying);
+        enterState((byte)StateEnums.WheelZombieStates.Dead);
     }
 
 
@@ -507,10 +509,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         }
         //receiving other players things
         else {
-            if (fsm != null) {
-                fsm.enterState((StateEnums.WheelZombieStates)stream.ReceiveNext());
-            }
-            
+            fsm.enterState((StateEnums.WheelZombieStates)stream.ReceiveNext());
         }
         
     }

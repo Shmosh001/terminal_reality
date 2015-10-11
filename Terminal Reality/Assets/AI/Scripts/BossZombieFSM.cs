@@ -258,12 +258,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //sound.playBossDeathSound(transform.position);
         //rpc conversion
         
-        if (PhotonNetwork.offlineMode) {
+        /*if (PhotonNetwork.offlineMode) {
             animatorCont.setTrigger(BossHashScript.deadTrigger, pView.viewID);
         }
         else {
             pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, BossHashScript.deadTrigger, pView.viewID);
-        }
+        }*/
 
 
         //if (PhotonNetwork.offlineMode) {
@@ -318,7 +318,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //if we are too far away we start chasing the player again
         float distance = getDistanceT(transform, target.transform);
         //add a small offset
-        if (distance > attackingDistance + 5) {
+        if (distance > attackingDistance ) {
 
             //if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.BossZombieStates.Chasing);
