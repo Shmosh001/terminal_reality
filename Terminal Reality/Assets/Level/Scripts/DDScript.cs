@@ -7,10 +7,10 @@ public class DDScript : MonoBehaviour {
     private AudioSource audioSource;
     private Animator anim;
 	private bool open;
-	//private Text pushE;
-	private Text needKey;
-    //private GameObject pushEObj;
-	public GameObject needKeyObj;
+    //private Text pushE;
+    public GameObject needKey1;
+    public GameObject needKey2;
+
 
 	// Use this for initialization
 	void Start () 
@@ -44,6 +44,8 @@ public class DDScript : MonoBehaviour {
 	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
+
+        Debug.Log(other.name);
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1)
 		{
@@ -56,7 +58,8 @@ public class DDScript : MonoBehaviour {
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
-					needKey.enabled = true;
+                    Debug.Log("enabled");
+                    needKey1.SetActive(true);
 				}
 			}
 		}
@@ -73,8 +76,8 @@ public class DDScript : MonoBehaviour {
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
-					needKey.enabled = true;
-				}
+                    needKey2.SetActive(true);
+                }
 
             }
         }
@@ -89,11 +92,16 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
-		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
+		if (other.tag == Tags.PLAYER1)
 		{
-			//pushE.enabled = false;
-			needKey.enabled = false;
-		}
+            //pushE.enabled = false;
+            needKey1.SetActive(false);
+        }
+
+        else if(other.tag == Tags.PLAYER2)
+        {
+            needKey2.SetActive(false);
+        }
 
 	}
 

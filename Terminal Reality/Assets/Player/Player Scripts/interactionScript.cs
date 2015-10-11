@@ -235,11 +235,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
-		//To catch the error and then do nothing with it.
-		if (pushEObj == null || pushEOpenObj == null) {
-			return;				
-		}
-		else{		
+			
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
 			{
@@ -286,17 +282,13 @@ public class interactionScript : Photon.MonoBehaviour {
 				inRangeOfKeys = true;
 				interactingCollider = other;
 			}
-		}
+		
 	}
 	
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		//To catch the error and then do nothing with it.
-		if (pushEObj == null || pushEOpenObj == null) {
-			return;				
-		}
-		else{
+		
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
 			{			
@@ -337,7 +329,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				pushE.enabled = false;
 				inRangeOfKeys = false;
 			}
-		}
+		
 	}
 
 }
