@@ -24,7 +24,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 453940}
-  - 64: {fileID: 6414286}
   - 65: {fileID: 6578514}
   m_Layer: 0
   m_Name: MedicalLights
@@ -97,8 +96,8 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_LightmapIndex: 7
+  m_LightmapTilingOffset: {x: .0986328125, y: .0986328125, z: .767272353, w: .133631349}
   m_Materials:
   - {fileID: 2100000, guid: 68151fd1e3b404944b45a4d281cd084a, type: 2}
   m_SubsetIndices: 
@@ -114,19 +113,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153942}
-  m_Mesh: {fileID: 4300000, guid: 88358bfcce3731b4b98413207886346d, type: 3}
---- !u!64 &6414286
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153940}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 88358bfcce3731b4b98413207886346d, type: 3}
 --- !u!65 &6578514
 BoxCollider:
@@ -150,7 +136,7 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .300000012
+  m_Intensity: .200000003
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -163,7 +149,7 @@ Light:
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
+  m_ActuallyLightmapped: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:

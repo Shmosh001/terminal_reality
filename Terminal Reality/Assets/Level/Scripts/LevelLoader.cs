@@ -112,13 +112,13 @@ public class LevelLoader : MonoBehaviour {
         RoomInfo[] roomstuff = PhotonNetwork.GetRoomList();
 
         //PhotonNetwork.JoinRandomRoom();
-        PhotonNetwork.JoinRoom("Andi");
+        PhotonNetwork.JoinRoom("Osher");
 
     }
 
 
     void OnPhotonJoinRoomFailed() {
-        PhotonNetwork.CreateRoom("Andi");
+        PhotonNetwork.CreateRoom("Osher");
     }
 
 
