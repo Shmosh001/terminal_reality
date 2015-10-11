@@ -438,7 +438,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			    //we set the animation and relevant parameters
 			animatorCont.resetBooleans();
 			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
-            animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
+            //animatorCont.forceAnimation(EnemyHashScript.attackDecisionState, );
             //rpc conversion
 
            

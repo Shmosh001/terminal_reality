@@ -22,31 +22,17 @@ public class DoorScript : MonoBehaviour {
     {
         audioSource = GetComponent<AudioSource>();
 		anim = this.GetComponent<Animator> ();
-	/*
-        pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-        if (pushETextObj != null)
-        {
-            pushE = pushETextObj.GetComponent<Text>();
-        }
-        */
+	
        
 	}
 
     // Update is called once per frame
     void Update()
     {
-        /*if (pushETextObj == null)
-        {
-            pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-            if (pushETextObj != null)
-            {
-                pushE = pushETextObj.GetComponent<Text>();
-            }
-        }*/
+        
     }
 
     //WHEN THE PLAYER INTERACTS WITH THE DOOR//
-    [PunRPC]
     public void interaction()
 	{
         //IF THE DOOR IS OPEN//

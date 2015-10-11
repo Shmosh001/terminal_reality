@@ -10,7 +10,7 @@ public class DDScript : MonoBehaviour {
 	//private Text pushE;
 	private Text needKey;
     //private GameObject pushEObj;
-	private GameObject needKeyObj;
+	public GameObject needKeyObj;
 
 	// Use this for initialization
 	void Start () 
@@ -19,13 +19,12 @@ public class DDScript : MonoBehaviour {
         anim = gameObject.GetComponent<Animator>();
 		open = false;
 		//pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-		needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
+		//needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
 		
 	}
 
 
     //WHEN THE PLAYER INTERACTS WITH THE DOOR//
-    [PunRPC]
     public void interaction()
 	{
 		//IF THE DOOR IS CLOSED//

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameOver : Photon.MonoBehaviour {
+public class GameOver : MonoBehaviour {
 
 
 

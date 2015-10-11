@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 460630}
   - 135: {fileID: 13592544}
-  - 114: {fileID: 11408790}
   - 114: {fileID: 11408788}
   m_Layer: 25
   m_Name: Pistol - OnMAP
@@ -177,8 +176,8 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_LightmapIndex: 4
+  m_LightmapTilingOffset: {x: .00292968773, y: .0029296875, z: .994096577, w: .0370491445}
   m_Materials:
   - {fileID: 2100000, guid: ae0dc6f70ccf7424d942f3494667cf58, type: 2}
   m_SubsetIndices: 
@@ -197,8 +196,8 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_LightmapIndex: 4
+  m_LightmapTilingOffset: {x: .005859375, y: .005859375, z: .991059959, w: .109208673}
   m_Materials:
   - {fileID: 2100000, guid: 3603a1a9a3ffee34eb5b86de6aa4e092, type: 2}
   m_SubsetIndices: 
@@ -240,31 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2f0b14c3b9b81498c068679c184fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11408790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
 --- !u!135 &13592544
 SphereCollider:
   m_ObjectHideFlags: 1
