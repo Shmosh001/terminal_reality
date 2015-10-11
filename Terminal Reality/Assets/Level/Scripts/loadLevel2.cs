@@ -40,21 +40,6 @@ public class loadLevel2 : MonoBehaviour {
         }
     }
 
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-
-
-
-
-        if (stream.isWriting) {
-            stream.SendNext(player1Arrived);
-            stream.SendNext(player2Arrived);
-        }
-        //receiving other players things
-        else {
-            player1Arrived = (bool)stream.ReceiveNext();
-            player2Arrived = (bool)stream.ReceiveNext();
-        }
-
-    }
+    
 
 }
