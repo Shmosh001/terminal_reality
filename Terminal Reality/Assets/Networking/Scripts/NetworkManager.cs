@@ -94,10 +94,15 @@ public class NetworkManager : MonoBehaviour {
         }*/
         
         
-        PhotonNetwork.JoinRandomRoom();
-
+        //PhotonNetwork.JoinRandomRoom();
+		PhotonNetwork.JoinRoom("alon");
 
     }
+
+
+	void OnPhotonJoinRoomFailed(){
+		PhotonNetwork.CreateRoom("alon");
+	}
 
     /// <summary>
     /// if random joining fails
