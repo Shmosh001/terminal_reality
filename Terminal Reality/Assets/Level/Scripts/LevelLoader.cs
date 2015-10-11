@@ -5,7 +5,6 @@ public class LevelLoader : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
-    public GameObject scripts;
 
 
     public GameObject level1;
@@ -66,7 +65,7 @@ public class LevelLoader : MonoBehaviour {
         player1.transform.position = spawn1.transform.position;
         player1.transform.rotation = spawn1.transform.rotation;
 
-        if (!scripts.GetComponent<GameManager>().singleplayer) {
+        if (!gameObject.GetComponent<GameManager>().singleplayer) {
             player2.transform.position = spawn2.transform.position;
             player2.transform.rotation = spawn2.transform.rotation;
         }
@@ -81,7 +80,7 @@ public class LevelLoader : MonoBehaviour {
         player1.transform.position = spawn3.transform.position;
         player1.transform.rotation = spawn3.transform.rotation;
         
-        if (!scripts.GetComponent<GameManager>().singleplayer) {
+        if (!gameObject.GetComponent<GameManager>().singleplayer) {
             player2.transform.position = spawn4.transform.position;
             player2.transform.rotation = spawn4.transform.rotation;
         }
