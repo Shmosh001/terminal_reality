@@ -18,8 +18,7 @@ public class DDScript : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         anim = gameObject.GetComponent<Animator>();
 		open = false;
-		//pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-		//needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
+		
 		
 	}
 
