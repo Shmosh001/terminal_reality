@@ -32,8 +32,8 @@ public class Tags : MonoBehaviour {
 	public const string KEYTOOPEN = "keyToOpen";
     public const string RAGDOLL = "Ragdoll";
     public const string PATROLPOINT = "PatrolPoint";
-    
-
+    public const string SPAWN1 = "Spawn1";
+    public const string SPAWN2 = "Spawn2";
 
 
 

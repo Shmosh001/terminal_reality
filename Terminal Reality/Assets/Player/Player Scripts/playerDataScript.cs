@@ -53,6 +53,8 @@ public class playerDataScript : Photon.MonoBehaviour {
         torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
 
 		machineGunGameObject.SetActive(false);
+
+        DontDestroyOnLoad(gameObject);
        // Debug.LogWarning("Set to false");
 
 	}
