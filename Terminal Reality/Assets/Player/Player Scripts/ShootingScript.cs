@@ -33,7 +33,7 @@ public class ShootingScript : ammoHUDScript {
 	void Update () 
 	{
 		//SINGLE FIRE//
-		if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire)
+		if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire && playerData.playerAlive)
 		{
 			coolDownTimer -= Time.deltaTime; // reduce cool down timer
 			
@@ -88,7 +88,7 @@ public class ShootingScript : ammoHUDScript {
 			}
 		}
 		//AUTOMATIC FIRE//
-		else if (weapon != null && !weapon.GetComponent<weaponDataScript>().singleFire)
+		else if (weapon != null && !weapon.GetComponent<weaponDataScript>().singleFire && playerData.playerAlive)
 		{
 			coolDownTimer -= Time.deltaTime; //reduce cool down timer
 			
@@ -146,7 +146,7 @@ public class ShootingScript : ammoHUDScript {
 		}
 		
 		//RELOAD//
-		if (Input.GetKeyDown(KeyCode.R) && weapon != null)
+		if (Input.GetKeyDown(KeyCode.R) && weapon != null && playerData.playerAlive)
 		{
 			//Can only reload if the clip is NOT full//
 			if (weapon.GetComponent<weaponDataScript>().getRemainingClip() != weapon.GetComponent<weaponDataScript>().clipSize)
@@ -184,7 +184,7 @@ public class ShootingScript : ammoHUDScript {
 		//SWITCHING WEAPONS//
 		
 		//pistol//
-		if (Input.GetKeyDown(KeyCode.Alpha1))
+		if (Input.GetKeyDown(KeyCode.Alpha1) && playerData.playerAlive)
 		{
 			//if successfully switched to pistol...
 			if (this.GetComponent<weaponSwitchScript>().switchToPistol())
@@ -195,7 +195,7 @@ public class ShootingScript : ammoHUDScript {
 		
 		
 		//machine gun//
-		if (Input.GetKeyDown(KeyCode.Alpha2))
+		if (Input.GetKeyDown(KeyCode.Alpha2) && playerData.playerAlive)
 		{
 			if (this.GetComponent<weaponSwitchScript>().switchToMachineGun())
 			{
@@ -236,8 +236,8 @@ public class ShootingScript : ammoHUDScript {
 		{
 			Vector3 hitPoint = hitInfo.point; //point where the collision happened
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
-			
-			
+
+            Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
 			//TEST SHOOTING ON SPHERE
 			/*			if (hitObject.CompareTag("Sphere"))
 			{
@@ -249,7 +249,7 @@ public class ShootingScript : ammoHUDScript {
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
 			{
-                //Debug.Log("Enemy shot");
+                Debug.Log("Enemy shot: " + hitObject.name );
                 //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
 
                 PhotonView enemypView = hitObject.GetComponent<PhotonView>();

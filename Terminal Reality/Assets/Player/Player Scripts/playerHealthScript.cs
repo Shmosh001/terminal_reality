@@ -4,7 +4,7 @@ using System.Collections;
 
 public class playerHealthScript : MonoBehaviour {
 	
-	private playerDataScript playerData;
+	public playerDataScript playerData;
 	public UIBarScript uiBarScript;	
 	private bool heartBeatPlaying = false;
 	private GameObject soundController;
@@ -105,13 +105,14 @@ public class playerHealthScript : MonoBehaviour {
         Application.LoadLevel("Credits");
     }
 
+	/*
 	//INCREASE PLAYER'S HEALTH//
 	public void increasePlayerHealth(int healthPoints)
 	{
 		
 		//TODO: IF WE DECIDE ON DOING INCREMENTAL HEALING AND NOT ONLY FULL HEALS//
 		
-	}
+	}*/
 	
 	//FULL UP (MAX) PLAYER'S HEALTH//
 	public void fullPlayerHealth()

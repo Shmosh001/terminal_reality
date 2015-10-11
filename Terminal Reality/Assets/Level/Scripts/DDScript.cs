@@ -7,9 +7,9 @@ public class DDScript : MonoBehaviour {
     private AudioSource audioSource;
     private Animator anim;
 	private bool open;
-	private Text pushE;
+	//private Text pushE;
 	private Text needKey;
-    private GameObject pushEObj;
+    //private GameObject pushEObj;
 	private GameObject needKeyObj;
 
 	// Use this for initialization
@@ -18,7 +18,7 @@ public class DDScript : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         anim = gameObject.GetComponent<Animator>();
 		open = false;
-		pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
+		//pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
 		needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
 		
 	}
@@ -32,13 +32,16 @@ public class DDScript : MonoBehaviour {
 		if(!open)
 		{
             //play sound of this component
+
             audioSource.Play();
+
             anim.SetTrigger("OpenFWD");
 			open = true;
 
 
 		}
 	}
+
 
 	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
 	void OnTriggerEnter (Collider other)
@@ -51,7 +54,7 @@ public class DDScript : MonoBehaviour {
 				//if the player has a key - show "Push E"
 				if (other.GetComponentInParent<playerDataScript>().hasKey)
 				{
-					pushE.enabled = true;
+					//pushE.enabled = true;
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
@@ -60,19 +63,26 @@ public class DDScript : MonoBehaviour {
 			}
 		}
 
+
         if (other.tag == Tags.PLAYER2) {
             if (!open) //Only show hint if the door is closed
             {
+
 				//if the player has a key - show "Push E"
 				if (other.GetComponentInParent<playerDataScript>().hasKey)
 				{
-					pushE.enabled = true;
+					//pushE.enabled = true;
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
 					needKey.enabled = true;
 				}
+
             }
+        }
+        if (!open && other.tag == Tags.ENEMY ) {
+            other.GetComponent<ZombieFSM>().stopWandering();
+
         }
 
     }
@@ -83,7 +93,7 @@ public class DDScript : MonoBehaviour {
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)
 		{
-			pushE.enabled = false;
+			//pushE.enabled = false;
 			needKey.enabled = false;
 		}
 
@@ -91,23 +101,6 @@ public class DDScript : MonoBehaviour {
 
 
 
-    void Update() {
-        if (pushEObj == null)
-        {
-            pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-            if (pushEObj != null)
-            {
-                pushE = pushEObj.GetComponent<Text>();
-            }
-        }
-		if (needKeyObj == null)
-        {
-			needKeyObj = GameObject.FindGameObjectWithTag(Tags.KEYTOOPEN);
-			if (needKeyObj != null)
-            {
-				needKey = needKeyObj.GetComponent<Text>();
-			}
-		}
-    }
+
 
 }

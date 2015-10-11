@@ -1142,7 +1142,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 404558}
-  - 95: {fileID: 9504412}
   - 114: {fileID: 11444644}
   - 114: {fileID: 11473142}
   m_Layer: 0
@@ -2302,21 +2301,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .393936157, y: .167158186, z: .266895145}
   m_Center: {x: .000361859798, y: .023534745, z: -.0355233252}
---- !u!95 &9504412
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104558}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d75924153ecb91f4fa827f8c626d73fb, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11444644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2337,7 +2321,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 404558}
+  - {fileID: 11473142}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

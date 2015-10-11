@@ -33,7 +33,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     //PRIVATE VARS
 
     //the entities audio source
-    private AudioSource audioSource;
+    public AudioSource deathSound, screamSound;
 
     //the box collider which is used to detect when a player is within a close range and is set as a target
     private BoxCollider boxCollider;
@@ -72,7 +72,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             Debug.LogError("No photon view component found");
             return;
         }
-        audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource = gameObject.GetComponent<AudioSource>();
         detection = gameObject.GetComponent<PreyDetection>();
         fsm = new StateMachineClass<StateEnums.BossZombieStates>();
         fsm.enterState(StateEnums.BossZombieStates.Idle);
@@ -105,7 +105,8 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         soundC += Time.deltaTime;
 
         if (!deadBool && soundC > soundD) {
-            sound.playBossScreamSound(transform.position);
+            screamSound.Play();
+            //sound.playBossScreamSound(transform.position);
             soundC = 0;
         }
 
@@ -253,7 +254,8 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //stop moving on the nav mesh
         navAgent.Stop();
         deadBool = true;
-        sound.playBossDeathSound(transform.position);
+        deathSound.Play();
+        //sound.playBossDeathSound(transform.position);
         //rpc conversion
         
         if (PhotonNetwork.offlineMode) {
@@ -277,9 +279,8 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     /// disables all parts to the unit to only leave dead body
     /// </summary>
     void dead() {
-        if (debugStatements) Debug.Log("dead method at" + Time.timeSinceLevelLoad); 
-        gameObject.GetComponent<SphereCollider>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        if (debugStatements) Debug.Log("dead method at" + Time.timeSinceLevelLoad);
+        transform.parent.gameObject.GetComponent<RagdollFollow>().enableRagdoll(Vector3.forward);
     }
 
 

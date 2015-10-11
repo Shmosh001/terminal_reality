@@ -21,7 +21,9 @@ public class interactionScript : Photon.MonoBehaviour {
 	private Collider interactingCollider; //the collider of the object the player was last in
 	private GameObject soundController;
 	private GameObject pushEObj;
+	private GameObject pushEOpenObj;
 	private Text pushE;
+	private Text pushEOpen;
 
 
 
@@ -43,6 +45,12 @@ public class interactionScript : Photon.MonoBehaviour {
 			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
 			if (pushEObj != null) {
 				pushE = pushEObj.GetComponent<Text>();
+			}
+		}
+		if (pushEOpenObj == null) {
+			pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
+			if (pushEOpenObj != null) {
+				pushEOpen = pushEOpenObj.GetComponent<Text>();
 			}
 		}
 
@@ -203,8 +211,6 @@ public class interactionScript : Photon.MonoBehaviour {
                     this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
                     //Destroy health box after picking it up//
-                    //interactingCollider.GetComponentInParent<HealthBoxScript>().turnOffText();
-
 					destroyObjectOverNetwork();
 
                     //Destroy(interactingCollider.gameObject);
@@ -241,29 +247,10 @@ public class interactionScript : Photon.MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
-
-                //Destroy the pistol game object//				
-                //interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();//handled in script
-                //Destroy(interactingCollider.gameObject);
                
 
 
 				destroyObjectOverNetwork();
-
-                //this calls the fx rpc for the other client
-                /*if (gameObject.tag == Tags.PLAYER1) {
-                    GameObject player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
-                    if (player2 != null) {
-                        player2.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
-                    }
-                }
-                else if (gameObject.tag == Tags.PLAYER2) {
-                    GameObject player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
-                    if (player1 != null) {
-                        player1.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
-                    }
-                }*/
-
                 
                 gameObject.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
                     
@@ -345,6 +332,21 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
+		/*if (pushEObj == null) {
+			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);				
+			pushE = pushEObj.GetComponent<Text>();				
+		}*/
+		
+		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+		if (other.tag == "Door")
+		{
+			/*if (pushEOpenObj == null) {
+				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
+				pushEOpen = pushEOpenObj.GetComponent<Text>();				
+			}*/
+			pushEOpen.enabled = true;
+		}
+		
 		//IF PLAYER IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{
@@ -389,6 +391,16 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
+		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+		if (other.tag == "Door")
+		{
+			/*if (pushEOpenObj == null) {
+				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
+				pushEOpen = pushEOpenObj.GetComponent<Text>();				
+			}*/
+			pushEOpen.enabled = false;
+		}
+		
 		//IF PLAYER NOT IN RANGE OF AN AMMO BOX
 		if (other.tag == "AmmoBox")
 		{

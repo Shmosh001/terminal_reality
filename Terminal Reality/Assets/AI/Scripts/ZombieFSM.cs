@@ -323,16 +323,21 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
             /***********Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*******Puking*/
             case (byte)StateEnums.ZombieStates.Puking:
-                if (stateDebugStatements) { Debug.Log("puking case: entering " + Time.timeSinceLevelLoad); }
+               // Debug.Log("puking case: entering " + Time.timeSinceLevelLoad);
                 //updating counter
+
+                //Debug.Log(pukeC);
                 pukeC += Time.deltaTime;
 
                 if (!puking) {
+                    Debug.Log("puke started");
                     puke();
                 }
+
+               // Debug.Log(pukeC);
                 //if timer is over the limit
                 if (pukeC > pukeD) {
-                    if (debugStatements)Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
+                    //Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
                     fsm.enterPreviousState();
                     
                    /* if (PhotonNetwork.offlineMode) {
@@ -721,7 +726,13 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //if we are able to attack
         if (targetH != null && attackC > attackD){
                 //reduce health
-            targetH.reducePlayerHealth(damage);
+            
+            if (targetH.playerData.playerAlive) {
+                targetH.reducePlayerHealth(damage);
+            }
+            else {
+                fsm.enterState(StateEnums.ZombieStates.Alerted);
+            }
             attackC = 0;
 		}
 
@@ -756,7 +767,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// entity pukes at its position
     /// </summary>
     void puke(){
-		if (debugStatements){Debug.Log("puke method at" + Time.timeSinceLevelLoad);}
+		Debug.Log("puke method at" + Time.timeSinceLevelLoad);
 		//after exit time of the animation we revert back to idle
 		//set the puking particle effect
 		puking = true;

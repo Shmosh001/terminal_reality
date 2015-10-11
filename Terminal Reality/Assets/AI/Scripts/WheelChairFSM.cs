@@ -9,6 +9,8 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
 
     //PUBLIC VARS
+    public AudioSource gruntSound, screamSound;
+
 
     //debug booleans
     public bool stateDebugStatements;
@@ -29,7 +31,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
     public float rayCastOffset = 1.5f;
 
     //floats values which are sued for counters and durations and general values
-    public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD = 7.917f, alertedD = 10.0f, searchingD, dyingD, chasingD = 1f, shotD, attackD = 2;
+    public float eventChoiceD = 10.0f, wanderD, checkPlayerD, pukeD = 7.917f, alertedD = 10.0f, searchingD, dyingD, chasingD = 1f, shotD, attackD = 2, gruntSoundD = 2, screamSoundD = 1.5f, screamSoundC, gruntSoundC;
     //sense values
     public float viewingSenseNorm, viewingSensAlert, listeningSensNorm = 8, listeningSensAlert = 12;
     //speed values
@@ -94,8 +96,20 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
     /// </summary>
     void Update () {
 
+        gruntSoundC += Time.deltaTime;
+        screamSoundC += Time.deltaTime;
 
-       
+
+        if (patroling && gruntSoundC > gruntSoundD) {
+            gruntSound.Play();
+            gruntSoundC = 0;
+        }
+
+        if (chasing && screamSoundC > screamSoundD) {
+            screamSound.Play();
+            screamSoundC = 0;
+        }
+
         switch ((byte)fsm.getCurrentState()) {
 
             /***********Idle*******Idle*******Idle*******Idle*******Idle*******Idle*******Idle*/
@@ -262,10 +276,11 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
 
 
-        float distance = getDistanceT(transform, target.transform);
+        float distance = getDistanceT(this.gameObject.transform, target.transform);
 
 
-        Debug.LogWarning(distance);
+        //Debug.LogWarning(distance);
+        //Debug.LogWarning("*"+attackingDistance);
 
         //we check if we are close enough to attack the target
         //or if we are far away enough to have lost the target
@@ -274,7 +289,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             if (debugStatements)  Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad);
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
 
-            Debug.LogWarning("ATTACKING");
+            //Debug.LogWarning("ATTACKING");
             fsm.enterState(StateEnums.WheelZombieStates.Attacking);
             
             navAgent.Stop();
@@ -290,9 +305,24 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         
 	}
 
-    
 
 
+    /// <summary>
+    /// alerts the unit that it has been shot
+    /// changes state 
+    /// </summary>
+    /// <param name="entity">
+    /// which entity shot it
+    /// </param>
+    public void alertShot(GameObject entity) {
+        target = entity.gameObject;
+        // we only want to transition into the state if are not currently in the state
+
+        enterState((byte)StateEnums.BossZombieStates.Chasing);
+
+
+
+    }
 
 
     /// <summary>

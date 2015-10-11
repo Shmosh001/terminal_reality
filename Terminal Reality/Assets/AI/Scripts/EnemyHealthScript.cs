@@ -12,6 +12,8 @@ public class EnemyHealthScript : MonoBehaviour {
 	public int health;
     //enemy identifier
     public bool isBoss;
+    public bool isGeneral;
+    public bool isWheelChair;
 
 
 
@@ -22,6 +24,7 @@ public class EnemyHealthScript : MonoBehaviour {
     //the finite state machine
 	private ZombieFSM fsm;
     private BossZombieFSM bfsm;
+    private WheelChairFSM wcfsm;
 
 
 
@@ -32,8 +35,11 @@ public class EnemyHealthScript : MonoBehaviour {
         if (isBoss) {
             bfsm = gameObject.GetComponent<BossZombieFSM>();
         }
-        else {
+        else if (isGeneral) {
             fsm = gameObject.GetComponent<ZombieFSM>();
+        }
+        else if (isWheelChair) {
+            wcfsm = gameObject.GetComponent<WheelChairFSM>();
         }
 	}
 
@@ -47,8 +53,11 @@ public class EnemyHealthScript : MonoBehaviour {
             if (isBoss) {
                 bfsm.alertDead();
             }
-            else {
-                fsm.alertDead(transform.up);
+            else if (isGeneral) {
+                fsm.alertDead(transform.forward);
+            }
+            else if (isWheelChair) {
+                wcfsm.alertDead(transform.forward);
             }
             dead = true;
 		}
@@ -84,7 +93,7 @@ public class EnemyHealthScript : MonoBehaviour {
         if (this.gameObject.GetComponent<PhotonView>().viewID != id) {
             return;
         }
-
+        
         GameObject entity = GameObject.FindGameObjectWithTag(tag);
 
         if (entity == null) {
@@ -96,11 +105,13 @@ public class EnemyHealthScript : MonoBehaviour {
 			health -= value;
             //Debug.LogWarning("h:" + health);
             if (isBoss) {
-               // Debug.LogWarning("Boss shot");
                 bfsm.alertShot(entity);
             }
-            else {
+            else if (isGeneral) {
                 fsm.alertShot(entity);
+            }
+            else if (isWheelChair) {
+                wcfsm.alertShot(entity);
             }
         }
         //if the entity is dead and has not registered being dead, we alert the fsm
@@ -108,10 +119,13 @@ public class EnemyHealthScript : MonoBehaviour {
             if (isBoss) {
                 bfsm.alertDead();
             }
-            else {
-                fsm.alertDead(hitPoint);
+            else if (isGeneral) {
+                fsm.alertDead(transform.forward);
             }
-			dead = true;
+            else if (isWheelChair) {
+                wcfsm.alertDead(transform.forward);
+            }
+            dead = true;
 		}
 
 	}

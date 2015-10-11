@@ -11,7 +11,10 @@ public class WanderLocationArea : MonoBehaviour {
 //        Debug.Log(collider.gameObject.name + " entered");
 
         if (collider.gameObject.tag == Tags.ENEMY) {
-            collider.gameObject.GetComponent<ZombieFSM>().stopWandering();
+            ZombieFSM fsm = collider.gameObject.GetComponent<ZombieFSM>();
+            if (fsm != null) {
+                fsm.stopWandering();
+            }
         }
            
 

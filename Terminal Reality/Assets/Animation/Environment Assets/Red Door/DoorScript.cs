@@ -10,38 +10,39 @@ public class DoorScript : MonoBehaviour {
     public bool open = false;
     public bool openFWD = false;
     public bool openBCK = false;
-    private Text pushE;
+    //private Text pushE;
 
     //field of view for detecting zombie
     private float FOV = 160f;
 
-    private GameObject pushETextObj;
+    //private GameObject pushETextObj;
 
     // Use this for initialization
     void Start ()
     {
         audioSource = GetComponent<AudioSource>();
 		anim = this.GetComponent<Animator> ();
-
+	/*
         pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
         if (pushETextObj != null)
         {
             pushE = pushETextObj.GetComponent<Text>();
         }
+        */
        
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (pushETextObj == null)
+        /*if (pushETextObj == null)
         {
             pushETextObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
             if (pushETextObj != null)
             {
                 pushE = pushETextObj.GetComponent<Text>();
             }
-        }
+        }*/
     }
 
     //WHEN THE PLAYER INTERACTS WITH THE DOOR//
@@ -111,7 +112,9 @@ public class DoorScript : MonoBehaviour {
 
             if (!open) //Only show hint if the door is closed
 			{
-                pushE.enabled = true;
+                //pushE.enabled = true;
+                
+                
                 //this checks which side of the door the player is. If the player is in a room or not
                 Vector3 direction = other.transform.position - transform.position;
                 //gets the angle between the player and the unit
@@ -171,10 +174,10 @@ public class DoorScript : MonoBehaviour {
 		//IF A PLAYER LEAVES THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1)
 		{
-			pushE.enabled = false;
+			//pushE.enabled = false;
 		}
         if (other.tag == Tags.PLAYER2) {
-            pushE.enabled = false;
+            //pushE.enabled = false;
         }
 
 
