@@ -388,16 +388,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 
                 break;
         }
-        
-        //debugging
-		/*if (debug){
-			text.text = fsm.getCurrentState().ToString();
-			text2.text = getDistance(player.transform, transform).ToString();
-		}
-		else{
-			text.text = "";
-			text2.text = "";
-		}*/
+  
 	}
 
 
@@ -408,12 +399,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         navAgent.Stop();
         fsm.enterPreviousState();
 
-        /*if (PhotonNetwork.offlineMode) {
-            fsm.enterPreviousState();
-        }
-        else {
-            pView.RPC("enterPrevState", PhotonTargets.AllViaServer);
-        }*/
+
         wandering = false;
         //animatorCont.setBoolean(EnemyHashScript.wanderingBool, false);
         //rpc conversion
@@ -437,8 +423,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements)Debug.Log("chasing case:: forcing chase animation " + Time.timeSinceLevelLoad);
 			    //we set the animation and relevant parameters
 			animatorCont.resetBooleans();
-			animatorCont.setRandomInteger(EnemyHashScript.attDInt,2);
-            //animatorCont.forceAnimation(EnemyHashScript.attackDecisionState, );
+
             //rpc conversion
 
            
@@ -446,7 +431,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
            
                 
-                animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
+            animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
             
             //we set a new nav mesh destination
             if (target == null) {
