@@ -23,10 +23,6 @@ public class soundControllerScript : MonoBehaviour {
     public AudioClip bossZombieDeath;
 	
 
-	//PUBLIC LEVEL SOUNND VARIABLES
-	public AudioClip sparkSound;	
-
-
 	// Use this for initialization
 	void Start () {
 		
@@ -92,12 +88,7 @@ public class soundControllerScript : MonoBehaviour {
         AudioSource.PlayClipAtPoint(femaleScreamingSound, position);
     }
 
-    //PLAY SCREAM FOR FEMALE ZOMBIE//
-    public void playSparkSound(Vector3 position){
-        //soundSource.PlayOneShot(sparkSound);
-        AudioSource.PlayClipAtPoint(sparkSound, position);
-    }
-
+    
     //PLAY SCREAM FOR BOSS ZOMBIE//
     public void playBossScreamSound(Vector3 position) {
         
