@@ -8,7 +8,8 @@ public class LevelLoader : MonoBehaviour {
 
 
 
-
+    public GameObject level1;
+    public GameObject level2;
     
 
 
@@ -18,6 +19,8 @@ public class LevelLoader : MonoBehaviour {
     //temp spawning location
     public GameObject spawn1;
     public GameObject spawn2;
+    public GameObject spawn3;
+    public GameObject spawn4;
 
     public GameObject P1HUD;
     public GameObject P2HUD;
@@ -26,15 +29,16 @@ public class LevelLoader : MonoBehaviour {
     public GameObject mainCam;
 
     private bool connecting = false;
-    public bool level1Loaded = false;
+    public bool level1Loaded = true;
     public bool level2Loaded = false;
+    public bool loading = false;
 
 
-    public AsyncOperation level2Load;
 
 
     void Start() {
         DontDestroyOnLoad(gameObject);
+        level1Loaded = true;
     }
 
 
@@ -83,6 +87,19 @@ public class LevelLoader : MonoBehaviour {
             GUILayout.EndArea();
 
         }
+        if (loading) {
+            GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.BeginVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Loading...");
+            GUILayout.FlexibleSpace();
+            GUILayout.EndVertical();
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            GUILayout.EndArea();
+        }
 
     }
 
@@ -94,10 +111,16 @@ public class LevelLoader : MonoBehaviour {
 
         RoomInfo[] roomstuff = PhotonNetwork.GetRoomList();
 
-        PhotonNetwork.JoinRandomRoom();
-
+        //PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRoom("Andi");
 
     }
+
+
+    void OnPhotonJoinRoomFailed() {
+        PhotonNetwork.CreateRoom("Andi");
+    }
+
 
     /// <summary>
     /// if random joining fails
@@ -105,7 +128,7 @@ public class LevelLoader : MonoBehaviour {
     /// </summary>
     void OnPhotonRandomJoinFailed() {
         Debug.Log("OnPhotonRandomJoinFailed");
-        PhotonNetwork.CreateRoom(null);
+        
 
     }
 
@@ -116,10 +139,10 @@ public class LevelLoader : MonoBehaviour {
     void OnJoinedRoom() {
         Debug.Log("OnJoinedRoom");
         //SpawnPlayer();
-        if (!level1Loaded) {
-            SpawnPlayer();
-            //loadLevel2();
-        }
+        
+        SpawnPlayer();
+        
+        
     }
 
     /// <summary>
@@ -208,13 +231,7 @@ public class LevelLoader : MonoBehaviour {
     */
 
     void Update() {
-        if (level2Load != null && level2Load.isDone) {
-            Debug.Log("level 2 is ready");
-            startLevel2();
-        }
-        if (Application.loadedLevelName == "LevelTwo for andi") {
-            spawnOnLevel2();
-        }
+        
 
 
         if (player1 == null) {
@@ -228,42 +245,32 @@ public class LevelLoader : MonoBehaviour {
 
 
         if (Input.GetKeyDown(KeyCode.P)) {
-            loadLevel2();
+            spawnOnLevel2();
         }
 
 
     }
 
 
-    void spawnOnLevel2() {
+    public void spawnOnLevel2() {
 
-        spawn1 = GameObject.FindGameObjectWithTag(Tags.SPAWN1);
-        spawn2 = GameObject.FindGameObjectWithTag(Tags.SPAWN2);
-
-        player1.transform.position = spawn1.transform.position;
-        player1.transform.rotation = spawn1.transform.rotation;
-        player2.transform.position = spawn2.transform.position;
-        player2.transform.rotation = spawn2.transform.rotation;
-    }
-
-
-    IEnumerator startLevel2() {
-        if (level2Loaded) {
-            yield return level2Load;
+        
+        level1.SetActive(false);
+        level2.SetActive(true);
+        level1Loaded = false;
+        
+        player1.transform.position = spawn3.transform.position;
+        player1.transform.rotation = spawn3.transform.rotation;
+        if (player2 == null) {
+            return;
         }
+        player2.transform.position = spawn4.transform.position;
+        player2.transform.rotation = spawn4.transform.rotation;
+        loading = false;
     }
 
 
-    //loads level 2 in the background
-    public void loadLevel2() {
-        //level2Load = Application.LoadLevelAsync("LevelTwo for andi");
-        Application.LoadLevel("LevelTwo for andi");
-        //yield return level2Load;
 
-        Debug.Log("level 2 set for loading");
-
-
-    }
 
 
 }
