@@ -59,29 +59,19 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     //the collider that checks for sound
     private SphereCollider soundCollider;
 
-    //photon view component for rpc calls
-    private PhotonView pView;
+
 
 
     //METHODS
 
     // Use this for initialization
     void Start() {
-        pView = gameObject.GetComponent<PhotonView>();
-        if (pView == null) {
-            Debug.LogError("No photon view component found");
-            return;
-        }
+
         //audioSource = gameObject.GetComponent<AudioSource>();
         detection = gameObject.GetComponent<PreyDetection>();
         fsm = new StateMachineClass<StateEnums.BossZombieStates>();
         fsm.enterState(StateEnums.BossZombieStates.Idle);
-        /*if (PhotonNetwork.offlineMode) {
-            enterState((byte)StateEnums.BossZombieStates.Idle);
-        }
-        else {
-            pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Idle);
-        }*/
+
 
         animatorCont = gameObject.GetComponent<ZombieAnimationController>();
         soundCollider = gameObject.GetComponent<SphereCollider>();
@@ -143,10 +133,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
                     //we store all information on the target we are chasing and send the unit to its updated position on the nav mesh
                     navAgent.SetDestination(target.transform.position);
                     detection.assignLastPosition(target.transform.position);
-                    if (target == null) {
-                        handleNoTarget();
-                        break;
-                    }
+
                     detection.assignTarget(target);
                     chasingC = 0;
                 }
@@ -196,13 +183,9 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
             //rpc conversion
 
-            if (PhotonNetwork.offlineMode) {
 
-                animatorCont.setTrigger(BossHashScript.chargeTrigger, pView.viewID);
-            }
-            else {
-                pView.RPC("setTrigger", PhotonTargets.AllViaServer, BossHashScript.chargeTrigger, pView.viewID);
-            }
+                animatorCont.setTrigger(BossHashScript.chargeTrigger);
+            
             //we set a new nav mesh destination
             if (target == null) {
                 return;
@@ -222,22 +205,14 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             //fsm.enterState(StateEnums.ZombieStates.Attacking);
             //rpc conversion
             enterState((byte)StateEnums.BossZombieStates.Attacking);
-            /*if (PhotonNetwork.offlineMode) {
-                
-            }
-            else {
-                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Attacking);
-            }*/
+            
             navAgent.Stop();
             //animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
             //rpc conversion
 
-            if (PhotonNetwork.offlineMode) {
-                animatorCont.setBoolean(BossHashScript.attackingBool, true, pView.viewID);
-            }
-            else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, true, pView.viewID);
-            }
+            
+                animatorCont.setBoolean(BossHashScript.attackingBool, true);
+            
             chasing = false;
         }
         
@@ -255,23 +230,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         navAgent.Stop();
         deadBool = true;
         deathSound.Play();
-        //sound.playBossDeathSound(transform.position);
-        //rpc conversion
-        
-        /*if (PhotonNetwork.offlineMode) {
-            animatorCont.setTrigger(BossHashScript.deadTrigger, pView.viewID);
-        }
-        else {
-            pView.RPC("setTrigger", PhotonTargets.AllBufferedViaServer, BossHashScript.deadTrigger, pView.viewID);
-        }*/
 
 
-        //if (PhotonNetwork.offlineMode) {
+
+   
         enterState((byte)StateEnums.BossZombieStates.Dead);
-        /*}
-        else {
-            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.BossZombieStates.Dead);
-        }*/
+
 
     }
 
@@ -297,10 +261,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         if (debugStatements) Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);
         //inflict damage on player
 
-        if (target == null) {
-            handleNoTarget();
-            return;
-        }
+
 
         playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 
@@ -320,20 +281,12 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         //add a small offset
         if (distance > attackingDistance ) {
 
-            //if (PhotonNetwork.offlineMode) {
             enterState((byte)StateEnums.BossZombieStates.Chasing);
-            /*}
-            else {
-                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-            }*/
-            //rpc conversion
 
-            if (PhotonNetwork.offlineMode) {
-                animatorCont.setBoolean(BossHashScript.attackingBool, false, pView.viewID);
-            }
-            else {
-                pView.RPC("setBoolean", PhotonTargets.AllViaServer, BossHashScript.attackingBool, false, pView.viewID);
-            }
+
+            
+                animatorCont.setBoolean(BossHashScript.attackingBool, false);
+            
         }
     }
 
@@ -351,22 +304,11 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
             if (debugStatements) { Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad); }
             //assign the target
             detection.assignTarget(collider.gameObject);
-            /*if (PhotonNetwork.offlineMode) {
-                if (collider == null) {
-                    return;
-                }
-                
-            }
-            else {
-                pView.RPC("assignTarget", PhotonTargets.AllViaServer, collider.gameObject.tag);
-            }*/
+           
             target = collider.gameObject;
-            //if (PhotonNetwork.offlineMode) {
-                enterState((byte)StateEnums.BossZombieStates.Chasing);
-           /* }
-            else {
-                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-            }*/
+
+            enterState((byte)StateEnums.BossZombieStates.Chasing);
+           
         }
 
     }
@@ -387,12 +329,9 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
         // we only want to transition into the state if are not currently in the state
         
 
-        //if (PhotonNetwork.offlineMode) {
+
             enterState((byte)StateEnums.BossZombieStates.Chasing);
-       /* }
-        else {
-            pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.BossZombieStates.Chasing);
-        }*/
+
 
         
     }
@@ -403,12 +342,9 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 	public void alertDead() {
         //fsm.enterState(StateEnums.ZombieStates.Dying);
 
-       // if (PhotonNetwork.offlineMode) {
+
             enterState((byte)StateEnums.BossZombieStates.Dying);
-       /* }
-        else {
-            pView.RPC("enterState", PhotonTargets.AllBufferedViaServer, (byte)StateEnums.BossZombieStates.Dying);
-        }*/
+
     }
 
     
@@ -417,7 +353,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
 
     //for networking purposes
-    [PunRPC]
+
     public void enterState(byte state) {
         //we only switch states if we are in a different state and fsm is not null
         if (fsm != null && (byte)fsm.getCurrentState() != state) {
@@ -427,7 +363,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
     }
 
-    [PunRPC]
+
     public void enterPrevState() {
         if (fsm != null) {
             fsm.enterPreviousState();
@@ -435,50 +371,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 
     }
 
-
-
-    [PunRPC]
-    void requestCurrentTarget() {
-        Debug.LogWarning("requestCurrentTarget called for " + PhotonNetwork.isMasterClient);
-        if (target != null) {
-            pView.RPC("receiveCurrentTarget", PhotonTargets.Others, target.tag);
-        }
-        else {
-            Debug.LogError("Also null by me :(");
-        }
-
-    }
-
-
-    [PunRPC]
-    void receiveCurrentTarget(string tagName) {
-        Debug.LogWarning("receiveCurrentTarget called for " + PhotonNetwork.isMasterClient);
-        target = detection.assignTarget(tagName);
-    }
-
-
-    void handleNoTarget() {
-        Debug.LogWarning("handleNoTarget requested");
-        pView.RPC("requestCurrentTarget", PhotonTargets.Others);
-    }
-
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-
-
-
-        if (fsm == null) {
-            return;
-        }
-        if (stream.isWriting) {
-            stream.SendNext((byte)fsm.getCurrentState());
-        }
-        //receiving other players things
-        else {
-            fsm.enterState((StateEnums.BossZombieStates)stream.ReceiveNext());
-        }
-
-    }
+    
 
 
 

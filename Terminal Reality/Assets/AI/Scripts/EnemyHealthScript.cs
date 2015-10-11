@@ -69,7 +69,7 @@ public class EnemyHealthScript : MonoBehaviour {
     /// <param name="value">
     /// amount of health
     /// </param>
-    [PunRPC]
+
     public void gainHealth(int value){
 		health += value;
 		if (health > 100){
@@ -86,20 +86,16 @@ public class EnemyHealthScript : MonoBehaviour {
     /// <param name="entity">
     /// entity
     /// </param>
-    [PunRPC]
-	public void takeDamageN(int value, string tag, Vector3 hitPoint, int id){
+
+	public void takeDamage(int value, GameObject target, Vector3 hitPoint){
         //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
 
-        if (this.gameObject.GetComponent<PhotonView>().viewID != id) {
-            return;
-        }
-        
-        GameObject entity = GameObject.FindGameObjectWithTag(tag);
 
-        if (entity == null) {
-            Debug.LogError("tagged object not found");
-            return;
-        }
+        
+        GameObject entity = target;
+
+
+
 
         if (health > 0){
 			health -= value;
@@ -132,49 +128,6 @@ public class EnemyHealthScript : MonoBehaviour {
 
 
 
-   /* public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            stream.SendNext(health);
-        }
-        else {
-            health = (int)stream.ReceiveNext();
-        }
-    }*/
 
 
-
-
-    /*public void takeDamage(int value, string tag) {
-        //we check if the entity is alive and subtract the amount if it is and alert the fsm that the unit has been shot
-
-        GameObject entity = GameObject.FindGameObjectWithTag(tag);
-
-        if (entity == null) {
-            Debug.LogError("tagged object not found");
-            return;
-        }
-
-        if (health > 0) {
-            health -= value;
-            //Debug.LogWarning("h:" + health);
-            if (isBoss) {
-               // Debug.LogWarning("Boss shot");
-                bfsm.alertShot(entity);
-            }
-            else {
-                fsm.alertShot(entity);
-            }
-        }
-        //if the entity is dead and has not registered being dead, we alert the fsm
-        if (health <= 0 && !dead) {
-            if (isBoss) {
-                bfsm.alertDead();
-            }
-            else {
-                fsm.alertDead();
-            }
-            dead = true;
-        }
-
-    }*/
 }

@@ -12,9 +12,9 @@ public class ShootingScript : ammoHUDScript {
 	private Ray ray;
 	private float coolDownTimer;
 	private GameObject weapon;
-	private GameObject soundController;
+	public GameObject soundController;
     private playerAnimatorSync animSync;
-    private PhotonView pView;
+
 	
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -25,8 +25,8 @@ public class ShootingScript : ammoHUDScript {
 		playerData = this.GetComponent<playerDataScript>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
         updateAmmoText(0,0);
-		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
-        pView = gameObject.GetComponent<PhotonView>();
+		
+
     }
 	
 	// Update is called once per frame
@@ -44,9 +44,7 @@ public class ShootingScript : ammoHUDScript {
 					if (coolDownTimer <= 0)
 					{    
 					                    
-                        if (!PhotonNetwork.offlineMode) {
-                            pView.RPC("gunShot", PhotonTargets.Others);
-                       }
+                       
 						
                         animSync.setTriggerP(playerAnimationHash.shootTrigger);
 
@@ -166,14 +164,10 @@ public class ShootingScript : ammoHUDScript {
 					                   weapon.GetComponent<weaponDataScript>().clipSize,
 					                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 
-                    PhotonView pView = this.gameObject.GetComponent<PhotonView>();
-                    if (PhotonNetwork.offlineMode) {
-                        animSync.setTriggerP(playerAnimationHash.reloadTrigger);
-                    }
-                    else {
-                        animSync.setTriggerP(playerAnimationHash.reloadTrigger);
-                        pView.RPC("setTriggerP", PhotonTargets.Others, playerAnimationHash.reloadTrigger);
-                    }
+                    
+                    
+                    animSync.setTriggerP(playerAnimationHash.reloadTrigger);
+                    
 
 
                 }
@@ -203,13 +197,7 @@ public class ShootingScript : ammoHUDScript {
 			}
 		}
 		
-		/*
-		if (weapon != null)
-		{
-			//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
-			updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
-			               weapon.GetComponent<weaponDataScript>().getRemainingClip());
-		}*/
+
 		
 	}
 	
@@ -238,36 +226,17 @@ public class ShootingScript : ammoHUDScript {
 			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
             Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
-			//TEST SHOOTING ON SPHERE
-			/*			if (hitObject.CompareTag("Sphere"))
-			{
-				Color c = new Color(Random.value, Random.value, Random.value, 1.0f);
 
-				hitObject.renderer.material.color = c;
-			}*/
 			
 			//SHOOTING ENEMY//
 			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
 			{
                 Debug.Log("Enemy shot: " + hitObject.name );
-                //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject);
-
-                PhotonView enemypView = hitObject.GetComponent<PhotonView>();
-
-                //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
-                if (PhotonNetwork.offlineMode) {
-                    //Debug.LogWarning((int)weapon.GetComponent<weaponDataScript>().damage);
-                    hitObject.GetComponent<EnemyHealthScript>().takeDamageN((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag, hitPoint, hitObject.GetComponent<PhotonView>().viewID);
-                }
-                else {
-                    if (enemypView == null) {
-                        Debug.LogError("No PhotonView component found on " + hitObject);
-                    }
-                    else {
-                        //hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag);
-                        enemypView.RPC("takeDamageN", PhotonTargets.AllViaServer, (int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject.tag, hitPoint,hitObject.GetComponent<PhotonView>().viewID);
-                    }
-                }
+                
+               
+                    
+                hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject, hitPoint);
+                
                 
 			}
             

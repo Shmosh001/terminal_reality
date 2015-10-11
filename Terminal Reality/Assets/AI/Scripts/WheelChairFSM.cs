@@ -64,8 +64,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
     private PatrolScript patrol;
 	
 
-    //photon view component for rpc calls
-    private PhotonView pView;
+
 
 
     //METHODS
@@ -73,11 +72,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 	// Use this for initialization
 	void Start () {
         patrol = gameObject.GetComponent<PatrolScript>();
-        pView = gameObject.GetComponent<PhotonView>();
-        if (pView == null) {
-            Debug.LogError("No photon view component found");
-            return;
-        }
+
 		detection = gameObject.GetComponent<PreyDetection>();
 		fsm = new StateMachineClass<StateEnums.WheelZombieStates>();
         fsm.enterState(StateEnums.WheelZombieStates.Patrolling);
@@ -121,7 +116,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                 idleC += Time.deltaTime;
 
                 if (idleC > idleD) {
-                    Debug.Log("Entered patrol mode from idle");
+                    //Debug.Log("Entered patrol mode from idle");
                     fsm.enterState(StateEnums.WheelZombieStates.Patrolling);
                     
                 }
@@ -137,12 +132,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                 if (stateDebugStatements)  Debug.Log("chasing case: entering " + Time.timeSinceLevelLoad);
 
                 if (!chasing) {
-                    if (PhotonNetwork.offlineMode) {
-                        animatorCont.setTriggerWC(WheelchairHash.chasingTrigger, pView.viewID);
-                    }
-                    else {
-                        pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.chasingTrigger, pView.viewID);
-                    }
+                   
+                    animatorCont.setTriggerWC(WheelchairHash.chasingTrigger);
+                    
                     chasing = true;
                     navAgent.speed = chaseSpeed;
                 }
@@ -215,12 +207,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
         patroling = false;
 
-        if (PhotonNetwork.offlineMode) {
-            animatorCont.setTriggerWC(WheelchairHash.idleTrigger, pView.viewID);
-        }
-        else {
-            pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.idleTrigger, pView.viewID);
-        }
+        
+            animatorCont.setTriggerWC(WheelchairHash.idleTrigger);
+        
 
     }
 
@@ -241,12 +230,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         if (navAgent.SetDestination(patrol.getNextWayPoint())) {
             if (debugStatements)  Debug.Log("startWandering method: if path was set succesfully at" + Time.timeSinceLevelLoad);
 
-            if (PhotonNetwork.offlineMode) {
-                animatorCont.setTriggerWC(WheelchairHash.patrolingTrigger, pView.viewID);
-            }
-            else {
-                pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.patrolingTrigger, pView.viewID);
-            }
+            
+                animatorCont.setTriggerWC(WheelchairHash.patrolingTrigger);
+            
         }
         //if for some reason the path setting fails
         else {
@@ -294,12 +280,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
             navAgent.Stop();
 
 			
-            if (PhotonNetwork.offlineMode) {
-                animatorCont.setTriggerWC(WheelchairHash.attackingTrigger, pView.viewID);
-            }
-            else {
-                pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.attackingTrigger, pView.viewID);
-            }
+            
+                animatorCont.setTriggerWC(WheelchairHash.attackingTrigger);
+            
         }
         
 	}
@@ -342,10 +325,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 		if (debugStatements)Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);
         //inflict damage on player
 
-        if (target == null) {
-            handleNoTarget();
-            return;
-        }
+
 
         playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 
@@ -371,12 +351,9 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 			
             
             
-            if (PhotonNetwork.offlineMode) {
-                animatorCont.setTriggerWC(WheelchairHash.chasingTrigger, pView.viewID);
-            }
-            else {
-                pView.RPC("setTriggerWC", PhotonTargets.AllViaServer, WheelchairHash.chasingTrigger, pView.viewID);
-            }
+            
+            animatorCont.setTriggerWC(WheelchairHash.chasingTrigger);
+            
         }
 	}
 
@@ -459,7 +436,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
     }
 
-    [PunRPC]
+
     public void enterPrevState() {
         if (fsm != null) {
             fsm.enterPreviousState();
@@ -469,50 +446,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
 
 
 
-    [PunRPC]
-    void requestCurrentTarget() {
-        Debug.LogWarning("requestCurrentTarget called for " + PhotonNetwork.isMasterClient);
-        if (target != null) {
-            pView.RPC("receiveCurrentTarget", PhotonTargets.Others, target.tag);
-        }
-        else {
-            Debug.LogError("Also null by me :(");
-        }
-        
-    }
-
-
-    [PunRPC]
-    void receiveCurrentTarget(string tagName) {
-        Debug.LogWarning("receiveCurrentTarget called for " + PhotonNetwork.isMasterClient);
-        target = detection.assignTarget(tagName);
-    }
-
-
-    void handleNoTarget() {
-        Debug.LogWarning("handleNoTarget requested");
-        pView.RPC("requestCurrentTarget", PhotonTargets.Others);
-    }
-
-
-
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-       
-
-        
-        if (fsm == null) {
-            return;
-        }
-        if (stream.isWriting) {
-            stream.SendNext((byte)fsm.getCurrentState());
-        }
-        //receiving other players things
-        else {
-            fsm.enterState((StateEnums.WheelZombieStates)stream.ReceiveNext());
-        }
-        
-    }
+    
 
 
 }

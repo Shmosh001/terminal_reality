@@ -31,8 +31,7 @@ public class PreyDetection : MonoBehaviour {
     //sphere collider
 	private SphereCollider triggerCollider;
 
-    //animator of the target
-	private Animator targetAnimator;
+
 
 
     /// <summary>
@@ -80,19 +79,7 @@ public class PreyDetection : MonoBehaviour {
 
 
 
-    /// <summary>
-    /// called once a second
-    /// </summary>
-    void Update() {
-        if (Player1 == null && !PhotonNetwork.offlineMode) {
-            Player1 = GameObject.FindGameObjectWithTag(Tags.PLAYER1);
-        }
 
-        if (Player2 == null && !PhotonNetwork.offlineMode) {
-            Player2 = GameObject.FindGameObjectWithTag(Tags.PLAYER2);
-        }
-
-    }
 
 
 
@@ -202,28 +189,7 @@ public class PreyDetection : MonoBehaviour {
     }
 
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 
-
-
-
-        if (stream.isWriting) {
-            if (target != null) {
-                stream.SendNext(target.tag);
-            }
-            else {
-                stream.SendNext("nothing");
-            }
-            stream.SendNext(lastSighting);
-        }
-        //receiving other players things
-        else {
-            assignTarget((string)stream.ReceiveNext());
-            lastSighting = (Vector3)stream.ReceiveNext();
-            
-        }
-
-    }
 
 
 

@@ -11,7 +11,7 @@ public class WheelchairAnimationController : MonoBehaviour {
     private Animator backWheelR;
     private Animator frontWheelL;
     private Animator frontWheelR;
-    private PhotonView pView;
+
     
 
 
@@ -20,7 +20,7 @@ public class WheelchairAnimationController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        pView = this.gameObject.GetComponent<PhotonView>();
+        
         main = gameObject.GetComponent<Animator>();
         frontWheelL = gameObject.transform.GetChild(0).GetChild(2).GetComponentInChildren<Animator>();
         frontWheelR = gameObject.transform.GetChild(0).GetChild(3).GetComponentInChildren<Animator>();
@@ -52,13 +52,11 @@ public class WheelchairAnimationController : MonoBehaviour {
     /// <param name="name">
     /// hash of the trigger
     /// </param>
-    [PunRPC]
-    public void setTriggerWC(int name, int viewID) {
 
-        if (viewID != pView.viewID) {
-            return;
-        }
-        if (main.isActiveAndEnabled) {
+    public void setTriggerWC(int name) {
+
+        
+       
             main.SetTrigger(name);
 
             if (name == WheelchairHash.patrolingTrigger || name == WheelchairHash.chasingTrigger) {
@@ -67,7 +65,7 @@ public class WheelchairAnimationController : MonoBehaviour {
             else {
                 disableMotion();
             }
-        }
+        
 
 
 
@@ -86,12 +84,10 @@ public class WheelchairAnimationController : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
-    public void setBooleanWC(int name, bool value, int viewID) {
 
-        if (viewID != pView.viewID) {
-            return;
-        }
+    public void setBooleanWC(int name, bool value) {
+
+        
         if (main.isActiveAndEnabled) {
             main.SetBool(name, value);
         }
