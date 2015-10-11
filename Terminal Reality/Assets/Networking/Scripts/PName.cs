@@ -72,7 +72,7 @@ public class PName : MonoBehaviour {
                 if (characterObject == null) {
                     return;
                 }
-                Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 1.5f, 0));
+                Vector3 characterPos = Camera.main.WorldToScreenPoint(characterObject.transform.position + new Vector3(0, 3f, 0));
                     
                 characterPos = new Vector3(Mathf.Clamp(characterPos.x, 0 + (windowWidth / 2), Screen.width - (windowWidth / 2)),
                                                 Mathf.Clamp(characterPos.y, 50, Screen.height),

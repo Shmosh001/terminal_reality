@@ -4,6 +4,8 @@ using System.Collections;
 
 public class torchScript : MonoBehaviour {
 
+	public playerDataScript playerData;
+
     //PUBLIC TORCH VARIABLES//
     public bool torchOn = false;
     public Light torch;
@@ -24,6 +26,7 @@ public class torchScript : MonoBehaviour {
 
         batteryLife = 100.0f;
         soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
+		playerData = this.GetComponentInParent<playerDataScript>();		
 
 
         torchObj = GameObject.FindGameObjectWithTag(Tags.FLASHLIGHTICON);
@@ -88,9 +91,12 @@ public class torchScript : MonoBehaviour {
 		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
-			torchOn = !torchOn;
-            updateTorchActivity();
+			if (playerData.playerAlive)
+			{
+				soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
+				torchOn = !torchOn;
+	            updateTorchActivity();
+	        }
 
         }
 

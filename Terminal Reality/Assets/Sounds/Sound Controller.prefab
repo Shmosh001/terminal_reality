@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.197473571, y: -2.6673522, z: -3.33598828}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,14 +47,11 @@ MonoBehaviour:
     type: 3}
   torchButtonSound: {fileID: 8300000, guid: af2309e28107d5a4eb2e03229ffdeceb, type: 3}
   lowHealthHeartBeat: {fileID: 8300000, guid: ccef600689dee7749a07e97536689c8a, type: 3}
-  maleScreamingSound: {fileID: 0}
-  femaleScreamingSound: {fileID: 0}
-  bossZombieScream: {fileID: 0}
-  bossZombieDeath: {fileID: 0}
-  sparkSound: {fileID: 0}
-  doorCreekSound: {fileID: 0}
-  glassBreakingSound: {fileID: 0}
-  windSound: {fileID: 0}
+  maleScreamingSound: {fileID: 8300000, guid: 2c0d079aafeedde40b1dc7d7b6a28871, type: 3}
+  femaleScreamingSound: {fileID: 8300000, guid: 2143425ce26967e4daff5d9fe3ed6075,
+    type: 3}
+  bossZombieScream: {fileID: 8300000, guid: c7b8d41b4b1fc6d42ad4b7c1861c2675, type: 3}
+  bossZombieDeath: {fileID: 8300000, guid: acec2d724914a9f4286a12b88a307f93, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

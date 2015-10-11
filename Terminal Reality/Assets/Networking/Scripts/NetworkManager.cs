@@ -93,18 +93,18 @@ public class NetworkManager : MonoBehaviour {
             PhotonNetwork.JoinRandomRoom();
         }*/
 
-        PhotonNetwork.JoinRoom("osher");
+
+        PhotonNetwork.JoinRoom("andi");
         //PhotonNetwork.JoinRandomRoom();
 
 
     }
 
 
-    void OnPhotonJoinRoomFailed()
-    {
-        PhotonNetwork.CreateRoom("osher");
 
-    }
+	void OnPhotonJoinRoomFailed(){
+		PhotonNetwork.CreateRoom("andi");
+	}
 
     /// <summary>
     /// if random joining fails

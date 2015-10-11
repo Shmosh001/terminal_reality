@@ -40,14 +40,17 @@ public class PlayerMovementScript : MonoBehaviour {
 		//ROTATION//
 		***********/
 		
-		//left-right//
-		float rotLR = Input.GetAxis("Mouse X") * playerData.mouseSpeed;
-		transform.Rotate(0, rotLR, 0);
-		
-		//up-down//
-		rotUD -= Input.GetAxis ("Mouse Y") * playerData.mouseSpeed;
-		rotUD = Mathf.Clamp (rotUD, -60.0f, 45.0f);
-		Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);
+		if (playerData.playerAlive) // can only use the mouse if the player is alive.
+		{
+			//left-right//
+			float rotLR = Input.GetAxis("Mouse X") * playerData.mouseSpeed;
+			transform.Rotate(0, rotLR, 0);
+			
+			//up-down//
+			rotUD -= Input.GetAxis ("Mouse Y") * playerData.mouseSpeed;
+			rotUD = Mathf.Clamp (rotUD, -60.0f, 45.0f);
+			Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);
+		}
 		
 		
 		/***********
