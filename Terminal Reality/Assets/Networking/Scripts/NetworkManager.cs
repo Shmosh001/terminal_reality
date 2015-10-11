@@ -206,7 +206,7 @@ public class NetworkManager : MonoBehaviour {
 		localPlayer.GetComponent<weaponSwitchScript>().enabled = true;//enable the weapon script
         localPlayer.GetComponent<EscKeyListener>().enabled = true;//enable the weapon script
         localPlayer.GetComponentInChildren<torchScript>().enabled = true;//enable the torch script
-        pData.torch2.SetActive(false);
+       // pData.torch2.SetActive(false);
         
         //P1HUD.SetActive(true);
 

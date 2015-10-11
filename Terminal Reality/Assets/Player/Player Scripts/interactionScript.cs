@@ -8,7 +8,6 @@ public class interactionScript : Photon.MonoBehaviour {
 	
 	//the animator
 	private Animator animator;
-    private PhotonView playerPView;
     private playerAnimatorSync animSync;
 
 	//PRIVATE VARIABLES INTERACTION//
@@ -19,11 +18,11 @@ public class interactionScript : Photon.MonoBehaviour {
 	private bool inRangeOfMachineGun;
 	private bool inRangeOfKeys;
 	private Collider interactingCollider; //the collider of the object the player was last in
-	private GameObject soundController;
+	public GameObject soundController;
 	private GameObject pushEObj;
 	private GameObject pushEOpenObj;
-	private Text pushE;
-	private Text pushEOpen;
+	public Text pushE;
+	public Text pushEOpen;
 
 
 
@@ -32,28 +31,14 @@ public class interactionScript : Photon.MonoBehaviour {
 	void Start () 
 	{
 		playerData = this.GetComponent<playerDataScript>();
-		soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER);
 		animator = this.gameObject.GetComponent<Animator>();
-        playerPView = this.gameObject.GetComponent<PhotonView>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
     }
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (pushEObj == null) {
-			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);
-			if (pushEObj != null) {
-				pushE = pushEObj.GetComponent<Text>();
-			}
-		}
-		if (pushEOpenObj == null) {
-			pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);
-			if (pushEOpenObj != null) {
-				pushEOpen = pushEOpenObj.GetComponent<Text>();
-			}
-		}
-
+		
 		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
 		if (Input.GetKeyDown(KeyCode.E))
 		{
@@ -68,81 +53,27 @@ public class interactionScript : Photon.MonoBehaviour {
 				GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
 
-				//IF THE RAY HIT A DOOR//
-				if (hitObject.CompareTag(Tags.DOOR))
-				{
+                //IF THE RAY HIT A DOOR//
+                if (hitObject.CompareTag(Tags.DOOR)) {
 
-					//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-					//ds.interaction();
-                    PhotonView pView = hitObject.GetComponent<PhotonView>();
 
-                    if (pView == null) {
-                        pView = hitObject.GetComponentInParent<PhotonView>();
-                        if (pView == null) {
-                            Debug.LogError("No PhotonView component found on " + hitObject);
-                        }
-                        else {
-                            if (PhotonNetwork.offlineMode) {
-                                DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-                                ds.interaction();
-                            }
-                            else {
-                                pView.RPC("interaction", PhotonTargets.AllBuffered);
-                            }
-                        }
-                    }
-                    else {
-                        if (PhotonNetwork.offlineMode) {
-                            DoorScript ds = hitObject.GetComponent<DoorScript>();
-                            ds.interaction();
-                        }
-                        else {
-                            pView.RPC("interaction", PhotonTargets.AllBuffered);
-                        }
-                    }
+                    DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
+                    ds.interaction();
+
                 }
-
 				//IF THE RAY HIT A DOOR//				
 				if (hitObject.CompareTag(Tags.DOUBLEDOOR) && playerData.hasKey)
 				{
-					//DDScript dds = hitObject.GetComponentInParent<DDScript>();
-					//dds.interaction();
+					
 
-                    PhotonView pView = hitObject.GetComponent<PhotonView>();
-
-                    if (pView == null) {
-                        pView = hitObject.GetComponentInParent<PhotonView>();
-                        if (pView == null) {
-                            Debug.LogError("No PhotonView component found on " + hitObject);
-                        }
-                        else {
-                            if (PhotonNetwork.offlineMode) {
-                                DDScript dds = hitObject.GetComponentInParent<DDScript>();
-                                dds.interaction();
-                            }
-                            else {
-								DDScript dds = hitObject.GetComponentInParent<DDScript>();
-								dds.interaction();
-                                pView.RPC("interaction", PhotonTargets.AllBufferedViaServer);
-                            }
-                        }
-                    }
-                    else {
-                        if (PhotonNetwork.offlineMode) {
-                            DDScript dds = hitObject.GetComponentInParent<DDScript>();
-                            dds.interaction();
-                        }
-                        else {
-							DDScript dds = hitObject.GetComponentInParent<DDScript>();
-							dds.interaction();
-                            pView.RPC("interaction", PhotonTargets.AllBufferedViaServer);
-                        }
-                    }
+               
+                    DDScript dds = hitObject.GetComponentInParent<DDScript>();
+                    dds.interaction();
+                            
 
 
                 }
 
-				//DoorScript ds = hitObject.GetComponentInParent<DoorScript>();                
                     
 			}	
 
@@ -155,19 +86,14 @@ public class interactionScript : Photon.MonoBehaviour {
 					//animator.SetTrigger(playerAnimationHash.pickupTrigger);
 
 
-                    if (PhotonNetwork.offlineMode) {
-                        animator.SetTrigger(playerAnimationHash.pickupTrigger);
-                    }
-                    else {
-                        playerPView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pickupTrigger);
-                    }
-
+                    
+                    animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                   
 
                     //If the player has a pistol//
                     if (playerData.pistolPickedUp)
 					{
 						soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
-						GameObject weapon = GameObject.FindGameObjectWithTag("Pistol"); //find the pistol object
 	
 						//add ammo to the pistol - get ammo amount from the parent of the collider (Ammobox) and get the amount of pistol ammo it is holding.
 						playerData.pistolGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().pistolAmmo);
@@ -181,14 +107,13 @@ public class interactionScript : Photon.MonoBehaviour {
 						//add ammo to the machine gun - get ammo amount from the parent of the collider (Ammobox) and get the amount of machine gun ammo it is holding.
 						playerData.machineGunGameObject.GetComponent<weaponDataScript>().ammoPickup(interactingCollider.GetComponentInParent<AmmoBoxScript>().machineGunAmmo);
 					}
-	
-	
-					//After picking up ammo destroy the ammobox game object//
-					//Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
-					//interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
-	                //PhotonNetwork.Destroy(interactingCollider.gameObject); worked but only for master client
-	
-					destroyObjectOverNetwork();
+
+
+                    //After picking up ammo destroy the ammobox game object//
+                    //Make in range false - because collider is destroy, therefore you cannot exit it to remove text//
+                    //interactingCollider.GetComponentInParent<AmmoBoxScript>().turnOffText();//handled in script
+
+                    Destroy(interactingCollider.gameObject);
 	                
 					inRangeOfAmmo = false;
 					pushE.enabled = false;
@@ -200,20 +125,17 @@ public class interactionScript : Photon.MonoBehaviour {
                 if (playerData.health < 100) {
                     //animator.SetTrigger(playerAnimationHash.pickupTrigger);
 
-                    if (PhotonNetwork.offlineMode) {
+                    
                         animator.SetTrigger(playerAnimationHash.pickupTrigger);
-                    }
-                    else {
-                        playerPView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.pickupTrigger);
-                    }
+                   
 
 
                     this.GetComponent<playerHealthScript>().fullPlayerHealth();
 
                     //Destroy health box after picking it up//
-					destroyObjectOverNetwork();
+                    Destroy(interactingCollider.gameObject);
 
-                    //Destroy(interactingCollider.gameObject);
+                    
                     inRangeOfHealth = false;
 					pushE.enabled = false;
                 }
@@ -228,7 +150,6 @@ public class interactionScript : Photon.MonoBehaviour {
 				if (playerData.pistolPickedUp)
 				{
 					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
-					GameObject pistol = GameObject.FindGameObjectWithTag(Tags.PISTOL); //find the pistol object
 	
 					//pickup ammo for the pistol
 					//amount randomly generate - from 10 - 30 bullets picked up
@@ -247,13 +168,12 @@ public class interactionScript : Photon.MonoBehaviour {
 						this.GetComponent<ShootingScript>().loadNewWeapon("Pistol");
 					}
 				}
-               
 
 
-				destroyObjectOverNetwork();
-                
-                gameObject.GetComponent<PhotonView>().RPC("pistolEquipped", PhotonTargets.OthersBuffered);
-                    
+
+                Destroy(interactingCollider.gameObject);
+
+
 
                 inRangeOfPistol = false;
 				pushE.enabled = false;
@@ -267,7 +187,6 @@ public class interactionScript : Photon.MonoBehaviour {
 				{
 	
 					soundController.GetComponent<soundControllerScript>().playPickupSound(transform.position);
-					GameObject machineGun = GameObject.FindGameObjectWithTag("MachineGun"); //find the pistol object					
 	
 					//pickup ammo for the machine gun
 					//amount randomly generate - from 10 - 50 bullets picked up
@@ -289,11 +208,11 @@ public class interactionScript : Photon.MonoBehaviour {
 	
 				//Destroy the machine gun game object//
 				//interactingCollider.GetComponentInParent<weaponOnMapScript>().turnOffText();
-				//Destroy(interactingCollider.gameObject);
+				
 				inRangeOfMachineGun = false;
 				pushE.enabled = false;
-				
-				destroyObjectOverNetwork();
+                Destroy(interactingCollider.gameObject);
+                
 				
 			}
 			
@@ -303,31 +222,15 @@ public class interactionScript : Photon.MonoBehaviour {
 				playerData.hasKey = true;
 				//Destroy keys game object//				
 				pushE.enabled = false;
-				//Destroy(interactingCollider.gameObject);
+				//Destroy(interactingCollider.gameObject);.gameObject);
 				inRangeOfKeys = false;
-				
-				destroyObjectOverNetwork();			
-			}
+
+                Destroy(interactingCollider.gameObject);
+            }
 		}
 	}
 	
-	void destroyObjectOverNetwork()
-	{
-		PhotonView pView = interactingCollider.GetComponentInParent<PhotonView>();
-		if (pView == null) {
-			Debug.LogError("No PhotonView component found");
-		}
-		else {
-			if (PhotonNetwork.offlineMode) {
-				Destroy(interactingCollider.gameObject);
-				
-			}
-			else {
-				pView.RPC("destroyObject", PhotonTargets.AllBuffered);
-				
-			}
-		}
-	}
+	
 	
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)

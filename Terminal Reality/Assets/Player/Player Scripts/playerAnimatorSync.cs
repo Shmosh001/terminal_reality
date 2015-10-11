@@ -5,30 +5,20 @@ public class playerAnimatorSync : MonoBehaviour {
 
 	//here we simply force the photon view to sync the seperate layers as we can't set this before run time
     //because the animator is not instaiated at this time
-    /*void Start() {
-        PhotonAnimatorView anim = this.gameObject.GetComponent<PhotonAnimatorView>();
-        anim.SetLayerSynchronized(0, PhotonAnimatorView.SynchronizeType.Continuous);
-        anim.SetLayerSynchronized(1, PhotonAnimatorView.SynchronizeType.Continuous);
-        this.gameObject.GetComponent<Animator>().SetLayerWeight(1,1);
-        //this.gameObject.GetComponent<Animator>().layer
-    }*/
 
 
     //the animator
     private Animator animator;
 
 
-    private PhotonView pView;
+
 
     /// <summary>
     /// initialization
     /// </summary>
     void Awake() {
         animator = this.gameObject.GetComponent<Animator>();
-        pView = this.gameObject.GetComponent<PhotonView>();
-        if (pView == null) {
-            Debug.LogError("No PhotonView component found");
-        }
+       
     }
 
     /// <summary>
@@ -37,7 +27,7 @@ public class playerAnimatorSync : MonoBehaviour {
     /// <param name="name">
     /// hash of the trigger
     /// </param>
-    [PunRPC]
+
     public void setTriggerP(int name) {
         animator.SetTrigger(name);
     }
@@ -56,7 +46,7 @@ public class playerAnimatorSync : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+ 
     public void setBooleanP(int name, bool value) {
         animator.SetBool(name, value);
     }
@@ -75,7 +65,7 @@ public class playerAnimatorSync : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+
     public void setIntegerP(int name, int value) {
         animator.SetInteger(name, value);
     }
@@ -89,7 +79,7 @@ public class playerAnimatorSync : MonoBehaviour {
     /// <param name="value">
     /// value
     /// </param>
-    [PunRPC]
+
     public void setFloatP(int name, float value) {
         animator.SetFloat(name, value);
 
@@ -116,7 +106,7 @@ public class playerAnimatorSync : MonoBehaviour {
     /// <param name="animation">
     /// animation hash
     /// </param>
-    [PunRPC]
+
     public void forceAnimationP(int animation) {
         animator.Play(animation);
     }

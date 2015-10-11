@@ -9,7 +9,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	//private Animator animator;
 
     private playerAnimatorSync animSync;
-    private PhotonView pView;
+
 	
 	//PRIVATE MOVEMENT WARIABLES//
 	private float rotUD = 0;
@@ -29,7 +29,6 @@ public class PlayerMovementScript : MonoBehaviour {
 		characterController = this.GetComponent<CharacterController>();
 		//animator = this.gameObject.GetComponent<Animator>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
-        pView = this.gameObject.GetComponent<PhotonView>();
     }
 	
 	// Update is called once per frame
@@ -154,12 +153,9 @@ public class PlayerMovementScript : MonoBehaviour {
 		{
 			//animator.SetTrigger(playerAnimationHash.jumpTrigger);
 
-            if (PhotonNetwork.offlineMode) {
-                animSync.setTriggerP(playerAnimationHash.jumpTrigger);
-            }
-            else {
-                pView.RPC("setTriggerP", PhotonTargets.Others, playerAnimationHash.jumpTrigger);
-            }
+
+            animSync.setTriggerP(playerAnimationHash.jumpTrigger);
+
 
 
 			verticalVelocity = playerData.jumpSpeed;
@@ -172,12 +168,9 @@ public class PlayerMovementScript : MonoBehaviour {
 		
 		//Set speed in animator controller
 		//animator.SetFloat(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
-        if (PhotonNetwork.offlineMode) {
-            animSync.setFloatP(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
-        }
-        else {
-            pView.RPC("setFloatP", PhotonTargets.Others, playerAnimationHash.forwardSpeedFloat, forwardSpeed);
-        }
+
+        animSync.setFloatP(playerAnimationHash.forwardSpeedFloat, forwardSpeed);
+        
 
     }
 	

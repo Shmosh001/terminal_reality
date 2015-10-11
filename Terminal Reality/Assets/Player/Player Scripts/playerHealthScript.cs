@@ -7,22 +7,20 @@ public class playerHealthScript : MonoBehaviour {
 	public playerDataScript playerData;
 	public UIBarScript uiBarScript;	
 	private bool heartBeatPlaying = false;
-	private GameObject soundController;
-	
+	public GameObject soundController;
+    public GameObject scripts;
 	//the animator
 	private Animator animator;
-    private PhotonView pView;
+
     private playerAnimatorSync animSync;
 	
 	// Use this for initialization
 	void Start () {
-        uiBarScript = GameObject.FindGameObjectWithTag(Tags.UIBAROBJ).GetComponent<UIBarScript>();
+        
         playerData = this.GetComponent<playerDataScript>();		
-		soundController = GameObject.FindGameObjectWithTag("Sound Controller");
 		animator = this.gameObject.GetComponent<Animator>();
 		updateHealthHUD();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
-        pView = this.gameObject.GetComponent<PhotonView>();
 
 
     }
@@ -93,22 +91,19 @@ public class playerHealthScript : MonoBehaviour {
 			
 			
 			//animator.SetTrigger(playerAnimationHash.dieTrigger);
-            if (PhotonNetwork.offlineMode) {
-                animSync.setTriggerP(playerAnimationHash.dieTrigger);
-            }
-            else {
-                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.dieTrigger);
-            }
+
+            animSync.setTriggerP(playerAnimationHash.dieTrigger);
+            
+
 			updateHealthHUD();
 
-            //Application.LoadLevel("Credits");
-            //pView.RPC("endGame", PhotonTargets.OthersBuffered);
+
             if (gameObject.tag == Tags.PLAYER1) {
-                GameObject.FindGameObjectWithTag(Tags.SCRIPT).GetComponent<GameOver>().player1Dead = true;
+                scripts.GetComponent<GameOver>().player1Dead = true;
 
             }
             else if (gameObject.tag == Tags.PLAYER2) {
-                GameObject.FindGameObjectWithTag(Tags.SCRIPT).GetComponent<GameOver>().player2Dead = true;
+                scripts.GetComponent<GameOver>().player2Dead = true;
             }
 
 
@@ -118,17 +113,7 @@ public class playerHealthScript : MonoBehaviour {
 	}
 	
 
-    
 
-
-	/*
-	//INCREASE PLAYER'S HEALTH//
-	public void increasePlayerHealth(int healthPoints)
-	{
-		
-		//TODO: IF WE DECIDE ON DOING INCREMENTAL HEALING AND NOT ONLY FULL HEALS//
-		
-	}*/
 	
 	//FULL UP (MAX) PLAYER'S HEALTH//
 	public void fullPlayerHealth()

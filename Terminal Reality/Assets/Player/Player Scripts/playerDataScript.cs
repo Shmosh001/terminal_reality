@@ -29,70 +29,15 @@ public class playerDataScript : Photon.MonoBehaviour {
 	//WEAPONS GAME OBJECTS//
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
-    public GameObject torch2;    
+
 	
 	//TORCH//
 	public Light torch;
-    public GameObject torchObj;
+
 
     //PLAYER HAS KEY
     public bool hasKey = false;
 
 
-    //AUTOMATICALLY SEARCH FOR CERTAIN GAME OBJECTS AT START/AWAKE//
-    void Awake()
-	{
-		pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
-		pistolGameObject.SetActive(false);
-		machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
 
-        //fx torch
-        torch2 = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
-
-        //main torch
-        torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
-
-		machineGunGameObject.SetActive(false);
-
-       // Debug.LogWarning("Set to false");
-
-	}
-	
-	
-    void Update() {
-        if (pistolGameObject == null) {
-            pistolGameObject = GameObject.FindGameObjectWithTag(Tags.PISTOL);
-            pistolGameObject.SetActive(false);
-        }
-        if (machineGunGameObject == null) {
-            machineGunGameObject = GameObject.FindGameObjectWithTag(Tags.MACHINEGUN);
-            machineGunGameObject.SetActive(false);
-            //Debug.LogWarning("Set to false");
-        }
-        if (torch2 == null) {
-            torch2 = GameObject.FindGameObjectWithTag(Tags.P2TORCH);
-        }
-
-        //main torch
-        if (torchObj == null) {
-            torchObj = GameObject.FindGameObjectWithTag(Tags.TORCH);
-        }
-        else {
-            torch = torchObj.light;
-        }
-
-
-    }
-
-
-	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-		if (stream.isWriting) {
-			stream.SendNext(playerAlive);
-            //stream.SendNext(torchON);
-		}
-		else {
-			playerAlive = (bool)stream.ReceiveNext();
-           // torchON = (int)stream.ReceiveNext();
-		}
-	}
 }

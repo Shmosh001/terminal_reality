@@ -17,7 +17,7 @@ public class FXHandler : MonoBehaviour {
     void Start() {
         pistol = this.gameObject.GetComponent<playerDataScript>().pistolGameObject;
         mg = this.gameObject.GetComponent<playerDataScript>().machineGunGameObject;
-        torch = this.gameObject.GetComponent<playerDataScript>().torch2;
+        //torch = this.gameObject.GetComponent<playerDataScript>().torch2;
         soundController = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER).GetComponent<soundControllerScript>();
     }
 

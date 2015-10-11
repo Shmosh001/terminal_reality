@@ -7,7 +7,7 @@ public class weaponSwitchScript : ammoHUDScript {
 	
 	//the animator
 	private Animator animator;
-    private PhotonView pView;
+
     private playerAnimatorSync animSync;
 
 	void Start()
@@ -15,7 +15,6 @@ public class weaponSwitchScript : ammoHUDScript {
 		playerData = this.GetComponent<playerDataScript>();
 	    animator = this.gameObject.GetComponent<Animator>();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
-        pView = this.gameObject.GetComponent<PhotonView>();
         enableWeapon();
 	}
 
@@ -93,48 +92,21 @@ public class weaponSwitchScript : ammoHUDScript {
 		
 		if (playerData.pistolEquipped)
 		{
-			//animator.SetTrigger(playerAnimationHash.pistolTrigger);
-			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
-            if (PhotonNetwork.offlineMode) {
-                animator.SetBool(playerAnimationHash.pistolBoolean, true);
-            }
-            else {
-                animator.SetBool(playerAnimationHash.pistolBoolean, true);
-                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.pistolBoolean, true);
-            }
 
-            if (PhotonNetwork.offlineMode) {
-                animator.SetBool(playerAnimationHash.noWeaponBool, false);
-            }
-            else {
-                animator.SetBool(playerAnimationHash.noWeaponBool, false);
-                pView.RPC("setBooleanP", PhotonTargets.Others, playerAnimationHash.noWeaponBool, false);
-            }
+            animator.SetBool(playerAnimationHash.pistolBoolean, true);
+            
 
+            animator.SetBool(playerAnimationHash.noWeaponBool, false);
+            
             weaponStr = "Pistol";
 		}
 		else if (playerData.machineGunEquipped)
 		{
-			//animator.SetTrigger(playerAnimationHash.machineGunTrigger);
-			//animator.SetBool(playerAnimationHash.noWeaponBool, false);
-
-            if (PhotonNetwork.offlineMode) {
-                animator.SetTrigger(playerAnimationHash.machineGunTrigger);
-            }
-            else {
-                pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.machineGunTrigger);
-            }
-
-            if (PhotonNetwork.offlineMode) {
-                animator.SetBool(playerAnimationHash.noWeaponBool, false);
-            }
-            else {
-                pView.RPC("setBooleanP", PhotonTargets.AllViaServer, playerAnimationHash.noWeaponBool, false);
-            }
-
-
-
-
+			
+            animator.SetTrigger(playerAnimationHash.machineGunTrigger);
+            
+            animator.SetBool(playerAnimationHash.noWeaponBool, false);
+            
             weaponStr = "MachineGun";
 		}
 		else if (!playerData.pistolEquipped && !playerData.machineGunEquipped)
@@ -166,7 +138,7 @@ public class weaponSwitchScript : ammoHUDScript {
 		else if (currentWeapon() == "Pistol")
 		{
 			playerData.machineGunGameObject.SetActive(false);
-            //Debug.LogWarning("Set to false");
+
             playerData.pistolGameObject.SetActive(true);
 			
 			//After switch, update ammo HUD
@@ -182,9 +154,7 @@ public class weaponSwitchScript : ammoHUDScript {
 
             
 
-           // print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
-          //  print(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo());
-
+           
             updateAmmoText(playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 			               playerData.pistolGameObject.GetComponent<weaponDataScript>().getRemainingClip());
 
