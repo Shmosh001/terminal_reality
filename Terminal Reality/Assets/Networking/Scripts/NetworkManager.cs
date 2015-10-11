@@ -94,7 +94,7 @@ public class NetworkManager : MonoBehaviour {
         }*/
 
 
-        PhotonNetwork.JoinRoom("osher");
+        PhotonNetwork.JoinRoom("andi");
         //PhotonNetwork.JoinRandomRoom();
 
 
@@ -103,7 +103,7 @@ public class NetworkManager : MonoBehaviour {
 
 
 	void OnPhotonJoinRoomFailed(){
-		PhotonNetwork.CreateRoom("alon");
+		PhotonNetwork.CreateRoom("andi");
 	}
 
     /// <summary>
