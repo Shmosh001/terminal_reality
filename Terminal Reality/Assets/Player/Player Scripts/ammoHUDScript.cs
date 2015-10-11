@@ -4,14 +4,11 @@ using System.Collections;
 
 public class ammoHUDScript : MonoBehaviour {
 
-	private Text ammoText;
-	private Text reloadText;
+	public Text ammoText;
+	public Text reloadText;
 
     
 
-
-
-   
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
 	public void updateAmmoText(int totAmmo, int clipAmmo)
