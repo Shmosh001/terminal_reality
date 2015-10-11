@@ -3,16 +3,8 @@ using System.Collections;
 
 public class EscKeyListener : Photon.MonoBehaviour {
 
-    private Light directionalLight;
-    private GameObject light_;
-
-    // Use this for initialization
-    void Start() {
-        light_ = GameObject.FindGameObjectWithTag(Tags.DEBUGLIGHT);
-        if (light_ != null) {
-            directionalLight = light_.light;
-        }
-    }
+    public Light directionalLight;
+    
 
     // Update is called once per frame
     void Update() {
@@ -32,7 +24,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
 
             //Application.LoadLevel("MainMenu");
-            //PhotonNetwork.Destroy(gameObject);
+            Application.Quit();
         }
 
         

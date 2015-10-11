@@ -19,8 +19,6 @@ public class glassBreaking : MonoBehaviour {
             //play sound of this component
             audioSource.Play();
             //Destroy Component
-
-
             Destroy(this.gameObject, 3.0f);
 
 
