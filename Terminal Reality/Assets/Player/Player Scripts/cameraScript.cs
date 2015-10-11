@@ -15,8 +15,8 @@ public class cameraScript : MonoBehaviour {
 		player = gameObject.transform.parent;
 		
 		relCameraPos = transform.position - player.position;
-		relCameraPosMag = relCameraPos.magnitude + 100.0f;
-		relCameraPosMagup = relCameraPos.magnitude + 50.0f;
+		relCameraPosMag = relCameraPos.magnitude + 120.0f;
+		relCameraPosMagup = relCameraPos.magnitude + 40.0f;
 	
 	}
 	
