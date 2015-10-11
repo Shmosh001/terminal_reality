@@ -7,46 +7,18 @@ public class ammoHUDScript : MonoBehaviour {
 	private Text ammoText;
 	private Text reloadText;
 
-    private GameObject ammoTextObj;
-    private GameObject reloadTextObj;
-
-    void Awake()
-	{
-        ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
-        reloadTextObj = GameObject.FindGameObjectWithTag(Tags.RELOADTEXT);
-		//TODO uncommented
-	}
+    
 
 
-    void Update() {
-        
-        if (ammoTextObj == null) {
-            ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
-            if (ammoTextObj != null) {
-                Debug.LogWarning("ammotext assigned");
-                ammoText = ammoTextObj.GetComponent<Text>();
-            }
-        }
 
-        if (reloadTextObj == null) {
-            reloadTextObj = GameObject.FindGameObjectWithTag(Tags.RELOADTEXT);
-            if (reloadTextObj != null) {
-                Debug.LogWarning("reload assigned");
-                reloadText = reloadTextObj.GetComponent<Text>();
-            }
-        }
-    }
-
+   
 
 	//Update the text on the HUD which shows total ammo and ammo in clip
 	public void updateAmmoText(int totAmmo, int clipAmmo)
 	{
-        if (ammoText == null) {            
-			ammoTextObj = GameObject.FindGameObjectWithTag(Tags.AMMOTEXT);
-			ammoText = ammoTextObj.GetComponent<Text>();
-        }
+        
 		ammoText.text = totAmmo + " / " + clipAmmo;		
-		//TODO uncommented
+		
 		
 	}
 
@@ -55,15 +27,7 @@ public class ammoHUDScript : MonoBehaviour {
 	public void checkReloadWarning(int clipAmmo, int clipSize, int totAmmo)
 	{
 
-        if (reloadText == null) {
-			reloadTextObj = GameObject.FindGameObjectWithTag(Tags.RELOADTEXT);
-			reloadText = reloadTextObj.GetComponent<Text>();
-        }
-        /*
-        if (ammoText == null ) {
-            //Debug.LogError("Ammotext is null");
-            return;
-        }*/
+        
 
         if (totAmmo != 0 && clipAmmo != 0)
 		{

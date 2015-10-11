@@ -22,7 +22,7 @@ public class AIEntity <T>: Photon.MonoBehaviour{
 	//PROTECTED VARS - TO BE INHERITED
 
 	//script that is used to play sound
-	protected soundControllerScript sound;
+	public soundControllerScript sound;
 	//nav mesh agent component that is attached
 	protected NavMeshAgent navAgent;
 	//health script attached
@@ -39,7 +39,6 @@ public class AIEntity <T>: Photon.MonoBehaviour{
 		navAgent = gameObject.GetComponent<NavMeshAgent>();
 		health = gameObject.GetComponent<EnemyHealthScript>();
 		wanderScript = gameObject.GetComponent<WanderScript>();
-		sound = GameObject.FindGameObjectWithTag(Tags.SOUNDCONTROLLER).GetComponent<soundControllerScript>();
         //temp
         target = null;
 	}
