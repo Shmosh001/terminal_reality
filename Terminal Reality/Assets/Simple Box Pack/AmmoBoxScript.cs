@@ -73,11 +73,11 @@ public class AmmoBoxScript : MonoBehaviour {
         }
 	}
 	
-
+/*
     [PunRPC]
     public void destroyObject() {
         turnOffText();
         Destroy(gameObject);
-    }
+    }*/
 	
 }

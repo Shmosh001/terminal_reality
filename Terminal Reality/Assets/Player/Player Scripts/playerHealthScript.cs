@@ -101,7 +101,7 @@ public class playerHealthScript : MonoBehaviour {
 			updateHealthHUD();
             Application.LoadLevel("Credits");
             pView.RPC("endGame", PhotonTargets.OthersBuffered);
-			print ("PLAYER IS DEAD!!!"); //temp print out
+			//print ("PLAYER IS DEAD!!!"); //temp print out
 		}
 		
 	}
