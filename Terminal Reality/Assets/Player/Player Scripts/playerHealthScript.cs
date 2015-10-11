@@ -83,6 +83,14 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			playerData.health = 0;
 			playerData.playerAlive = false; //boolean to send over network
+			/*
+			Vector3 camPos = new Vector3(10.0f, 22.0f, 10.0f);
+			Camera.main.transform.position = Vector3.Lerp(transform.position, camPos, 1.5f * Time.deltaTime);
+			*/
+			Camera.main.GetComponent<cameraScript>().playerDeadCam();
+			
+			
+			
 			//animator.SetTrigger(playerAnimationHash.dieTrigger);
             if (PhotonNetwork.offlineMode) {
                 animSync.setTriggerP(playerAnimationHash.dieTrigger);

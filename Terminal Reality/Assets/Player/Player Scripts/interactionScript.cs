@@ -332,108 +332,108 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
-		/*if (pushEObj == null) {
-			pushEObj = GameObject.FindGameObjectWithTag(Tags.PUSHE);				
-			pushE = pushEObj.GetComponent<Text>();				
-		}*/
-		
-		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
-		if (other.tag == "Door")
-		{
-			/*if (pushEOpenObj == null) {
-				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
-				pushEOpen = pushEOpenObj.GetComponent<Text>();				
-			}*/
-			pushEOpen.enabled = true;
+		//To catch the error and then do nothing with it.
+		if (pushEObj == null || pushEOpenObj == null) {
+			return;				
 		}
-		
-		//IF PLAYER IN RANGE OF AN AMMO BOX
-		if (other.tag == "AmmoBox")
-		{
-			pushE.enabled = true;
-			inRangeOfAmmo = true;
-			interactingCollider = other;
-		}
-		
-		//IF PLAYER IN RANGE OF AN HEALTH BOX
-		if (other.tag == "HealthBox")
-		{
-			pushE.enabled = true;
-			inRangeOfHealth = true;
-			interactingCollider = other;
-		}
-
-		//IF PLAYER IN RANGE OF PISTOL
-		if (other.tag == "pistolPickup")
-		{
-			pushE.enabled = true;
-			inRangeOfPistol = true;
-			interactingCollider = other;
-		}
-
-		//IF PLAYER IN RANGE OF MACHINE GUN
-		if (other.tag == "machineGunPickup")
-		{
-			pushE.enabled = true;
-			inRangeOfMachineGun = true;
-			interactingCollider = other;
-		}
-		
-		//IF PLAYER IN RANGE OF KEYS
-		if (other.tag == "Keys")
-		{
-			pushE.enabled = true;
-			inRangeOfKeys = true;
-			interactingCollider = other;
+		else{		
+			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+			if (other.tag == "Door")
+			{
+				
+				pushEOpen.enabled = true;
+			}
+			
+			//IF PLAYER IN RANGE OF AN AMMO BOX
+			if (other.tag == "AmmoBox")
+			{
+				pushE.enabled = true;
+				inRangeOfAmmo = true;
+				interactingCollider = other;
+			}
+			
+			//IF PLAYER IN RANGE OF AN HEALTH BOX
+			if (other.tag == "HealthBox")
+			{
+				pushE.enabled = true;
+				inRangeOfHealth = true;
+				interactingCollider = other;
+			}
+	
+			//IF PLAYER IN RANGE OF PISTOL
+			if (other.tag == "pistolPickup")
+			{
+				pushE.enabled = true;
+				inRangeOfPistol = true;
+				interactingCollider = other;
+			}
+	
+			//IF PLAYER IN RANGE OF MACHINE GUN
+			if (other.tag == "machineGunPickup")
+			{
+				pushE.enabled = true;
+				inRangeOfMachineGun = true;
+				interactingCollider = other;
+			}
+			
+			//IF PLAYER IN RANGE OF KEYS
+			if (other.tag == "Keys")
+			{
+				pushE.enabled = true;
+				inRangeOfKeys = true;
+				interactingCollider = other;
+			}
 		}
 	}
 	
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
-		if (other.tag == "Door")
-		{
-			/*if (pushEOpenObj == null) {
-				pushEOpenObj = GameObject.FindGameObjectWithTag(Tags.PUSHEOPEN);				
-				pushEOpen = pushEOpenObj.GetComponent<Text>();				
-			}*/
-			pushEOpen.enabled = false;
+		//To catch the error and then do nothing with it.
+		if (pushEObj == null || pushEOpenObj == null) {
+			return;				
 		}
-		
-		//IF PLAYER NOT IN RANGE OF AN AMMO BOX
-		if (other.tag == "AmmoBox")
-		{
-			pushE.enabled = false;
-			inRangeOfAmmo = false;
-		}
-		
-		//IF PLAYER NOT IN RANGE OF AN HEALTH BOX
-		if (other.tag == "HealthBox")
-		{
-			pushE.enabled = false;
-			inRangeOfHealth = false;
-		}
-
-		//IF PLAYER NOT IN RANGE OF PISTOL
-		if (other.tag == "pistolPickup")
-		{
-			pushE.enabled = false;
-			inRangeOfPistol = false;
-		}
-		
-		//IF PLAYER NOT IN RANGE OF MACHINE GUN
-		if (other.tag == "machineGunPickup")
-		{
-			pushE.enabled = false;
-			inRangeOfMachineGun = false;
-		}
-		
-		//IF PLAYER NOT IN RANGE OF KEYS
-		if (other.tag == "Keys")
-		{
-			pushE.enabled = false;
-			inRangeOfKeys = false;
+		else{
+			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+			if (other.tag == "Door")
+			{			
+				pushEOpen.enabled = false;
+			}
+			
+			//IF PLAYER NOT IN RANGE OF AN AMMO BOX
+			if (other.tag == "AmmoBox")
+			{
+				pushE.enabled = false;
+				inRangeOfAmmo = false;
+			}
+			
+			//IF PLAYER NOT IN RANGE OF AN HEALTH BOX
+			if (other.tag == "HealthBox")
+			{
+				pushE.enabled = false;
+				inRangeOfHealth = false;
+			}
+	
+			//IF PLAYER NOT IN RANGE OF PISTOL
+			if (other.tag == "pistolPickup")
+			{
+				pushE.enabled = false;
+				inRangeOfPistol = false;
+			}
+			
+			//IF PLAYER NOT IN RANGE OF MACHINE GUN
+			if (other.tag == "machineGunPickup")
+			{
+				pushE.enabled = false;
+				inRangeOfMachineGun = false;
+			}
+			
+			//IF PLAYER NOT IN RANGE OF KEYS
+			if (other.tag == "Keys")
+			{
+				pushE.enabled = false;
+				inRangeOfKeys = false;
+			}
 		}
 	}
 
