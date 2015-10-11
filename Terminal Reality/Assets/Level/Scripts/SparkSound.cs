@@ -3,8 +3,7 @@ using System.Collections;
 
 public class SparkSound : MonoBehaviour
 {
-
-
+    
     private AudioSource audioSource;
 
 	// Use this for initialization

@@ -92,12 +92,14 @@ public class NetworkManager : MonoBehaviour {
         else {
             PhotonNetwork.JoinRandomRoom();
         }*/
-        
-        
+
+
+        PhotonNetwork.JoinRoom("osher");
         //PhotonNetwork.JoinRandomRoom();
-		PhotonNetwork.JoinRoom("alon");
+
 
     }
+
 
 
 	void OnPhotonJoinRoomFailed(){
