@@ -22,8 +22,10 @@ public class Tags : MonoBehaviour {
     public const string PUSHE = "PushE";
     public const string DOUBLEDOOR = "DoubleDoor";
     public const string DOOR = "Door";
-    public const string AMMOTEXT = "ammoText";
-    public const string RELOADTEXT = "reloadText";
+    public const string AMMOTEXT1 = "ammoText1";
+    public const string RELOADTEXT1 = "reloadText1";
+    public const string AMMOTEXT2 = "ammoText2";
+    public const string RELOADTEXT2 = "reloadText2";
     public const string UIBAROBJ = "UIBarObj";
     public const string FLASHLIGHTICON = "FlashLightIcon";
     public const string FLASHLIGHTSLIDER = "FlashLightSlider";
