@@ -37,7 +37,7 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			if (playerData.health >= 5)
 			{
-				playerData.health -= 5;			
+                reducePlayerHealth(5);		
 				updateHealthHUD();
 			}
 		}
@@ -81,6 +81,7 @@ public class playerHealthScript : MonoBehaviour {
 		//if the damage kills the player//
 		else if ((playerData.health - damage) <= 0)
 		{
+            Debug.LogWarning("dead");
 			playerData.health = 0;
 			playerData.playerAlive = false; //boolean to send over network
 			//animator.SetTrigger(playerAnimationHash.dieTrigger);
@@ -91,19 +92,24 @@ public class playerHealthScript : MonoBehaviour {
                 pView.RPC("setTriggerP", PhotonTargets.AllViaServer, playerAnimationHash.dieTrigger);
             }
 			updateHealthHUD();
-            Application.LoadLevel("Credits");
-            pView.RPC("endGame", PhotonTargets.OthersBuffered);
-			print ("PLAYER IS DEAD!!!"); //temp print out
-		}
+            //Application.LoadLevel("Credits");
+            //pView.RPC("endGame", PhotonTargets.OthersBuffered);
+            if (gameObject.tag == Tags.PLAYER1) {
+                GameObject.FindGameObjectWithTag(Tags.SCRIPT).GetComponent<GameOver>().player1Dead = true;
+
+            }
+            else if (gameObject.tag == Tags.PLAYER2) {
+                GameObject.FindGameObjectWithTag(Tags.SCRIPT).GetComponent<GameOver>().player2Dead = true;
+            }
+
+
+        }
 		
 	}
 	
 
+    
 
-    [PunRPC]
-    public void endGame() {
-        Application.LoadLevel("Credits");
-    }
 
 	/*
 	//INCREASE PLAYER'S HEALTH//

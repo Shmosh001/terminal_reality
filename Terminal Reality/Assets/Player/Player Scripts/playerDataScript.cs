@@ -54,7 +54,6 @@ public class playerDataScript : Photon.MonoBehaviour {
 
 		machineGunGameObject.SetActive(false);
 
-        DontDestroyOnLoad(gameObject);
        // Debug.LogWarning("Set to false");
 
 	}

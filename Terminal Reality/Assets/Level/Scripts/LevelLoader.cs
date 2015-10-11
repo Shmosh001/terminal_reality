@@ -37,7 +37,7 @@ public class LevelLoader : MonoBehaviour {
 
 
     void Start() {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         level1Loaded = true;
     }
 

@@ -34,7 +34,7 @@ public class Tags : MonoBehaviour {
     public const string PATROLPOINT = "PatrolPoint";
     public const string SPAWN1 = "Spawn1";
     public const string SPAWN2 = "Spawn2";
-
+    public const string SCRIPT = "Script";
 
 
 
