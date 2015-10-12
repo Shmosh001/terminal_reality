@@ -34,6 +34,11 @@ public class PlayerMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		//if player not moving...
+		if (forwardSpeed == 0 && sideSpeed == 0)
+		{
+			playerData.canHear = false;
+		}
 		
 		/***********
 		//ROTATION//

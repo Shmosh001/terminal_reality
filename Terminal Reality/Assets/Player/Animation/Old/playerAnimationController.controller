@@ -897,7 +897,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Pistol Aim
-  m_Speed: 1
+  m_Speed: .899999976
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: f58586c04f531cd4c8d593423fae7f71, type: 2}
@@ -1167,10 +1167,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110224246}
-      second:
-      - {fileID: 110108180}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110140606}
@@ -1201,6 +1197,10 @@ StateMachine:
       second:
       - {fileID: 110150060}
       - {fileID: 110169866}
+    data:
+      first: {fileID: 110224246}
+      second:
+      - {fileID: 110108180}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -84, y: -168, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
