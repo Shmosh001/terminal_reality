@@ -624,7 +624,7 @@ GameObject:
   - 208: {fileID: 20884350}
   m_Layer: 0
   m_Name: Player 2
-  m_TagString: Player1
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &139578
 GameObject:
   m_ObjectHideFlags: 1
@@ -1705,7 +1705,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139552}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 93.9764023, y: 8.17798664e-17, z: 13.1696205}
+  m_LocalPosition: {x: 32.652504, y: 8.65054632e-17, z: 93.6414108}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 439496}
@@ -2641,6 +2641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   damage: 25
   rateOfFire: .100000001
   singleFire: 1
@@ -2689,6 +2691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   shotRange: 100
   soundController: {fileID: 0}
 --- !u!114 &11439616
@@ -2705,6 +2709,7 @@ MonoBehaviour:
   soundController: {fileID: 0}
   pushE: {fileID: 0}
   pushEOpen: {fileID: 0}
+  needKey: {fileID: 0}
 --- !u!114 &11439618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2760,6 +2765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
 --- !u!114 &11439624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2782,6 +2789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   damage: 8
   rateOfFire: .150000006
   singleFire: 0
@@ -2826,7 +2835,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 139552}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .449999988
   m_Height: 2
   m_Direction: 1
