@@ -8,9 +8,6 @@ public class DDScript : MonoBehaviour {
     private Animator anim;
 	public bool open;
     //private Text pushE;
-
-    public GameObject needKey1;
-    public GameObject needKey2;
     public GameObject doorCounterpart;
 
 
@@ -47,8 +44,7 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 
-        Debug.Log(other.name);
-		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+        //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1)
 		{
 			if (!open) //Only show hint if the door is closed
@@ -60,7 +56,7 @@ public class DDScript : MonoBehaviour {
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
-                    Debug.Log("enabled");
+                    //Debug.Log("enabled");
                     //needKey1.SetActive(true);
 				}
 			}
