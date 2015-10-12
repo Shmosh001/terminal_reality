@@ -6,7 +6,7 @@ public class loadLevel2 : MonoBehaviour {
 
 
     public GameObject scripts;
-    public GameManager manager;
+    private GameManager manager;
     public bool player1Arrived, player2Arrived, loadReady;
     private float loadTimerD = 1, loadTimerC;
 

@@ -1725,7 +1725,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139552}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 32.652504, y: 8.65054632e-17, z: 93.6414108}
+  m_LocalPosition: {x: 97.2600021, y: .100000001, z: 87.4100037}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 439496}
@@ -2724,10 +2724,10 @@ MonoBehaviour:
   damage: 25
   rateOfFire: .100000001
   singleFire: 1
-  ammo: 50
+  ammo: 70
   clipSize: 10
   flareLight: {fileID: 10839622}
-  maxAmmo: 60
+  maxAmmo: 120
 --- !u!114 &11439610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2818,7 +2818,7 @@ MonoBehaviour:
   machineGunEquipped: 0
   pistolGameObject: {fileID: 139504}
   machineGunGameObject: {fileID: 139604}
-  torch: {fileID: 0}
+  torch: {fileID: 10839624}
   hasKey: 0
 --- !u!114 &11439620
 MonoBehaviour:
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b374b2f2d967248b213e8cd34e7190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 0}
+  playerData: {fileID: 11439618}
   uiBarScript: {fileID: 0}
   soundController: {fileID: 0}
   scripts: {fileID: 0}

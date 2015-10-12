@@ -12,7 +12,7 @@ public class CameraMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position = new Vector3(lead.position.x, transform.position.y, lead2.position.z + offsetDistance);
+        this.transform.position = new Vector3(lead2.position.x-2, transform.position.y, lead2.position.z + offsetDistance);
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.LoadLevel("MainMenu");

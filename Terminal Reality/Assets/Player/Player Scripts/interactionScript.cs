@@ -87,7 +87,8 @@ public class interactionScript : Photon.MonoBehaviour {
 					if (hitObject.CompareTag(Tags.DOUBLEDOOR) && playerData.hasKey)
 					{
 	                    DDScript dds = hitObject.GetComponentInParent<DDScript>();
-	                    dds.interaction();   
+	                    dds.interaction();
+                        playerData.hasKey = false; 
 	                }
 	
 	                    
@@ -142,9 +143,10 @@ public class interactionScript : Photon.MonoBehaviour {
 	                    //animator.SetTrigger(playerAnimationHash.pickupTrigger);
 	
 						pickupResetTimer = 3.1f;
-	                        animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						secondaryCam.SetActive(false);
-						mainCam.SetActive(true);
+	                    animator.SetTrigger(playerAnimationHash.pickupTrigger);
+                        mainCam.SetActive(false);
+                        secondaryCam.SetActive(true);
+						
 	
 	
 	                    this.GetComponent<playerHealthScript>().fullPlayerHealth();
@@ -292,8 +294,9 @@ public class interactionScript : Photon.MonoBehaviour {
 					if (hitObject.CompareTag(Tags.DOUBLEDOOR) && playerData.hasKey)
 					{
 						DDScript dds = hitObject.GetComponentInParent<DDScript>();
-						dds.interaction();   
-					}
+						dds.interaction();
+                        playerData.hasKey = false;
+                    }
 					
 					
 				}	
@@ -351,15 +354,15 @@ public class interactionScript : Photon.MonoBehaviour {
 						
 						pickupResetTimer = 3.1f;
 						animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						
-						
-							//Camera.main.GetComponent<cameraScript>().pickupCam();
-							secondaryCam.SetActive(false);
-							mainCam.SetActive(true);
-						
-						
-						
-						this.GetComponent<playerHealthScript>().fullPlayerHealth();
+                        mainCam.SetActive(false);
+                        secondaryCam.SetActive(true);
+                        
+                        //Camera.main.GetComponent<cameraScript>().pickupCam();
+
+
+
+
+                        this.GetComponent<playerHealthScript>().fullPlayerHealth();
 						
 						//Destroy health box after picking it up//
 						Destroy(interactingCollider.gameObject);

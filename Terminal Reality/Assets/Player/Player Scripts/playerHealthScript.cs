@@ -57,7 +57,7 @@ public class playerHealthScript : MonoBehaviour {
 		}
 		if (heartBeatPlaying && playerData.health >= 50)
 		{
-			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
+			
 			heartBeatPlaying = false;
 		}
 		
@@ -72,7 +72,6 @@ public class playerHealthScript : MonoBehaviour {
 		{
 			print ("Health: " + playerData.health);
 			playerData.health -= damage;			
-			this.GetComponent<AudioSource>().Stop(); //stop the heart beat
 			heartBeatPlaying = false;
 			updateHealthHUD();
 		}

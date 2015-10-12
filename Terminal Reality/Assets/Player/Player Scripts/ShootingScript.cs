@@ -4,6 +4,8 @@ using System.Collections;
 public class ShootingScript : ammoHUDScript {
 	
 	playerDataScript playerData;
+
+    public GameObject scripts;
 	
 	//PUBLIC VARIABLES SHOOTING//
 	public float shotRange = 100.0f;
@@ -33,17 +35,21 @@ public class ShootingScript : ammoHUDScript {
 	// Draws two crosshairs in the center of each players screen.
 	void OnGUI(){
 		
-		if (gameObject.tag == "Player1")
-		{
-			GUI.DrawTexture(new Rect(((Screen.width)/4)*3 - (crosshair.width/2),(Screen.height-crosshair.height)/2, crosshair.width, crosshair.height),crosshair);
-		}
-		else if (gameObject.tag == "Player2")
-		{		
-			GUI.DrawTexture(new Rect(((Screen.width)/4)*1 - (crosshair.width/2),(Screen.height-crosshair.height)/2, crosshair.width, crosshair.height),crosshair);
-		}
+        if (!scripts.GetComponent<GameManager>().singleplayer) {
+            if (gameObject.tag == Tags.PLAYER1) {
+                GUI.DrawTexture(new Rect(((Screen.width) / 4) * 3 - (crosshair.width / 2), (Screen.height - crosshair.height) / 2, crosshair.width, crosshair.height), crosshair);
+            }
+            else if (gameObject.tag == Tags.PLAYER2) {
+                GUI.DrawTexture(new Rect(((Screen.width) / 4) * 1 - (crosshair.width / 2), (Screen.height - crosshair.height) / 2, crosshair.width, crosshair.height), crosshair);
+            }
+        }
+        else{
+            GUI.DrawTexture(new Rect(((Screen.width) / 2) - (crosshair.width / 2), (Screen.height - crosshair.height) / 2, crosshair.width, crosshair.height), crosshair);
+        }
+
 		
-		//instructionRight.transform.position = new Vector3 (Screen.width / 4 * 3, Screen.height/2 - blueCrosshair.height, 0);
-		//instructionLeft.transform.position = new Vector3 (Screen.width / 4, Screen.height/2 - blueCrosshair.height, 0);
+		
+		
 	}
 	
 	// Update is called once per frame
@@ -238,7 +244,7 @@ public class ShootingScript : ammoHUDScript {
 								                   weapon.GetComponent<weaponDataScript>().getRemainingAmmo());
 							}
 							
-							ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+							ray = new Ray(gameObject.GetComponent<interactionScript>().mainCam.transform.position, gameObject.GetComponent<interactionScript>().mainCam.transform.forward);
 							checkHit();
 							coolDownTimer = 0.2f;
 						}
@@ -394,26 +400,50 @@ public class ShootingScript : ammoHUDScript {
 	
 	void checkHit()
 	{
-		RaycastHit hitInfo; //to store what the ray hit
-		
-		if (Physics.Raycast(ray, out hitInfo, shotRange))
-		{
-			Vector3 hitPoint = hitInfo.point; //point where the collision happened
-			GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
 
-            Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
+        if (this.gameObject.tag == Tags.PLAYER1) {
+            RaycastHit hitInfo; //to store what the ray hit
 
-			
-			//SHOOTING ENEMY//
-			if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY))
-			{
-                Debug.Log("Enemy shot: " + hitObject.name );
-                
-                hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject, hitPoint);
-                
-                
-			}
-            
-		}
+            if (Physics.Raycast(ray, out hitInfo, shotRange)) {
+                Vector3 hitPoint = hitInfo.point; //point where the collision happened
+                GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
+
+                //Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
+
+
+                //SHOOTING ENEMY//
+                if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY)) {
+                    //Debug.Log("Enemy shot: " + hitObject.name );
+
+                    hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject, hitPoint);
+
+
+                }
+
+            }
+        }
+        else if (this.gameObject.tag == Tags.PLAYER2) {
+            RaycastHit hitInfo; //to store what the ray hit
+
+            if (Physics.Raycast(ray, out hitInfo, shotRange)) {
+                Vector3 hitPoint = hitInfo.point; //point where the collision happened
+                GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits
+
+                //Debug.LogWarning(hitObject.tag + "  " + hitObject.name);
+
+
+                //SHOOTING ENEMY//
+                if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY)) {
+                    //Debug.Log("Enemy shot: " + hitObject.name );
+
+                    hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject, hitPoint);
+
+
+                }
+
+            }
+        }
+
+       
 	}
 }

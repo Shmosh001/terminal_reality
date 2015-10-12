@@ -87,8 +87,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
         animatorCont = gameObject.GetComponent<ZombieAnimationController>();
 		soundCollider  = gameObject.GetComponent<SphereCollider>();
 		boxCollider = gameObject.GetComponent<BoxCollider>();
-        
-        
+
+        attackingDistance = 2.5f;
         //lessen senses
         lessenSenses();
         
@@ -294,7 +294,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 //if timer is over the limit
                 if (pukeC > pukeD) {
                     //Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
-                    Debug.Log("ENTERING PREVIOUS STATE MF");
+                    //Debug.Log("ENTERING PREVIOUS STATE MF");
                     fsm.enterPreviousState();
                     
 

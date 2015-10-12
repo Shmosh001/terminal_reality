@@ -167,12 +167,12 @@ public class PreyDetection : MonoBehaviour {
         //now we need to check if anything is obstructing the view by raycasting
         if (angle < FOV / 2) {
             
-            Debug.LogWarning("in view");
+            //Debug.LogWarning("in view");
             RaycastHit hitObject;
             //Debug.Log(transform.position + transform.up);
             //Debug.Log(direction);
             if (Physics.Raycast(transform.position + transform.up, direction, out hitObject, distance)) {
-                Debug.LogWarning(hitObject.collider.gameObject);
+                //Debug.LogWarning(hitObject.collider.gameObject);
                 if (hitObject.collider.gameObject == target) {
                     return true;
                 }
