@@ -23,7 +23,14 @@ public class ammoHUDScript : MonoBehaviour {
 	//if less than a third full, so reload warning
 	public void checkReloadWarning(int clipAmmo, int clipSize, int totAmmo)
 	{
-
+		if (gameObject.tag == Tags.PLAYER1)
+		{
+			reloadText.transform.position = new Vector2( (Screen.width/4)-100,Screen.height/2);
+		}
+		if (gameObject.tag == Tags.PLAYER2)
+		{
+			reloadText.transform.position = new Vector2( 3*(Screen.width/4)-100,Screen.height/2);
+		}
         
 
         if (totAmmo != 0 && clipAmmo != 0)

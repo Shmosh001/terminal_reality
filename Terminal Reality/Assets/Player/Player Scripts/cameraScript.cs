@@ -5,6 +5,7 @@ public class cameraScript : MonoBehaviour {
 
 	private Transform player;
 	private Transform playerSpine;
+	private Vector3 camera;
 	private Vector3 relCameraPos;
 	private float relCameraPosMag;
 	private float relCameraPosMagup;
@@ -32,11 +33,14 @@ public class cameraScript : MonoBehaviour {
 	
 	public void pickupCam()
 	{
-		transform.parent = gameObject.transform.parent.GetChild(1).GetChild (2).GetChild(0).GetChild(0).GetChild(1).GetChild (0);
+		/*camera = gameObject.transform.position;
+		transform.parent = gameObject.transform.parent.GetChild(1).GetChild (2).GetChild(0).GetChild(0).GetChild(1).GetChild (0);*/
 	}
 	public void resetCam()
 	{
-		transform.parent = player;
+		/*transform.parent = player;
+		transform.position = camera;
+		gameObject.GetComponent<RectTransform>().position = new Vector3(-0.15f, 1.7f, 0.22f);*/
 	}
 	
 }

@@ -25,6 +25,9 @@ public class interactionScript : Photon.MonoBehaviour {
 	public Text pushE;
 	public Text pushEOpen;
 	public Text needKey;
+	
+	public GameObject mainCam;
+	public GameObject secondaryCam;
 
 	private float pickupResetTimer = 600.00f;
 
@@ -99,7 +102,8 @@ public class interactionScript : Photon.MonoBehaviour {
 						//animator.SetTrigger(playerAnimationHash.pickupTrigger);					
 						pickupResetTimer = 3.1f;
 	                    animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						Camera.main.GetComponent<cameraScript>().pickupCam();                   
+						mainCam.SetActive(false);
+						secondaryCam.SetActive(true);                   
 	
 	                    //If the player has a pistol//
 	                    if (playerData.pistolPickedUp)
@@ -139,7 +143,8 @@ public class interactionScript : Photon.MonoBehaviour {
 	
 						pickupResetTimer = 3.1f;
 	                        animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						Camera.main.GetComponent<cameraScript>().pickupCam();
+						secondaryCam.SetActive(false);
+						mainCam.SetActive(true);
 	
 	
 	                    this.GetComponent<playerHealthScript>().fullPlayerHealth();
@@ -247,7 +252,9 @@ public class interactionScript : Photon.MonoBehaviour {
 			else
 			{
 				pickupResetTimer = 600.0f;
-				Camera.main.GetComponent<cameraScript>().resetCam();
+				secondaryCam.SetActive(false);
+				mainCam.SetActive(true);
+				
 			}
 		}
 		
@@ -300,7 +307,11 @@ public class interactionScript : Photon.MonoBehaviour {
 						//animator.SetTrigger(playerAnimationHash.pickupTrigger);					
 						pickupResetTimer = 3.1f;
 						animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						Camera.main.GetComponent<cameraScript>().pickupCam();                   
+						
+							//Camera.main.GetComponent<cameraScript>().pickupCam();
+							mainCam.SetActive(false);
+							secondaryCam.SetActive(true);
+						                  
 						
 						//If the player has a pistol//
 						if (playerData.pistolPickedUp)
@@ -340,7 +351,12 @@ public class interactionScript : Photon.MonoBehaviour {
 						
 						pickupResetTimer = 3.1f;
 						animator.SetTrigger(playerAnimationHash.pickupTrigger);
-						Camera.main.GetComponent<cameraScript>().pickupCam();
+						
+						
+							//Camera.main.GetComponent<cameraScript>().pickupCam();
+							secondaryCam.SetActive(false);
+							mainCam.SetActive(true);
+						
 						
 						
 						this.GetComponent<playerHealthScript>().fullPlayerHealth();
@@ -448,7 +464,8 @@ public class interactionScript : Photon.MonoBehaviour {
 			else
 			{
 				pickupResetTimer = 600.0f;
-				Camera.main.GetComponent<cameraScript>().resetCam();
+				secondaryCam.SetActive(false);
+				mainCam.SetActive(true);
 			}
 		}
 	}
@@ -459,38 +476,50 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
+		if (gameObject.tag == Tags.PLAYER1)
+		{
+			pushE.transform.position = new Vector2( (Screen.width/4)-80,Screen.height/2);
+			pushEOpen.transform.position = new Vector2((Screen.width/4)-80,Screen.height/2);
+			needKey.transform.position = new Vector2((Screen.width/4)-100,Screen.height/2);
+		}
+		if (gameObject.tag == Tags.PLAYER2)
+		{
+			pushE.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
+			pushEOpen.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
+			needKey.transform.position = new Vector2( 3*(Screen.width/4)-100,Screen.height/2);
+		}
 			
-			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
-			if (other.tag == "Door")
-			{						
-				if (gameObject.tag == "Player1")
+		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+		if (other.tag == "Door")
+		{						
+			if (gameObject.tag == "Player1")
+			{
+				if (other.GetComponentInParent<DoorScript>().open)
 				{
-					if (other.GetComponentInParent<DoorScript>().open)
-					{
-						pushEOpen.text = "Push E to Close";				
-						pushEOpen.enabled = true;
-					}
-					else
-					{
-						pushEOpen.text = "Push E to Open";				
-						pushEOpen.enabled = true;
-					}
+					pushEOpen.text = "Push E to Close";				
+					pushEOpen.enabled = true;
 				}
-				if (gameObject.tag == "Player2")
+				else
 				{
-					if (other.GetComponentInParent<DoorScript>().open)
-					{
-						pushEOpen.text = "Push X to Close";				
-						pushEOpen.enabled = true;
-					}
-					else
-					{
-						pushEOpen.text = "Push X to Open";				
-						pushEOpen.enabled = true;
-					}
+					pushEOpen.text = "Push E to Open";				
+					pushEOpen.enabled = true;
 				}
 			}
-			
+			if (gameObject.tag == "Player2")
+			{
+				if (other.GetComponentInParent<DoorScript>().open)
+				{
+					pushEOpen.text = "Push X to Close";				
+					pushEOpen.enabled = true;
+				}
+				else
+				{
+					pushEOpen.text = "Push X to Open";				
+					pushEOpen.enabled = true;
+				}
+			}
+		}
+		
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "DoubleDoor")
 			{	
@@ -575,7 +604,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER EXITS AN OBJECTS TRIGGER//
 	void OnTriggerExit (Collider other)
 	{
-		
+				
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
 			{			
