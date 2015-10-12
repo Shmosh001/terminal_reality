@@ -10,21 +10,19 @@ public class SceneChange : MonoBehaviour {
 
     public GameObject exitGO;
     public GameObject settingsGO;
-    public GameObject instrGO;
+
     public GameObject creditsGO;
     public GameObject mmGO;
     public GameObject controlsGO;
-    public GameObject htpGO;
 
     public GameObject current;
 
     void Start() {
         exitGO.SetActive(false);
         creditsGO.SetActive(false);
-        instrGO.SetActive(false);
-        settingsGO.SetActive(false);
+        
         controlsGO.SetActive(false);
-        htpGO.SetActive(false);
+
 
     }
 
@@ -35,11 +33,7 @@ public class SceneChange : MonoBehaviour {
         current = controlsGO;
     }
 
-    public void htpScene() {
-        htpGO.SetActive(true);
-        current.SetActive(false);
-        current = htpGO;
-    }
+
 
     public void exitScene() {
         exitGO.SetActive(true);
@@ -62,11 +56,7 @@ public class SceneChange : MonoBehaviour {
         Application.LoadLevel("Final Level MP");
     }
 
-    public void instructionsScene() {
-        instrGO.SetActive(true);
-        current.SetActive(false);
-        current = instrGO;
-    }
+
 
     public void settingsScene() {
         settingsGO.SetActive(true);
