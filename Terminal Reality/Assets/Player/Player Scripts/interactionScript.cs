@@ -20,9 +20,11 @@ public class interactionScript : Photon.MonoBehaviour {
 	private Collider interactingCollider; //the collider of the object the player was last in
 	public GameObject soundController;
 	private GameObject pushEObj;
+	private GameObject needKeyObj;
 	private GameObject pushEOpenObj;
 	public Text pushE;
 	public Text pushEOpen;
+	public Text needKey;
 
 
 
@@ -239,8 +241,39 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
 			{
+				if (other.GetComponentInParent<DoorScript>().open)
+				{
+					pushEOpen.text = "Push E to Close";				
+					pushEOpen.enabled = true;
+				}
+				else
+				{
+					pushEOpen.text = "Push E to Open";				
+					pushEOpen.enabled = true;
+				}
+			}
+			
+			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+			if (other.tag == "DoubleDoor")
+			{	
+				if (playerData.hasKey)
+				{			
+					if (other.GetComponentInParent<DDScript>().open)
+					{
+						pushEOpen.text = "Push E to Close";				
+						pushEOpen.enabled = true;
+					}
+					else
+					{
+						pushEOpen.text = "Push E to Open";				
+						pushEOpen.enabled = true;
+					}
+				}
+				else
+				{
+					needKey.enabled = true;
+				}
 				
-				pushEOpen.enabled = true;
 			}
 			
 			//IF PLAYER IN RANGE OF AN AMMO BOX
@@ -293,6 +326,20 @@ public class interactionScript : Photon.MonoBehaviour {
 			if (other.tag == "Door")
 			{			
 				pushEOpen.enabled = false;
+			}
+			
+			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+			if (other.tag == "DoubleDoor")
+			{	
+				if (playerData.hasKey)
+				{			
+					pushEOpen.enabled = false;
+				}
+				else
+				{
+					needKey.enabled = false;
+				}
+				
 			}
 			
 			//IF PLAYER NOT IN RANGE OF AN AMMO BOX
