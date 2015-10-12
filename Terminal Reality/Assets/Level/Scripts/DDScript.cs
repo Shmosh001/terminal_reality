@@ -6,7 +6,7 @@ public class DDScript : MonoBehaviour {
 
     private AudioSource audioSource;
     private Animator anim;
-	private bool open;
+	public bool open;
     //private Text pushE;
     //public GameObject needKey1;
     //public GameObject needKey2;

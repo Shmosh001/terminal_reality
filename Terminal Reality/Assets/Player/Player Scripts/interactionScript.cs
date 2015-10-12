@@ -240,8 +240,17 @@ public class interactionScript : Photon.MonoBehaviour {
 			
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
-			{				
-				pushEOpen.enabled = true;
+			{
+				if (other.GetComponentInParent<DoorScript>().open)
+				{
+					pushEOpen.text = "Push E to Close";				
+					pushEOpen.enabled = true;
+				}
+				else
+				{
+					pushEOpen.text = "Push E to Open";				
+					pushEOpen.enabled = true;
+				}
 			}
 			
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
@@ -249,7 +258,16 @@ public class interactionScript : Photon.MonoBehaviour {
 			{	
 				if (playerData.hasKey)
 				{			
-					pushEOpen.enabled = true;
+					if (other.GetComponentInParent<DDScript>().open)
+					{
+						pushEOpen.text = "Push E to Close";				
+						pushEOpen.enabled = true;
+					}
+					else
+					{
+						pushEOpen.text = "Push E to Open";				
+						pushEOpen.enabled = true;
+					}
 				}
 				else
 				{
