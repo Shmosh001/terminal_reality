@@ -9,22 +9,36 @@ public class SceneChange : MonoBehaviour {
 
 
     public GameObject exitGO;
-    public GameObject settingsGO;
-
     public GameObject creditsGO;
     public GameObject mmGO;
     public GameObject controlsGO;
+    public GameObject xbox;
+    public GameObject keyboard;
+
 
     public GameObject current;
 
     void Start() {
         exitGO.SetActive(false);
         creditsGO.SetActive(false);
-        
         controlsGO.SetActive(false);
-
-
+        xbox.SetActive(false);
+        keyboard.SetActive(false);
     }
+
+    public void keyboardScene() {
+        keyboard.SetActive(true);
+        current.SetActive(false);
+        current = keyboard;
+    }
+
+
+    public void xboxScene() {
+        xbox.SetActive(true);
+        current.SetActive(false);
+        current = xbox;
+    }
+
 
 
     public void controlsScene() {
@@ -58,16 +72,10 @@ public class SceneChange : MonoBehaviour {
 
 
 
-    public void settingsScene() {
-        settingsGO.SetActive(true);
-        current.SetActive(false);
-        current = settingsGO;
-    }
+
 
     public void creditScene() {
-        creditsGO.SetActive(true);
-        current.SetActive(false);
-        current = creditsGO;
+        Application.LoadLevel("Thriller");
     }
 
 
