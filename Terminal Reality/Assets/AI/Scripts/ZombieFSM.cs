@@ -399,7 +399,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public void stopWandering() {
         //if we have arrived we stop nav agent movement and assign the previous state
         navAgent.Stop();
-        Debug.Log("ENTERING PREVIOUS STATE MF");
+        //Debug.Log("ENTERING PREVIOUS STATE MF");
         fsm.enterPreviousState();
 
 
@@ -627,7 +627,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     /// entity pukes at its position
     /// </summary>
     void puke(){
-		Debug.Log("puke method at" + Time.timeSinceLevelLoad);
+		//Debug.Log("puke method at" + Time.timeSinceLevelLoad);
 		//after exit time of the animation we revert back to idle
 		//set the puking particle effect
 		puking = true;

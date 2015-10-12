@@ -161,14 +161,14 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
                 if (stateDebugStatements)  Debug.Log("patroling case: entering " + Time.timeSinceLevelLoad);
                 if (!patroling) {
                     patroling = true;
-                    Debug.Log("started patroling");
+                    //Debug.Log("started patroling");
                     startPatroling();
                     navAgent.speed = patrolSpeed;
                 }
                 float distance = Vector3.Distance(transform.position, patrol.getCurrentWayPoint());
                 if (distance < 1) {
                     //we arrived at target
-                    Debug.Log("arrived");
+                    //Debug.Log("arrived");
                     stopPatrolling();
                    
                 }
