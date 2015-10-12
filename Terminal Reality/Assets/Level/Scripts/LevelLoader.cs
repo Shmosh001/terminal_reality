@@ -54,7 +54,7 @@ public class LevelLoader : MonoBehaviour {
 
     public void loadLevel2() {
         loading = true;
-        spawnIntermediate();
+        //spawnIntermediate();
         spawnOnLevel2();
         loading = false;
     }
