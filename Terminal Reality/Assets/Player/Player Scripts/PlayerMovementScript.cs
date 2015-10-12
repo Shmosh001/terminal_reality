@@ -208,7 +208,6 @@ public class PlayerMovementScript : MonoBehaviour {
 			//SPRINTING//
 			if (Input.GetAxis("SprintC") > 0) //If sprint button is being held down//
 			{
-				print(Input.GetAxis("SprintC"));
 				if (sprintEnergy > 0.0f) // if the player has sprint energy --> can sprint
 				{
 					movementMultiplier = Input.GetAxis("SprintC") * 1.8f;

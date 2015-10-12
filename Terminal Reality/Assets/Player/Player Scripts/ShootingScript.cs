@@ -208,14 +208,14 @@ public class ShootingScript : ammoHUDScript {
 		/////////////////////////////////////////////////////////
 		if (gameObject.tag == "Player2")
 		{
+		
 			//SINGLE FIRE//
 			if (weapon != null && weapon.GetComponent<weaponDataScript>().singleFire && playerData.playerAlive)
 			{
 				coolDownTimer -= Time.deltaTime; // reduce cool down timer
 				
-				if (Input.GetButtonDown("Shoot"))
+				if (Input.GetButtonDown("ShootC"))
 				{
-					print ("BANG!");
 					if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 					{
 						if (coolDownTimer <= 0)
@@ -240,6 +240,7 @@ public class ShootingScript : ammoHUDScript {
 							
 							ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 							checkHit();
+							coolDownTimer = 0.2f;
 						}
 					}
 					else //if clip is empty
@@ -264,8 +265,9 @@ public class ShootingScript : ammoHUDScript {
 			{
 				coolDownTimer -= Time.deltaTime; //reduce cool down timer
 				
-				if (Input.GetButton("Shoot"))
+				if (Input.GetAxis("ShootC")>0)
 				{
+					print ("BANG!");
 					if (weapon.GetComponent<weaponDataScript>().checkCanShoot()) //if there is a bullet in the clip
 					{
 						if (coolDownTimer <= 0) //can shoot
@@ -290,10 +292,10 @@ public class ShootingScript : ammoHUDScript {
 						}
 						else
 						{
+							
 							weapon.GetComponent<weaponDataScript>().gunFlare(false); //disable the gun flare
 						}
-					}
-					
+					}					
 					else //if clip is empty
 					{
 						if (coolDownTimer <= 0)
@@ -318,7 +320,7 @@ public class ShootingScript : ammoHUDScript {
 			}
 			
 			//RELOAD//
-			if (Input.GetKeyDown(KeyCode.R) && weapon != null && playerData.playerAlive)
+			if (Input.GetButtonDown("ReloadC") && weapon != null && playerData.playerAlive)
 			{
 				//Can only reload if the clip is NOT full//
 				if (weapon.GetComponent<weaponDataScript>().getRemainingClip() != weapon.GetComponent<weaponDataScript>().clipSize)
