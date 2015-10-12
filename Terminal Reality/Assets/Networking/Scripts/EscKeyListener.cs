@@ -21,15 +21,23 @@ public class EscKeyListener : Photon.MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-
-            //Application.LoadLevel("MainMenu");
-            Application.Quit();
-        }
-
-        
-
-
-
-    }
+		if (gameObject.tag == Tags.PLAYER1)
+		{
+	        if (Input.GetKeyDown(KeyCode.Escape)) {
+	
+	            //Application.LoadLevel("MainMenu");
+	            print ("MENU");
+	            Application.Quit();
+	        }
+	  	}
+		if (gameObject.tag == Tags.PLAYER2)
+		{
+			if (Input.GetButtonDown("ESC")) {
+				
+				//Application.LoadLevel("MainMenu");
+				print ("MENU");
+				Application.Quit();
+			}
+		}
+}
 }
