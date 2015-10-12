@@ -44,7 +44,10 @@ public class DDScript : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 
-        //IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+
+
+		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
+
 		if (other.tag == Tags.PLAYER1)
 		{
 			if (!open) //Only show hint if the door is closed
@@ -80,8 +83,11 @@ public class DDScript : MonoBehaviour {
             }
         }
         if (!open && other.tag == Tags.ENEMY ) {
-            other.GetComponent<ZombieFSM>().stopWandering();
+            ZombieFSM fsm = other.GetComponent<ZombieFSM>();
 
+            if (fsm != null && fsm.wandering) {
+                fsm.stopWandering();
+            }
         }
 
     }

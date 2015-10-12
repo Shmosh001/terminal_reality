@@ -1050,7 +1050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &101384
 GameObject:
   m_ObjectHideFlags: 1
@@ -6111,9 +6111,6 @@ MonoBehaviour:
   debugStatements: 0
   debug: 0
   animDebug: 0
-  ragdoll: {fileID: 105178, guid: 21d86c0d106fb874b90407971b83693f, type: 2}
-  text: {fileID: 0}
-  text2: {fileID: 0}
   pukeEffect: {fileID: 101428}
   rayCastOffset: 1.5
   eventChoiceD: 10
@@ -6136,6 +6133,7 @@ MonoBehaviour:
   runningDistance: 10
   attackingDistance: 2
   losingDistance: 20
+  wandering: 0
 --- !u!135 &13501246
 SphereCollider:
   m_ObjectHideFlags: 1

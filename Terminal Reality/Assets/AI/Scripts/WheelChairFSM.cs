@@ -326,7 +326,7 @@ public class WheelChairFSM : AIEntity<StateEnums.WheelZombieStates> {
         //inflict damage on player
 
 
-
+        transform.LookAt(target.transform, Vector3.up);
         playerHealthScript targetH = target.GetComponent<playerHealthScript>();
 
             //increment counter

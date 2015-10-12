@@ -16,11 +16,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public bool debug;
     public bool animDebug;
 
-    public GameObject ragdoll;
 
-    //debug text for states
-    public Text text;
-    public Text text2;
 
     //puking particle effect
     public GameObject pukeEffect;
@@ -49,10 +45,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 	private BoxCollider boxCollider;
 
 	//booleans to ascertain certain state specifics
-	private bool trigger, puking, wandering, alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot, deadBool;
-	
+	private bool trigger, puking,  alerted, walking, running, soundAlert, sightAlert, soundTrigger, chasing, shot, deadBool;
+    public bool wandering;
+
     //counters
-	private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC;
+    private float eventChoiceC, checkPlayerC, wanderC, pukeC, alertedC, searchingC, dyingC, chasingC, shotC, attackC;
 	
 	//sensitivity of the AI unit
 	private float viewingSens, listeningSens;
@@ -205,11 +202,11 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     //we got back to idle
                     //animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
                     //rpc conversion
-                    
-                    
+
+                    animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                     animatorCont.setTrigger(EnemyHashScript.alertToIdleTrigger);
                    
-                    animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
+                    
                     //we change states
                     //
                     fsm.enterState(StateEnums.ZombieStates.Idle);
@@ -259,7 +256,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     //rpc conversion
                     
                   
-                        animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
+                    animatorCont.setTrigger(EnemyHashScript.alertedTrigger);
                     
  
                     fsm.enterState(StateEnums.ZombieStates.Alerted);
@@ -295,6 +292,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                 //if timer is over the limit
                 if (pukeC > pukeD) {
                     //Debug.Log("puking case: puke time is over " + Time.timeSinceLevelLoad); 
+                    Debug.Log("ENTERING PREVIOUS STATE MF");
                     fsm.enterPreviousState();
                     
 
@@ -346,7 +344,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                     
                     
                     animatorCont.setTrigger(EnemyHashScript.shotTrigger);
-                    
+                    animatorCont.forceAnimation(EnemyHashScript.shotDecisionState);
                     shot = true;
                     //stop nav agent movement
                     navAgent.Stop();
@@ -360,7 +358,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
                 //check to see if we are in the attack state
                 if (animatorCont.checkAnimationState(EnemyHashScript.attackDecisionState)) {
-                    if (stateDebugStatements) { Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad); }
+                    if (stateDebugStatements)  Debug.Log("shot case: animation has stopped " + Time.timeSinceLevelLoad); 
                     fsm.enterState(StateEnums.ZombieStates.Chasing);
                     //rpc conversion
                     
@@ -398,6 +396,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public void stopWandering() {
         //if we have arrived we stop nav agent movement and assign the previous state
         navAgent.Stop();
+        Debug.Log("ENTERING PREVIOUS STATE MF");
         fsm.enterPreviousState();
 
 
@@ -427,11 +426,12 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
             //rpc conversion
 
-           
+
+            animatorCont.setRandomInteger(EnemyHashScript.attDInt, 2);
 
 
-           
-                
+
+
             animatorCont.forceAnimation(EnemyHashScript.attackDecisionState);
             
             //we set a new nav mesh destination
@@ -447,24 +447,19 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
             //we check if we are close enough to attack the target
             //or if we are far away enough to have lost the target
         //if (navAgent.remainingDistance < navAgent.stoppingDistance)
-        if (distance < attackingDistance) {
+        if (distance < attackingDistance-1) {
             if (debugStatements) { Debug.Log("chasePlayer method: ready to attack at" + Time.timeSinceLevelLoad); }
             //we make appropriate changes in the fsm, the navigation mesh traversal and the animations
             fsm.enterState(StateEnums.ZombieStates.Attacking);
             //rpc conversion
 			
-           /*if (PhotonNetwork.offlineMode) {
-                enterState((byte)StateEnums.ZombieStates.Attacking);
-            }
-            else {
-                pView.RPC("enterState", PhotonTargets.AllViaServer, (byte)StateEnums.ZombieStates.Attacking);
-            }*/
+           
             navAgent.Stop();
             //animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
             //rpc conversion
 			
            
-                animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
+            animatorCont.setBoolean(EnemyHashScript.attackingBool, true);
             
             chasing = false;
         }
@@ -573,6 +568,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 			if (debugStatements){Debug.Log("startWandering method: if path set failed at" + Time.timeSinceLevelLoad);}
 			//stop any path navigation
 			navAgent.Stop();
+            Debug.Log("ENTERING PREVIOUS STATE MF");
 			fsm.enterPreviousState();
 			
 
@@ -586,7 +582,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     void attackPlayer(){
 		if (debugStatements)Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);
         //inflict damage on player
-
+        transform.LookAt(target.transform, Vector3.up);
 
 
         playerHealthScript targetH = target.GetComponent<playerHealthScript>();
@@ -803,12 +799,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
     }
 
-    public void enterPrevState() {
-
-            fsm.enterPreviousState();
-        
-        
-    }
+    
 
 
 

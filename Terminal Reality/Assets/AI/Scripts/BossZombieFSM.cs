@@ -260,7 +260,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
     void attackPlayer() {
         if (debugStatements) Debug.Log("attackPlayer method at" + Time.timeSinceLevelLoad);
         //inflict damage on player
-
+        transform.LookAt(target.transform, Vector3.up);
 
 
         playerHealthScript targetH = target.GetComponent<playerHealthScript>();
@@ -301,7 +301,7 @@ public class BossZombieFSM : AIEntity<StateEnums.BossZombieStates> {
 	void OnTriggerEnter(Collider collider) {
         //if we player entered
         if (collider.tag == Tags.PLAYER1 || collider.tag == Tags.PLAYER2) {
-            if (debugStatements) { Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad); }
+            if (debugStatements) Debug.Log("collider entrance with " + collider.gameObject.name + " at " + Time.timeSinceLevelLoad); 
             //assign the target
             detection.assignTarget(collider.gameObject);
            

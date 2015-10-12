@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &139506
 GameObject:
   m_ObjectHideFlags: 1
@@ -352,7 +352,7 @@ GameObject:
   - 82: {fileID: 8239624}
   m_Layer: 0
   m_Name: Torch
-  m_TagString: Torch
+  m_TagString: P2Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -624,7 +624,7 @@ GameObject:
   - 208: {fileID: 20884350}
   m_Layer: 0
   m_Name: Player 2
-  m_TagString: Player1
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -812,7 +812,7 @@ GameObject:
   - 114: {fileID: 11443778}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: camTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1030,7 +1030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &139606
 GameObject:
   m_ObjectHideFlags: 1
@@ -1705,7 +1705,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139552}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 93.9764023, y: 8.17798664e-17, z: 13.1696205}
+  m_LocalPosition: {x: 32.652504, y: 8.65054632e-17, z: 93.6414108}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 439496}
@@ -2197,9 +2197,9 @@ Camera:
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: .500999987
     y: 0
-    width: 1
+    width: .5
     height: 1
   near clip plane: .379999995
   far clip plane: 1000
@@ -2374,7 +2374,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139576}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!82 &8239624
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2439,7 +2439,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139552}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -2641,6 +2641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   damage: 25
   rateOfFire: .100000001
   singleFire: 1
@@ -2689,8 +2691,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21754df30a20dfb47ba6b96b8fc46513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   shotRange: 100
   soundController: {fileID: 0}
+  crosshair: {fileID: 2800000, guid: dd51228fcdebd7c49bb4d18080ef0b47, type: 3}
 --- !u!114 &11439616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2705,6 +2710,7 @@ MonoBehaviour:
   soundController: {fileID: 0}
   pushE: {fileID: 0}
   pushEOpen: {fileID: 0}
+  needKey: {fileID: 0}
 --- !u!114 &11439618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2730,8 +2736,8 @@ MonoBehaviour:
   machineGunPickedUp: 0
   pistolEquipped: 0
   machineGunEquipped: 0
-  pistolGameObject: {fileID: 0}
-  machineGunGameObject: {fileID: 0}
+  pistolGameObject: {fileID: 139504}
+  machineGunGameObject: {fileID: 139604}
   torch: {fileID: 0}
   hasKey: 0
 --- !u!114 &11439620
@@ -2760,6 +2766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee374d1161dfe634582756734452fcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
 --- !u!114 &11439624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2782,6 +2790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37078433757df4c4384d2ac4ef2ca4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   damage: 8
   rateOfFire: .150000006
   singleFire: 0
@@ -2826,7 +2836,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 139552}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .449999988
   m_Height: 2
   m_Direction: 1
