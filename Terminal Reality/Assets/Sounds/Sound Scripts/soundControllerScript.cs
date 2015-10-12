@@ -21,7 +21,10 @@ public class soundControllerScript : MonoBehaviour {
 
     public AudioClip bossZombieScream;
     public AudioClip bossZombieDeath;
-	
+    public AudioClip pukingSound;
+
+
+    private Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
@@ -99,6 +102,23 @@ public class soundControllerScript : MonoBehaviour {
     public void playBossDeathSound(Vector3 position) {
         //soundSource.PlayOneShot(bossZombieDeath);
         AudioSource.PlayClipAtPoint(bossZombieDeath, position);
+    }
+    
+    
+    
+    //PLAY DEATH CLIP FOR BOSS ZOMBIE//
+    public void playPukingSound(Vector3 position) {
+        //soundSource.PlayOneShot(bossZombieDeath);
+        //2.1
+        pos = position;
+        playPuke();
+        Invoke("playPuke", pukingSound.length);
+        
+    }
+
+
+    void playPuke() {
+        AudioSource.PlayClipAtPoint(pukingSound, pos);
     }
 }
 
