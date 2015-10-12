@@ -70,7 +70,7 @@ public class interactionScript : Photon.MonoBehaviour {
 				RaycastHit hitInfo; //to store what the ray hit
 	
 				//IF RAY HITS AN OBJECT IN RANGE//
-				if (Physics.Raycast(ray, out hitInfo, 2.5f))
+				if (Physics.Raycast(ray, out hitInfo, 3.5f))
 				{
 					Vector3 hitPoint = hitInfo.point; //point where the collision happened
 					GameObject hitObject = hitInfo.collider.gameObject; //get the game object which the ray hits

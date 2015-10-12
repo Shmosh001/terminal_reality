@@ -62,12 +62,12 @@ public class SceneChange : MonoBehaviour {
     }
 
     public void singlePlayer() {
-        Application.LoadLevel("Final Level SP");
+        Application.LoadLevel("Final Game");
     }
 
     public void multiPlayer() {
         Screen.showCursor = false;
-        Application.LoadLevel("Final Level MP");
+        Application.LoadLevel("Final Game MP");
     }
 
 

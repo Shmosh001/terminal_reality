@@ -8,7 +8,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetKeyDown(KeyCode.L))
+        /*if(Input.GetKeyDown(KeyCode.L))
         {
             if(directionalLight.enabled == true)
             {
@@ -19,7 +19,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
             {
                 directionalLight.enabled = true;
             }
-        }
+        }*/
 
 		if (gameObject.tag == Tags.PLAYER1)
 		{
