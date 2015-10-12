@@ -16,7 +16,7 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
     public bool debug;
     public bool animDebug;
 
-
+    public AudioSource maleScream, femaleScream, pukingSound;
 
     //puking particle effect
     public GameObject pukeEffect;
@@ -136,14 +136,16 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                             //agonizing animation
                             case 0:
                                 //play the sound and assign the animator controller parameter 
-                                sound.playFemaleScream(transform.position);
+                                //sound.playFemaleScream(transform.position);
+                                femaleScream.Play();
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                                 break;
                             //scream animation
                             case 1:
                                 //dont need to change state
                                 //play screaming sound and assign the animator parameter
-                                sound.playMaleScream(transform.position);
+                                // sound.playMaleScream(transform.position);
+                                maleScream.Play();
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
                                 break;
                             //crying/puking animation
@@ -151,8 +153,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                                 //enter the new state 
                                 //set the animator  parameter
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-
-                                sound.playPukingSound(transform.position);
+                                pukingSound.Play();
+                                //sound.playPukingSound(transform.position);
 
                                 fsm.enterState(StateEnums.ZombieStates.Puking);
       
@@ -352,7 +354,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
 
                 //play screaming sound
                 if (animatorCont.checkAnimationState(EnemyHashScript.shotScreamState) && trigger) {
-                    sound.playMaleScream(transform.position);
+                    //sound.playMaleScream(transform.position);
+                    maleScream.Play();
                     trigger = false;
                 }
 

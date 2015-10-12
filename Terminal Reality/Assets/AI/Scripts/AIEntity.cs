@@ -22,7 +22,7 @@ public class AIEntity <T>: Photon.MonoBehaviour{
 	//PROTECTED VARS - TO BE INHERITED
 
 	//script that is used to play sound
-	public soundControllerScript sound;
+	//public soundControllerScript sound;
 	//nav mesh agent component that is attached
 	protected NavMeshAgent navAgent;
 	//health script attached
