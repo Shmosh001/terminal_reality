@@ -154,7 +154,8 @@ public class ZombieFSM : AIEntity<StateEnums.ZombieStates> {
                                 //enter the new state 
                                 //set the animator  parameter
                                 animatorCont.setRandomInteger(EnemyHashScript.idleDInt, 6);
-                                
+
+                                sound.playPukingSound(transform.position);
 
                                 fsm.enterState(StateEnums.ZombieStates.Puking);
       
