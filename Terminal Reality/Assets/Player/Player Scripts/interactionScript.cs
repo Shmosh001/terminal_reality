@@ -26,7 +26,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	public Text pushEOpen;
 	public Text needKey;
 
-
+	private float pickupResetTimer = 600.00f;
 
 
 	// Use this for initialization
@@ -85,12 +85,10 @@ public class interactionScript : Photon.MonoBehaviour {
 				//player can only pick up ammo if they have a weapon.
 				if(playerData.pistolPickedUp || playerData.machineGunPickedUp)
 				{
-					//animator.SetTrigger(playerAnimationHash.pickupTrigger);
-
-
-                    
+					//animator.SetTrigger(playerAnimationHash.pickupTrigger);					
+					pickupResetTimer = 3.1f;
                     animator.SetTrigger(playerAnimationHash.pickupTrigger);
-                   
+					Camera.main.GetComponent<cameraScript>().pickupCam();                   
 
                     //If the player has a pistol//
                     if (playerData.pistolPickedUp)
@@ -118,7 +116,8 @@ public class interactionScript : Photon.MonoBehaviour {
                     Destroy(interactingCollider.gameObject);
 	                
 					inRangeOfAmmo = false;
-					pushE.enabled = false;
+					pushE.enabled = false;										
+					
 				}
 			}
 	
@@ -127,9 +126,9 @@ public class interactionScript : Photon.MonoBehaviour {
                 if (playerData.health < 100) {
                     //animator.SetTrigger(playerAnimationHash.pickupTrigger);
 
-                    
+					pickupResetTimer = 3.1f;
                         animator.SetTrigger(playerAnimationHash.pickupTrigger);
-                   
+					Camera.main.GetComponent<cameraScript>().pickupCam();
 
 
                     this.GetComponent<playerHealthScript>().fullPlayerHealth();
@@ -229,6 +228,15 @@ public class interactionScript : Photon.MonoBehaviour {
 
                 Destroy(interactingCollider.gameObject);
             }
+		}
+		if (pickupResetTimer > 0)
+		{
+			pickupResetTimer -= Time.deltaTime;
+		}
+		else
+		{
+			pickupResetTimer = 600.0f;
+			Camera.main.GetComponent<cameraScript>().resetCam();
 		}
 	}
 	
