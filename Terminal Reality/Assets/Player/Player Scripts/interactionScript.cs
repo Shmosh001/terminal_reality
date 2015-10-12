@@ -40,10 +40,21 @@ public class interactionScript : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
-		if (Input.GetKeyDown(KeyCode.E))
+		/*if (gameObject.tag == "Player2")
 		{
+			if(Input.GetButtonDown("Xbut"))
+			{
+				print ("HEY");
+				ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);				
+				
+			}
+		}*/
+		
+	
+		//WHEN THE PLAYER PUSHES E TO INTERACT WITH THE ENVIRONMENT//
+		if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Xbut"))
+		{
+			
 			ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
 			RaycastHit hitInfo; //to store what the ray hit
@@ -56,9 +67,8 @@ public class interactionScript : Photon.MonoBehaviour {
 
 
                 //IF THE RAY HIT A DOOR//
-                if (hitObject.CompareTag(Tags.DOOR)) {
-
-
+                if (hitObject.CompareTag(Tags.DOOR)) 
+                {
                     DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
                     ds.interaction();
 
@@ -66,14 +76,8 @@ public class interactionScript : Photon.MonoBehaviour {
 				//IF THE RAY HIT A DOOR//				
 				if (hitObject.CompareTag(Tags.DOUBLEDOOR) && playerData.hasKey)
 				{
-					
-
-               
                     DDScript dds = hitObject.GetComponentInParent<DDScript>();
-                    dds.interaction();
-                            
-
-
+                    dds.interaction();   
                 }
 
                     
@@ -239,6 +243,7 @@ public class interactionScript : Photon.MonoBehaviour {
 			Camera.main.GetComponent<cameraScript>().resetCam();
 		}
 	}
+	
 	
 	
 	

@@ -193,13 +193,82 @@ public class PlayerMovementScript : MonoBehaviour {
 				//left-right//
 				//float rotLR = Input.GetAxis("contX") * playerData.mouseSpeed;				
 				transform.Rotate(0, Input.GetAxis("contX")*3, 0);				
-				/*
+				
 				//up-down//
 				rotUD -= Input.GetAxis ("contY") * playerData.mouseSpeed;
 				rotUD = Mathf.Clamp (rotUD, -60.0f, 45.0f);
-				Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);*/
+				transform.GetChild(2).localRotation = Quaternion.Euler (rotUD, 0, 0);
 				
 				
+			}
+			
+			/***********
+			//MOVEMENT//
+			**********/	
+			//SPRINTING//
+			if (Input.GetAxis("SprintC") > 0) //If sprint button is being held down//
+			{
+				print(Input.GetAxis("SprintC"));
+				if (sprintEnergy > 0.0f) // if the player has sprint energy --> can sprint
+				{
+					movementMultiplier = Input.GetAxis("SprintC") * 1.8f;
+					
+					//update movement state
+					playerData.sprinting = true;
+					playerData.sneaking = false;
+					playerData.walking = false;
+					playerData.canHear = true;
+				}
+			}
+			if (Input.GetAxis("SprintC") <= 0) //Release sprint button//
+			{
+				movementMultiplier = 1.0f;
+				
+				//update movement state
+				playerData.sprinting = false;
+				playerData.sneaking = false;
+				playerData.walking = true;
+			}
+			
+			// if the player is sprinting --> decrease sprint energry 
+			if (playerData.sprinting)
+			{
+				if (sprintEnergy > -1.0f) {sprintEnergy -= Time.deltaTime;} // decrease sprint energy only if sprint energy is greater than 0
+				if (sprintEnergy <= 0)
+				{
+					movementMultiplier = 1.0f;
+					
+					//update movement state
+					playerData.sprinting = false;
+					playerData.sneaking = false;
+					playerData.walking = true;
+				}
+			}
+			else //if the player is NOT sprinting --> increase sprint energy
+			{
+				if (sprintEnergy < 15.0f) {sprintEnergy += Time.deltaTime;} //increase sprint energy until 30.0f
+			}
+			
+			//SNEAKING//
+			if (Input.GetButtonDown("SneakC")) //If sneak button is being held down//
+			{
+				movementMultiplier = 0.70f;
+				
+				//update movement state
+				playerData.sprinting = false;
+				playerData.sneaking = true;
+				playerData.walking = false;
+				playerData.canHear = false;
+			}
+			if (Input.GetButtonUp("SneakC")) //Release sneak button//
+			{
+				movementMultiplier = 1.0f;
+				
+				//update movement state
+				playerData.sprinting = false;
+				playerData.sneaking = false;
+				playerData.walking = true;
+				playerData.canHear = true;
 			}
 			
 			if (characterController.isGrounded && Input.GetButtonDown("JumpC") && playerData.playerAlive)

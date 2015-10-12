@@ -37,16 +37,33 @@ public class torchScript : MonoBehaviour {
     void Update() {
         
 		//IF F IS PUSH TO TURN THE TORCH OFF OR ON//
-		if (Input.GetKeyDown(KeyCode.F))
+		if (gameObject.tag == "Torch")
 		{
-			if (playerData.playerAlive)
-			{
-				soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
-				torchOn = !torchOn;
-	            updateTorchActivity();
+			if (Input.GetKeyDown(KeyCode.F))
+			{			
+				if (playerData.playerAlive)
+				{
+					soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
+					torchOn = !torchOn;
+		            updateTorchActivity();
+		        }
+	
 	        }
-
-        }
+	    }
+	    
+		if (gameObject.tag == "P2Torch")
+		{
+			if (Input.GetButtonDown("torch"))
+			{			
+				if (playerData.playerAlive)
+				{
+					soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
+					torchOn = !torchOn;
+					updateTorchActivity();
+				}
+				
+			}
+		}
 
 		//if the torch is on, reduce the battery life.
 		if (torchOn && batteryLife >= 0.0f)
