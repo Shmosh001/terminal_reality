@@ -6,9 +6,15 @@ public class loadLevel2 : MonoBehaviour {
 
 
     public GameObject scripts;
+    public GameManager manager;
     public bool player1Arrived, player2Arrived, loadReady;
     private float loadTimerD = 1, loadTimerC;
 
+
+    void Start()
+    {
+        manager = scripts.GetComponent<GameManager>();
+    }
 
     void OnTriggerEnter (Collider col)
 	{
@@ -28,14 +34,12 @@ public class loadLevel2 : MonoBehaviour {
 
 
     void Update() {
-        if (player1Arrived && player2Arrived && !loadReady) {
-            loadReady = true;
-            loadTimerC = 0;
-            scripts.GetComponent<LevelLoader>().loading = true;
+        if (manager.singleplayer && player1Arrived ) {
+            scripts.GetComponent<LevelLoader>().loadLevel2();
         }
 
-        loadTimerC += Time.deltaTime;
-        if (loadReady && loadTimerC > loadTimerD) {
+        
+        if (!manager.singleplayer && player1Arrived && player2Arrived) {
             scripts.GetComponent<LevelLoader>().spawnOnLevel2();
         }
     }

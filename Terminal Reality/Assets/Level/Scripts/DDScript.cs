@@ -10,6 +10,7 @@ public class DDScript : MonoBehaviour {
     //private Text pushE;
     public GameObject needKey1;
     public GameObject needKey2;
+    public GameObject doorCounterpart;
 
 
 	// Use this for initialization
@@ -32,11 +33,10 @@ public class DDScript : MonoBehaviour {
             //play sound of this component
 
             audioSource.Play();
+            open = true;
 
             anim.SetTrigger("OpenFWD");
-			open = true;
-
-
+            doorCounterpart.GetComponent<DDScript>().interaction();
 		}
 	}
 
