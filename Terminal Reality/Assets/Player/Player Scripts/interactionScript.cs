@@ -463,13 +463,13 @@ public class interactionScript : Photon.MonoBehaviour {
 		{
 			pushE.transform.position = new Vector2( (Screen.width/4)-80,Screen.height/2);
 			pushEOpen.transform.position = new Vector2((Screen.width/4)-80,Screen.height/2);
-			needKey.transform.position = new Vector2((Screen.width/4)-80,Screen.height/2);
+			needKey.transform.position = new Vector2((Screen.width/4)-100,Screen.height/2);
 		}
 		if (gameObject.tag == Tags.PLAYER2)
 		{
 			pushE.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
 			pushEOpen.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
-			needKey.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
+			needKey.transform.position = new Vector2( 3*(Screen.width/4)-100,Screen.height/2);
 		}
 			
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
