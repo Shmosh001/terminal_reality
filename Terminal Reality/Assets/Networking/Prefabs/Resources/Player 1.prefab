@@ -1704,7 +1704,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139552}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 93.788002, y: .131999999, z: 87.7020035}
+  m_LocalPosition: {x: 26.6000004, y: .100000001, z: 87.6999969}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 439496}
@@ -2196,11 +2196,11 @@ Camera:
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: -0
     y: 0
-    width: 1
+    width: .498800009
     height: 1
-  near clip plane: .349999994
+  near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -2694,6 +2694,7 @@ MonoBehaviour:
   reloadText: {fileID: 0}
   shotRange: 100
   soundController: {fileID: 0}
+  crosshair: {fileID: 2800000, guid: dd51228fcdebd7c49bb4d18080ef0b47, type: 3}
 --- !u!114 &11439616
 MonoBehaviour:
   m_ObjectHideFlags: 1
