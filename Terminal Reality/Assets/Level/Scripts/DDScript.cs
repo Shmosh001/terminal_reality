@@ -8,8 +8,8 @@ public class DDScript : MonoBehaviour {
     private Animator anim;
 	private bool open;
     //private Text pushE;
-    public GameObject needKey1;
-    public GameObject needKey2;
+    //public GameObject needKey1;
+    //public GameObject needKey2;
 
 
 	// Use this for initialization
@@ -59,7 +59,7 @@ public class DDScript : MonoBehaviour {
 				//if the player does not have a key - show "Need Key"
 				else{
                     Debug.Log("enabled");
-                    needKey1.SetActive(true);
+                    //needKey1.SetActive(true);
 				}
 			}
 		}
@@ -76,7 +76,7 @@ public class DDScript : MonoBehaviour {
 				}
 				//if the player does not have a key - show "Need Key"
 				else{
-                    needKey2.SetActive(true);
+                    //needKey2.SetActive(true);
                 }
 
             }
@@ -95,12 +95,12 @@ public class DDScript : MonoBehaviour {
 		if (other.tag == Tags.PLAYER1)
 		{
             //pushE.enabled = false;
-            needKey1.SetActive(false);
+            //needKey1.SetActive(false);
         }
 
         else if(other.tag == Tags.PLAYER2)
         {
-            needKey2.SetActive(false);
+            //needKey2.SetActive(false);
         }
 
 	}
