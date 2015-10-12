@@ -4758,13 +4758,10 @@ MonoBehaviour:
   damage: 10
   arrivalDistance: 1.5
   sound: {fileID: 0}
-  stateDebugStatements: 0
-  debugStatements: 0
-  debug: 0
-  animDebug: 0
-  ragdoll: {fileID: 0}
-  text: {fileID: 0}
-  text2: {fileID: 0}
+  stateDebugStatements: 1
+  debugStatements: 1
+  debug: 1
+  animDebug: 1
   pukeEffect: {fileID: 140004}
   rayCastOffset: 1.5
   eventChoiceD: 10
@@ -4787,6 +4784,7 @@ MonoBehaviour:
   runningDistance: 10
   attackingDistance: 2
   losingDistance: 20
+  wandering: 0
 --- !u!135 &13539998
 SphereCollider:
   m_ObjectHideFlags: 1

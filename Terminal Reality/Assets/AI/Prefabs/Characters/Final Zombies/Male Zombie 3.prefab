@@ -2410,7 +2410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &492364
 Transform:
   m_ObjectHideFlags: 1
@@ -4431,7 +4431,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.7962799, y: 2.78736162, z: 38.5778961}
+  m_LocalPosition: {x: 88.7962799, y: 0, z: 38.5778961}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492672}
@@ -4762,9 +4762,6 @@ MonoBehaviour:
   debugStatements: 0
   debug: 0
   animDebug: 0
-  ragdoll: {fileID: 0}
-  text: {fileID: 0}
-  text2: {fileID: 0}
   pukeEffect: {fileID: 192378}
   rayCastOffset: 1.5
   eventChoiceD: 10
@@ -4785,8 +4782,9 @@ MonoBehaviour:
   RunningSpeed: 5
   speed: 0
   runningDistance: 10
-  attackingDistance: 2
+  attackingDistance: 1.5
   losingDistance: 20
+  wandering: 0
 --- !u!135 &13592364
 SphereCollider:
   m_ObjectHideFlags: 1
