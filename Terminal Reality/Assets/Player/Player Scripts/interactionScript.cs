@@ -462,25 +462,10 @@ public class interactionScript : Photon.MonoBehaviour {
 			
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "Door")
-			{
-				if (other.GetComponentInParent<DoorScript>().open)
+			{						
+				if (gameObject.tag == "Player1")
 				{
-					pushEOpen.text = "Push E to Close";				
-					pushEOpen.enabled = true;
-				}
-				else
-				{
-					pushEOpen.text = "Push E to Open";				
-					pushEOpen.enabled = true;
-				}
-			}
-			
-			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
-			if (other.tag == "DoubleDoor")
-			{	
-				if (playerData.hasKey)
-				{			
-					if (other.GetComponentInParent<DDScript>().open)
+					if (other.GetComponentInParent<DoorScript>().open)
 					{
 						pushEOpen.text = "Push E to Close";				
 						pushEOpen.enabled = true;
@@ -489,6 +474,53 @@ public class interactionScript : Photon.MonoBehaviour {
 					{
 						pushEOpen.text = "Push E to Open";				
 						pushEOpen.enabled = true;
+					}
+				}
+				if (gameObject.tag == "Player2")
+				{
+					if (other.GetComponentInParent<DoorScript>().open)
+					{
+						pushEOpen.text = "Push X to Close";				
+						pushEOpen.enabled = true;
+					}
+					else
+					{
+						pushEOpen.text = "Push X to Open";				
+						pushEOpen.enabled = true;
+					}
+				}
+			}
+			
+			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
+			if (other.tag == "DoubleDoor")
+			{	
+				if (playerData.hasKey)
+				{			
+					if (gameObject.tag == "Player1")
+					{
+						if (other.GetComponentInParent<DDScript>().open)
+						{
+							pushEOpen.text = "Push E to Close";				
+							pushEOpen.enabled = true;
+						}
+						else
+						{
+							pushEOpen.text = "Push E to Open";				
+							pushEOpen.enabled = true;
+						}
+					}
+					if (gameObject.tag == "Player2")
+					{
+						if (other.GetComponentInParent<DDScript>().open)
+						{
+							pushEOpen.text = "Push X to Close";				
+							pushEOpen.enabled = true;
+						}
+						else
+						{
+							pushEOpen.text = "Push X to Open";				
+							pushEOpen.enabled = true;
+						}
 					}
 				}
 				else
