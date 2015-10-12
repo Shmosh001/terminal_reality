@@ -15,6 +15,7 @@ public class ShootingScript : ammoHUDScript {
 	public GameObject soundController;
     private playerAnimatorSync animSync;
 
+	public Texture crosshair;
 	
 	//COUNTERS//
 	private int flareLoopCount = 0;
@@ -28,6 +29,22 @@ public class ShootingScript : ammoHUDScript {
 		
 
     }
+    
+	// Draws two crosshairs in the center of each players screen.
+	void OnGUI(){
+		
+		if (gameObject.tag == "Player1")
+		{
+			GUI.DrawTexture(new Rect(((Screen.width)/4)*3 - (crosshair.width/2),(Screen.height-crosshair.height)/2, crosshair.width, crosshair.height),crosshair);
+		}
+		else if (gameObject.tag == "Player2")
+		{		
+			GUI.DrawTexture(new Rect(((Screen.width)/4)*1 - (crosshair.width/2),(Screen.height-crosshair.height)/2, crosshair.width, crosshair.height),crosshair);
+		}
+		
+		//instructionRight.transform.position = new Vector3 (Screen.width / 4 * 3, Screen.height/2 - blueCrosshair.height, 0);
+		//instructionLeft.transform.position = new Vector3 (Screen.width / 4, Screen.height/2 - blueCrosshair.height, 0);
+	}
 	
 	// Update is called once per frame
 	void Update () 
