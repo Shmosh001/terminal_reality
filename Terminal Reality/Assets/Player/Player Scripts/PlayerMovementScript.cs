@@ -58,7 +58,10 @@ public class PlayerMovementScript : MonoBehaviour {
 				//up-down//
 				rotUD -= Input.GetAxis ("Mouse Y") * playerData.mouseSpeed;
 				rotUD = Mathf.Clamp (rotUD, -60.0f, 45.0f);
-				Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);
+				if (Camera.main != null){
+					Camera.main.transform.localRotation = Quaternion.Euler (rotUD, 0, 0);
+				}
+				
 			}
 			/***********
 			//MOVEMENT//
