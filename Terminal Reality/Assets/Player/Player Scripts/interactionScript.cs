@@ -479,7 +479,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	//PLAYER ENTERS AN OBJECTS TRIGGER//
 	void OnTriggerEnter (Collider other)
 	{
-		if (gameObject.tag == Tags.PLAYER1)
+		/*if (gameObject.tag == Tags.PLAYER1)
 		{
 			pushE.transform.position = new Vector2( (Screen.width/4)-80,Screen.height/2);
 			pushEOpen.transform.position = new Vector2((Screen.width/4)-80,Screen.height/2);
@@ -490,7 +490,7 @@ public class interactionScript : Photon.MonoBehaviour {
 			pushE.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
 			pushEOpen.transform.position = new Vector2( 3*(Screen.width/4)-80,Screen.height/2);
 			needKey.transform.position = new Vector2( 3*(Screen.width/4)-100,Screen.height/2);
-		}
+		}*/
 			
 		//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 		if (other.tag == "Door")
