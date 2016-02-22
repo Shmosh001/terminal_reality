@@ -64,7 +64,7 @@ public class SceneChange : MonoBehaviour {
     public void singlePlayer() {
         current.SetActive(false);
         Screen.showCursor = false;
-        Application.LoadLevel("Final Game");
+        Application.LoadLevel("Login");
     }
 
     public void multiPlayer() {
