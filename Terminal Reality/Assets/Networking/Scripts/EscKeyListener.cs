@@ -4,7 +4,7 @@ using System.Collections;
 public class EscKeyListener : Photon.MonoBehaviour {
 
     public Light directionalLight;
-    
+    public GameObject exitConf;
 
     // Update is called once per frame
     void Update() {
@@ -24,18 +24,19 @@ public class EscKeyListener : Photon.MonoBehaviour {
 		if (gameObject.tag == Tags.PLAYER1)
 		{
 	        if (Input.GetKeyDown(KeyCode.Escape)) {
-	
-	            Application.LoadLevel("MainMenu");
-	            //Application.Quit();
-	        }
+
+                //Application.LoadLevel("MainMenu");
+                exitConf.SetActive(true);
+                //Application.Quit();
+            }
 	  	}
 		if (gameObject.tag == Tags.PLAYER2)
 		{
 			if (Input.GetButtonDown("ESC")) {
-				
-				Application.LoadLevel("MainMenu");
-				//Application.Quit();
-			}
+                exitConf.SetActive(true);
+                //Application.LoadLevel("MainMenu");
+                //Application.Quit();
+            }
 		}
 }
 }
