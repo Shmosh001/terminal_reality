@@ -22,10 +22,14 @@ public class Login : MonoBehaviour {
     private string finalPath;
 
 
+
     void Start() {
         path = Application.dataPath + "/" + "_DATA_RECORDING/";
         okBtn.onClick.AddListener(() => { okClick(inField.text); });
     }
+
+
+   
 
     
     public void okClick(string name) {

@@ -5,7 +5,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
 
     public Light directionalLight;
     public GameObject exitConf;
-
+    private bool displayed;
     // Update is called once per frame
     void Update() {
         /*if(Input.GetKeyDown(KeyCode.L))
@@ -21,22 +21,28 @@ public class EscKeyListener : Photon.MonoBehaviour {
             }
         }*/
 
-		if (gameObject.tag == Tags.PLAYER1)
-		{
-	        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!displayed) {
+                exitConf.SetActive(true);
+                displayed = true;
+            }
+            else {
+                exitConf.SetActive(false);
+                displayed = false;
+            }
 
-                //Application.LoadLevel("MainMenu");
-                exitConf.SetActive(true);
-                //Application.Quit();
-            }
-	  	}
-		if (gameObject.tag == Tags.PLAYER2)
-		{
-			if (Input.GetButtonDown("ESC")) {
-                exitConf.SetActive(true);
-                //Application.LoadLevel("MainMenu");
-                //Application.Quit();
-            }
-		}
-}
+            
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Y) && displayed) {
+            Application.LoadLevel("MainMenu");
+        }
+
+        if (Input.GetKeyDown(KeyCode.N) && displayed) {
+            exitConf.SetActive(false);
+            displayed = false;
+        }
+        
+
+    }
 }
