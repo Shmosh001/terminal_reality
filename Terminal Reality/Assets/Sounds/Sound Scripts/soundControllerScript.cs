@@ -24,12 +24,51 @@ public class soundControllerScript : MonoBehaviour {
     public AudioClip pukingSound;
 
 
+
+
+    //UXG Sounds
+    public AudioClip girlContact;
+    public AudioClip girlDramatic;
+    public AudioClip whisperChild;
+    public AudioClip whisperBG;
+    public AudioClip bgmusic;
+    public bool stepUp;
+
+
+
+
+
+
+    public void playGirlContact(Vector3 position) {
+        AudioSource.PlayClipAtPoint(girlContact, position);
+    }
+
+    public void playGirlDramatic(Vector3 position) {
+        AudioSource.PlayClipAtPoint(girlDramatic, position);
+    }
+
+    public void playWhisperChild(Vector3 position) {
+        AudioSource.PlayClipAtPoint(whisperChild, position);
+    }
+
+    public void playWhisperBG(Vector3 position) {
+        AudioSource.PlayClipAtPoint(whisperBG, position);
+    }
+
+
     private Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
-		
+        stepUp = false;
+        
 	}
+
+    void Update() {
+        if (stepUp) {
+            //change bg music
+        }
+    }
 	
 	//PLAY LOW HEALTH HEART BEAT//
 	public void playLowHealthHeartBeat(Vector3 position)
