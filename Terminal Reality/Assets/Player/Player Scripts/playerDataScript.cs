@@ -29,6 +29,9 @@ public class playerDataScript : Photon.MonoBehaviour {
 	//WEAPONS GAME OBJECTS//
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
+	
+	//COUNTERS//
+	public int kills = 0;
 
 	
 	//TORCH//
