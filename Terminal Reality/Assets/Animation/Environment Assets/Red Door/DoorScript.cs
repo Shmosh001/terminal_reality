@@ -4,8 +4,11 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour {
 
-	private AudioSource audioSource;
-	private Animator anim;
+    public AudioSource normalSound;
+    public AudioSource peekOpen;
+    public AudioSource peekClose;
+
+    private Animator anim;
     private bool playerFWD = false; 
     public bool open = false;
     public bool openFWD = false;
@@ -20,7 +23,7 @@ public class DoorScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        audioSource = GetComponent<AudioSource>();
+       
 		anim = this.GetComponent<Animator> ();
 	
        
@@ -43,7 +46,7 @@ public class DoorScript : MonoBehaviour {
             if (openFWD)
             {
                 //play sound of this component
-                audioSource.Play();
+                normalSound.Play();
                 anim.SetTrigger("CloseFWD");
                 openFWD = false;
             }
@@ -52,7 +55,7 @@ public class DoorScript : MonoBehaviour {
             else if (openBCK)
             {
                 //play sound of this component
-                audioSource.Play();
+                normalSound.Play();
                 anim.SetTrigger("CloseBCK");
                 openBCK = false;
             }
@@ -68,7 +71,7 @@ public class DoorScript : MonoBehaviour {
             {
                 
                 //play sound of this component
-                audioSource.Play();
+                normalSound.Play();
                 anim.SetTrigger("OpenFWD");
                 openFWD = true;
             }
@@ -78,7 +81,7 @@ public class DoorScript : MonoBehaviour {
             else
             {
                 //play sound of this component
-                audioSource.Play();
+                normalSound.Play();
                 anim.SetTrigger("OpenBCK");
                 openBCK = true;
             }
@@ -136,7 +139,7 @@ public class DoorScript : MonoBehaviour {
                 if (angle < FOV / 2)
                 {
                     //play sound of this component
-                    audioSource.Play();
+                    normalSound.Play();
                     anim.SetTrigger("OpenFWD");
                     openFWD = true;
                 }
@@ -145,7 +148,7 @@ public class DoorScript : MonoBehaviour {
                 else
                 {
                     //play sound of this component
-                    audioSource.Play();
+                    normalSound.Play();
                     anim.SetTrigger("OpenBCK");
                     openBCK = true;
                 }
@@ -173,7 +176,7 @@ public class DoorScript : MonoBehaviour {
 			if (openFWD) //Only show hint if the door is closed
 			{
 				//play sound of this component
-                audioSource.Play();
+                normalSound.Play();
 				anim.SetTrigger("CloseFWD");
                 openFWD = false;
 			}
@@ -181,10 +184,25 @@ public class DoorScript : MonoBehaviour {
             else if (openBCK)
             {
                 //play sound of this component
-                audioSource.Play();
+                normalSound.Play();
                 anim.SetTrigger("CloseBCK");
                 openBCK = false;
             }
 		}
 	}
+
+
+    public void openPeek() {
+        anim.SetBool("peek", true);
+        //play sound
+        peekOpen.Play();
+    }
+
+
+    public void closePeek() {
+        anim.SetBool("peek", false);
+        //play sound
+        peekClose.Play();
+    }
+
 }

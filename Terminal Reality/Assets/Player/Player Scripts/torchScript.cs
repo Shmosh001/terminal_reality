@@ -41,7 +41,7 @@ public class torchScript : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.F))
 			{			
-				if (playerData.playerAlive)
+				if (playerData.playerAlive && !playerData.disabled)
 				{
 					soundController.GetComponent<soundControllerScript>().playTorchSound(transform.position); //play torch on/off sound
 					torchOn = !torchOn;
@@ -116,7 +116,9 @@ public class torchScript : MonoBehaviour {
 		torchSlider.value = batteryLife;
 	}
 
-
+    public void hackTorch(float value) {
+        batteryLife = value;
+    }
 
 
 

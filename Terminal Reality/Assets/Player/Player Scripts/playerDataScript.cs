@@ -33,6 +33,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 	
 	//TORCH//
 	public Light torch;
+    public bool disabled = false;
 
 
     //PLAYER HAS KEY
