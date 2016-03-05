@@ -53,7 +53,7 @@ public class Login : MonoBehaviour {
 
 
     public void createFile() {
-        Debug.Log("Writing file to " + path + userName + endPath);
+        //Debug.Log("Writing file to " + path + userName + endPath);
 
         string text = "Start Time: " + System.DateTime.Now.ToString();
         finalPath = path + userName + endPath;
