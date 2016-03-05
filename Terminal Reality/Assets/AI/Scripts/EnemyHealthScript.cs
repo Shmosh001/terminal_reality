@@ -122,6 +122,9 @@ public class EnemyHealthScript : MonoBehaviour {
             else if (isWheelChair) {
                 wcfsm.alertDead(transform.forward);
             }
+			int kills = PlayerPrefs.GetInt("kills");
+			kills++;
+			PlayerPrefs.SetInt("kills", kills);
             dead = true;
 		}
 

@@ -59,6 +59,7 @@ public class Login : MonoBehaviour {
         finalPath = path + userName + endPath;
 		PlayerPrefs.SetString("filePath", finalPath);
 		PlayerPrefs.SetString ("StartTime", text);
+		PlayerPrefs.SetInt("kills", 0);
         //System.IO.File.WriteAllText(finalPath, text);
     }
 
