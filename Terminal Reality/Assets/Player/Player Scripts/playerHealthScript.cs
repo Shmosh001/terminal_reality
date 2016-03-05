@@ -9,7 +9,6 @@ public class playerHealthScript : MonoBehaviour {
 	private bool heartBeatPlaying = false;
 	public GameObject soundController;
     public GameObject scripts;
-    public Login file;
 	//the animator
 	private Animator animator;
 
@@ -22,7 +21,6 @@ public class playerHealthScript : MonoBehaviour {
 		animator = this.gameObject.GetComponent<Animator>();
 		updateHealthHUD();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
-        file = this.GetComponent<Login>();
 
 
     }
@@ -100,8 +98,9 @@ public class playerHealthScript : MonoBehaviour {
 
 
             if (gameObject.tag == Tags.PLAYER1) {
+				writeToFile();
                 scripts.GetComponent<GameOver>().player1Dead = true;
-                file.createFile();
+                
 
             }
             else if (gameObject.tag == Tags.PLAYER2) {
@@ -113,9 +112,15 @@ public class playerHealthScript : MonoBehaviour {
 
 		
 	}
-	
 
+	public void writeToFile()
+	{
+		string path = PlayerPrefs.GetString("filePath");
+		string text = PlayerPrefs.GetString("StartTime");
+		text = text + "\r\nSomething";
 
+		System.IO.File.WriteAllText(path, text);
+	}
 	
 	//FULL UP (MAX) PLAYER'S HEALTH//
 	public void fullPlayerHealth()

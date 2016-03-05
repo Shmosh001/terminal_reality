@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Login : MonoBehaviour {
 
-	public playerDataScript playerData;
 
     public InputField inField;
     public Text infieldContent;
@@ -22,9 +21,12 @@ public class Login : MonoBehaviour {
     private string finalPath;
 
 
+	void Awake()
+	{
+		DontDestroyOnLoad(this);
+	}
 
-    void Start() {
-		playerData = this.GetComponent<playerDataScript>();	
+    void Start() {	
 		
         path = Application.dataPath + "/" + "_DATA_RECORDING/";
         okBtn.onClick.AddListener(() => { okClick(inField.text); });
@@ -53,10 +55,11 @@ public class Login : MonoBehaviour {
     public void createFile() {
         Debug.Log("Writing file to " + path + userName + endPath);
 
-        string text = System.DateTime.Now.ToString() + "\r\nKills: " + playerData.kills;
+        string text = "Start Time: " + System.DateTime.Now.ToString();
         finalPath = path + userName + endPath;
-
-        System.IO.File.WriteAllText(finalPath, text);
+		PlayerPrefs.SetString("filePath", finalPath);
+		PlayerPrefs.SetString ("StartTime", text);
+        //System.IO.File.WriteAllText(finalPath, text);
     }
 
 
