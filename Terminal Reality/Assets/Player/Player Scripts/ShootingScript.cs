@@ -86,6 +86,10 @@ public class ShootingScript : ammoHUDScript {
 							
 							if (playerData.pistolEquipped == true)
 							{
+								int shots = PlayerPrefs.GetInt("shots");
+								shots++;
+								PlayerPrefs.SetInt("shots", shots);
+
 								//RUN THE UPDATE AMMO HUD TEXT METHOD - method in ammoHUDScript//
 								updateAmmoText(weapon.GetComponent<weaponDataScript>().getRemainingAmmo(), 
 								               weapon.GetComponent<weaponDataScript>().getRemainingClip());
@@ -414,6 +418,9 @@ public class ShootingScript : ammoHUDScript {
                 //SHOOTING ENEMY//
                 if (hitObject.CompareTag(Tags.ENEMY) || hitObject.CompareTag(Tags.BOSSENEMY)) {
                     //Debug.Log("Enemy shot: " + hitObject.name );
+					int hits = PlayerPrefs.GetInt("hits");
+					hits++;
+					PlayerPrefs.SetInt("hits", hits);
 
                     hitObject.GetComponent<EnemyHealthScript>().takeDamage((int)weapon.GetComponent<weaponDataScript>().damage, this.gameObject, hitPoint);
 

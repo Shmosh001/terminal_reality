@@ -27,8 +27,12 @@ public class GameOver : MonoBehaviour {
 		string path = PlayerPrefs.GetString("filePath");
 		string text = PlayerPrefs.GetString("StartTime");
 		int kills = PlayerPrefs.GetInt("kills");
+		int shots = PlayerPrefs.GetInt("shots");
+		int hits = PlayerPrefs.GetInt("hits");
 
 		text = text + "\r\nKills: " + kills;
+		text = text + "\r\nShots: " + shots;
+		text = text + "\r\nHits: " + hits;
 
 		//Wrtie to file whether the player died or made it to the end of the level.
 		if (player1Dead)

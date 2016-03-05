@@ -60,6 +60,8 @@ public class Login : MonoBehaviour {
 		PlayerPrefs.SetString("filePath", finalPath);
 		PlayerPrefs.SetString ("StartTime", text);
 		PlayerPrefs.SetInt("kills", 0);
+		PlayerPrefs.SetInt("shots", 0);
+		PlayerPrefs.SetInt("hits", 0);
         //System.IO.File.WriteAllText(finalPath, text);
     }
 
