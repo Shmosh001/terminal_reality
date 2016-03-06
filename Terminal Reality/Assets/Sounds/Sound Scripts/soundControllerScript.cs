@@ -28,7 +28,10 @@ public class soundControllerScript : MonoBehaviour {
 	//PUBLIC BACKGROUND SOUNDS CLIPS//
 	public AudioClip safeBackgroundSound;
 
-
+	private bool safeFadeIn;
+	private bool safeFadeOut;
+	private bool tensionFadeIn;
+	private bool tensionFadeOut;
 
 
     private Vector3 pos;
@@ -37,24 +40,21 @@ public class soundControllerScript : MonoBehaviour {
 	void Start () {
 		safeAudio = GameObject.FindGameObjectWithTag("Sound Controller").GetComponent<AudioSource>();
 		tensionAudio = GameObject.FindGameObjectWithTag(Tags.PLAYER1).GetComponent<AudioSource>();
-		playSafeBackgroundSound();
+		//playSafeBackgroundSound();
+		safeAudio.Play();
+		tensionAudio.Play();
 	}
 
 	public void playSafeBackgroundSound()
 	{
-		safeAudio.Play();
+		safeFadeIn = true;
+		tensionFadeOut = true;
 	}
 
 	public void playTensionAudio()
 	{
-		if (safeAudio.isPlaying)
-		{
-			safeAudio.Stop();
-		}
-		if (!tensionAudio.isPlaying)
-		{
-			tensionAudio.Play();
-		}
+		safeFadeOut = true;
+		tensionFadeIn = true;
 	}
 
 	//PLAY LOW HEALTH HEART BEAT//
@@ -146,5 +146,54 @@ public class soundControllerScript : MonoBehaviour {
     void playPuke() {
         AudioSource.PlayClipAtPoint(pukingSound, pos);
     }
+
+	void Update () 
+	{
+		if (safeFadeIn)
+		{
+			if (safeAudio.volume < 0.7f)
+			{
+				safeAudio.volume += 0.25f*Time.deltaTime;
+			}
+			else
+			{
+				safeFadeIn = false;
+			}
+		}
+		else if (safeFadeOut)
+		{
+			if (safeAudio.volume > 0)
+			{
+				safeAudio.volume -= 0.25f*Time.deltaTime;
+			}
+			else
+			{
+				safeFadeOut = false;
+			}
+		}
+
+		if (tensionFadeIn)
+		{
+			if (tensionAudio.volume < 0.65f)
+			{
+				tensionAudio.volume += 0.2f*Time.deltaTime;
+			}
+			else
+			{
+				tensionFadeIn = false;
+			}
+		}
+		else if (tensionFadeOut)
+		{
+			if (tensionAudio.volume > 0)
+			{
+				tensionAudio.volume -= 0.5f*Time.deltaTime;
+			}
+			else
+			{
+				tensionFadeOut = false;
+			}
+		}
+	}
 }
 
