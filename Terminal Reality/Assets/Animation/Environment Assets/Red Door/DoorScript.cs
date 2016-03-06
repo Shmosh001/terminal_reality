@@ -7,6 +7,7 @@ public class DoorScript : MonoBehaviour {
     public AudioSource normalSound;
     public AudioSource peekOpen;
     public AudioSource peekClose;
+    public AudioSource slam;
 
     private Animator anim;
     private bool playerFWD = false; 
@@ -91,8 +92,21 @@ public class DoorScript : MonoBehaviour {
         
 	}
 
-	//WHEN SOMETHING ENTERS THE DOORS TRIGGER//
-	void OnTriggerEnter (Collider other)
+    public void specialOpen() {
+        normalSound.Play();
+        anim.SetTrigger("OpenFWD");
+        openFWD = true;
+    }
+
+    public void specialClose() {
+        slam.Play();
+        anim.SetTrigger("Slam");
+        openFWD = false;
+        
+    }
+
+    //WHEN SOMETHING ENTERS THE DOORS TRIGGER//
+    void OnTriggerEnter (Collider other)
 	{
 		//IF A PLAYER ENTERS THE DOOR'S TRIGGER//
 		if (other.tag == Tags.PLAYER1 || other.tag == Tags.PLAYER2)

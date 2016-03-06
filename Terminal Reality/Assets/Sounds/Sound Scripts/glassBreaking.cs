@@ -4,6 +4,7 @@ using System.Collections;
 public class glassBreaking : MonoBehaviour {
 
 	private AudioSource audioSource;
+    public DoorSlam ds;
     public GirlRunAway girl;
 
 	// Use this for initialization
@@ -18,6 +19,7 @@ public class glassBreaking : MonoBehaviour {
 		if(other.gameObject.tag == Tags.PLAYER1 || other.gameObject.tag == Tags.PLAYER2)
 		{
             //play sound of this component
+            ds.SlamDoor();
             audioSource.Play();
             //Destroy Component
             Destroy(this.gameObject, 3.0f);
