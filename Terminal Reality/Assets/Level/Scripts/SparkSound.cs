@@ -17,6 +17,6 @@ public class SparkSound : MonoBehaviour
 	void Spark ()
 	{
         //play sound of this component
-//        audioSource.Play();
+        audioSource.Play();
 	}
 }
