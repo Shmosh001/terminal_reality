@@ -98,7 +98,9 @@ public class playerHealthScript : MonoBehaviour {
 
 
             if (gameObject.tag == Tags.PLAYER1) {
+				//writeToFile();
                 scripts.GetComponent<GameOver>().player1Dead = true;
+                
 
             }
             else if (gameObject.tag == Tags.PLAYER2) {
@@ -110,9 +112,15 @@ public class playerHealthScript : MonoBehaviour {
 
 		
 	}
-	
 
+	/*public void writeToFile()
+	{
+		string path = PlayerPrefs.GetString("filePath");
+		string text = PlayerPrefs.GetString("StartTime");
+		text = text + "\r\nSomething";
 
+		System.IO.File.WriteAllText(path, text);
+	}*/
 	
 	//FULL UP (MAX) PLAYER'S HEALTH//
 	public void fullPlayerHealth()

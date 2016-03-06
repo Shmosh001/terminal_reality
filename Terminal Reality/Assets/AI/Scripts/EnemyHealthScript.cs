@@ -25,6 +25,7 @@ public class EnemyHealthScript : MonoBehaviour {
 	private ZombieFSM fsm;
     private BossZombieFSM bfsm;
     private WheelChairFSM wcfsm;
+	public playerDataScript playerData;
 
 
 
@@ -121,6 +122,9 @@ public class EnemyHealthScript : MonoBehaviour {
             else if (isWheelChair) {
                 wcfsm.alertDead(transform.forward);
             }
+			int kills = PlayerPrefs.GetInt("kills");
+			kills++;
+			PlayerPrefs.SetInt("kills", kills);
             dead = true;
 		}
 
