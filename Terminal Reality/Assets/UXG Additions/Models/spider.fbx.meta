@@ -1,0 +1,1367 @@
+fileFormatVersion: 2
+guid: f5a9bd478ca094495a4520e37f57420d
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: L_fang_1
+    100002: L_fang_2
+    100004: L_fang_3
+    100006: L_fang_4
+    100008: L_first_1
+    100010: L_first_2
+    100012: L_first_3
+    100014: L_first_4
+    100016: L_first_5
+    100018: L_fourth_1
+    100020: L_fourth_2
+    100022: L_fourth_3
+    100024: L_fourth_4
+    100026: L_fourth_5
+    100028: L_second_1
+    100030: L_second_2
+    100032: L_second_3
+    100034: L_second_4
+    100036: L_second_5
+    100038: L_third_1
+    100040: L_third_2
+    100042: L_third_3
+    100044: L_third_4
+    100046: L_third_5
+    100048: mesh
+    100050: R_fang_1
+    100052: R_fang_2
+    100054: R_fang_3
+    100056: R_fang_4
+    100058: R_first_1
+    100060: R_first_2
+    100062: R_first_3
+    100064: R_first_4
+    100066: R_first_5
+    100068: R_fourth_1
+    100070: R_fourth_2
+    100072: R_fourth_3
+    100074: R_fourth_4
+    100076: R_fourth_5
+    100078: R_second_1
+    100080: R_second_2
+    100082: R_second_3
+    100084: R_second_4
+    100086: R_second_5
+    100088: R_third_1
+    100090: R_third_2
+    100092: R_third_3
+    100094: R_third_4
+    100096: R_third_5
+    100098: root
+    100100: //RootNode
+    100102: spine_1
+    100104: spine_2
+    100106: spine_3
+    100108: spine_4
+    100110: tail_1
+    100112: tail_2
+    100114: tail_3
+    400000: L_fang_1
+    400002: L_fang_2
+    400004: L_fang_3
+    400006: L_fang_4
+    400008: L_first_1
+    400010: L_first_2
+    400012: L_first_3
+    400014: L_first_4
+    400016: L_first_5
+    400018: L_fourth_1
+    400020: L_fourth_2
+    400022: L_fourth_3
+    400024: L_fourth_4
+    400026: L_fourth_5
+    400028: L_second_1
+    400030: L_second_2
+    400032: L_second_3
+    400034: L_second_4
+    400036: L_second_5
+    400038: L_third_1
+    400040: L_third_2
+    400042: L_third_3
+    400044: L_third_4
+    400046: L_third_5
+    400048: mesh
+    400050: R_fang_1
+    400052: R_fang_2
+    400054: R_fang_3
+    400056: R_fang_4
+    400058: R_first_1
+    400060: R_first_2
+    400062: R_first_3
+    400064: R_first_4
+    400066: R_first_5
+    400068: R_fourth_1
+    400070: R_fourth_2
+    400072: R_fourth_3
+    400074: R_fourth_4
+    400076: R_fourth_5
+    400078: R_second_1
+    400080: R_second_2
+    400082: R_second_3
+    400084: R_second_4
+    400086: R_second_5
+    400088: R_third_1
+    400090: R_third_2
+    400092: R_third_3
+    400094: R_third_4
+    400096: R_third_5
+    400098: root
+    400100: //RootNode
+    400102: spine_1
+    400104: spine_2
+    400106: spine_3
+    400108: spine_4
+    400110: tail_1
+    400112: tail_2
+    400114: tail_3
+    4300000: mesh
+    7400000: idle
+    7400002: walk
+    7400004: jump
+    7400006: attack
+    7400008: die
+    9500000: //RootNode
+    13700000: mesh
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mesh
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/L_fourth_1
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4/L_fourth_5
+        weight: 1
+      - path: root/R_fourth_1
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4/R_fourth_5
+        weight: 1
+      - path: root/spine_1
+        weight: 1
+      - path: root/spine_1/L_third_1
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4/L_third_5
+        weight: 1
+      - path: root/spine_1/R_third_1
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4/R_third_5
+        weight: 1
+      - path: root/spine_1/spine_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4/L_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4/R_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4/L_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4/R_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3/L_fang_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3/R_fang_4
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 61
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mesh
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/L_fourth_1
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4/L_fourth_5
+        weight: 1
+      - path: root/R_fourth_1
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4/R_fourth_5
+        weight: 1
+      - path: root/spine_1
+        weight: 1
+      - path: root/spine_1/L_third_1
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4/L_third_5
+        weight: 1
+      - path: root/spine_1/R_third_1
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4/R_third_5
+        weight: 1
+      - path: root/spine_1/spine_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4/L_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4/R_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4/L_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4/R_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3/L_fang_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3/R_fang_4
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: jump
+      takeName: jump
+      firstFrame: 91
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mesh
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/L_fourth_1
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4/L_fourth_5
+        weight: 1
+      - path: root/R_fourth_1
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4/R_fourth_5
+        weight: 1
+      - path: root/spine_1
+        weight: 1
+      - path: root/spine_1/L_third_1
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4/L_third_5
+        weight: 1
+      - path: root/spine_1/R_third_1
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4/R_third_5
+        weight: 1
+      - path: root/spine_1/spine_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4/L_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4/R_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4/L_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4/R_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3/L_fang_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3/R_fang_4
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: attack
+      takeName: attack
+      firstFrame: 121
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mesh
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/L_fourth_1
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4/L_fourth_5
+        weight: 1
+      - path: root/R_fourth_1
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4/R_fourth_5
+        weight: 1
+      - path: root/spine_1
+        weight: 1
+      - path: root/spine_1/L_third_1
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4/L_third_5
+        weight: 1
+      - path: root/spine_1/R_third_1
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4/R_third_5
+        weight: 1
+      - path: root/spine_1/spine_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4/L_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4/R_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4/L_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4/R_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3/L_fang_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3/R_fang_4
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: die
+      takeName: die
+      firstFrame: 151
+      lastFrame: 165
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mesh
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/L_fourth_1
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4
+        weight: 1
+      - path: root/L_fourth_1/L_fourth_2/L_fourth_3/L_fourth_4/L_fourth_5
+        weight: 1
+      - path: root/R_fourth_1
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4
+        weight: 1
+      - path: root/R_fourth_1/R_fourth_2/R_fourth_3/R_fourth_4/R_fourth_5
+        weight: 1
+      - path: root/spine_1
+        weight: 1
+      - path: root/spine_1/L_third_1
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4
+        weight: 1
+      - path: root/spine_1/L_third_1/L_third_2/L_third_3/L_third_4/L_third_5
+        weight: 1
+      - path: root/spine_1/R_third_1
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4
+        weight: 1
+      - path: root/spine_1/R_third_1/R_third_2/R_third_3/R_third_4/R_third_5
+        weight: 1
+      - path: root/spine_1/spine_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/L_second_1/L_second_2/L_second_3/L_second_4/L_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4
+        weight: 1
+      - path: root/spine_1/spine_2/R_second_1/R_second_2/R_second_3/R_second_4/R_second_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/L_first_1/L_first_2/L_first_3/L_first_4/L_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/R_first_1/R_first_2/R_first_3/R_first_4/R_first_5
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/L_fang_1/L_fang_2/L_fang_3/L_fang_4
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3
+        weight: 1
+      - path: root/spine_1/spine_2/spine_3/spine_4/R_fang_1/R_fang_2/R_fang_3/R_fang_4
+        weight: 1
+      - path: root/tail_1
+        weight: 1
+      - path: root/tail_1/tail_2
+        weight: 1
+      - path: root/tail_1/tail_2/tail_3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fourth_1
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fourth_1
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fourth_3
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fourth_3
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fourth_4
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fourth_4
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_2
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_3
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_4
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_second_1
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_second_1
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_second_2
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_second_2
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_second_3
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_second_3
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_second_4
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_second_4
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fourth_5
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fourth_5
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fang_3
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fang_3
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: spider(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: mesh
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: root
+      position: {x: 0, y: 3.21265864, z: .362481743}
+      rotation: {x: .0859857202, y: .701859295, z: .0859857202, w: .701859295}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: spine_1
+      position: {x: -.183933944, y: -.00601722347, z: 0}
+      rotation: {x: 0, y: 0, z: -.689891994, w: .723912418}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: spine_2
+      position: {x: -.185722321, y: -.0273226351, z: 0}
+      rotation: {x: 0, y: 0, z: .0124081448, w: .99992305}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: spine_3
+      position: {x: -.218933612, y: .0214590169, z: 0}
+      rotation: {x: 0, y: -0, z: -.193845853, w: .981032014}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: spine_4
+      position: {x: -.347660869, y: .162369862, z: 0}
+      rotation: {x: .130099058, y: -.695035458, z: .130099058, w: .695035458}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fang_1
+      position: {x: -.109305188, y: .00412444212, z: .0891114622}
+      rotation: {x: .0200009029, y: .603652298, z: .0263925418, w: .796559751}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fang_2
+      position: {x: -.190006539, y: 0, z: 0}
+      rotation: {x: -.0391376503, y: -.0774899721, z: .389279306, w: .917019725}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fang_3
+      position: {x: -.189316377, y: 0, z: 0}
+      rotation: {x: .823847234, y: .506900489, z: .0379192717, w: .250778288}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fang_4
+      position: {x: -.103080548, y: 0, z: 0}
+      rotation: {x: .526405871, y: .795387924, z: -.165804505, w: .250526994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fang_1
+      position: {x: .109304994, y: .00412474945, z: .0891114771}
+      rotation: {x: .0153212864, y: .789767027, z: .0118940044, w: .613100231}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fang_2
+      position: {x: -.187892571, y: 0, z: 0}
+      rotation: {x: .0509058349, y: .103074931, z: .405001402, w: .907060087}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fang_3
+      position: {x: -.187452003, y: 0, z: 0}
+      rotation: {x: .836768448, y: .469061673, z: -.050909292, w: -.277863145}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fang_4
+      position: {x: -.106348865, y: 0, z: 0}
+      rotation: {x: .148656324, y: .207989618, z: -.562153995, w: .786526859}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_first_1
+      position: {x: .00137161615, y: -.00470964843, z: -.516123593}
+      rotation: {x: .193053186, y: -.300425977, z: -.186263472, w: .915303588}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_first_2
+      position: {x: -1.16496372, y: 0, z: 0}
+      rotation: {x: -.0223143231, y: .0892531499, z: .501593173, w: .860197783}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_first_3
+      position: {x: -.903974652, y: 0, z: 0}
+      rotation: {x: .0149719818, y: .025525352, z: .244458809, w: .969208062}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_first_4
+      position: {x: -1.08762848, y: 0, z: 0}
+      rotation: {x: .0784913823, y: .0512239747, z: .212266549, w: .972706616}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_first_5
+      position: {x: -.404512763, y: 0, z: 0}
+      rotation: {x: .0605720393, y: .136134759, z: -.701534629, w: .696884155}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_first_1
+      position: {x: .00137168856, y: -.00470924377, z: .51612401}
+      rotation: {x: -.193053827, y: .300425649, z: -.186265111, w: .91530323}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_first_2
+      position: {x: -1.1649586, y: 0, z: 0}
+      rotation: {x: .0223138276, y: -.0892510638, z: .501596451, w: .860196114}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_first_3
+      position: {x: -.903974414, y: 0, z: 0}
+      rotation: {x: -.0149746956, y: -.025529854, z: .244457468, w: .969208241}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_first_4
+      position: {x: -1.08763003, y: 0, z: 0}
+      rotation: {x: -.0785014182, y: -.0512307286, z: .212263346, w: .972706139}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_first_5
+      position: {x: -.404507935, y: 0, z: 0}
+      rotation: {x: -.0605655983, y: -.136121154, z: -.70153451, w: .696887493}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_second_1
+      position: {x: .00775053259, y: .027376838, z: -.506908655}
+      rotation: {x: .0633423254, y: -.665806651, z: -.145509511, w: .72905165}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_second_2
+      position: {x: -1.1569767, y: 0, z: 0}
+      rotation: {x: .0190126617, y: -.0432562009, z: .169189081, w: .98445034}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_second_3
+      position: {x: -.978508294, y: 0, z: 0}
+      rotation: {x: -.00736752432, y: -.00800189469, z: .00380588253, w: .99993366}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_second_4
+      position: {x: -.989606202, y: 0, z: 0}
+      rotation: {x: .0142151397, y: .00853839424, z: .158402875, w: .987235308}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_second_5
+      position: {x: -.402393788, y: 0, z: 0}
+      rotation: {x: .322444499, y: .466871232, z: -.454256028, w: .686813116}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_second_1
+      position: {x: .00775038591, y: .0273766909, z: .506908953}
+      rotation: {x: -.0633422732, y: .665806293, z: -.145508051, w: .729052186}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_second_2
+      position: {x: -1.15697587, y: 0, z: 0}
+      rotation: {x: -.0190113578, y: .0432566553, z: .169188604, w: .9844504}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_second_3
+      position: {x: -.978508592, y: 0, z: 0}
+      rotation: {x: .00736619765, y: .00800173357, z: .00380624016, w: .99993366}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_second_4
+      position: {x: -.989605129, y: 0, z: 0}
+      rotation: {x: -.0142139504, y: -.00853768643, z: .158400699, w: .987235725}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_second_5
+      position: {x: -.402396649, y: 0, z: 0}
+      rotation: {x: -.32244271, y: -.466869533, z: -.454256326, w: .686814904}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_third_1
+      position: {x: .081893608, y: .0436870344, z: -.470996112}
+      rotation: {x: .28053695, y: -.717198431, z: -.229582801, w: .595161438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_third_2
+      position: {x: -1.10936677, y: 0, z: 0}
+      rotation: {x: .00152943109, y: -.00616757618, z: .47866568, w: .877974272}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_third_3
+      position: {x: -.975239217, y: 0, z: 0}
+      rotation: {x: -.0185047202, y: -.0296170246, z: .298009157, w: .953924}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_third_4
+      position: {x: -.999106288, y: 0, z: 0}
+      rotation: {x: -.0534596257, y: -.0323629752, z: .163692176, w: .984530151}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_third_5
+      position: {x: -.411167264, y: 0, z: 0}
+      rotation: {x: .465077192, y: .689975441, z: -.312187463, w: .458449632}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_third_1
+      position: {x: .0818933249, y: .043687243, z: .470995992}
+      rotation: {x: -.280537009, y: .717200577, z: -.229579702, w: .595160067}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_third_2
+      position: {x: -1.10936606, y: 0, z: 0}
+      rotation: {x: -.00152726693, y: .00616318639, z: .478665024, w: .877974629}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_third_3
+      position: {x: -.975233436, y: 0, z: 0}
+      rotation: {x: .018504886, y: .0296170246, z: .298007309, w: .953924596}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_third_4
+      position: {x: -.999106944, y: 0, z: 0}
+      rotation: {x: .0534559749, y: .0323606096, z: .163698032, w: .984529436}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_third_5
+      position: {x: -.411160767, y: 0, z: 0}
+      rotation: {x: .465077877, y: .689970672, z: .31219238, w: -.45845291}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fourth_1
+      position: {x: .070960328, y: .00944052823, z: -.412617981}
+      rotation: {x: .454044372, y: .718434572, z: -.111068897, w: -.515130341}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fourth_2
+      position: {x: -1.06462622, y: 0, z: 0}
+      rotation: {x: .018928878, y: -.0658686236, z: .524726331, w: .848507762}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fourth_3
+      position: {x: -.993513227, y: 0, z: 0}
+      rotation: {x: -.0278606731, y: -.0466590263, z: -.0865954608, w: .994760275}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fourth_4
+      position: {x: -1.03340054, y: 0, z: 0}
+      rotation: {x: .76271379, y: .132270709, z: -.2385277, w: .586410046}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fourth_5
+      position: {x: -.471879303, y: 0, z: 0}
+      rotation: {x: .60525769, y: .716978371, z: -.152696773, w: .310304523}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fourth_1
+      position: {x: .0709602162, y: .00944024138, z: .412617981}
+      rotation: {x: .454146594, y: .718566418, z: .110948972, w: .514882207}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fourth_2
+      position: {x: -1.06462586, y: 0, z: 0}
+      rotation: {x: -.0188886728, y: .0658900887, z: .524720192, w: .848510742}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fourth_3
+      position: {x: -.993509054, y: 0, z: 0}
+      rotation: {x: .0275511686, y: .046681162, z: -.0866274908, w: .994765043}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fourth_4
+      position: {x: -1.03340137, y: 0, z: 0}
+      rotation: {x: -.762711167, y: -.132199168, z: -.238416821, w: .586474597}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fourth_5
+      position: {x: -.471882164, y: 0, z: 0}
+      rotation: {x: .605255067, y: .71697557, z: .152701184, w: -.31031388}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail_1
+      position: {x: .210305572, y: .129246265, z: 0}
+      rotation: {x: -.198597446, y: .980056584, z: -.00297960103, w: .00626813015}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail_2
+      position: {x: -.799794614, y: 0, z: 0}
+      rotation: {x: -.000262482121, y: .0011381458, z: .405029207, w: .914303005}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail_3
+      position: {x: -1.03139675, y: 0, z: 0}
+      rotation: {x: .21537514, y: .976514339, z: -.000154271227, w: -.00577021902}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 
