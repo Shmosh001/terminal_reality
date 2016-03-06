@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class soundControllerScript : MonoBehaviour {
-	
+
+	AudioSource safeAudio;
+	AudioSource tensionAudio;
 	
 	//PUBLIC PLAYER SOUND VARIABLES//
 	public AudioClip pistolShotSound;
@@ -23,14 +25,38 @@ public class soundControllerScript : MonoBehaviour {
     public AudioClip bossZombieDeath;
     public AudioClip pukingSound;
 
+	//PUBLIC BACKGROUND SOUNDS CLIPS//
+	public AudioClip safeBackgroundSound;
+
+
+
 
     private Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
-		
+		safeAudio = GameObject.FindGameObjectWithTag("Sound Controller").GetComponent<AudioSource>();
+		tensionAudio = GameObject.FindGameObjectWithTag(Tags.PLAYER1).GetComponent<AudioSource>();
+		playSafeBackgroundSound();
 	}
-	
+
+	public void playSafeBackgroundSound()
+	{
+		safeAudio.Play();
+	}
+
+	public void playTensionAudio()
+	{
+		if (safeAudio.isPlaying)
+		{
+			safeAudio.Stop();
+		}
+		if (!tensionAudio.isPlaying)
+		{
+			tensionAudio.Play();
+		}
+	}
+
 	//PLAY LOW HEALTH HEART BEAT//
 	public void playLowHealthHeartBeat(Vector3 position)
 	{

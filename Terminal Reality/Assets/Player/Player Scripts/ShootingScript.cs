@@ -81,6 +81,7 @@ public class ShootingScript : ammoHUDScript {
 	
 	                        weapon.GetComponent<weaponDataScript>().reduceAmmo(); //reduce ammo
 							soundController.GetComponent<soundControllerScript>().playPistolShot(transform.position); //play sound of a pistol shot
+							soundController.GetComponent<soundControllerScript>().playTensionAudio();
 							weapon.GetComponent<weaponDataScript>().gunFlare(true); //show gun flare
 							flareLoopCount = 0;
 							
