@@ -4,6 +4,7 @@ using System.Collections;
 public class glassBreaking : MonoBehaviour {
 
 	private AudioSource audioSource;
+    public GirlRunAway girl;
 
 	// Use this for initialization
 	void Start () 
@@ -20,8 +21,9 @@ public class glassBreaking : MonoBehaviour {
             audioSource.Play();
             //Destroy Component
             Destroy(this.gameObject, 3.0f);
+            girl.moveToNewPos();
 
 
-		}
+        }
 	}
 }
