@@ -15,6 +15,7 @@ public class startCollider : MonoBehaviour {
 		if (other.tag == Tags.PLAYER1)
 		{
 			soundController.GetComponent<soundControllerScript>().playTensionAudio();
+			Destroy(this);
 		}
 	}
 	

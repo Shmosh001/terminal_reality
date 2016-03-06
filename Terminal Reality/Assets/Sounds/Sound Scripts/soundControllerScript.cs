@@ -151,7 +151,7 @@ public class soundControllerScript : MonoBehaviour {
 	{
 		if (safeFadeIn)
 		{
-			if (safeAudio.volume < 0.7f)
+			if (safeAudio.volume < 0.6f)
 			{
 				safeAudio.volume += 0.25f*Time.deltaTime;
 			}
@@ -174,7 +174,7 @@ public class soundControllerScript : MonoBehaviour {
 
 		if (tensionFadeIn)
 		{
-			if (tensionAudio.volume < 0.65f)
+			if (tensionAudio.volume < 0.5f)
 			{
 				tensionAudio.volume += 0.2f*Time.deltaTime;
 			}
