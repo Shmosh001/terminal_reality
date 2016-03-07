@@ -153,7 +153,7 @@ public class soundControllerScript : MonoBehaviour {
 		{
 			if (safeAudio.volume < 0.6f)
 			{
-				safeAudio.volume += 0.25f*Time.deltaTime;
+				safeAudio.volume += 0.15f*Time.deltaTime;
 			}
 			else
 			{
@@ -164,7 +164,7 @@ public class soundControllerScript : MonoBehaviour {
 		{
 			if (safeAudio.volume > 0)
 			{
-				safeAudio.volume -= 0.25f*Time.deltaTime;
+				safeAudio.volume -= 0.15f*Time.deltaTime;
 			}
 			else
 			{
@@ -176,7 +176,7 @@ public class soundControllerScript : MonoBehaviour {
 		{
 			if (tensionAudio.volume < 0.5f)
 			{
-				tensionAudio.volume += 0.2f*Time.deltaTime;
+				tensionAudio.volume += 0.1f*Time.deltaTime;
 			}
 			else
 			{
@@ -187,7 +187,7 @@ public class soundControllerScript : MonoBehaviour {
 		{
 			if (tensionAudio.volume > 0)
 			{
-				tensionAudio.volume -= 0.5f*Time.deltaTime;
+				tensionAudio.volume -= 0.15f*Time.deltaTime;
 			}
 			else
 			{

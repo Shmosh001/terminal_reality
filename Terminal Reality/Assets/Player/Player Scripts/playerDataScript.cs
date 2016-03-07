@@ -30,7 +30,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 	public GameObject pistolGameObject;
 	public GameObject machineGunGameObject;
 
-	public bool inWaitingRoom;
+	public bool inWaitingRoom = false;
 	
 	//COUNTERS//
 	public int kills = 0;

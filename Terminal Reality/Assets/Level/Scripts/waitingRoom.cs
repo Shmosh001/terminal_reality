@@ -19,27 +19,20 @@ public class waitingRoom : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-
+		playerData.inWaitingRoom = true;
 
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		/*if (other.tag == Tags.PLAYER1)
-		{
-			playerData.inWaitingRoom = false;
-			soundController.GetComponent<soundControllerScript>().playSafeBackgroundSound();
-		}
-
-		if (other.tag == Tags.ENEMY)
-		{
-			enemyInRoom--;
-		}*/
+		playerData.inWaitingRoom = false;
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log(playerData.inWaitingRoom);
+
 		enemyInRoom = 0;
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY);
@@ -51,7 +44,16 @@ public class waitingRoom : MonoBehaviour {
 				enemyInRoom++;
 			}
 		}
-		Debug.Log("Enemies in the waiting room: " + enemyInRoom);
+
+		if (playerData.inWaitingRoom == true && enemyInRoom == 0)
+		{
+			soundController.GetComponent<soundControllerScript>().playSafeBackgroundSound();
+		}
+		else if (playerData.inWaitingRoom == true && enemyInRoom > 0)
+		{
+			soundController.GetComponent<soundControllerScript>().playTensionAudio();
+		}
+
 
 	}
 }
