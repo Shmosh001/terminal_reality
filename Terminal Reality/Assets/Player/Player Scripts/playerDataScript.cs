@@ -31,6 +31,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 	public GameObject machineGunGameObject;
 
 	public bool inWaitingRoom = false;
+	public bool inKeyRoom = false;
 	
 	//COUNTERS//
 	public int kills = 0;
