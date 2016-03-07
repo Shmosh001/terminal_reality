@@ -27,6 +27,17 @@ public class keyRoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		enemyInRoom = 0;
+		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY);
+		
+		foreach (GameObject e in enemies)
+		{
+			if (this.collider.bounds.Contains(e.transform.position))
+			{
+				enemyInRoom++;
+			}
+		}
+
 	}
 }
