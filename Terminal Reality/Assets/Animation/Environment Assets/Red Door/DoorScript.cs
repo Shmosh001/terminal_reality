@@ -14,6 +14,7 @@ public class DoorScript : MonoBehaviour {
     public bool open = false;
     public bool openFWD = false;
     public bool openBCK = false;
+    public bool disable;
     //private Text pushE;
 
     //field of view for detecting zombie
@@ -39,6 +40,10 @@ public class DoorScript : MonoBehaviour {
     //WHEN THE PLAYER INTERACTS WITH THE DOOR//
     public void interaction()
 	{
+
+        if (disable) {
+            return;
+        }
         //IF THE DOOR IS OPEN//
         if (open)
         {

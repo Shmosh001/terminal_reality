@@ -28,6 +28,7 @@ public class DoorSlam : MonoBehaviour {
 
     public void SlamDoor() {
         ds.specialClose();
+        
     }
 
 
