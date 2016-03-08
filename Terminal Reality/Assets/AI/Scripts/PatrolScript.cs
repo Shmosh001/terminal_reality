@@ -15,6 +15,7 @@ public class PatrolScript : MonoBehaviour {
 	
 
     public Vector3 getCurrentWayPoint() {
+        Debug.Log("current wp pos " + route[index].position.x + " " + route[index].position.y + " " + route[index].position.z);
         return route[index].position;
     }
 

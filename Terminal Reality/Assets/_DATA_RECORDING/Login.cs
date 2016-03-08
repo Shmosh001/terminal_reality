@@ -42,7 +42,7 @@ public class Login : MonoBehaviour {
             userName = name;
             createFile();
             Screen.showCursor = false;
-            Application.LoadLevel("Final Game");
+            Application.LoadLevel("Final Game Andreas");
 
         }
         else {
