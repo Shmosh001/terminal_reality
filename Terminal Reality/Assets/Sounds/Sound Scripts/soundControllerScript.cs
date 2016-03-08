@@ -43,6 +43,7 @@ public class soundControllerScript : MonoBehaviour {
 		//playSafeBackgroundSound();
 		safeAudio.Play();
 		tensionAudio.Play();
+		playSafeBackgroundSound();
 	}
 
 	public void playSafeBackgroundSound()

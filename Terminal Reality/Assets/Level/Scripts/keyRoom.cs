@@ -16,12 +16,18 @@ public class keyRoom : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		playerData.inKeyRoom = true;
+		if (other.tag == Tags.PLAYER1)
+		{
+			playerData.inKeyRoom = true;
+		}
 	}
 	
 	void OnTriggerExit(Collider other)
 	{
-		playerData.inKeyRoom = false;
+		if (other.tag == Tags.PLAYER1)
+		{
+			playerData.inKeyRoom = false;
+		}
 	}
 
 	// Update is called once per frame
@@ -37,6 +43,17 @@ public class keyRoom : MonoBehaviour {
 			{
 				enemyInRoom++;
 			}
+		}
+		
+		Debug.Log ("Number of enemies in the room: " + enemyInRoom);
+		
+		if (playerData.inKeyRoom == true && enemyInRoom == 0)
+		{
+			soundController.GetComponent<soundControllerScript>().playSafeBackgroundSound();
+		}
+		else if (playerData.inKeyRoom == true && enemyInRoom > 0)
+		{
+			soundController.GetComponent<soundControllerScript>().playTensionAudio();
 		}
 
 	}

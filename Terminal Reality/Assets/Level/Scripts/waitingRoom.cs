@@ -19,13 +19,19 @@ public class waitingRoom : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		playerData.inWaitingRoom = true;
+		if (other.tag == Tags.PLAYER1)
+		{
+			playerData.inWaitingRoom = true;
+		}
 
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		playerData.inWaitingRoom = false;
+		if (other.tag == Tags.PLAYER1)
+		{
+			playerData.inWaitingRoom = false;
+		}
 	}
 
 	// Update is called once per frame
