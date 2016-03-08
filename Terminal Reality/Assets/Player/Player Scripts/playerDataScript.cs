@@ -34,6 +34,8 @@ public class playerDataScript : Photon.MonoBehaviour {
 	public bool inKeyRoom = false;
 	public bool inToilets = false;
 	public bool inPaddedRoom = false;
+	public bool inSectionOne = false;
+	public bool inSectionTwo = false;
 	
 	//COUNTERS//
 	public int kills = 0;
