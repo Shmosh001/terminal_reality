@@ -29,6 +29,14 @@ public class keyRoom : MonoBehaviour {
 			playerData.inKeyRoom = false;
 		}
 	}
+	
+	void OnTriggerStay(Collider other)
+	{
+		if (other.tag == Tags.PLAYER1)
+		{
+			playerData.inKeyRoom = true;
+		}
+	}
 
 	// Update is called once per frame
 	void Update () 
@@ -45,8 +53,8 @@ public class keyRoom : MonoBehaviour {
 			}
 		}
 		
-		Debug.Log ("Number of enemies in the room: " + enemyInRoom);
-		
+		//Debug.Log ("Number of enemies in the room: " + enemyInRoom);
+		Debug.Log("Player in key room: " + playerData.inKeyRoom);
 		if (playerData.inKeyRoom == true && enemyInRoom == 0)
 		{
 			soundController.GetComponent<soundControllerScript>().playSafeBackgroundSound();
