@@ -53,8 +53,6 @@ public class keyRoom : MonoBehaviour {
 			}
 		}
 		
-		//Debug.Log ("Number of enemies in the room: " + enemyInRoom);
-		Debug.Log("Player in key room: " + playerData.inKeyRoom);
 		if (playerData.inKeyRoom == true && enemyInRoom == 0)
 		{
 			soundController.GetComponent<soundControllerScript>().playSafeBackgroundSound();

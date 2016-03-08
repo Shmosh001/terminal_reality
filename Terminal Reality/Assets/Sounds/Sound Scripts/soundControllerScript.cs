@@ -175,7 +175,7 @@ public class soundControllerScript : MonoBehaviour {
 
 		if (tensionFadeIn)
 		{
-			if (tensionAudio.volume < 0.5f)
+			if (tensionAudio.volume < 0.7f)
 			{
 				tensionAudio.volume += 0.1f*Time.deltaTime;
 			}
