@@ -14,10 +14,10 @@ public class GameOver : MonoBehaviour {
 
 			writeToFile();
 
-            Application.LoadLevel("Thriller");
+            Application.LoadLevel(3);
         }
         else if (!gameObject.GetComponent<GameManager>().singleplayer && player1Dead && player2Dead) {
-            Application.LoadLevel("Thriller");
+            Application.LoadLevel(3);
         }
 
     }

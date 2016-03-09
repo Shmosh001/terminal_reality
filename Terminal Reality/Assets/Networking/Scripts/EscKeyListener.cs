@@ -35,7 +35,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
         }
         
         if (Input.GetKeyDown(KeyCode.Y) && displayed) {
-            Application.LoadLevel("MainMenu");
+            Application.LoadLevel(0);
         }
 
         if (Input.GetKeyDown(KeyCode.N) && displayed) {
