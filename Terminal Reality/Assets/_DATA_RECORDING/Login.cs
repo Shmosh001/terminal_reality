@@ -29,6 +29,7 @@ public class Login : MonoBehaviour {
     void Start() {	
 		
         path = Application.dataPath + "/" + "_DATA_RECORDING/";
+        System.IO.Directory.CreateDirectory(path);
         okBtn.onClick.AddListener(() => { okClick(inField.text); });
     }
 
@@ -42,7 +43,9 @@ public class Login : MonoBehaviour {
             userName = name;
             createFile();
             Screen.showCursor = false;
-            Application.LoadLevel("Final Game Andreas");
+
+            Application.LoadLevel(2);
+
 
         }
         else {

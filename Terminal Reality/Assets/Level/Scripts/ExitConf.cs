@@ -6,7 +6,7 @@ public class ExitConf : MonoBehaviour {
 
 
     public GameObject go;
-
+    public GameOver gameover;
     public Button yes;
     public Button no;
     
@@ -22,7 +22,8 @@ public class ExitConf : MonoBehaviour {
     }
 
     public void onYes() {
-        Application.LoadLevel("MainMenu");
+        gameover.writeToFile(2);
+        Application.LoadLevel(0);
     }
 
 
