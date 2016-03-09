@@ -80,7 +80,10 @@ public class interactionScript : Photon.MonoBehaviour {
 	                if (hitObject.CompareTag(Tags.DOOR)) 
 	                {
 	                    DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-	                    ds.interaction();
+                        if (ds != null) {
+                            ds.interaction();
+                        }
+                        
 	
 	                }
 					//IF THE RAY HIT A DOOR//				
