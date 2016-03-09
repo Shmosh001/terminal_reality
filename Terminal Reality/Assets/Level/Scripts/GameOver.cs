@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour {
         if (gameObject.GetComponent<GameManager>().singleplayer && player1Dead) {
 
 			writeToFile(1);
-            Application.LoadLevel(3);
+            Application.LoadLevel(0);
         }
         else if (!gameObject.GetComponent<GameManager>().singleplayer && player1Dead && player2Dead) {
             Application.LoadLevel(3);
@@ -55,7 +55,7 @@ public class GameOver : MonoBehaviour {
 
 		//Add the end time to the file.
 		text = text + "\r\nEnd time: " + System.DateTime.Now.ToString();
-        Debug.Log(path);
+        //Debug.Log(path);
 		System.IO.File.WriteAllText(path, text);
 	}
 

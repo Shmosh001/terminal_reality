@@ -21,32 +21,36 @@ public class OrbMovement : MonoBehaviour {
             Debug.LogError("Agent not assigned");
         }
         ps = this.gameObject.GetComponent<PatrolScript>();
-        agent.SetDestination(ps.getNextWayPoint());
+        
         
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (start && count >= endCount) {
+        /*if (start && count >= endCount) {
             //Debug.Log("reached end");
             agent.Stop();
             ds.specialClose();
             Destroy(this);
         }
-
-	    if (start && checkArrival(ps.getCurrentWayPoint())){
-            count++;
-            //Debug.Log("at point");
-            agent.Stop();
-            agent.SetDestination(ps.getNextWayPoint());
+        */
+	    //if (start && checkArrival(ps.getCurrentWayPoint())){
+        if (start && checkArrival(ps.getCurrentWayPoint())) {
+                //count++;
+                //Debug.Log("at point");
+                //agent.Stop();
+                //agent.SetDestination(ps.getNextWayPoint());
+                agent.Stop();
+            ds.specialClose();
+            Destroy(this);
         }
 
        
 	}
 
     bool checkArrival(Vector3 pos1) {
-        Debug.Log(Vector3.Distance(pos1, this.transform.position));
+        //Debug.Log(Vector3.Distance(pos1, this.transform.position));
         if (Vector3.Distance(pos1, this.transform.position) <= 2) {
             return true;
         }
@@ -55,6 +59,7 @@ public class OrbMovement : MonoBehaviour {
 
 
     public void specialStart() {
+        agent.SetDestination(ps.getNextWayPoint());
         start = true;
         scream.Play();
         //Debug.Log("started");
