@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EscKeyListener : Photon.MonoBehaviour {
 
+    public GameOver gover;
     public Light directionalLight;
     public GameObject exitConf;
     private bool displayed;
@@ -35,6 +36,7 @@ public class EscKeyListener : Photon.MonoBehaviour {
         }
         
         if (Input.GetKeyDown(KeyCode.Y) && displayed) {
+            gover.writeToFile(2);
             Application.LoadLevel(0);
         }
 
