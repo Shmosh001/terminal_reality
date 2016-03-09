@@ -46,7 +46,7 @@ public class GameOver : MonoBehaviour {
 
 		//Add the end time to the file.
 		text = text + "\r\nEnd time: " + System.DateTime.Now.ToString();
-		
+        Debug.Log(path);
 		System.IO.File.WriteAllText(path, text);
 	}
 
