@@ -98,7 +98,7 @@ public class DoorScript : MonoBehaviour {
 	}
 
     public void specialOpen() {
-        normalSound.Play();
+        //normalSound.Play();
         anim.SetTrigger("OpenFWD");
         openFWD = true;
     }
