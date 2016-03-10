@@ -46,7 +46,7 @@ public class playerDataScript : Photon.MonoBehaviour {
 
 
     //PLAYER HAS KEY
-    public bool hasKey = false;
+    public bool hasKey = true;
 
 
 
