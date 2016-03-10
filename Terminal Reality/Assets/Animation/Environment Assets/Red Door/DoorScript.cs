@@ -26,7 +26,7 @@ public class DoorScript : MonoBehaviour {
     void Start ()
     {
        
-		anim = this.GetComponent<Animator> ();
+		anim = this.transform.parent.GetComponentInChildren<Animator>();
 	
        
 	}
@@ -97,18 +97,7 @@ public class DoorScript : MonoBehaviour {
         
 	}
 
-    public void specialOpen() {
-        //normalSound.Play();
-        anim.SetTrigger("OpenFWD");
-        openFWD = true;
-    }
 
-    public void specialClose() {
-        slam.Play();
-        anim.SetTrigger("Slam");
-        openFWD = false;
-        
-    }
 
     //WHEN SOMETHING ENTERS THE DOORS TRIGGER//
     void OnTriggerEnter (Collider other)
@@ -222,6 +211,20 @@ public class DoorScript : MonoBehaviour {
         anim.SetBool("peek", false);
         //play sound
         peekClose.Play();
+    }
+
+    public void specialOpen() {
+        //normalSound.Play();
+        
+        openFWD = true;
+    }
+
+    public void specialClose() {
+       
+        slam.Play();
+        anim.SetTrigger("close");
+        openFWD = false;
+
     }
 
 }
