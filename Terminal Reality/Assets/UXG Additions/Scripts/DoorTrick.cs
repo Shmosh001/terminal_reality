@@ -31,6 +31,11 @@ public class DoorTrick : MonoBehaviour {
     void OnTriggerEnter(Collider col) {
         if (col.tag == Tags.PLAYER1) {
             //Debug.Log("player enter");
+
+            if (ds.open) {
+                ds.interaction();
+            }
+
             ds.openPeek();
             Invoke("eyeAppear",0.5f);
             pds.disabled = true;

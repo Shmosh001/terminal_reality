@@ -9,14 +9,24 @@ public class LightOnOff : MonoBehaviour {
     public GameObject light2;
     public Texture black;
     public Texture white;
+
+
+    public bool special;
     //public Material white;
     //public Material black;
 
 	// Use this for initialization
 	void Start () 
 	{
-		InvokeRepeating("Flicker",0.01f,1.5f);
-
+        if (special) {
+            light1.renderer.materials[0].SetTexture("_MainTex", black);
+            light1.renderer.materials[1].SetTexture("_MainTex", black);
+            light2.renderer.materials[0].SetTexture("_MainTex", black);
+            light2.renderer.materials[1].SetTexture("_MainTex", black);
+        }
+        else {
+            InvokeRepeating("Flicker", 0.01f, 1.5f);
+        }
 	}
 
 	void Flicker()

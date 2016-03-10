@@ -560,7 +560,9 @@ public class interactionScript : Photon.MonoBehaviour {
 				}
 				else
 				{
-					needKey.enabled = true;
+                    if (!other.GetComponentInParent<DDScript>().open) {
+                        needKey.enabled = true;
+                    }
 				}
 				
 			}
@@ -620,14 +622,14 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "DoubleDoor")
 			{	
-				if (playerData.hasKey)
-				{			
+				//if (playerData.hasKey)
+				//{			
 					pushEOpen.enabled = false;
-				}
-				else
-				{
+				//}
+				//else
+				//{
 					needKey.enabled = false;
-				}
+				//}
 				
 			}
 			
