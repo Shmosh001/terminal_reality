@@ -80,7 +80,7 @@ public class interactionScript : Photon.MonoBehaviour {
 	                if (hitObject.CompareTag(Tags.DOOR)) 
 	                {
 	                    DoorScript ds = hitObject.GetComponentInParent<DoorScript>();
-	                    ds.interaction();
+                        ds.interaction();
 	
 	                }
 					//IF THE RAY HIT A DOOR//				
@@ -557,7 +557,11 @@ public class interactionScript : Photon.MonoBehaviour {
 				}
 				else
 				{
-					needKey.enabled = true;
+                    if(!other.GetComponentInParent<DDScript>().open)
+                    {
+                        needKey.enabled = true;
+                    }
+					
 				}
 				
 			}
@@ -617,14 +621,14 @@ public class interactionScript : Photon.MonoBehaviour {
 			//IF PLAYER WALKS INTO THE RANGE OF THE DOOR 
 			if (other.tag == "DoubleDoor")
 			{	
-				if (playerData.hasKey)
-				{			
+				//if (playerData.hasKey)
+				//{			
 					pushEOpen.enabled = false;
-				}
-				else
-				{
+				//}
+				//else
+				//{
 					needKey.enabled = false;
-				}
+				//}
 				
 			}
 			

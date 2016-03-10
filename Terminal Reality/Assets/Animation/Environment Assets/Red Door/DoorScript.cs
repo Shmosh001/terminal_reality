@@ -21,10 +21,8 @@ public class DoorScript : MonoBehaviour {
     void Start ()
     {
         audioSource = GetComponent<AudioSource>();
-		anim = this.GetComponent<Animator> ();
-	
-       
-	}
+        anim = this.GetComponent<Animator> ();
+    }
 
     // Update is called once per frame
     void Update()

@@ -74,7 +74,7 @@ public class torchScript : MonoBehaviour {
 		//if torch is off, charge the battery
 		if (!torchOn && batteryLife <= 100.0f)
 		{
-			batteryLife += 0.1f;
+			batteryLife += 0.2f;
 		}
 		
 		//if the battery is dead (<0), then turn the torch off//
