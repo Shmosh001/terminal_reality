@@ -53,7 +53,6 @@ public class paddedRoom : MonoBehaviour {
 			}
 		}
 		
-		Debug.Log ("Number of enemies: " + enemyInRoom);
 		
 		if (playerData.inPaddedRoom == true && enemyInRoom == 0)
 		{
