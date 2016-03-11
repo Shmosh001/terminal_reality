@@ -21,6 +21,7 @@ public class playerHealthScript : MonoBehaviour {
 		animator = this.gameObject.GetComponent<Animator>();
 		updateHealthHUD();
         animSync = this.gameObject.GetComponent<playerAnimatorSync>();
+		PlayerPrefs.SetString("how", "Player made it to the end of the level.");
 
 
     }
@@ -99,6 +100,7 @@ public class playerHealthScript : MonoBehaviour {
 
             if (gameObject.tag == Tags.PLAYER1) {
 				//writeToFile();
+				PlayerPrefs.SetString("how", "Player died.");
                 scripts.GetComponent<GameOver>().player1Dead = true;
                 
 

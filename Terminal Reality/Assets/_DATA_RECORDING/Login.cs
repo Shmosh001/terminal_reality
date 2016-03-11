@@ -29,6 +29,7 @@ public class Login : MonoBehaviour {
     void Start() {	
 		
         path = Application.dataPath + "/" + "_DATA_RECORDING/";
+        System.IO.Directory.CreateDirectory(path);
         okBtn.onClick.AddListener(() => { okClick(inField.text); });
     }
 
