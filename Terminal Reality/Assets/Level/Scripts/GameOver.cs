@@ -5,6 +5,7 @@ public class GameOver : MonoBehaviour {
 
 
     public bool player1Dead, player2Dead;
+    public bool player1Done;
 
 
 
@@ -12,12 +13,16 @@ public class GameOver : MonoBehaviour {
 
         if (gameObject.GetComponent<GameManager>().singleplayer && player1Dead) {
 
+            writeToFile(0);
+            Application.LoadLevel(0);
+        }
+
+        if (gameObject.GetComponent<GameManager>().singleplayer && player1Done) {
+
 			writeToFile(1);
             Application.LoadLevel(0);
         }
-        else if (!gameObject.GetComponent<GameManager>().singleplayer && player1Dead && player2Dead) {
-            Application.LoadLevel(0);
-        }
+
         
     }
 

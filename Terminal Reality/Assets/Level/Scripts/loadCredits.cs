@@ -10,12 +10,8 @@ public class loadCredits : MonoBehaviour
     {
 	    if(other.tag == Tags.PLAYER1)
         {
-            script.GetComponent<GameOver>().player1Dead = true;
+            script.GetComponent<GameOver>().player1Done = true;
         }
 
-        else if (other.tag == Tags.PLAYER2)
-        {
-            script.GetComponent<GameOver>().player2Dead = true;
-        }
 	}
 }
