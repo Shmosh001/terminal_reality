@@ -5,19 +5,22 @@ public class GameOver : MonoBehaviour {
 
 
     public bool player1Dead, player2Dead;
+    public bool player1done;
 
 
 
     void Update() {
 
         if (gameObject.GetComponent<GameManager>().singleplayer && player1Dead) {
+			writeToFile(0);
+            Application.LoadLevel(0);
+        }
 
-			writeToFile(1);
+        if(gameObject.GetComponent<GameManager>().singleplayer && player1done) {
+            writeToFile(1);
             Application.LoadLevel(0);
         }
-        else if (!gameObject.GetComponent<GameManager>().singleplayer && player1Dead && player2Dead) {
-            Application.LoadLevel(0);
-        }
+        
         
     }
 
